@@ -1,4 +1,4 @@
-import treesitter from 'eslint-config-treesitter';
+import treesitter from "eslint-config-treesitter";
 
 export default [
   ...treesitter,

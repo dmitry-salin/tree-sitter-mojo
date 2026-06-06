@@ -3,25 +3,20 @@
 import Foundation
 import PackageDescription
 
-var sources = ["src/parser.c"]
-if FileManager.default.fileExists(atPath: "src/scanner.c") {
-    sources.append("src/scanner.c")
-}
-
 let package = Package(
     name: "TreeSitterMojo",
     products: [
         .library(name: "TreeSitterMojo", targets: ["TreeSitterMojo"]),
     ],
     dependencies: [
-        .package(name: "SwiftTreeSitter", url: "https://github.com/tree-sitter/swift-tree-sitter", from: "0.9.0"),
+        .package(name: "SwiftTreeSitter", url: "https://github.com/tree-sitter/swift-tree-sitter", from: "0.10.0"),
     ],
     targets: [
         .target(
             name: "TreeSitterMojo",
             dependencies: [],
             path: ".",
-            sources: sources,
+            sources: ["src/parser.c", "src/scanner.c"],
             resources: [
                 .copy("queries")
             ],
@@ -31,7 +26,7 @@ let package = Package(
         .testTarget(
             name: "TreeSitterMojoTests",
             dependencies: [
-                "SwiftTreeSitter",
+                .product(name: "SwiftTreeSitter", package: "swift-tree-sitter"),
                 "TreeSitterMojo",
             ],
             path: "bindings/swift/TreeSitterMojoTests"
