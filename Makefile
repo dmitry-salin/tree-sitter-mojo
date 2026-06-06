@@ -2,9 +2,9 @@ ifeq ($(OS),Windows_NT)
 $(error Windows is not supported)
 endif
 
-LANGUAGE_NAME := tree-sitter-python
-HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-python
-VERSION := 0.25.0
+LANGUAGE_NAME := tree-sitter-mojo
+HOMEPAGE_URL := https://github.com/dmitry-salin/tree-sitter-mojo
+VERSION := 0.1.0
 
 # repository
 SRC_DIR := src
@@ -70,7 +70,7 @@ $(PARSER): $(SRC_DIR)/grammar.json
 	$(TS) generate $^
 
 install: all
-	install -d '$(DESTDIR)$(DATADIR)'/tree-sitter/queries/python '$(DESTDIR)$(INCLUDEDIR)'/tree_sitter '$(DESTDIR)$(PCLIBDIR)' '$(DESTDIR)$(LIBDIR)'
+	install -d '$(DESTDIR)$(DATADIR)'/tree-sitter/queries/mojo '$(DESTDIR)$(INCLUDEDIR)'/tree_sitter '$(DESTDIR)$(PCLIBDIR)' '$(DESTDIR)$(LIBDIR)'
 	install -m644 bindings/c/tree_sitter/$(LANGUAGE_NAME).h '$(DESTDIR)$(INCLUDEDIR)'/tree_sitter/$(LANGUAGE_NAME).h
 	install -m644 $(LANGUAGE_NAME).pc '$(DESTDIR)$(PCLIBDIR)'/$(LANGUAGE_NAME).pc
 	install -m644 lib$(LANGUAGE_NAME).a '$(DESTDIR)$(LIBDIR)'/lib$(LANGUAGE_NAME).a
@@ -78,7 +78,7 @@ install: all
 	ln -sf lib$(LANGUAGE_NAME).$(SOEXTVER) '$(DESTDIR)$(LIBDIR)'/lib$(LANGUAGE_NAME).$(SOEXTVER_MAJOR)
 	ln -sf lib$(LANGUAGE_NAME).$(SOEXTVER_MAJOR) '$(DESTDIR)$(LIBDIR)'/lib$(LANGUAGE_NAME).$(SOEXT)
 ifneq ($(wildcard queries/*.scm),)
-	install -m644 queries/*.scm '$(DESTDIR)$(DATADIR)'/tree-sitter/queries/python
+	install -m644 queries/*.scm '$(DESTDIR)$(DATADIR)'/tree-sitter/queries/mojo
 endif
 
 uninstall:
@@ -88,7 +88,7 @@ uninstall:
 		'$(DESTDIR)$(LIBDIR)'/lib$(LANGUAGE_NAME).$(SOEXT) \
 		'$(DESTDIR)$(INCLUDEDIR)'/tree_sitter/$(LANGUAGE_NAME).h \
 		'$(DESTDIR)$(PCLIBDIR)'/$(LANGUAGE_NAME).pc
-	$(RM) -r '$(DESTDIR)$(DATADIR)'/tree-sitter/queries/python
+	$(RM) -r '$(DESTDIR)$(DATADIR)'/tree-sitter/queries/mojo
 
 clean:
 	$(RM) $(OBJS) $(LANGUAGE_NAME).pc lib$(LANGUAGE_NAME).a lib$(LANGUAGE_NAME).$(SOEXT)

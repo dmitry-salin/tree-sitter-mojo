@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-python
+module github.com/dmitry-salin/tree-sitter-mojo
 
 go 1.22
 
