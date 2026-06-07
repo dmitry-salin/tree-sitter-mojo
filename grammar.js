@@ -94,6 +94,7 @@ export default grammar({
   inline: $ => [
     $._simple_statement,
     $._compound_statement,
+    $._function_effect,
     $._suite,
     $._expressions,
     $._left_hand_side,
@@ -412,18 +413,36 @@ export default grammar({
     with_item: $ => prec.dynamic(1, seq(field('value', $.expression))),
 
     function_definition: $ =>
+      seq($._function_signature, ':', field('body', $._suite)),
+
+    _function_signature: $ =>
       seq(
         optional('async'),
         'def',
         field('name', $.identifier),
-        field('type_parameters', optional($.type_parameter)),
-        field('parameters', $.parameters),
-        optional(seq('->', field('return_type', $.type))),
-        ':',
-        field('body', $._suite),
+        $._function_parameters,
+        field('effects', optional($.function_effects)),
+        optional($._function_return_type),
       ),
 
+    _function_parameters: $ =>
+      seq(
+        field('type_parameters', optional($.type_parameter)),
+        field('parameters', $.parameters),
+      ),
+
+    function_effects: $ => repeat1($._function_effect),
+    _function_effect: $ => choice($.raises, $.abi),
+
+    _function_return_type: $ =>
+      prec.left(seq('->', field('return_type', $.type))),
+
     parameters: $ => seq('(', optional($._parameters), ')'),
+
+    raises: $ =>
+      prec.left(seq('raises', field('error_type', optional($.type)))),
+
+    abi: $ => seq('abi', '(', $.string, ')'),
 
     lambda_parameters: $ => $._parameters,
 

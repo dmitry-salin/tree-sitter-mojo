@@ -354,6 +354,21 @@
     ]
   },
   {
+    "type": "abi",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "aliased_import",
     "named": true,
     "fields": {
@@ -1786,6 +1801,16 @@
           }
         ]
       },
+      "effects": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "function_effects",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1826,6 +1851,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "function_effects",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "abi",
+          "named": true
+        },
+        {
+          "type": "raises",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2655,6 +2699,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "raises",
+    "named": true,
+    "fields": {
+      "error_type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -3532,6 +3592,10 @@
     "named": false
   },
   {
+    "type": "abi",
+    "named": false
+  },
+  {
     "type": "and",
     "named": false
   },
@@ -3695,6 +3759,10 @@
   },
   {
     "type": "raise",
+    "named": false
+  },
+  {
+    "type": "raises",
     "named": false
   },
   {

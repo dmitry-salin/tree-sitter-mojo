@@ -1,0 +1,78 @@
+================================================================================
+Function: effects
+================================================================================
+
+def k(arg: ArgType) raises -> ReturnType:
+    pass
+
+def l(arg: ArgType) raises ErrorType -> ReturnType:
+    pass
+
+def m(arg: ArgType) raises abi("C")-> ReturnType:
+    pass
+
+def n() abi("C")-> ReturnType:
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (identifier)
+    parameters: (parameters
+      (typed_parameter
+        (identifier)
+        type: (type
+          (identifier))))
+    effects: (function_effects
+      (raises))
+    return_type: (type
+      (identifier))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters
+      (typed_parameter
+        (identifier)
+        type: (type
+          (identifier))))
+    effects: (function_effects
+      (raises
+        error_type: (type
+          (identifier))))
+    return_type: (type
+      (identifier))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters
+      (typed_parameter
+        (identifier)
+        type: (type
+          (identifier))))
+    effects: (function_effects
+      (raises)
+      (abi
+        (string
+          (string_start)
+          (string_content)
+          (string_end))))
+    return_type: (type
+      (identifier))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters)
+    effects: (function_effects
+      (abi
+        (string
+          (string_start)
+          (string_content)
+          (string_end))))
+    return_type: (type
+      (identifier))
+    body: (block
+      (pass_statement))))
