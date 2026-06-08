@@ -1,0 +1,15 @@
+{
+  "files": {
+    "includes": ["package.json", "eslint.config.mjs", "grammar.js"]
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "bracketSpacing": false,
+      "quoteStyle": "single"
+    }
+  }
+}

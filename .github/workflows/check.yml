@@ -1,16 +1,18 @@
-name: Lint
+name: Check
 
 on:
   push:
     branches: [main]
     paths:
+      - package.json
       - grammar.js
   pull_request:
     paths:
+      - package.json
       - grammar.js
 
 jobs:
-  lint:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,5 +24,7 @@ jobs:
           node-version: ${{vars.NODE_VERSION}}
       - name: Install modules
         run: npm ci --legacy-peer-deps
-      - name: Run ESLint
+      - name: Run lint
         run: npm run lint
+      - name: Run check
+        run: npm run check

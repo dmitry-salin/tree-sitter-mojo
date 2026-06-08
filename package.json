@@ -43,6 +43,7 @@
     "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.4",
     "eslint": "^9.39.5",
     "eslint-config-treesitter": "^1.0.2",
     "globals": "^17.7.0",
@@ -58,6 +59,8 @@
     }
   },
   "scripts": {
+    "check": "biome ci --linter-enabled=false",
+    "format": "biome format --write",
     "install": "node-gyp-build",
     "lint": "eslint grammar.js",
     "prestart": "tree-sitter build --wasm",
