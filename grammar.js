@@ -864,16 +864,34 @@ export default grammar({
 
     assignment: $ =>
       seq(
+        optional($._declaration_convention),
         field('left', $._left_hand_side),
-        choice(
-          seq('=', field('right', $._right_hand_side)),
-          seq(':', field('type', $.type)),
-          seq(
-            ':',
-            field('type', $.type),
-            '=',
-            field('right', $._right_hand_side),
-          ),
+        $._assignment_right_side,
+      ),
+
+    _declaration_convention: $ => choice('var', 'ref'),
+
+    _left_hand_side: $ => choice($.pattern, $.pattern_list),
+
+    _right_hand_side: $ =>
+      choice(
+        $.expression,
+        $.expression_list,
+        $.assignment,
+        $.augmented_assignment,
+        $.pattern_list,
+        $.yield,
+      ),
+
+    _assignment_right_side: $ =>
+      choice(
+        seq('=', field('right', $._right_hand_side)),
+        seq(':', field('type', $.type)),
+        seq(
+          ':',
+          field('type', $.type),
+          '=',
+          field('right', $._right_hand_side),
         ),
       ),
 
@@ -901,22 +919,10 @@ export default grammar({
         field('right', $._right_hand_side),
       ),
 
-    _left_hand_side: $ => choice($.pattern, $.pattern_list),
-
     pattern_list: $ =>
       seq(
         $.pattern,
         choice(',', seq(repeat1(seq(',', $.pattern)), optional(','))),
-      ),
-
-    _right_hand_side: $ =>
-      choice(
-        $.expression,
-        $.expression_list,
-        $.assignment,
-        $.augmented_assignment,
-        $.pattern_list,
-        $.yield,
       ),
 
     yield: $ =>

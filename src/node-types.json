@@ -3766,6 +3766,10 @@
     "named": false
   },
   {
+    "type": "ref",
+    "named": false
+  },
+  {
     "type": "return",
     "named": false
   },
@@ -3792,6 +3796,10 @@
   {
     "type": "type_conversion",
     "named": true
+  },
+  {
+    "type": "var",
+    "named": false
   },
   {
     "type": "while",
