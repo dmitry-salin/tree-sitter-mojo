@@ -3144,6 +3144,16 @@
     "type": "typed_parameter",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": false,
         "required": true,
@@ -3157,14 +3167,10 @@
     },
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "dictionary_splat_pattern",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -3641,6 +3647,10 @@
     "named": false
   },
   {
+    "type": "deinit",
+    "named": false
+  },
+  {
     "type": "del",
     "named": false
   },
@@ -3734,6 +3744,10 @@
     "named": false
   },
   {
+    "type": "mut",
+    "named": false
+  },
+  {
     "type": "none",
     "named": true
   },
@@ -3750,6 +3764,10 @@
     "named": false
   },
   {
+    "type": "out",
+    "named": false
+  },
+  {
     "type": "pass",
     "named": false
   },
@@ -3763,6 +3781,10 @@
   },
   {
     "type": "raises",
+    "named": false
+  },
+  {
+    "type": "read",
     "named": false
   },
   {

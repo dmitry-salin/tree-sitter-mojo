@@ -21,7 +21,7 @@ def n() abi("C")-> ReturnType:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (identifier))))
     effects: (function_effects
@@ -34,7 +34,7 @@ def n() abi("C")-> ReturnType:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (identifier))))
     effects: (function_effects
@@ -49,7 +49,7 @@ def n() abi("C")-> ReturnType:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (identifier))))
     effects: (function_effects

@@ -670,7 +670,7 @@ async def d(a:str="default", b=c) -> None:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (identifier))))
     body: (block
@@ -679,7 +679,7 @@ async def d(a:str="default", b=c) -> None:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (attribute
             object: (identifier)
@@ -690,7 +690,7 @@ async def d(a:str="default", b=c) -> None:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (generic_type
             (identifier)
@@ -718,7 +718,7 @@ async def d(a:str="default", b=c) -> None:
     name: (identifier)
     parameters: (parameters
       (typed_parameter
-        (identifier)
+        name: (identifier)
         type: (type
           (identifier))))
     return_type: (type

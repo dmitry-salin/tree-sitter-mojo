@@ -663,10 +663,26 @@ export default grammar({
         field('value', $.expression),
       ),
 
+    typed_parameter: $ =>
+      prec(
+        PREC.typed_parameter,
+        seq(
+          optional($._convention),
+          choice(
+            field('name', $.identifier),
+            $.list_splat_pattern,
+            $.dictionary_splat_pattern,
+          ),
+          ':',
+          field('type', $.type),
+        ),
+      ),
+
     typed_default_parameter: $ =>
       prec(
         PREC.typed_parameter,
         seq(
+          optional($._convention),
           field('name', $.identifier),
           ':',
           field('type', $.type),
@@ -674,6 +690,8 @@ export default grammar({
           field('value', $.expression),
         ),
       ),
+
+    _convention: $ => choice('read', 'mut', 'out', 'deinit', 'var', 'ref'),
 
     list_splat_pattern: $ =>
       seq(
@@ -971,20 +989,6 @@ export default grammar({
         seq(
           field('function', $.primary_expression),
           field('arguments', choice($.generator_expression, $.argument_list)),
-        ),
-      ),
-
-    typed_parameter: $ =>
-      prec(
-        PREC.typed_parameter,
-        seq(
-          choice(
-            $.identifier,
-            $.list_splat_pattern,
-            $.dictionary_splat_pattern,
-          ),
-          ':',
-          field('type', $.type),
         ),
       ),
 
