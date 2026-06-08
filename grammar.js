@@ -467,15 +467,16 @@ export default grammar({
         seq('type', field('left', $.type), '=', field('right', $.type)),
       ),
 
-    class_definition: $ =>
+    class_definition: $ => seq($._class_header, ':', field('body', $._suite)),
+
+    _class_header: $ =>
       seq(
-        'class',
+        choice('class', 'struct'),
         field('name', $.identifier),
         field('type_parameters', optional($.type_parameter)),
         field('superclasses', optional($.argument_list)),
-        ':',
-        field('body', $._suite),
       ),
+
     type_parameter: $ => seq('[', commaSep1($.type), optional(','), ']'),
 
     parenthesized_list_splat: $ =>
