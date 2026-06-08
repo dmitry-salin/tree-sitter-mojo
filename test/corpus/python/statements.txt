@@ -694,7 +694,7 @@ async def d(a:str="default", b=c) -> None:
         type: (type
           (generic_type
             (identifier)
-            (type_parameter
+            (type_parameters
               (type
                 (identifier)))))))
     return_type: (type
@@ -1389,7 +1389,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier))
           (type
@@ -1398,13 +1398,13 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier)))))
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier))
           (type
@@ -1413,14 +1413,14 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (splat_type
               (identifier))))))
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier))
           (type
@@ -1430,14 +1430,14 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (splat_type
               (identifier))))))
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier))
           (type
@@ -1448,7 +1448,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (constrained_type
               (type
@@ -1458,7 +1458,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier))))))
   (comment)
@@ -1466,7 +1466,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (constrained_type
               (type
@@ -1478,7 +1478,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier))))))
   (comment))
@@ -1496,7 +1496,7 @@ def more_generic[T, *Ts, **P]():
 (module
   (function_definition
     (identifier)
-    (type_parameter
+    (type_parameters
       (type
         (identifier))
       (type
@@ -1511,7 +1511,7 @@ def more_generic[T, *Ts, **P]():
         (type
           (generic_type
             (identifier)
-            (type_parameter
+            (type_parameters
               (type
                 (identifier))
               (type
@@ -1523,17 +1523,17 @@ def more_generic[T, *Ts, **P]():
         (type
           (generic_type
             (identifier)
-            (type_parameter
+            (type_parameters
               (type
                 (generic_type
                   (identifier)
-                  (type_parameter
+                  (type_parameters
                     (type
                       (identifier))
                     (type
                       (generic_type
                         (identifier)
-                        (type_parameter
+                        (type_parameters
                           (type
                             (identifier))
                           (type
@@ -1542,13 +1542,13 @@ def more_generic[T, *Ts, **P]():
               (type
                 (generic_type
                   (identifier)
-                  (type_parameter
+                  (type_parameters
                     (type
                       (identifier))
                     (type
                       (generic_type
                         (identifier)
-                        (type_parameter
+                        (type_parameters
                           (type
                             (identifier))
                           (type

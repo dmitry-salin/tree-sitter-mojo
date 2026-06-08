@@ -1657,7 +1657,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "type_parameter"
+                "name": "type_parameters"
               },
               {
                 "type": "BLANK"
@@ -2043,7 +2043,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "type_parameter"
+                "name": "type_parameters"
               },
               {
                 "type": "BLANK"
@@ -2069,7 +2069,7 @@
         }
       ]
     },
-    "type_parameter": {
+    "type_parameters": {
       "type": "SEQ",
       "members": [
         {
@@ -5061,7 +5061,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "type_parameter"
+            "name": "type_parameters"
           }
         ]
       }

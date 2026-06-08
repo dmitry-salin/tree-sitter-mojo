@@ -640,7 +640,7 @@ tail_leaves: List[Leaf] = []
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier)))))
     (list)))
@@ -1107,7 +1107,7 @@ y: type[int] = int
         (type
           (generic_type
             (identifier)
-            (type_parameter
+            (type_parameters
               (type
                 (identifier)))))
         (type
@@ -1117,7 +1117,7 @@ y: type[int] = int
     (type
       (generic_type
         (identifier)
-        (type_parameter
+        (type_parameters
           (type
             (identifier)))))
     (identifier)))

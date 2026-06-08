@@ -1041,7 +1041,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -1846,7 +1846,7 @@
         "required": false,
         "types": [
           {
-            "type": "type_parameter",
+            "type": "type_parameters",
             "named": true
           }
         ]
@@ -1935,7 +1935,7 @@
           "named": true
         },
         {
-          "type": "type_parameter",
+          "type": "type_parameters",
           "named": true
         }
       ]
@@ -3090,7 +3090,7 @@
     }
   },
   {
-    "type": "type_parameter",
+    "type": "type_parameters",
     "named": true,
     "fields": {},
     "children": {

@@ -427,7 +427,7 @@ export default grammar({
 
     _function_parameters: $ =>
       seq(
-        field('type_parameters', optional($.type_parameter)),
+        field('type_parameters', optional($.type_parameters)),
         field('parameters', $.parameters),
       ),
 
@@ -473,11 +473,11 @@ export default grammar({
       seq(
         choice('class', 'struct'),
         field('name', $.identifier),
-        field('type_parameters', optional($.type_parameter)),
+        field('type_parameters', optional($.type_parameters)),
         field('superclasses', optional($.argument_list)),
       ),
 
-    type_parameter: $ => seq('[', commaSep1($.type), optional(','), ']'),
+    type_parameters: $ => seq('[', commaSep1($.type), optional(','), ']'),
 
     parenthesized_list_splat: $ =>
       prec(
@@ -1008,7 +1008,7 @@ export default grammar({
         1,
         seq(
           choice($.identifier, alias('type', $.identifier)),
-          $.type_parameter,
+          $.type_parameters,
         ),
       ),
     union_type: $ => prec.left(seq($.type, '|', $.type)),
