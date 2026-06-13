@@ -2613,34 +2613,8 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "list_splat"
-                    },
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "parenthesized_list_splat"
-                      },
-                      "named": true,
-                      "value": "parenthesized_expression"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "dictionary_splat"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "keyword_argument"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "expression"
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "_argument"
                 },
                 {
                   "type": "REPEAT",
@@ -2652,34 +2626,8 @@
                         "value": ","
                       },
                       {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "SYMBOL",
-                            "name": "list_splat"
-                          },
-                          {
-                            "type": "ALIAS",
-                            "content": {
-                              "type": "SYMBOL",
-                              "name": "parenthesized_list_splat"
-                            },
-                            "named": true,
-                            "value": "parenthesized_expression"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "dictionary_splat"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "keyword_argument"
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "expression"
-                          }
-                        ]
+                        "type": "SYMBOL",
+                        "name": "_argument"
                       }
                     ]
                   }
@@ -2706,6 +2654,36 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "_argument": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "list_splat"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parenthesized_list_splat"
+          },
+          "named": true,
+          "value": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dictionary_splat"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "keyword_argument"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },

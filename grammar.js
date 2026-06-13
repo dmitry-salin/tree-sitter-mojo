@@ -563,21 +563,15 @@ export default grammar({
     // Arguments
 
     argument_list: $ =>
-      seq(
-        '(',
-        optional(
-          commaSep1(
-            choice(
-              $.list_splat,
-              alias($.parenthesized_list_splat, $.parenthesized_expression),
-              $.dictionary_splat,
-              $.keyword_argument,
-              $.expression,
-            ),
-          ),
-        ),
-        optional(','),
-        ')',
+      seq('(', optional(commaSep1($._argument)), optional(','), ')'),
+
+    _argument: $ =>
+      choice(
+        $.list_splat,
+        alias($.parenthesized_list_splat, $.parenthesized_expression),
+        $.dictionary_splat,
+        $.keyword_argument,
+        $.expression,
       ),
 
     list_splat: $ => seq('*', $.expression),
