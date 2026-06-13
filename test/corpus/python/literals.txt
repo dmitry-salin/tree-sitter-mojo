@@ -359,7 +359,7 @@ def test(self):
   (string
     (string_start)
     (interpolation
-      (expression_list
+      (pattern_list
         (identifier)))
     (string_end))
   (string
@@ -371,8 +371,8 @@ def test(self):
   (string
     (string_start)
     (interpolation
-      (expression_list
-        (list_splat
+      (pattern_list
+        (list_splat_pattern
           (identifier))))
     (string_end))
   (function_definition
