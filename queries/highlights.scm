@@ -33,7 +33,7 @@
   name: (identifier) @function)
 
 (attribute attribute: (identifier) @property)
-(type (identifier) @type)
+(parameter (identifier) @type)
 
 ; Literals
 

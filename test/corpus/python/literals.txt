@@ -294,14 +294,14 @@ def test(self):
     (string_start)
     (string_content)
     (interpolation
-      (call
-        (identifier)
-        (arguments
+      expression: (call
+        function: (identifier)
+        arguments: (arguments
           (string
             (string_start)
             (string_content)
             (interpolation
-              (identifier))
+              expression: (identifier))
             (string_content)
             (string_end)))))
     (string_content)
@@ -310,14 +310,14 @@ def test(self):
     (string_start)
     (string_content)
     (interpolation
-      (identifier))
+      expression: (identifier))
     (string_content)
     (string_end))
   (string
     (string_start)
     (string_content)
     (interpolation
-      (identifier))
+      expression: (identifier))
     (string_content)
     (string_end))
   (string
@@ -330,7 +330,7 @@ def test(self):
     (string_start)
     (string_content)
     (interpolation
-      (identifier))
+      expression: (identifier))
     (string_content
       (escape_interpolation))
     (string_end))
@@ -339,7 +339,7 @@ def test(self):
     (string_content
       (escape_interpolation))
     (interpolation
-      (identifier))
+      expression: (identifier))
     (string_end))
   (string
     (string_start)
@@ -352,39 +352,39 @@ def test(self):
     (string_content
       (escape_interpolation))
     (interpolation
-      (identifier))
+      expression: (identifier))
     (string_content
       (escape_interpolation))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (pattern_list
+      expression: (pattern_list
         (identifier)))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (yield
+      expression: (yield
         (identifier)))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (pattern_list
+      expression: (pattern_list
         (list_splat_pattern
           (identifier))))
     (string_end))
   (function_definition
-    (identifier)
-    (parameters)
-    (block
+    name: (identifier)
+    arguments: (callable_parameters)
+    body: (block
       (return_statement
         (string
           (string_start)
           (string_content)
           (interpolation
-            (conditional_expression
+            expression: (conditional_expression
               (string
                 (string_start)
                 (string_content)
@@ -396,20 +396,21 @@ def test(self):
                 (string_end))))
           (string_end)))))
   (function_definition
-    (identifier)
-    (parameters
-      (identifier))
-    (block
+    name: (identifier)
+    arguments: (callable_parameters
+      (parameter_decl
+        name: (identifier)))
+    body: (block
       (call
-        (attribute
-          (identifier)
-          (identifier))
-        (arguments
+        function: (attribute
+          object: (identifier)
+          attribute: (identifier))
+        arguments: (arguments
           (string
             (string_start)
             (string_content)
             (interpolation
-              (integer)
+              expression: (integer)
               (comment))
             (string_end))
           (string
@@ -435,56 +436,56 @@ f"{value:{width + padding!r}.{precision}}"
     (string_start)
     (string_content)
     (interpolation
-      (identifier)
-      (format_specifier))
+      expression: (identifier)
+      format_specifier: (format_specifier))
     (string_content)
     (interpolation
-      (identifier)
-      (format_specifier))
+      expression: (identifier)
+      format_specifier: (format_specifier))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (identifier)
-      (format_specifier
+      expression: (identifier)
+      format_specifier: (format_specifier
         (format_expression
-          (attribute
-            (identifier)
-            (identifier)))
+          expression: (attribute
+            object: (identifier)
+            attribute: (identifier)))
         (format_expression
-          (attribute
-            (identifier)
-            (identifier)))))
+          expression: (attribute
+            object: (identifier)
+            attribute: (identifier)))))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (identifier)
-      (format_specifier))
+      expression: (identifier)
+      format_specifier: (format_specifier))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (identifier))
+      expression: (identifier))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (identifier)
-      (format_specifier))
+      expression: (identifier)
+      format_specifier: (format_specifier))
     (string_end))
   (string
     (string_start)
     (interpolation
-      (identifier)
-      (format_specifier
+      expression: (identifier)
+      format_specifier: (format_specifier
         (format_expression
-          (binary_operator
-            (identifier)
-            (identifier))
-          (type_conversion))
+          expression: (binary_operator
+            left: (identifier)
+            right: (identifier))
+          type_conversion: (type_conversion))
         (format_expression
-          (identifier))))
+          expression: (identifier))))
     (string_end)))
 
 ================================================================================
@@ -718,22 +719,24 @@ Lists
     (list_splat
       (identifier)))
   (list
-    (attribute
-      (list_splat
-        (identifier))
-      (identifier)))
+    (list_splat
+      (attribute
+        object: (identifier)
+        attribute: (identifier))))
   (list
-    (attribute
-      (subscript
-        (list_splat
-          (identifier))
-        (identifier))
-      (identifier)))
+    (list_splat
+      (attribute
+        object: (subscript
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))
+        attribute: (identifier))))
   (list
-    (call
-      (list_splat
-        (identifier))
-      (arguments))))
+    (list_splat
+      (call
+        function: (identifier)
+        arguments: (arguments)))))
 
 ================================================================================
 List comprehensions
@@ -812,11 +815,11 @@ Dictionaries
 (module
   (dictionary
     (pair
-      (identifier)
-      (integer))
+      key: (identifier)
+      value: (integer))
     (pair
-      (identifier)
-      (integer)))
+      key: (identifier)
+      value: (integer)))
   (dictionary)
   (dictionary
     (dictionary_splat
@@ -827,20 +830,22 @@ Dictionaries
   (dictionary
     (dictionary_splat
       (attribute
-        (identifier)
-        (identifier))))
+        object: (identifier)
+        attribute: (identifier))))
   (dictionary
     (dictionary_splat
       (attribute
-        (subscript
-          (identifier)
-          (identifier))
-        (identifier))))
+        object: (subscript
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))
+        attribute: (identifier))))
   (dictionary
     (dictionary_splat
       (call
-        (identifier)
-        (arguments)))))
+        function: (identifier)
+        arguments: (arguments)))))
 
 ================================================================================
 Dictionary comprehensions
@@ -901,25 +906,29 @@ Set comprehensions
 
 (module
   (set_comprehension
-    (subscript
-      (subscript
-        (identifier)
-        (identifier))
-      (identifier))
+    body: (subscript
+      value: (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier))))
+      parameters: (parameters
+        (parameter
+          (identifier))))
     (for_in_clause
-      (pattern_list
+      left: (pattern_list
         (identifier)
         (identifier)
         (identifier))
-      (identifier)))
+      right: (identifier)))
   (set_comprehension
-    (identifier)
+    body: (identifier)
     (for_in_clause
-      (identifier)
-      (identifier))
+      left: (identifier)
+      right: (identifier))
     (for_in_clause
-      (identifier)
-      (identifier))))
+      left: (identifier)
+      right: (identifier))))
 
 ================================================================================
 Simple Tuples
@@ -958,42 +967,46 @@ dict((a, b) for a, b in d)
 
 (module
   (generator_expression
-    (subscript
-      (subscript
-        (identifier)
-        (identifier))
-      (identifier))
+    body: (subscript
+      value: (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier))))
+      parameters: (parameters
+        (parameter
+          (identifier))))
     (for_in_clause
-      (pattern_list
+      left: (pattern_list
         (identifier)
         (identifier)
         (identifier))
-      (identifier)))
+      right: (identifier)))
   (call
-    (identifier)
-    (generator_expression
-      (tuple
+    function: (identifier)
+    arguments: (generator_expression
+      body: (tuple
         (identifier)
         (identifier))
       (for_in_clause
-        (pattern_list
+        left: (pattern_list
           (identifier)
           (identifier))
-        (identifier))))
+        right: (identifier))))
   (generator_expression
-    (identifier)
+    body: (identifier)
     (for_in_clause
-      (identifier)
-      (identifier))
+      left: (identifier)
+      right: (identifier))
     (for_in_clause
-      (identifier)
-      (identifier)))
+      left: (identifier)
+      right: (identifier)))
   (generator_expression
-    (identifier)
+    body: (identifier)
     (for_in_clause
-      (identifier)
-      (call
-        (identifier)
-        (arguments
+      left: (identifier)
+      right: (call
+        function: (identifier)
+        arguments: (arguments
           (integer)
           (integer))))))

@@ -228,10 +228,12 @@ del a[1], b[2]
     (expression_list
       (subscript
         (identifier)
-        (integer))
+        (parameters
+          (integer)))
       (subscript
         (identifier)
-        (integer)))))
+        (parameters
+          (integer))))))
 
 ================================================================================
 Control-flow statements
@@ -650,97 +652,105 @@ async def d(a:str="default", b=c) -> None:
 (module
   (function_definition
     name: (identifier)
-    parameters: (parameters)
+    arguments: (callable_parameters)
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (identifier))
+    arguments: (callable_parameters
+      (parameter_decl
+        name: (identifier)))
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (identifier)
-      (identifier))
+    arguments: (callable_parameters
+      (parameter_decl
+        name: (identifier))
+      (parameter_decl
+        name: (identifier)))
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
+        constraint: (parameter
           (identifier))))
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
-          (attribute
-            object: (identifier)
-            attribute: (identifier)))))
+        constraint: (parameter_member
+          (parameter
+            (identifier))
+          (member
+            (identifier)))))
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
-          (generic_type
-            (identifier)
-            (type_parameters
-              (type
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter
                 (identifier)))))))
-    return_type: (type
+    return_type: (parameter
       (identifier))
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (identifier)
-      (default_parameter
+    arguments: (callable_parameters
+      (parameter_decl
+        name: (identifier))
+      (default_parameter_decl
         name: (identifier)
-        value: (identifier))
-      (list_splat_pattern
-        (identifier))
-      (dictionary_splat_pattern
-        (identifier)))
+        default: (parameter
+          (identifier)))
+      (splat_parameter_decl
+        name: (identifier))
+      (splat_parameter_decl
+        name: (identifier)))
     body: (block
       (identifier)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
+        constraint: (parameter
           (identifier))))
-    return_type: (type
+    return_type: (parameter
       (none))
     body: (block
       (return_statement
         (none))))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_default_parameter
-        name: (identifier)
-        type: (type
-          (identifier))
-        value: (string
+    arguments: (callable_parameters
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (string
           (string_start)
           (string_content)
           (string_end)))
-      (default_parameter
+      (default_parameter_decl
         name: (identifier)
-        value: (identifier)))
-    return_type: (type
+        default: (parameter
+          (identifier))))
+    return_type: (parameter
       (none))
     body: (block
       (return_statement
@@ -749,9 +759,6 @@ async def d(a:str="default", b=c) -> None:
 ================================================================================
 Function definitions
 ================================================================================
-
-def e((a,b)):
-  return (a,b)
 
 def e(*list: str):
   pass
@@ -779,54 +786,44 @@ def foo():
 (module
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (tuple_pattern
-        (identifier)
-        (identifier)))
-    body: (block
-      (return_statement
-        (tuple
-          (identifier)
-          (identifier)))))
-  (function_definition
-    name: (identifier)
-    parameters: (parameters
-      (typed_parameter
-        (list_splat_pattern
-          (identifier))
-        type: (type
+    arguments: (callable_parameters
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter
           (identifier))))
     body: (block
       (pass_statement)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
-        (dictionary_splat_pattern
-          (identifier))
-        type: (type
+    arguments: (callable_parameters
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter
           (identifier))))
     body: (block
       (pass_statement)))
   (function_definition
     name: (identifier)
-    parameters: (parameters)
+    arguments: (callable_parameters)
     body: (block
       (nonlocal_statement
         (identifier))))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (identifier)
-      (identifier)
-      (positional_separator)
-      (identifier)
-      (keyword_separator)
-      (default_parameter
+    arguments: (callable_parameters
+      (parameter_decl
+        name: (identifier))
+      (parameter_decl
+        name: (identifier))
+      (positional_only_marker)
+      (parameter_decl
+        name: (identifier))
+      (keyword_only_marker)
+      (default_parameter_decl
         name: (identifier)
-        value: (integer))
-      (dictionary_splat_pattern
-        (identifier)))
+        default: (integer))
+      (splat_parameter_decl
+        name: (identifier)))
     body: (block
       (return_statement
         (expression_list
@@ -837,9 +834,9 @@ def foo():
           (identifier)))))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (list_splat_pattern
-        (identifier)))
+    arguments: (callable_parameters
+      (splat_parameter_decl
+        name: (identifier)))
     body: (block
       (call
         function: (identifier)
@@ -856,7 +853,7 @@ def foo():
                 (identifier))))))))
   (function_definition
     name: (identifier)
-    parameters: (parameters)
+    arguments: (callable_parameters)
     body: (block
       (pass_statement)))
   (line_continuation)
@@ -886,9 +883,11 @@ if d:
   (comment)
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (identifier)
-      (identifier))
+    arguments: (callable_parameters
+      (parameter_decl
+        name: (identifier))
+      (parameter_decl
+        name: (identifier)))
     body: (block))
   (if_statement
     condition: (identifier)
@@ -922,48 +921,55 @@ class D(Sequence[T, U]):
 
 (module
   (class_definition
-    (identifier)
-    (block
+    name: (identifier)
+    body: (block
       (function_definition
-        (identifier)
-        (parameters
-          (identifier))
-        (block
+        name: (identifier)
+        arguments: (callable_parameters
+          (parameter_decl
+            name: (identifier)))
+        body: (block
           (return_statement
             (identifier))))))
   (class_definition
-    (identifier)
-    (arguments)
-    (block
+    name: (identifier)
+    superclasses: (arguments)
+    body: (block
       (pass_statement)))
   (class_definition
-    (identifier)
-    (arguments
+    name: (identifier)
+    superclasses: (arguments
       (identifier))
-    (block
+    body: (block
       (function_definition
-        (identifier)
-        (parameters
-          (identifier))
-        (block
+        name: (identifier)
+        arguments: (callable_parameters
+          (parameter_decl
+            name: (identifier)))
+        body: (block
           (return_statement)))))
   (class_definition
-    (identifier)
-    (arguments
+    name: (identifier)
+    superclasses: (arguments
       (identifier)
       (subscript
-        (identifier)
-        (identifier)))
-    (block
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier)))))
+    body: (block
       (pass_statement)))
   (class_definition
-    (identifier)
-    (arguments
+    name: (identifier)
+    superclasses: (arguments
       (subscript
-        (identifier)
-        (identifier)
-        (identifier)))
-    (block
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier))
+          (parameter
+            (identifier)))))
+    body: (block
       (pass_statement))))
 
 ================================================================================
@@ -978,15 +984,15 @@ class A(B, C):
 
 (module
   (class_definition
-    (identifier)
-    (arguments
+    name: (identifier)
+    superclasses: (arguments
       (identifier)
       (identifier))
-    (block
+    body: (block
       (function_definition
-        (identifier)
-        (parameters)
-        (block
+        name: (identifier)
+        arguments: (callable_parameters)
+        body: (block
           (identifier))))))
 
 ================================================================================
@@ -1030,12 +1036,13 @@ def spam():
               (attribute
                 (subscript
                   (identifier)
-                  (integer))
+                  (parameters
+                    (integer)))
                 (identifier))
               (identifier)))
           (function_definition
             (identifier)
-            (parameters)
+            (callable_parameters)
             (block
               (identifier))))
         (decorated_definition
@@ -1045,7 +1052,7 @@ def spam():
               (arguments)))
           (function_definition
             (identifier)
-            (parameters)
+            (callable_parameters)
             (block
               (identifier)))))))
   (decorated_definition
@@ -1054,12 +1061,13 @@ def spam():
         (attribute
           (subscript
             (identifier)
-            (integer))
+            (parameters
+              (integer)))
           (identifier))
         (identifier)))
     (function_definition
       (identifier)
-      (parameters)
+      (callable_parameters)
       (block
         (ellipsis)))))
 
@@ -1197,7 +1205,7 @@ def a():
       (comment)))
   (function_definition
     (identifier)
-    (parameters)
+    (callable_parameters)
     (block
       (if_statement
         (identifier)
@@ -1316,7 +1324,7 @@ if a:
         (arguments))
       (function_definition
         (identifier)
-        (parameters)
+        (callable_parameters)
         (block
           (call
             (identifier)
@@ -1383,104 +1391,88 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
 --------------------------------------------------------------------------------
 
 (module
-  (type_alias_statement
-    (type
-      (identifier))
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (identifier))
-          (type
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier))
+    right: (subscript
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier))
+        (parameter
+          (identifier)))))
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier)
+      parameters: (parameters_declaration
+        (parameter_decl
+          name: (identifier))))
+    right: (subscript
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier))
+        (parameter
+          (identifier)))))
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier)
+      parameters: (parameters_declaration
+        (splat_parameter_decl
+          name: (identifier))))
+    right: (subscript
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier))
+        (parameter
+          (identifier)))))
+  (comment)
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier)
+      parameters: (parameters_declaration
+        (splat_parameter_decl
+          name: (identifier))))
+    right: (subscript
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier))
+        (parameter_splat
+          (parameter
             (identifier))))))
-  (type_alias_statement
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
+  (comment)
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
             (identifier)))))
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (identifier))
-          (type
-            (identifier))))))
-  (type_alias_statement
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (splat_type
+    right: (subscript
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier)))))
+  (comment)
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter_tuple
+            (parameter
+              (identifier))
+            (parameter
               (identifier))))))
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (identifier))
-          (type
-            (identifier))))))
-  (comment)
-  (type_alias_statement
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (splat_type
-              (identifier))))))
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (identifier))
-          (type
-            (splat_type
-              (identifier)))))))
-  (comment)
-  (type_alias_statement
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (constrained_type
-              (type
-                (identifier))
-              (type
-                (identifier)))))))
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (identifier))))))
-  (comment)
-  (type_alias_statement
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (constrained_type
-              (type
-                (identifier))
-              (type
-                (tuple
-                  (identifier)
-                  (identifier))))))))
-    (type
-      (generic_type
-        (identifier)
-        (type_parameters
-          (type
-            (identifier))))))
+    right: (subscript
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier)))))
   (comment))
 
 ================================================================================
@@ -1495,64 +1487,58 @@ def more_generic[T, *Ts, **P]():
 
 (module
   (function_definition
-    (identifier)
-    (type_parameters
-      (type
-        (identifier))
-      (type
-        (splat_type
-          (identifier)))
-      (type
-        (splat_type
-          (identifier))))
-    (parameters)
-    (block
-      (type_alias_statement
-        (type
-          (generic_type
-            (identifier)
-            (type_parameters
-              (type
-                (identifier))
-              (type
-                (splat_type
-                  (identifier)))
-              (type
-                (splat_type
-                  (identifier))))))
-        (type
-          (generic_type
-            (identifier)
-            (type_parameters
-              (type
-                (generic_type
-                  (identifier)
-                  (type_parameters
-                    (type
-                      (identifier))
-                    (type
-                      (generic_type
-                        (identifier)
-                        (type_parameters
-                          (type
-                            (identifier))
-                          (type
-                            (splat_type
-                              (identifier)))))))))
-              (type
-                (generic_type
-                  (identifier)
-                  (type_parameters
-                    (type
-                      (identifier))
-                    (type
-                      (generic_type
-                        (identifier)
-                        (type_parameters
-                          (type
-                            (identifier))
-                          (type
-                            (splat_type
-                              (identifier)))))))))))))
+    name: (identifier)
+    parameters: (parameters_declaration
+      (parameter_decl
+        name: (identifier))
+      (splat_parameter_decl
+        name: (identifier))
+      (splat_parameter_decl
+        name: (identifier)))
+    arguments: (callable_parameters)
+    body: (block
+      (comptime_statement
+        left: (comptime_parameter
+          name: (identifier)
+          parameters: (parameters_declaration
+            (parameter_decl
+              name: (identifier))
+            (splat_parameter_decl
+              name: (identifier))
+            (splat_parameter_decl
+              name: (identifier))))
+        right: (subscript
+          value: (identifier)
+          parameters: (parameters
+            (generic_parameter
+              (subscript
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (generic_parameter
+                    (subscript
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter
+                          (identifier))
+                        (parameter_splat
+                          (parameter
+                            (identifier)))))))))
+            (generic_parameter
+              (subscript
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (generic_parameter
+                    (subscript
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter
+                          (identifier))
+                        (parameter_splat
+                          (parameter
+                            (identifier))))))))))))
       (return_statement
         (identifier)))))

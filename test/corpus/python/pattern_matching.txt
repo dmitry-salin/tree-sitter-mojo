@@ -202,7 +202,8 @@ match command.split():
         (block
           (pass_statement)))
       (case_clause
-        (case_pattern)
+        (case_pattern
+          (underscore))
         (block
           (call
             (identifier)
@@ -384,45 +385,46 @@ def foo(**match): pass
 
 (module
   (assignment
-    (identifier)
-    (integer))
+    left: (identifier)
+    right: (integer))
   (assignment
-    (pattern_list
+    left: (pattern_list
       (identifier)
       (identifier))
-    (expression_list
+    right: (expression_list
       (integer)
       (integer)))
   (assignment
-    (identifier)
-    (type
-      (identifier))
-    (identifier))
+    left: (constrained_lhs
+      (identifier)
+      constraint: (parameter
+        (identifier)))
+    right: (identifier))
   (assignment
-    (pattern_list
+    left: (pattern_list
       (identifier)
       (identifier))
-    (expression_list
+    right: (expression_list
       (integer)
       (string
         (string_start)
         (string_content)
         (string_end))))
   (assignment
-    (pattern_list
+    left: (pattern_list
       (list_splat_pattern
         (identifier))
       (identifier))
-    (list
+    right: (list
       (integer)
       (integer)
       (integer)))
   (function_definition
-    (identifier)
-    (parameters
-      (dictionary_splat_pattern
-        (identifier)))
-    (block
+    name: (identifier)
+    arguments: (callable_parameters
+      (splat_parameter_decl
+        name: (identifier)))
+    body: (block
       (pass_statement))))
 
 ================================================================================
@@ -1095,12 +1097,14 @@ for action in actions:
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern)
+                (case_pattern
+                  (underscore))
                 (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern)))
+                (case_pattern
+                  (underscore))))
             (block
               (call
                 (identifier)
@@ -1232,12 +1236,14 @@ for action in actions:
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern)
+                (case_pattern
+                  (underscore))
                 (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern)))
+                (case_pattern
+                  (underscore))))
             (block
               (call
                 (identifier)

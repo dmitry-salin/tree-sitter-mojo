@@ -2,8 +2,7 @@
  * @file Mojo grammar for tree-sitter
  * @author Max Brunsfeld <maxbrunsfeld@gmail.com>
  * @license MIT
- * @see {@link https://mojolang.org/nightly/docs/reference/|Mojo reference}
- * @see {@link https://docs.python.org/2/reference/grammar.html|Python 2 grammar}
+ * @see {@link https://mojolang.org/nightly/docs/reference|Mojo reference}
  * @see {@link https://docs.python.org/3/reference/grammar.html|Python 3 grammar}
  */
 
@@ -11,11 +10,9 @@
 // @ts-check
 
 const PREC = {
-  // this resolves a conflict between the usage of ':' in a lambda vs in a
-  // typed parameter. In the case of a lambda, we don't allow typed parameters.
   lambda: -2,
-  typed_parameter: -1,
   conditional: -1,
+  list_splat_pattern: -1,
 
   parenthesized_expression: 1,
   parenthesized_list_splat: 1,
@@ -45,28 +42,6 @@ export default grammar({
     $.line_continuation,
   ],
 
-  conflicts: $ => [
-    [$.print_statement, $.primary_expression],
-    [$.type_alias_statement, $.primary_expression],
-    [$.with_item, $._collection_elements],
-    [$.match_statement, $.primary_expression],
-    [$.pattern, $.primary_expression],
-    [$.list_pattern, $.list],
-    [$.tuple_pattern, $.tuple],
-    [$.list_splat_pattern, $.primary_expression],
-    [$.as_pattern, $.named_expression],
-  ],
-
-  supertypes: $ => [
-    $._simple_statement,
-    $.expression_statement,
-    $._compound_statement,
-    $.parameter,
-    $.pattern,
-    $.expression,
-    $.primary_expression,
-  ],
-
   externals: $ => [
     $._newline,
     $._indent,
@@ -91,11 +66,49 @@ export default grammar({
     'except',
   ],
 
+  conflicts: $ => [
+    [$.print_statement, $.primary_expression],
+    [$.with_item, $._collection_elements],
+    [$.match_statement, $.primary_expression],
+    [$.pattern, $.primary_expression],
+    [$.list_pattern, $.list],
+    [$.tuple_pattern, $.tuple],
+    [$.list_splat_pattern, $.primary_expression],
+    [$.as_pattern, $.named_expression],
+  ],
+
+  precedences: $ => [
+    [$.member, $.primary_expression],
+    [$.parameter, $.primary_expression],
+    [$.generic_parameter, $.primary_expression],
+  ],
+
+  supertypes: $ => [
+    $._simple_statement,
+    $.expression_statement,
+    $._compound_statement,
+    $.parameter_declaration,
+    $.callable_parameter,
+    $.lambda_parameter,
+    $.parameter_expression,
+    $.pattern,
+    $.expression,
+    $.primary_expression,
+  ],
+
   inline: $ => [
     $._simple_statement,
     $._compound_statement,
     $._function_effect,
     $._suite,
+    $._any_parameter_decl,
+    $._lambda_parameter,
+    $._parameter_decl,
+    $._splat_parameter_decl,
+    $._non_composite_parameter,
+    $._constraint,
+    $._constraint_parameter,
+    $._return_parameter,
     $._lhs,
     $._expressions,
     $.keyword_identifier,
@@ -174,8 +187,8 @@ export default grammar({
         $.continue_statement,
         $.global_statement,
         $.nonlocal_statement,
-        $.type_alias_statement,
         $.expression_statement,
+        $.comptime_statement,
       ),
 
     import_statement: $ => seq('import', $._import_list),
@@ -265,12 +278,6 @@ export default grammar({
     global_statement: $ => seq('global', commaSep1($.identifier)),
     nonlocal_statement: $ => seq('nonlocal', commaSep1($.identifier)),
 
-    type_alias_statement: $ =>
-      prec.dynamic(
-        1,
-        seq('type', field('left', $.type), '=', field('right', $.type)),
-      ),
-
     expression_statement: $ =>
       choice(
         $.assignment,
@@ -278,6 +285,21 @@ export default grammar({
         $.yield,
         $.tuple_expression,
         $.expression,
+      ),
+
+    comptime_statement: $ =>
+      seq(
+        choice('comptime', 'type'),
+        choice(
+          field('left', $.constrained_comptime_parameter),
+          seq(
+            field(
+              'left',
+              choice($.comptime_parameter, $.constrained_comptime_parameter),
+            ),
+            seq('=', field('right', $._comptime_rhs)),
+          ),
+        ),
       ),
 
     // Compound statements
@@ -428,36 +450,28 @@ export default grammar({
       seq(
         optional('async'),
         'def',
-        field('name', $.identifier),
-        $._function_parameters,
+        $._comptime_parameter,
+        field('arguments', $.callable_parameters),
         field('effects', optional($.function_effects)),
         optional($._function_return_type),
-      ),
-
-    _function_parameters: $ =>
-      seq(
-        field('type_parameters', optional($.type_parameters)),
-        field('parameters', $.parameters),
       ),
 
     function_effects: $ => repeat1($._function_effect),
     _function_effect: $ => choice($.raises, $.abi),
 
     raises: $ =>
-      prec.left(seq('raises', field('error_type', optional($.type)))),
+      seq('raises', field('error_type', optional($._standalone_parameter))),
 
     abi: $ => seq('abi', '(', $.string, ')'),
 
     _function_return_type: $ =>
-      prec.left(seq('->', field('return_type', $.type))),
+      seq('->', field('return_type', $._return_parameter)),
 
     class_definition: $ => seq($._class_header, ':', field('body', $._suite)),
-
     _class_header: $ =>
       seq(
         choice('class', 'struct'),
-        field('name', $.identifier),
-        field('type_parameters', optional($.type_parameters)),
+        $._comptime_parameter,
         field('superclasses', optional($.arguments)),
       ),
 
@@ -478,92 +492,148 @@ export default grammar({
 
     block: $ => seq(repeat($._statement), $._dedent),
 
-    // Parameters
+    // Parameters declaration
 
-    type_parameters: $ => seq('[', commaSep1($.type), optional(','), ']'),
-
-    parameters: $ => seq('(', optional($._parameters), ')'),
-    lambda_parameters: $ => $._parameters,
-    _parameters: $ => seq(commaSep1($.parameter), optional(',')),
-
-    parameter: $ =>
-      choice(
-        $.default_parameter,
-        $.typed_parameter,
-        $.typed_default_parameter,
-        $.tuple_pattern,
-        $.list_splat_pattern,
-        $.dictionary_splat_pattern,
-        $.identifier,
-        $.positional_separator,
-        $.keyword_separator,
-      ),
-
-    default_parameter: $ =>
+    comptime_parameter: $ => $._comptime_parameter,
+    _comptime_parameter: $ =>
       seq(
-        field('name', choice($.tuple_pattern, $.identifier)),
-        '=',
-        field('value', $.expression),
+        $._parameter_decl,
+        field('parameters', optional($.parameters_declaration)),
       ),
 
-    typed_parameter: $ =>
-      prec(
-        PREC.typed_parameter,
-        seq(
-          optional($._convention),
-          choice(
-            $.list_splat_pattern,
-            $.dictionary_splat_pattern,
-            field('name', $.identifier),
-          ),
-          ':',
-          field('type', $.type),
-        ),
+    constrained_comptime_parameter: $ =>
+      seq($.comptime_parameter, $._constraint),
+
+    parameters_declaration: $ =>
+      seq('[', seq(commaSep1($.parameter_declaration), optional(',')), ']'),
+
+    parameter_declaration: $ =>
+      choice($._any_parameter_decl, $.infer_only_marker),
+
+    // Callable parameters
+
+    callable_parameters: $ =>
+      seq(
+        '(',
+        optional(seq(commaSep1($._callable_parameter), optional(','))),
+        ')',
       ),
 
-    typed_default_parameter: $ =>
-      prec(
-        PREC.typed_parameter,
-        seq(
-          optional($._convention),
-          field('name', $.identifier),
-          ':',
-          field('type', $.type),
-          '=',
-          field('value', $.expression),
-        ),
-      ),
+    _callable_parameter: $ =>
+      seq(optional($._convention), $.callable_parameter),
 
     _convention: $ => choice('read', 'mut', 'out', 'deinit', 'var', 'ref'),
 
-    // Types
-
-    type: $ =>
+    callable_parameter: $ => $._any_parameter_decl,
+    _any_parameter_decl: $ =>
       choice(
-        $.splat_type,
-        $.generic_type,
-        $.union_type,
-        $.constrained_type,
-        $.member_type,
-        prec(1, $.expression),
+        $.default_parameter_decl,
+        $.constrained_parameter_decl,
+        $.constrained_splat_parameter_decl,
+        $._lambda_parameter,
       ),
-    splat_type: $ => prec(1, seq(choice('*', '**'), $.identifier)),
-    generic_type: $ =>
-      prec(
-        1,
-        seq(
-          choice($.identifier, alias('type', $.identifier)),
-          $.type_parameters,
-        ),
+
+    default_parameter_decl: $ =>
+      seq(
+        choice($.constrained_parameter_decl, $._parameter_decl),
+        '=',
+        field('default', $._parameter_rhs),
       ),
-    union_type: $ => prec.left(seq($.type, '|', $.type)),
-    constrained_type: $ => prec.right(seq($.type, ':', $.type)),
-    member_type: $ => seq($.type, '.', $.identifier),
+
+    constrained_parameter_decl: $ => seq($._parameter_decl, $._constraint),
+
+    constrained_splat_parameter_decl: $ =>
+      seq($._splat_parameter_decl, $._constraint),
+
+    // Lambda parameters
+
+    lambda_parameters: $ => seq(commaSep1($.lambda_parameter), optional(',')),
+    lambda_parameter: $ =>
+      choice($._lambda_parameter, $.lambda_default_parameter_decl),
+
+    _lambda_parameter: $ =>
+      choice(
+        $.parameter_decl,
+        $.splat_parameter_decl,
+        $.positional_only_marker,
+        $.keyword_only_marker,
+      ),
+
+    lambda_default_parameter_decl: $ =>
+      seq($._parameter_decl, '=', field('default', $.expression)),
+
+    parameter_decl: $ => $._parameter_decl,
+    _parameter_decl: $ => field('name', $.identifier),
+
+    splat_parameter_decl: $ => $._splat_parameter_decl,
+    _splat_parameter_decl: $ => seq(choice('*', '**'), $._parameter_decl),
+
+    // Parameters
+
+    parameters: $ =>
+      seq(
+        '[',
+        optional(seq(commaSep1($.parameter_expression), optional(','))),
+        ']',
+      ),
+
+    parameter_expression: $ =>
+      choice($.named_parameter, $._constraint_parameter, $.slice, $.underscore),
+
+    parameter_member: $ =>
+      seq($._non_composite_parameter, repeat1(seq('.', $.member))),
+    member: $ => choice($.call, $.subscript, $.identifier),
+
+    parameter_splat: $ =>
+      seq(
+        choice('*', '**'),
+        choice($.parameter_member, $._non_composite_parameter),
+      ),
+
+    parameter_tuple: $ =>
+      seq('(', commaSep1($._non_composite_parameter), optional(','), ')'),
+
+    parameter_union: $ =>
+      seq(
+        $._non_composite_parameter,
+        repeat1(seq('|', $._non_composite_parameter)),
+      ),
+
+    parameter_composition: $ =>
+      seq(
+        $._non_composite_parameter,
+        repeat1(seq('&', $._non_composite_parameter)),
+      ),
+
+    named_parameter: $ =>
+      seq($._parameter_decl, '=', field('value', $._parameter_rhs)),
+
+    parameter: $ => choice($.identifier, $.none),
+    generic_parameter: $ => $.subscript,
+    _non_composite_parameter: $ => choice($.parameter, $.generic_parameter),
+
+    _comptime_rhs: $ =>
+      choice($.parameter_union, $.parameter_composition, $.expression),
+
+    _parameter_rhs: $ => choice($._standalone_parameter, $.slice),
+
+    _constraint: $ => seq(':', field('constraint', $._constraint_parameter)),
+    _constraint_parameter: $ =>
+      choice(
+        $.parameter_splat,
+        $.parameter_tuple,
+        $.parameter_composition,
+        $._return_parameter,
+      ),
+
+    _return_parameter: $ => choice($.parameter_union, $._standalone_parameter),
+    _standalone_parameter: $ =>
+      choice($.parameter_member, $._non_composite_parameter, $.expression),
 
     // Arguments
 
     arguments: $ =>
-      seq('(', optional(commaSep1($._argument)), optional(','), ')'),
+      seq('(', optional(seq(commaSep1($._argument), optional(','))), ')'),
 
     _argument: $ =>
       choice(
@@ -603,14 +673,18 @@ export default grammar({
     assignment: $ =>
       seq(
         optional($._declaration_convention),
-        field('left', $._lhs),
-        $._assignment_rhs,
+        choice(
+          field('left', $.constrained_lhs),
+          seq(
+            field('left', choice($.constrained_lhs, $._lhs)),
+            seq('=', field('right', $._rhs)),
+          ),
+        ),
       ),
+    constrained_lhs: $ => seq($._lhs, $._constraint),
 
     _declaration_convention: $ => choice('var', 'ref'),
-
     _lhs: $ => choice($.pattern_list, $.pattern),
-
     _rhs: $ =>
       choice(
         $.assignment,
@@ -619,13 +693,6 @@ export default grammar({
         $.yield,
         $.expression_list,
         $.expression,
-      ),
-
-    _assignment_rhs: $ =>
-      choice(
-        seq('=', field('right', $._rhs)),
-        seq(':', field('type', $.type)),
-        seq(':', field('type', $.type), '=', field('right', $._rhs)),
       ),
 
     augmented_assignment: $ =>
@@ -686,7 +753,7 @@ export default grammar({
           $.true,
           $.false,
           $.none,
-          '_',
+          $.underscore,
         ),
       ),
 
@@ -699,7 +766,7 @@ export default grammar({
       ),
 
     splat_pattern: $ =>
-      prec(1, seq(choice('*', '**'), choice($.identifier, '_'))),
+      prec(1, seq(choice('*', '**'), choice($.identifier, $.underscore))),
 
     union_pattern: $ =>
       prec.right(
@@ -762,9 +829,12 @@ export default grammar({
     _patterns: $ => seq(commaSep1($.pattern), optional(',')),
 
     list_splat_pattern: $ =>
-      seq(
-        '*',
-        choice($.attribute, $.subscript, $.identifier, $.keyword_identifier),
+      prec(
+        PREC.list_splat_pattern,
+        seq(
+          '*',
+          choice($.attribute, $.subscript, $.identifier, $.keyword_identifier),
+        ),
       ),
 
     dictionary_splat_pattern: $ =>
@@ -836,7 +906,7 @@ export default grammar({
         PREC.lambda,
         seq(
           'lambda',
-          field('parameters', optional($.lambda_parameters)),
+          field('arguments', optional($.lambda_parameters)),
           ':',
           field('body', $.expression),
         ),
@@ -845,7 +915,7 @@ export default grammar({
     lambda_within_for_in_clause: $ =>
       seq(
         'lambda',
-        field('parameters', optional($.lambda_parameters)),
+        field('arguments', optional($.lambda_parameters)),
         ':',
         field('body', $._expression_within_for_in_clause),
       ),
@@ -979,10 +1049,7 @@ export default grammar({
         PREC.call,
         seq(
           field('value', $.primary_expression),
-          '[',
-          commaSep1(field('subscript', choice($.slice, $.expression))),
-          optional(','),
-          ']',
+          field('parameters', $.parameters),
         ),
       ),
 
@@ -1200,10 +1267,12 @@ export default grammar({
     false: _ => 'False',
     none: _ => 'None',
 
+    underscore: _ => '_',
     ellipsis: _ => '...',
 
-    positional_separator: _ => '/',
-    keyword_separator: _ => '*',
+    infer_only_marker: _ => '//',
+    positional_only_marker: _ => '/',
+    keyword_only_marker: _ => '*',
 
     comment: _ => token(seq('#', /.*/)),
 

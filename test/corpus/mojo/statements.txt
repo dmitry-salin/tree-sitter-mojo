@@ -19,38 +19,38 @@ def n() abi("C")-> ReturnType:
 (module
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
+        constraint: (parameter
           (identifier))))
     effects: (function_effects
       (raises))
-    return_type: (type
+    return_type: (parameter
       (identifier))
     body: (block
       (pass_statement)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
+        constraint: (parameter
           (identifier))))
     effects: (function_effects
       (raises
-        error_type: (type
+        error_type: (parameter
           (identifier))))
-    return_type: (type
+    return_type: (parameter
       (identifier))
     body: (block
       (pass_statement)))
   (function_definition
     name: (identifier)
-    parameters: (parameters
-      (typed_parameter
+    arguments: (callable_parameters
+      (constrained_parameter_decl
         name: (identifier)
-        type: (type
+        constraint: (parameter
           (identifier))))
     effects: (function_effects
       (raises)
@@ -59,20 +59,20 @@ def n() abi("C")-> ReturnType:
           (string_start)
           (string_content)
           (string_end))))
-    return_type: (type
+    return_type: (parameter
       (identifier))
     body: (block
       (pass_statement)))
   (function_definition
     name: (identifier)
-    parameters: (parameters)
+    arguments: (callable_parameters)
     effects: (function_effects
       (abi
         (string
           (string_start)
           (string_content)
           (string_end))))
-    return_type: (type
+    return_type: (parameter
       (identifier))
     body: (block
       (pass_statement))))
