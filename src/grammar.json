@@ -2010,7 +2010,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "argument_list"
+                "name": "arguments"
               },
               {
                 "type": "BLANK"
@@ -2599,7 +2599,7 @@
         }
       ]
     },
-    "argument_list": {
+    "arguments": {
       "type": "SEQ",
       "members": [
         {
@@ -4652,7 +4652,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "argument_list"
+                  "name": "arguments"
                 },
                 {
                   "type": "SYMBOL",

@@ -458,7 +458,7 @@ export default grammar({
         choice('class', 'struct'),
         field('name', $.identifier),
         field('type_parameters', optional($.type_parameters)),
-        field('superclasses', optional($.argument_list)),
+        field('superclasses', optional($.arguments)),
       ),
 
     decorated_definition: $ =>
@@ -562,7 +562,7 @@ export default grammar({
 
     // Arguments
 
-    argument_list: $ =>
+    arguments: $ =>
       seq('(', optional(commaSep1($._argument)), optional(','), ')'),
 
     _argument: $ =>
@@ -958,7 +958,7 @@ export default grammar({
         PREC.call,
         seq(
           field('function', $.primary_expression),
-          field('arguments', choice($.argument_list, $.generator_expression)),
+          field('arguments', choice($.arguments, $.generator_expression)),
         ),
       ),
 

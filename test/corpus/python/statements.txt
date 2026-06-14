@@ -579,7 +579,7 @@ with e as f, g as h,:
         (as_pattern
           (call
             (identifier)
-            (argument_list
+            (arguments
               (string
                 (string_start)
                 (string_content)
@@ -590,7 +590,7 @@ with e as f, g as h,:
         (as_pattern
           (call
             (identifier)
-            (argument_list
+            (arguments
               (string
                 (string_start)
                 (string_content)
@@ -843,13 +843,13 @@ def foo():
     body: (block
       (call
         function: (identifier)
-        arguments: (argument_list
+        arguments: (arguments
           (parenthesized_expression
             (list_splat
               (identifier)))))
       (call
         function: (identifier)
-        arguments: (argument_list
+        arguments: (arguments
           (parenthesized_expression
             (parenthesized_expression
               (list_splat
@@ -898,7 +898,7 @@ if d:
       (while_statement
         condition: (call
           function: (identifier)
-          arguments: (argument_list))
+          arguments: (arguments))
         body: (block)))))
 
 ================================================================================
@@ -933,12 +933,12 @@ class D(Sequence[T, U]):
             (identifier))))))
   (class_definition
     (identifier)
-    (argument_list)
+    (arguments)
     (block
       (pass_statement)))
   (class_definition
     (identifier)
-    (argument_list
+    (arguments
       (identifier))
     (block
       (function_definition
@@ -949,7 +949,7 @@ class D(Sequence[T, U]):
           (return_statement)))))
   (class_definition
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (subscript
         (identifier)
@@ -958,7 +958,7 @@ class D(Sequence[T, U]):
       (pass_statement)))
   (class_definition
     (identifier)
-    (argument_list
+    (arguments
       (subscript
         (identifier)
         (identifier)
@@ -979,7 +979,7 @@ class A(B, C):
 (module
   (class_definition
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (identifier))
     (block
@@ -1023,7 +1023,7 @@ def spam():
           (decorator
             (call
               (identifier)
-              (argument_list
+              (arguments
                 (integer))))
           (decorator
             (attribute
@@ -1042,7 +1042,7 @@ def spam():
           (decorator
             (call
               (identifier)
-              (argument_list)))
+              (arguments)))
           (function_definition
             (identifier)
             (parameters)
@@ -1078,7 +1078,7 @@ raise RunTimeError('NO') from e
   (raise_statement
     (call
       (identifier)
-      (argument_list
+      (arguments
         (string
           (string_start)
           (string_content)
@@ -1086,7 +1086,7 @@ raise RunTimeError('NO') from e
   (raise_statement
     (call
       (identifier)
-      (argument_list
+      (arguments
         (string
           (string_start)
           (string_content)
@@ -1310,20 +1310,20 @@ if a:
     (block
       (call
         (identifier)
-        (argument_list))
+        (arguments))
       (call
         (identifier)
-        (argument_list))
+        (arguments))
       (function_definition
         (identifier)
         (parameters)
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (call
         (identifier)
-        (argument_list)))))
+        (arguments)))))
 
 ================================================================================
 Escaped newline
@@ -1338,7 +1338,7 @@ or len("aa")
   (boolean_operator
     (call
       (identifier)
-      (argument_list
+      (arguments
         (string
           (string_start)
           (string_content)
@@ -1346,7 +1346,7 @@ or len("aa")
     (line_continuation)
     (call
       (identifier)
-      (argument_list
+      (arguments
         (string
           (string_start)
           (string_content)

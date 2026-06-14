@@ -97,14 +97,14 @@ assert await a(b) == c
   (await
     (call
       (identifier)
-      (argument_list
+      (arguments
         (identifier)
         (integer))))
   (return_statement
     (await
       (call
         (identifier)
-        (argument_list
+        (arguments
           (identifier)
           (integer)))))
   (function_definition
@@ -123,13 +123,13 @@ assert await a(b) == c
           (await
             (call
               (identifier)
-              (argument_list)))))))
+              (arguments)))))))
   (assert_statement
     (comparison_operator
       (await
         (call
           (identifier)
-          (argument_list
+          (arguments
             (identifier))))
       (identifier))))
 
@@ -147,21 +147,21 @@ i(j, 5,)
 (module
   (call
     (identifier)
-    (argument_list))
+    (arguments))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (integer)))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (keyword_argument
         (identifier)
         (identifier))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (integer))))
 
@@ -182,39 +182,39 @@ a(print)
 (module
   (call
     (identifier)
-    (argument_list))
+    (arguments))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (keyword_argument
         (identifier)
         (identifier))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (identifier)))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (list_splat
         (identifier))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (list_splat
         (identifier))
       (dictionary_splat
         (identifier))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier))))
 
 ================================================================================
@@ -281,7 +281,7 @@ exec("""exec _code_ in _globs_, _locs_""")
 (module
   (call
     (identifier)
-    (argument_list
+    (arguments
       (string
         (string_start)
         (string_content
@@ -298,7 +298,7 @@ exec("""exec _code_ in _globs_, _locs_""")
       (identifier)))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (string
         (string_start)
         (string_content)
@@ -339,22 +339,22 @@ c(d, *e, **g)
 (module
   (call
     (identifier)
-    (argument_list
+    (arguments
       (list_splat
         (tuple))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (dictionary_splat
         (dictionary))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (list_splat
         (identifier))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (list_splat
         (identifier))
@@ -461,7 +461,7 @@ a() + b[c] * c.d.e
   (binary_operator
     left: (call
       function: (identifier)
-      arguments: (argument_list))
+      arguments: (arguments))
     right: (binary_operator
       left: (subscript
         value: (identifier)
@@ -732,11 +732,11 @@ foo(x := 3, cat='vector')
       (identifier)
       (call
         (identifier)
-        (argument_list
+        (arguments
           (identifier)))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (keyword_argument
         (identifier)
         (parenthesized_expression
@@ -744,7 +744,7 @@ foo(x := 3, cat='vector')
             (identifier)
             (call
               (identifier)
-              (argument_list
+              (arguments
                 (identifier))))))))
   (assignment
     (identifier)
@@ -753,7 +753,7 @@ foo(x := 3, cat='vector')
         (identifier)
         (call
           (identifier)
-          (argument_list
+          (arguments
             (identifier))))))
   (function_definition
     (identifier)
@@ -783,7 +783,7 @@ foo(x := 3, cat='vector')
         (identifier))))
   (call
     (identifier)
-    (argument_list
+    (arguments
       (named_expression
         (identifier)
         (integer))
@@ -840,7 +840,7 @@ def example():
                 (identifier)
                 (call
                   (identifier)
-                  (argument_list
+                  (arguments
                     (integer)
                     (integer)))))))))))
 
@@ -862,7 +862,7 @@ lambda (a, b): (a, b)
       (identifier))
     (call
       (identifier)
-      (argument_list
+      (arguments
         (binary_operator
           (string
             (string_start)
@@ -970,13 +970,13 @@ slice(1,1,1) if a else d
   (conditional_expression
     (call
       (identifier)
-      (argument_list))
+      (arguments))
     (identifier)
     (identifier))
   (conditional_expression
     (call
       (identifier)
-      (argument_list
+      (arguments
         (integer)
         (integer)
         (integer)))
@@ -1035,7 +1035,7 @@ def a():
     (block
       (call
         (identifier)
-        (argument_list
+        (arguments
           (integer)
           (integer)))
       (assignment
@@ -1085,7 +1085,7 @@ match(r1, r2, r3)
 (module
   (call
     (identifier)
-    (argument_list
+    (arguments
       (identifier)
       (identifier)
       (identifier))))

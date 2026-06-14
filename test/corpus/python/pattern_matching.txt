@@ -22,7 +22,7 @@ match command.split():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -35,14 +35,14 @@ match command.split():
         (block
           (call
             (identifier)
-            (argument_list
+            (arguments
               (string
                 (string_start)
                 (string_content)
                 (string_end))))
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (list_pattern
@@ -56,7 +56,7 @@ match command.split():
             (attribute
               (identifier)
               (identifier))
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (list_pattern
@@ -73,7 +73,7 @@ match command.split():
             (attribute
               (identifier)
               (identifier))
-            (argument_list
+            (arguments
               (identifier)
               (identifier)))))
       (case_clause
@@ -94,7 +94,7 @@ match command.split():
               (attribute
                 (identifier)
                 (identifier))
-              (argument_list
+              (arguments
                 (identifier))))))
       (comment))))
 
@@ -115,7 +115,7 @@ match command.split():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -137,7 +137,7 @@ match command.split():
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)
                   (identifier))))))))))
 
@@ -161,7 +161,7 @@ match command.split():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (comment)
       (case_clause
@@ -206,7 +206,7 @@ match command.split():
         (block
           (call
             (identifier)
-            (argument_list
+            (arguments
               (string
                 (string_start)
                 (string_content)
@@ -233,7 +233,7 @@ match command.split():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -262,7 +262,7 @@ match command.split():
               (attribute
                 (identifier)
                 (identifier))
-              (argument_list
+              (arguments
                 (string
                   (string_start)
                   (string_content)
@@ -326,7 +326,7 @@ match command.split():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -366,7 +366,7 @@ match command.split():
               (attribute
                 (identifier)
                 (identifier))
-              (argument_list
+              (arguments
                 (identifier)))))))))
 
 ================================================================================
@@ -457,7 +457,7 @@ field = call(match=r".*\.txt$")
     (identifier)
     (call
       (identifier)
-      (argument_list
+      (arguments
         (keyword_argument
           (identifier)
           (string
@@ -478,7 +478,7 @@ field = match(match=match, match)
     (identifier)
     (call
       (identifier)
-      (argument_list
+      (arguments
         (keyword_argument
           (identifier)
           (identifier))
@@ -507,7 +507,7 @@ just_in_case = call_me(case=True)
     (identifier)
     (call
       (identifier)
-      (argument_list
+      (arguments
         (keyword_argument
           (identifier)
           (true))))))
@@ -707,7 +707,7 @@ match ..., ...:
           (return_statement
             (call
               (identifier)
-              (argument_list))))))))
+              (arguments))))))))
 
 ================================================================================
 Match match, case case
@@ -754,7 +754,7 @@ if match := re.fullmatch(r"(-)?(\d+:)?\d?\d:\d\d(\.\d*)?", time, flags=re.ASCII)
         (attribute
           (identifier)
           (identifier))
-        (argument_list
+        (arguments
           (string
             (string_start)
             (string_content)
@@ -794,7 +794,7 @@ match event.get():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -814,7 +814,7 @@ match event.get():
         (block
           (call
             (identifier)
-            (argument_list
+            (arguments
               (identifier)
               (identifier)))))
       (case_clause
@@ -838,7 +838,7 @@ match event.get():
             (attribute
               (identifier)
               (identifier))
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -856,7 +856,7 @@ match event.get():
             (attribute
               (identifier)
               (identifier))
-            (argument_list))
+            (arguments))
           (ellipsis)))
       (case_clause
         (case_pattern
@@ -874,7 +874,7 @@ match event.get():
           (raise_statement
             (call
               (identifier)
-              (argument_list
+              (arguments
                 (string
                   (string_start)
                   (string_content)
@@ -898,7 +898,7 @@ match event.get():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -916,7 +916,7 @@ match event.get():
         (block
           (call
             (identifier)
-            (argument_list
+            (arguments
               (identifier)
               (identifier))))))))
 
@@ -938,7 +938,7 @@ match event.get():
       (attribute
         (identifier)
         (identifier))
-      (argument_list))
+      (arguments))
     (block
       (case_clause
         (case_pattern
@@ -963,7 +963,7 @@ match event.get():
         (block
           (call
             (identifier)
-            (argument_list
+            (arguments
               (identifier)
               (identifier)))))
       (case_clause
@@ -1024,13 +1024,13 @@ for action in actions:
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))
               (call
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))))
           (case_clause
             (case_pattern
@@ -1047,7 +1047,7 @@ for action in actions:
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))))
           (case_clause
             (case_pattern
@@ -1073,7 +1073,7 @@ for action in actions:
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))))
           (case_clause
             (case_pattern
@@ -1087,7 +1087,7 @@ for action in actions:
             (block
               (call
                 (identifier)
-                (argument_list))))
+                (arguments))))
           (case_clause
             (case_pattern
               (dict_pattern
@@ -1104,7 +1104,7 @@ for action in actions:
             (block
               (call
                 (identifier)
-                (argument_list
+                (arguments
                   (string
                     (string_start)
                     (string_content)
@@ -1166,13 +1166,13 @@ for action in actions:
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))
               (call
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))))
           (case_clause
             (case_pattern
@@ -1193,7 +1193,7 @@ for action in actions:
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))))
           (case_clause
             (case_pattern
@@ -1223,7 +1223,7 @@ for action in actions:
                 (attribute
                   (identifier)
                   (identifier))
-                (argument_list
+                (arguments
                   (identifier)))))
           (case_clause
             (case_pattern
@@ -1241,7 +1241,7 @@ for action in actions:
             (block
               (call
                 (identifier)
-                (argument_list
+                (arguments
                   (string
                     (string_start)
                     (string_content)
@@ -1284,7 +1284,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1295,7 +1295,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1311,7 +1311,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1333,7 +1333,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1357,7 +1357,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1373,7 +1373,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1395,7 +1395,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list))))
+            (arguments))))
       (case_clause
         (case_pattern
           (class_pattern
@@ -1419,7 +1419,7 @@ match x:
         (block
           (call
             (identifier)
-            (argument_list)))))))
+            (arguments)))))))
 
 ================================================================================
 Complex case patterns on complex numbers

@@ -248,7 +248,7 @@ re.compile(r"(\n|\A)#include\s*['\"]"
     (attribute
       (identifier)
       (identifier))
-    (argument_list
+    (arguments
       (concatenated_string
         (string
           (string_start)
@@ -296,7 +296,7 @@ def test(self):
     (interpolation
       (call
         (identifier)
-        (argument_list
+        (arguments
           (string
             (string_start)
             (string_content)
@@ -404,7 +404,7 @@ def test(self):
         (attribute
           (identifier)
           (identifier))
-        (argument_list
+        (arguments
           (string
             (string_start)
             (string_content)
@@ -733,7 +733,7 @@ Lists
     (call
       (list_splat
         (identifier))
-      (argument_list))))
+      (arguments))))
 
 ================================================================================
 List comprehensions
@@ -793,7 +793,7 @@ List comprehensions
     (if_clause
       (call
         (identifier)
-        (argument_list)))))
+        (arguments)))))
 
 ================================================================================
 Dictionaries
@@ -840,7 +840,7 @@ Dictionaries
     (dictionary_splat
       (call
         (identifier)
-        (argument_list)))))
+        (arguments)))))
 
 ================================================================================
 Dictionary comprehensions
@@ -994,6 +994,6 @@ dict((a, b) for a, b in d)
       (identifier)
       (call
         (identifier)
-        (argument_list
+        (arguments
           (integer)
           (integer))))))
