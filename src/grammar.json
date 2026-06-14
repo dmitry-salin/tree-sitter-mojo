@@ -1040,7 +1040,7 @@
           "name": "left",
           "content": {
             "type": "SYMBOL",
-            "name": "_left_hand_side"
+            "name": "_lhs"
           }
         },
         {
@@ -1112,7 +1112,7 @@
             "name": "left",
             "content": {
               "type": "SYMBOL",
-              "name": "_left_hand_side"
+              "name": "_lhs"
             }
           },
           {
@@ -2824,12 +2824,12 @@
           "name": "left",
           "content": {
             "type": "SYMBOL",
-            "name": "_left_hand_side"
+            "name": "_lhs"
           }
         },
         {
           "type": "SYMBOL",
-          "name": "_assignment_right_side"
+          "name": "_assignment_rhs"
         }
       ]
     },
@@ -2846,7 +2846,7 @@
         }
       ]
     },
-    "_left_hand_side": {
+    "_lhs": {
       "type": "CHOICE",
       "members": [
         {
@@ -2859,7 +2859,7 @@
         }
       ]
     },
-    "_right_hand_side": {
+    "_rhs": {
       "type": "CHOICE",
       "members": [
         {
@@ -2888,7 +2888,7 @@
         }
       ]
     },
-    "_assignment_right_side": {
+    "_assignment_rhs": {
       "type": "CHOICE",
       "members": [
         {
@@ -2903,7 +2903,7 @@
               "name": "right",
               "content": {
                 "type": "SYMBOL",
-                "name": "_right_hand_side"
+                "name": "_rhs"
               }
             }
           ]
@@ -2949,7 +2949,7 @@
               "name": "right",
               "content": {
                 "type": "SYMBOL",
-                "name": "_right_hand_side"
+                "name": "_rhs"
               }
             }
           ]
@@ -2964,7 +2964,7 @@
           "name": "left",
           "content": {
             "type": "SYMBOL",
-            "name": "_left_hand_side"
+            "name": "_lhs"
           }
         },
         {
@@ -3033,7 +3033,7 @@
           "name": "right",
           "content": {
             "type": "SYMBOL",
-            "name": "_right_hand_side"
+            "name": "_rhs"
           }
         }
       ]
@@ -6518,7 +6518,7 @@
     "_compound_statement",
     "_function_effect",
     "_suite",
-    "_left_hand_side",
+    "_lhs",
     "_expressions",
     "keyword_identifier"
   ],

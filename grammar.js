@@ -96,7 +96,7 @@ export default grammar({
     $._compound_statement,
     $._function_effect,
     $._suite,
-    $._left_hand_side,
+    $._lhs,
     $._expressions,
     $.keyword_identifier,
   ],
@@ -319,7 +319,7 @@ export default grammar({
       seq(
         optional('async'),
         'for',
-        field('left', $._left_hand_side),
+        field('left', $._lhs),
         'in',
         field('right', $._expressions),
         ':',
@@ -332,7 +332,7 @@ export default grammar({
         seq(
           optional('async'),
           'for',
-          field('left', $._left_hand_side),
+          field('left', $._lhs),
           'in',
           field('right', commaSep1($._expression_within_for_in_clause)),
           optional(','),
@@ -609,15 +609,15 @@ export default grammar({
     assignment: $ =>
       seq(
         optional($._declaration_convention),
-        field('left', $._left_hand_side),
-        $._assignment_right_side,
+        field('left', $._lhs),
+        $._assignment_rhs,
       ),
 
     _declaration_convention: $ => choice('var', 'ref'),
 
-    _left_hand_side: $ => choice($.pattern_list, $.pattern),
+    _lhs: $ => choice($.pattern_list, $.pattern),
 
-    _right_hand_side: $ =>
+    _rhs: $ =>
       choice(
         $.assignment,
         $.augmented_assignment,
@@ -627,21 +627,16 @@ export default grammar({
         $.expression,
       ),
 
-    _assignment_right_side: $ =>
+    _assignment_rhs: $ =>
       choice(
-        seq('=', field('right', $._right_hand_side)),
+        seq('=', field('right', $._rhs)),
         seq(':', field('type', $.type)),
-        seq(
-          ':',
-          field('type', $.type),
-          '=',
-          field('right', $._right_hand_side),
-        ),
+        seq(':', field('type', $.type), '=', field('right', $._rhs)),
       ),
 
     augmented_assignment: $ =>
       seq(
-        field('left', $._left_hand_side),
+        field('left', $._lhs),
         field(
           'operator',
           choice(
@@ -660,7 +655,7 @@ export default grammar({
             '|=',
           ),
         ),
-        field('right', $._right_hand_side),
+        field('right', $._rhs),
       ),
 
     // Match cases
