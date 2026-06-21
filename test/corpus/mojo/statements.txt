@@ -1,4 +1,304 @@
 ================================================================================
+Function: generic declarations
+================================================================================
+
+def generic[n: I = 5, *M: Z]():
+    pass
+
+def partially_bound(m: M[T, _, _, True]):
+    pass
+
+def unbound(m: M[_, _, _, _]):
+    pass
+
+def partially_bound_with_omitted(m: M[T, ...]):
+    pass
+
+def keyword_unbound(t: M[1, 8, c=_, d=9]):
+    pass
+
+def takes_multiple_traits(x: Some[I & C]) -> type_of(x):
+    pass
+
+def variadic_parameter_pack[*Ts: Trait](*pack: *Ts):
+    pass
+
+def return_generic_with_expr() -> I[S[d], r * c]:
+    pass
+
+def return_generic_with_splat() -> C[*types]:
+    pass
+
+def return_generic_with_identifier_and_splat() -> _A[Int, *types]:
+    pass
+
+def return_generic_with_member_type_and_splat() -> C[*S.P]:
+    pass
+
+def return_nested_generic_with_list_splat() -> C[*_F[*S.e]]:
+    pass
+
+def return_generic_with_call_and_list_splat() -> _F[*type_of(s).types]:
+    pass
+
+def return_generic_with_defaults() -> C[T=_V, I=_I[*Ts]]:
+    pass
+
+def return_generic_with_attribute() -> I[v.r]:
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (integer))
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier))))
+    arguments: (callable_parameters)
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))
+              (underscore)
+              (underscore)
+              (true))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (underscore)
+              (underscore)
+              (underscore)
+              (underscore))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))
+              (ellipsis))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (integer)
+              (integer)
+              (named_parameter
+                name: (identifier)
+                value: (parameter
+                  (identifier)))
+              (named_parameter
+                name: (identifier)
+                value: (integer)))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter_composition
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier))))))))
+    return_type: (call
+      function: (identifier)
+      arguments: (arguments
+        (identifier)))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier))))
+    arguments: (callable_parameters
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter_splat
+          (parameter
+            (identifier)))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (generic_parameter
+            (subscript
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier)))))
+          (binary_operator
+            left: (identifier)
+            right: (identifier)))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter_splat
+            (parameter
+              (identifier))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier))
+          (parameter_splat
+            (parameter
+              (identifier))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter_splat
+            (parameter_member
+              (parameter
+                (identifier))
+              (member
+                (identifier)))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter_splat
+            (generic_parameter
+              (subscript
+                value: (identifier)
+                parameters: (parameters
+                  (parameter_splat
+                    (parameter_member
+                      (parameter
+                        (identifier))
+                      (member
+                        (identifier)))))))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (list_splat
+            (attribute
+              object: (call
+                function: (identifier)
+                arguments: (arguments
+                  (identifier)))
+              attribute: (identifier))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (named_parameter
+            name: (identifier)
+            value: (parameter
+              (identifier)))
+          (named_parameter
+            name: (identifier)
+            value: (generic_parameter
+              (subscript
+                value: (identifier)
+                parameters: (parameters
+                  (parameter_splat
+                    (parameter
+                      (identifier))))))))))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      (subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter_member
+            (parameter
+              (identifier))
+            (member
+              (identifier))))))
+    body: (block
+      (pass_statement))))
+
+================================================================================
 Function: effects
 ================================================================================
 
@@ -74,6 +374,123 @@ def n() abi("C")-> ReturnType:
           (string_end))))
     return_type: (parameter
       (identifier))
+    body: (block
+      (pass_statement))))
+
+================================================================================
+Struct: generic declarations
+================================================================================
+
+struct M[a: Int = 7, /, b: Int = 8, *, c: Int, d: Int = 9]:
+    pass
+
+struct M[a: T, //, b: type_of(C)](E, F):
+    pass
+
+struct M[s: String, i: Int, i2: Int, b: Bool = True]:
+    pass
+
+struct I[s: Int, *, e: D = N.i.t()]:
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (class_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (integer))
+      (positional_only_marker)
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (integer))
+      (keyword_only_marker)
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (integer)))
+    body: (block
+      (pass_statement)))
+  (class_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (infer_only_marker)
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (call
+          function: (identifier)
+          arguments: (arguments
+            (identifier)))))
+    conformance: (conformance
+      (parameter
+        (identifier))
+      (parameter
+        (identifier)))
+    body: (block
+      (pass_statement)))
+  (class_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (true)))
+    body: (block
+      (pass_statement)))
+  (class_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (keyword_only_marker)
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (parameter_member
+          (parameter
+            (identifier))
+          (member
+            (identifier))
+          (member
+            (call
+              function: (identifier)
+              arguments: (arguments))))))
     body: (block
       (pass_statement))))
 
