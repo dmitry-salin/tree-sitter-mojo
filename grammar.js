@@ -66,7 +66,6 @@ export default grammar({
 
   conflicts: $ => [
     [$.print_statement, $.primary_expression],
-    [$.with_item, $._collection_elements],
     [$.match_statement, $.primary_expression],
     [$.pattern, $.primary_expression],
     [$.list_pattern, $.list],
@@ -76,6 +75,7 @@ export default grammar({
   ],
 
   precedences: $ => [
+    [$.with_item, $._collection_element],
     [$.member, $.primary_expression],
     [$.parameter, $.primary_expression],
     [$.generic_parameter, $.primary_expression],
@@ -404,7 +404,7 @@ export default grammar({
         seq('(', trailingCommaSep1($.with_item), ')'),
       ),
 
-    with_item: $ => prec.dynamic(1, seq(field('value', $.expression))),
+    with_item: $ => field('value', $.expression),
 
     match_statement: $ =>
       seq(
@@ -1105,10 +1105,9 @@ export default grammar({
     pair: $ =>
       seq(field('key', $.expression), ':', field('value', $.expression)),
 
-    _collection_elements: $ =>
-      trailingCommaSep1(
-        choice($.list_splat, $.parenthesized_list_splat, $.yield, $.expression),
-      ),
+    _collection_elements: $ => trailingCommaSep1($._collection_element),
+    _collection_element: $ =>
+      choice($.list_splat, $.parenthesized_list_splat, $.yield, $.expression),
 
     concatenated_string: $ => seq($.string, repeat1($.string)),
 

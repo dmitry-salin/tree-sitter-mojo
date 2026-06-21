@@ -1564,20 +1564,11 @@
       ]
     },
     "with_item": {
-      "type": "PREC_DYNAMIC",
-      "value": 1,
+      "type": "FIELD",
+      "name": "value",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "value",
-            "content": {
-              "type": "SYMBOL",
-              "name": "expression"
-            }
-          }
-        ]
+        "type": "SYMBOL",
+        "name": "expression"
       }
     },
     "match_statement": {
@@ -5817,25 +5808,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "list_splat"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "parenthesized_list_splat"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "yield"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "expression"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_collection_element"
         },
         {
           "type": "REPEAT",
@@ -5847,25 +5821,8 @@
                 "value": ","
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "list_splat"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "parenthesized_list_splat"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "yield"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "expression"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "_collection_element"
               }
             ]
           }
@@ -5881,6 +5838,27 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "_collection_element": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "list_splat"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_list_splat"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "yield"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },
@@ -6631,10 +6609,6 @@
       "primary_expression"
     ],
     [
-      "with_item",
-      "_collection_elements"
-    ],
-    [
       "match_statement",
       "primary_expression"
     ],
@@ -6660,6 +6634,16 @@
     ]
   ],
   "precedences": [
+    [
+      {
+        "type": "SYMBOL",
+        "name": "with_item"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_collection_element"
+      }
+    ],
     [
       {
         "type": "SYMBOL",
