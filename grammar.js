@@ -88,6 +88,7 @@ export default grammar({
     $.parameter_declaration,
     $.callable_parameter,
     $.lambda_parameter,
+    $.conformance_parameter,
     $.parameter_expression,
     $.pattern,
     $.expression,
@@ -305,6 +306,7 @@ export default grammar({
         $.match_statement,
         $.function_definition,
         $.class_definition,
+        $.trait_declaration,
         $.decorated_definition,
       ),
 
@@ -460,7 +462,15 @@ export default grammar({
       seq(
         choice('class', 'struct'),
         $._comptime_parameter,
-        field('superclasses', optional($.arguments)),
+        field('conformance', optional($.conformance)),
+      ),
+
+    trait_declaration: $ => seq($._trait_header, ':', field('body', $._suite)),
+    _trait_header: $ =>
+      seq(
+        'trait',
+        field('name', $.identifier),
+        field('refinement', optional($.conformance)),
       ),
 
     decorated_definition: $ =>
@@ -551,6 +561,14 @@ export default grammar({
 
     splat_parameter_decl: $ => $._splat_parameter_decl,
     _splat_parameter_decl: $ => seq(choice('*', '**'), $._parameter_decl),
+
+    // Conformance
+
+    conformance: $ =>
+      seq('(', optional(trailingCommaSep1($.conformance_parameter)), ')'),
+
+    conformance_parameter: $ =>
+      choice($.parameter_splat, $.named_parameter, $._standalone_parameter),
 
     // Parameters
 

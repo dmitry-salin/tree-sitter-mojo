@@ -28,6 +28,10 @@
         "named": true
       },
       {
+        "type": "trait_declaration",
+        "named": true
+      },
+      {
         "type": "try_statement",
         "named": true
       },
@@ -141,6 +145,36 @@
       },
       {
         "type": "splat_parameter_decl",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "conformance_parameter",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "expression",
+        "named": true
+      },
+      {
+        "type": "generic_parameter",
+        "named": true
+      },
+      {
+        "type": "named_parameter",
+        "named": true
+      },
+      {
+        "type": "parameter",
+        "named": true
+      },
+      {
+        "type": "parameter_member",
+        "named": true
+      },
+      {
+        "type": "parameter_splat",
         "named": true
       }
     ]
@@ -1135,6 +1169,16 @@
           }
         ]
       },
+      "conformance": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "conformance",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1151,16 +1195,6 @@
         "types": [
           {
             "type": "parameters_declaration",
-            "named": true
-          }
-        ]
-      },
-      "superclasses": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "arguments",
             "named": true
           }
         ]
@@ -1360,6 +1394,21 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conformance",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "conformance_parameter",
           "named": true
         }
       ]
@@ -3580,6 +3629,42 @@
     }
   },
   {
+    "type": "trait_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "refinement": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "conformance",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "try_statement",
     "named": true,
     "fields": {
@@ -4288,6 +4373,10 @@
   },
   {
     "type": "struct",
+    "named": false
+  },
+  {
+    "type": "trait",
     "named": false
   },
   {

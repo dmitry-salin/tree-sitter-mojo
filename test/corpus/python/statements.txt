@@ -933,13 +933,14 @@ class D(Sequence[T, U]):
             (identifier))))))
   (class_definition
     name: (identifier)
-    superclasses: (arguments)
+    conformance: (conformance)
     body: (block
       (pass_statement)))
   (class_definition
     name: (identifier)
-    superclasses: (arguments
-      (identifier))
+    conformance: (conformance
+      (parameter
+        (identifier)))
     body: (block
       (function_definition
         name: (identifier)
@@ -950,25 +951,28 @@ class D(Sequence[T, U]):
           (return_statement)))))
   (class_definition
     name: (identifier)
-    superclasses: (arguments
-      (identifier)
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier)))))
+    conformance: (conformance
+      (parameter
+        (identifier))
+      (generic_parameter
+        (subscript
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     body: (block
       (pass_statement)))
   (class_definition
     name: (identifier)
-    superclasses: (arguments
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier))
-          (parameter
-            (identifier)))))
+    conformance: (conformance
+      (generic_parameter
+        (subscript
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (parameter
+              (identifier))))))
     body: (block
       (pass_statement))))
 
@@ -980,20 +984,53 @@ class A(B, C):
   def d():
     e
 
+class A(metaclass=abc.ABCMeta):
+    pass
+
+class A(B, c="d"):
+    pass
+
 --------------------------------------------------------------------------------
 
 (module
   (class_definition
     name: (identifier)
-    superclasses: (arguments
-      (identifier)
-      (identifier))
+    conformance: (conformance
+      (parameter
+        (identifier))
+      (parameter
+        (identifier)))
     body: (block
       (function_definition
         name: (identifier)
         arguments: (callable_parameters)
         body: (block
-          (identifier))))))
+          (identifier)))))
+  (class_definition
+    name: (identifier)
+    conformance: (conformance
+      (named_parameter
+        name: (identifier)
+        value: (parameter_member
+          (parameter
+            (identifier))
+          (member
+            (identifier)))))
+    body: (block
+      (pass_statement)))
+  (class_definition
+    name: (identifier)
+    conformance: (conformance
+      (parameter
+        (identifier))
+      (named_parameter
+        name: (identifier)
+        value: (string
+          (string_start)
+          (string_content)
+          (string_end))))
+    body: (block
+      (pass_statement))))
 
 ================================================================================
 Decorated definitions

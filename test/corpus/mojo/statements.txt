@@ -76,3 +76,30 @@ def n() abi("C")-> ReturnType:
       (identifier))
     body: (block
       (pass_statement))))
+
+================================================================================
+Trait: declarations
+================================================================================
+
+trait N:
+    pass
+
+trait N(A, B):
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (trait_declaration
+    name: (identifier)
+    body: (block
+      (pass_statement)))
+  (trait_declaration
+    name: (identifier)
+    refinement: (conformance
+      (parameter
+        (identifier))
+      (parameter
+        (identifier)))
+    body: (block
+      (pass_statement))))
