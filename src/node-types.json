@@ -1017,6 +1017,10 @@
         {
           "type": "callable_parameter",
           "named": true
+        },
+        {
+          "type": "convention_parameters",
+          "named": true
         }
       ]
     }
@@ -1638,6 +1642,37 @@
     "type": "continue_statement",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "convention_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "generic_parameter",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "parameter_member",
+          "named": true
+        },
+        {
+          "type": "underscore",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "decorated_definition",
@@ -2303,6 +2338,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "convention_parameters",
+          "named": true
+        }
+      ]
     }
   },
   {

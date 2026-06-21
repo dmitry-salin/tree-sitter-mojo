@@ -100,6 +100,7 @@ export default grammar({
     $._compound_statement,
     $._function_effect,
     $._suite,
+    $._convention,
     $._any_parameter_decl,
     $._lambda_parameter,
     $._parameter_decl,
@@ -455,7 +456,11 @@ export default grammar({
     abi: $ => seq('abi', '(', $.string, ')'),
 
     _function_return_type: $ =>
-      seq('->', field('return_type', $._return_parameter)),
+      seq(
+        '->',
+        optional($._parameterized_ref_conv),
+        field('return_type', $._return_parameter),
+      ),
 
     class_definition: $ => seq($._class_header, ':', field('body', $._suite)),
     _class_header: $ =>
@@ -516,7 +521,18 @@ export default grammar({
     _callable_parameter: $ =>
       seq(optional($._convention), $.callable_parameter),
 
-    _convention: $ => choice('read', 'mut', 'out', 'deinit', 'var', 'ref'),
+    _convention: $ =>
+      choice('deinit', 'out', 'var', $._ref_conv, $._parameterized_ref_conv),
+
+    _ref_conv: $ => choice('mut', 'read', 'ref'),
+    _parameterized_ref_conv: $ => seq('ref', $.convention_parameters),
+
+    convention_parameters: $ =>
+      seq(
+        '[',
+        trailingCommaSep1(choice($._standalone_parameter, $.underscore)),
+        ']',
+      ),
 
     callable_parameter: $ => $._any_parameter_decl,
     _any_parameter_decl: $ =>

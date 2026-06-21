@@ -1922,6 +1922,18 @@
           "value": "->"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_parameterized_ref_conv"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "FIELD",
           "name": "return_type",
           "content": {
@@ -2331,11 +2343,7 @@
       "members": [
         {
           "type": "STRING",
-          "value": "read"
-        },
-        {
-          "type": "STRING",
-          "value": "mut"
+          "value": "deinit"
         },
         {
           "type": "STRING",
@@ -2343,15 +2351,113 @@
         },
         {
           "type": "STRING",
-          "value": "deinit"
+          "value": "var"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_ref_conv"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_parameterized_ref_conv"
+        }
+      ]
+    },
+    "_ref_conv": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "mut"
         },
         {
           "type": "STRING",
-          "value": "var"
+          "value": "read"
         },
         {
           "type": "STRING",
           "value": "ref"
+        }
+      ]
+    },
+    "_parameterized_ref_conv": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ref"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "convention_parameters"
+        }
+      ]
+    },
+    "convention_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_standalone_parameter"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "underscore"
+                }
+              ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_standalone_parameter"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "underscore"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -6863,6 +6969,7 @@
     "_compound_statement",
     "_function_effect",
     "_suite",
+    "_convention",
     "_any_parameter_decl",
     "_lambda_parameter",
     "_parameter_decl",
