@@ -31,8 +31,6 @@ const PREC = {
   call: 22,
 };
 
-const SEMICOLON = ';';
-
 export default grammar({
   name: 'mojo',
 
@@ -165,11 +163,7 @@ export default grammar({
     // Simple statements
 
     _simple_statements: $ =>
-      seq(
-        sep1($._simple_statement, SEMICOLON),
-        optional(SEMICOLON),
-        $._newline,
-      ),
+      seq(sep1($._simple_statement, ';', true), $._newline),
 
     _simple_statement: $ =>
       choice(
@@ -220,8 +214,9 @@ export default grammar({
 
     _import_list: $ =>
       seq(
-        commaSep1(field('name', choice($.dotted_name, $.aliased_import))),
-        optional(','),
+        trailingCommaSep1(
+          field('name', choice($.dotted_name, $.aliased_import)),
+        ),
       ),
 
     aliased_import: $ =>
@@ -242,11 +237,7 @@ export default grammar({
           -3,
           prec.dynamic(
             -1,
-            seq(
-              'print',
-              commaSep1(field('argument', $.expression)),
-              optional(','),
-            ),
+            seq('print', trailingCommaSep1(field('argument', $.expression))),
           ),
         ),
       ),
@@ -356,8 +347,7 @@ export default grammar({
           'for',
           field('left', $._lhs),
           'in',
-          field('right', commaSep1($._expression_within_for_in_clause)),
-          optional(','),
+          field('right', trailingCommaSep1($._expression_within_for_in_clause)),
         ),
       ),
 
@@ -410,8 +400,8 @@ export default grammar({
 
     with_clause: $ =>
       choice(
-        seq(commaSep1($.with_item), optional(',')),
-        seq('(', commaSep1($.with_item), optional(','), ')'),
+        trailingCommaSep1($.with_item),
+        seq('(', trailingCommaSep1($.with_item), ')'),
       ),
 
     with_item: $ => prec.dynamic(1, seq(field('value', $.expression))),
@@ -419,8 +409,7 @@ export default grammar({
     match_statement: $ =>
       seq(
         'match',
-        commaSep1(field('subject', $.expression)),
-        optional(','),
+        trailingCommaSep1(field('subject', $.expression)),
         ':',
         field('body', alias($._match_block, $.block)),
       ),
@@ -434,8 +423,7 @@ export default grammar({
     case_clause: $ =>
       seq(
         'case',
-        commaSep1($.case_pattern),
-        optional(','),
+        trailingCommaSep1($.case_pattern),
         optional(field('guard', $.if_clause)),
         ':',
         field('consequence', $._suite),
@@ -505,7 +493,7 @@ export default grammar({
       seq($.comptime_parameter, $._constraint),
 
     parameters_declaration: $ =>
-      seq('[', seq(commaSep1($.parameter_declaration), optional(',')), ']'),
+      seq('[', trailingCommaSep1($.parameter_declaration), ']'),
 
     parameter_declaration: $ =>
       choice($._any_parameter_decl, $.infer_only_marker),
@@ -513,11 +501,7 @@ export default grammar({
     // Callable parameters
 
     callable_parameters: $ =>
-      seq(
-        '(',
-        optional(seq(commaSep1($._callable_parameter), optional(','))),
-        ')',
-      ),
+      seq('(', optional(trailingCommaSep1($._callable_parameter)), ')'),
 
     _callable_parameter: $ =>
       seq(optional($._convention), $.callable_parameter),
@@ -547,7 +531,7 @@ export default grammar({
 
     // Lambda parameters
 
-    lambda_parameters: $ => seq(commaSep1($.lambda_parameter), optional(',')),
+    lambda_parameters: $ => trailingCommaSep1($.lambda_parameter),
     lambda_parameter: $ =>
       choice($._lambda_parameter, $.lambda_default_parameter_decl),
 
@@ -571,11 +555,7 @@ export default grammar({
     // Parameters
 
     parameters: $ =>
-      seq(
-        '[',
-        optional(seq(commaSep1($.parameter_expression), optional(','))),
-        ']',
-      ),
+      seq('[', optional(trailingCommaSep1($.parameter_expression)), ']'),
 
     parameter_expression: $ =>
       choice($.named_parameter, $._constraint_parameter, $.slice, $.underscore),
@@ -591,7 +571,7 @@ export default grammar({
       ),
 
     parameter_tuple: $ =>
-      seq('(', commaSep1($._non_composite_parameter), optional(','), ')'),
+      seq('(', trailingCommaSep1($._non_composite_parameter), ')'),
 
     parameter_union: $ =>
       seq(
@@ -632,8 +612,7 @@ export default grammar({
 
     // Arguments
 
-    arguments: $ =>
-      seq('(', optional(seq(commaSep1($._argument), optional(','))), ')'),
+    arguments: $ => seq('(', optional(trailingCommaSep1($._argument)), ')'),
 
     _argument: $ =>
       choice(
@@ -758,12 +737,7 @@ export default grammar({
       ),
 
     class_pattern: $ =>
-      seq(
-        $.dotted_name,
-        '(',
-        optional(seq(commaSep1($.case_pattern), optional(','))),
-        ')',
-      ),
+      seq($.dotted_name, '(', optional(trailingCommaSep1($.case_pattern)), ')'),
 
     splat_pattern: $ =>
       prec(1, seq(choice('*', '**'), choice($.identifier, $.underscore))),
@@ -774,19 +748,16 @@ export default grammar({
       ),
 
     _list_pattern: $ =>
-      seq('[', optional(seq(commaSep1($.case_pattern), optional(','))), ']'),
+      seq('[', optional(trailingCommaSep1($.case_pattern)), ']'),
 
     _tuple_pattern: $ =>
-      seq('(', optional(seq(commaSep1($.case_pattern), optional(','))), ')'),
+      seq('(', optional(trailingCommaSep1($.case_pattern)), ')'),
 
     dict_pattern: $ =>
       seq(
         '{',
         optional(
-          seq(
-            commaSep1(choice($.splat_pattern, $._key_value_pattern)),
-            optional(','),
-          ),
+          seq(trailingCommaSep1(choice($.splat_pattern, $._key_value_pattern))),
         ),
         '}',
       ),
@@ -826,7 +797,7 @@ export default grammar({
 
     list_pattern: $ => seq('[', optional($._patterns), ']'),
     tuple_pattern: $ => seq('(', optional($._patterns), ')'),
-    _patterns: $ => seq(commaSep1($.pattern), optional(',')),
+    _patterns: $ => trailingCommaSep1($.pattern),
 
     list_splat_pattern: $ =>
       prec(
@@ -883,11 +854,7 @@ export default grammar({
       ),
 
     tuple_expression: $ =>
-      seq(
-        $.expression,
-        ',',
-        optional(seq(commaSep1($.expression), optional(','))),
-      ),
+      seq($.expression, ',', optional(trailingCommaSep1($.expression))),
 
     expression: $ =>
       choice(
@@ -1131,8 +1098,7 @@ export default grammar({
     dictionary: $ =>
       seq(
         '{',
-        optional(commaSep1(choice($.dictionary_splat, $.pair))),
-        optional(','),
+        optional(trailingCommaSep1(choice($.dictionary_splat, $.pair))),
         '}',
       ),
 
@@ -1140,16 +1106,8 @@ export default grammar({
       seq(field('key', $.expression), ':', field('value', $.expression)),
 
     _collection_elements: $ =>
-      seq(
-        commaSep1(
-          choice(
-            $.list_splat,
-            $.parenthesized_list_splat,
-            $.yield,
-            $.expression,
-          ),
-        ),
-        optional(','),
+      trailingCommaSep1(
+        choice($.list_splat, $.parenthesized_list_splat, $.yield, $.expression),
       ),
 
     concatenated_string: $ => seq($.string, repeat1($.string)),
@@ -1284,7 +1242,8 @@ export default grammar({
 export {PREC};
 
 /**
- * Creates a rule to match one or more of the rules separated by a comma
+ * Creates a rule that matches one or more
+ * occurrences of `rule` separated by a comma
  *
  * @param {RuleOrLiteral} rule
  *
@@ -1295,14 +1254,36 @@ function commaSep1(rule) {
 }
 
 /**
- * Creates a rule to match one or more occurrences of `rule` separated by `sep`
+ * Creates a rule that matches one or more
+ * occurrences of `rule` separated by a comma
+ * with an optional trailing comma
+ *
+ * @param {RuleOrLiteral} rule
+ *
+ * @returns {SeqRule}
+ */
+function trailingCommaSep1(rule) {
+  return sep1(rule, ',', true);
+}
+
+/**
+ * Creates a rule that matches one or more
+ * occurrences of `rule` separated by `separator`
+ * with an optional trailing `separator` if called
+ * with `true` as the third parameter
  *
  * @param {RuleOrLiteral} rule
  *
  * @param {RuleOrLiteral} separator
  *
+ * @param {boolean} trailing
+ *
  * @returns {SeqRule}
  */
-function sep1(rule, separator) {
-  return seq(rule, repeat(seq(separator, rule)));
+function sep1(rule, separator, trailing = false) {
+  if (trailing) {
+    return seq(rule, repeat(seq(separator, rule)), optional(separator));
+  } else {
+    return seq(rule, repeat(seq(separator, rule)));
+  }
 }
