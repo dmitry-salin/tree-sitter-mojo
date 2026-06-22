@@ -101,6 +101,8 @@ export default grammar({
     $._if_clause,
     $._function_effect,
     $._suite,
+    $._ref_capture,
+    $._owned_capture,
     $._convention,
     $._any_parameter_decl,
     $._lambda_parameter,
@@ -454,6 +456,7 @@ export default grammar({
         $._comptime_parameter,
         field('arguments', $.callable_parameters),
         field('effects', optional($.function_effects)),
+        field('captures', optional($.capture_parameters)),
         optional($._function_return_type),
       ),
 
@@ -461,7 +464,9 @@ export default grammar({
     _function_effect: $ => choice($.raises, $.abi),
 
     raises: $ =>
-      seq('raises', field('error_type', optional($._standalone_parameter))),
+      prec.right(
+        seq('raises', field('error_type', optional($._standalone_parameter))),
+      ),
 
     abi: $ => seq('abi', '(', $.string, ')'),
 
@@ -522,6 +527,22 @@ export default grammar({
 
     parameter_declaration: $ =>
       choice($._any_parameter_decl, $.infer_only_marker),
+
+    // Capture parameters
+
+    capture_parameters: $ =>
+      seq('{', optional(trailingCommaSep1($.capture_parameter)), '}'),
+
+    capture_parameter: $ => choice($._ref_capture, $._owned_capture),
+
+    _ref_capture: $ =>
+      choice(seq($._ref_conv, optional($._parameter_decl)), $._parameter_decl),
+
+    _owned_capture: $ =>
+      choice(
+        seq($._parameter_decl, '^'),
+        seq('var', optional($._parameter_decl), optional('^')),
+      ),
 
     // Callable parameters
 

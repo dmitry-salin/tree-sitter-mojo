@@ -609,6 +609,123 @@ def n() abi("C")-> ReturnType:
       (pass_statement))))
 
 ================================================================================
+Closure: capture list
+================================================================================
+
+def main():
+    var limit = 10
+
+    def check(x: Int) {read limit} -> Bool:
+        return x < limit
+
+def pow[width: Int](i: Int) {mut ptr}:
+    pass
+
+def c() {var z, w, var b,} -> None:
+    pass
+
+def report() {ref items}:
+    pass
+
+def f() {ref}:
+    pass
+
+def f() {var^}:
+    pass
+
+def f() {var name^}:
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (integer))
+      (function_definition
+        name: (identifier)
+        arguments: (callable_parameters
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier))))
+        captures: (capture_parameters
+          (capture_parameter
+            name: (identifier)))
+        return_type: (parameter
+          (identifier))
+        body: (block
+          (return_statement
+            (comparison_operator
+              (identifier)
+              (identifier)))))))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier))))
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier))))
+    captures: (capture_parameters
+      (capture_parameter
+        name: (identifier)))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    captures: (capture_parameters
+      (capture_parameter
+        name: (identifier))
+      (capture_parameter
+        name: (identifier))
+      (capture_parameter
+        name: (identifier)))
+    return_type: (parameter
+      (none))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    captures: (capture_parameters
+      (capture_parameter
+        name: (identifier)))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    captures: (capture_parameters
+      (capture_parameter))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    captures: (capture_parameters
+      (capture_parameter))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    captures: (capture_parameters
+      (capture_parameter
+        name: (identifier)))
+    body: (block
+      (pass_statement))))
+
+================================================================================
 Struct: generic declarations
 ================================================================================
 
