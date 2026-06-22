@@ -98,6 +98,7 @@ export default grammar({
   inline: $ => [
     $._simple_statement,
     $._compound_statement,
+    $._if_clause,
     $._function_effect,
     $._suite,
     $._convention,
@@ -246,7 +247,9 @@ export default grammar({
 
     chevron: $ => seq('>>', $.expression),
 
-    assert_statement: $ => seq('assert', commaSep1($.expression)),
+    assert_statement: $ =>
+      seq(optional('comptime'), 'assert', commaSep1($.expression)),
+
     return_statement: $ => seq('return', optional($._expressions)),
     delete_statement: $ => seq('del', $._expressions),
 
@@ -313,13 +316,14 @@ export default grammar({
 
     if_statement: $ =>
       seq(
-        'if',
-        field('condition', $.expression),
+        $._if_statement_header,
         ':',
         field('consequence', $._suite),
         repeat(field('alternative', $.elif_clause)),
         optional(field('alternative', $.else_clause)),
       ),
+    _if_statement_header: $ => seq(optional('comptime'), $._if_clause),
+    _if_clause: $ => seq('if', field('condition', $.expression)),
 
     elif_clause: $ =>
       seq(
@@ -341,7 +345,7 @@ export default grammar({
 
     _for_statement_header: $ =>
       seq(
-        optional('async'),
+        optional(choice('async', 'comptime')),
         'for',
         optional($._declaration_convention),
         field('left', $._lhs),
@@ -438,7 +442,7 @@ export default grammar({
         field('consequence', $._suite),
       ),
 
-    if_clause: $ => seq('if', $.expression),
+    if_clause: $ => $._if_clause,
 
     function_definition: $ =>
       seq($._function_signature, ':', field('body', $._suite)),

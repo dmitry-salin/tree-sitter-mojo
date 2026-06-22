@@ -541,6 +541,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "comptime"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "assert"
         },
@@ -955,16 +967,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "if"
-        },
-        {
-          "type": "FIELD",
-          "name": "condition",
-          "content": {
-            "type": "SYMBOL",
-            "name": "expression"
-          }
+          "type": "SYMBOL",
+          "name": "_if_statement_header"
         },
         {
           "type": "STRING",
@@ -1004,6 +1008,44 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "_if_statement_header": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "comptime"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_if_clause"
+        }
+      ]
+    },
+    "_if_clause": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "FIELD",
+          "name": "condition",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
         }
       ]
     },
@@ -1101,8 +1143,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "async"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "async"
+                },
+                {
+                  "type": "STRING",
+                  "value": "comptime"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -1775,17 +1826,8 @@
       ]
     },
     "if_clause": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "if"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "_if_clause"
     },
     "function_definition": {
       "type": "SEQ",
@@ -7009,6 +7051,7 @@
   "inline": [
     "_simple_statement",
     "_compound_statement",
+    "_if_clause",
     "_function_effect",
     "_suite",
     "_convention",
