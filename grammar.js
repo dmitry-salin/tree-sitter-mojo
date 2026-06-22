@@ -109,6 +109,7 @@ export default grammar({
     $._constraint,
     $._constraint_parameter,
     $._return_parameter,
+    $._declaration_convention,
     $._lhs,
     $._expressions,
     $.keyword_identifier,
@@ -333,14 +334,20 @@ export default grammar({
 
     for_statement: $ =>
       seq(
-        optional('async'),
-        'for',
-        field('left', $._lhs),
-        'in',
-        field('right', $._expressions),
+        $._for_statement_header,
         ':',
         field('body', $._suite),
         field('alternative', optional($.else_clause)),
+      ),
+
+    _for_statement_header: $ =>
+      seq(
+        optional('async'),
+        'for',
+        optional($._declaration_convention),
+        field('left', $._lhs),
+        'in',
+        field('right', $._expressions),
       ),
 
     for_in_clause: $ =>

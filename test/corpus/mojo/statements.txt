@@ -1,4 +1,38 @@
 ================================================================================
+Convention: variable declaration
+================================================================================
+
+var data = [1, 2, 3]
+ref view = data
+
+for ref element in self:
+    element = value.copy()
+
+--------------------------------------------------------------------------------
+
+(module
+  (assignment
+    left: (identifier)
+    right: (list
+      (integer)
+      (integer)
+      (integer)))
+  (assignment
+    left: (identifier)
+    right: (identifier))
+  (for_statement
+    left: (identifier)
+    right: (identifier)
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (call
+          function: (attribute
+            object: (identifier)
+            attribute: (identifier))
+          arguments: (arguments))))))
+
+================================================================================
 Function: generic declarations
 ================================================================================
 
