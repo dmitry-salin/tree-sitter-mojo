@@ -110,7 +110,6 @@ export default grammar({
     $._constraint_parameter,
     $._return_parameter,
     $._declaration_convention,
-    $._lhs,
     $._expressions,
     $.keyword_identifier,
   ],
@@ -704,7 +703,7 @@ export default grammar({
     constrained_lhs: $ => seq($._lhs, $._constraint),
 
     _declaration_convention: $ => choice('var', 'ref'),
-    _lhs: $ => choice($.pattern_list, $.pattern),
+    _lhs: $ => choice($.pattern_list, $.pattern, $.call),
     _rhs: $ =>
       choice(
         $.assignment,

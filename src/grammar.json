@@ -3457,6 +3457,10 @@
         {
           "type": "SYMBOL",
           "name": "pattern"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call"
         }
       ]
     },
@@ -7000,7 +7004,6 @@
     "_constraint_parameter",
     "_return_parameter",
     "_declaration_convention",
-    "_lhs",
     "_expressions",
     "keyword_identifier"
   ],

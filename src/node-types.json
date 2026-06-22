@@ -623,6 +623,10 @@
         "required": true,
         "types": [
           {
+            "type": "call",
+            "named": true
+          },
+          {
             "type": "constrained_lhs",
             "named": true
           },
@@ -702,6 +706,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "call",
+            "named": true
+          },
           {
             "type": "pattern",
             "named": true
@@ -1520,6 +1528,10 @@
       "required": true,
       "types": [
         {
+          "type": "call",
+          "named": true
+        },
+        {
           "type": "pattern",
           "named": true
         },
@@ -2116,6 +2128,10 @@
         "required": true,
         "types": [
           {
+            "type": "call",
+            "named": true
+          },
+          {
             "type": "pattern",
             "named": true
           },
@@ -2169,6 +2185,10 @@
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "call",
+            "named": true
+          },
           {
             "type": "pattern",
             "named": true

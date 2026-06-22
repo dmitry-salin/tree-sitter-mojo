@@ -33,6 +33,35 @@ for ref element in self:
           arguments: (arguments))))))
 
 ================================================================================
+Assignment: function call on the left-hand side
+================================================================================
+
+for ref element in self:
+    rebind[_T](element) = value.copy()
+
+--------------------------------------------------------------------------------
+
+(module
+  (for_statement
+    left: (identifier)
+    right: (identifier)
+    body: (block
+      (assignment
+        left: (call
+          function: (subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))))
+          arguments: (arguments
+            (identifier)))
+        right: (call
+          function: (attribute
+            object: (identifier)
+            attribute: (identifier))
+          arguments: (arguments))))))
+
+================================================================================
 Function: generic declarations
 ================================================================================
 
