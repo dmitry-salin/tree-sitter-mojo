@@ -2504,6 +2504,10 @@
         {
           "type": "SYMBOL",
           "name": "_lambda_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "self_parameter"
         }
       ]
     },
@@ -2541,8 +2545,17 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_parameter_decl"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_parameter_decl"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "self_parameter"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -6773,6 +6786,10 @@
     "none": {
       "type": "STRING",
       "value": "None"
+    },
+    "self_parameter": {
+      "type": "STRING",
+      "value": "self"
     },
     "underscore": {
       "type": "STRING",

@@ -144,6 +144,10 @@
         "named": true
       },
       {
+        "type": "self_parameter",
+        "named": true
+      },
+      {
         "type": "splat_parameter_decl",
         "named": true
       }
@@ -299,6 +303,10 @@
       },
       {
         "type": "positional_only_marker",
+        "named": true
+      },
+      {
+        "type": "self_parameter",
         "named": true
       },
       {
@@ -1586,7 +1594,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -1594,6 +1602,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "self_parameter",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4427,6 +4445,10 @@
   {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "self_parameter",
+    "named": true
   },
   {
     "type": "string_end",

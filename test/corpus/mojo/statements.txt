@@ -362,6 +362,42 @@ def return_generic_with_attribute() -> I[v.r]:
       (pass_statement))))
 
 ================================================================================
+Function: self parameter
+================================================================================
+
+def dump[
+    WritableEltType: Writable & Copyable & ImplicitlyDestructible
+](self: MyStack[WritableEltType]):
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter_composition
+          (parameter
+            (identifier))
+          (parameter
+            (identifier))
+          (parameter
+            (identifier)))))
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        (self_parameter)
+        constraint: (generic_parameter
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier)))))))
+    body: (block
+      (pass_statement))))
+
+================================================================================
 Convention: callable parameters
 ================================================================================
 
@@ -418,8 +454,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
   (function_definition
     name: (identifier)
     arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
+      (self_parameter))
     effects: (function_effects
       (raises
         error_type: (parameter
@@ -451,8 +486,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           (identifier)))
       (infer_only_marker))
     arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
+      (self_parameter)
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter

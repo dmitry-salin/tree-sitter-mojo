@@ -398,8 +398,7 @@ def test(self):
   (function_definition
     name: (identifier)
     arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
+      (self_parameter))
     body: (block
       (call
         function: (attribute
