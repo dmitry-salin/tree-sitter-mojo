@@ -1015,6 +1015,7 @@ export default grammar({
         $.subscript,
         $.binary_operator,
         $.unary_operator,
+        $.transfer_operator,
         $.list_comprehension,
         $.set_comprehension,
         $.dictionary_comprehension,
@@ -1107,6 +1108,9 @@ export default grammar({
           field('argument', $.primary_expression),
         ),
       ),
+
+    transfer_operator: $ =>
+      prec(PREC.xor - 1, seq(field('argument', $.primary_expression), '^')),
 
     // Comprehensions
 

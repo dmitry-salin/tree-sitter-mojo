@@ -5147,6 +5147,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "transfer_operator"
+        },
+        {
+          "type": "SYMBOL",
           "name": "list_comprehension"
         },
         {
@@ -5796,6 +5800,27 @@
               "type": "SYMBOL",
               "name": "primary_expression"
             }
+          }
+        ]
+      }
+    },
+    "transfer_operator": {
+      "type": "PREC",
+      "value": 15,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "argument",
+            "content": {
+              "type": "SYMBOL",
+              "name": "primary_expression"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "^"
           }
         ]
       }

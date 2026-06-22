@@ -1,0 +1,28 @@
+================================================================================
+Operator: transfer
+================================================================================
+
+def __init__(out self, var value: Self.T):
+    self.value = value^
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters
+      (self_parameter)
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter_member
+          (parameter
+            (identifier))
+          (member
+            (identifier)))))
+    body: (block
+      (assignment
+        left: (attribute
+          object: (identifier)
+          attribute: (identifier))
+        right: (transfer_operator
+          argument: (identifier))))))

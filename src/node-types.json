@@ -488,6 +488,10 @@
         "named": true
       },
       {
+        "type": "transfer_operator",
+        "named": true
+      },
+      {
         "type": "true",
         "named": true
       },
@@ -3742,6 +3746,22 @@
         "types": [
           {
             "type": "conformance",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "transfer_operator",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "primary_expression",
             "named": true
           }
         ]
