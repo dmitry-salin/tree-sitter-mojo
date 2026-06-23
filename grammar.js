@@ -115,6 +115,8 @@ export default grammar({
 
   precedences: $ => [
     [$.with_item, $._collection_element],
+    [$._parameterized_ref_conv, $._ref_conv],
+    [$.parameter_decl, $.primary_expression],
     [$.member, $.primary_expression],
     [$.parameter, $.primary_expression],
     [$.generic_parameter, $.primary_expression],
@@ -125,6 +127,7 @@ export default grammar({
     $.expression_statement,
     $._compound_statement,
     $.parameter_declaration,
+    $.function_type_parameter,
     $.callable_parameter,
     $.lambda_parameter,
     $.conformance_parameter,
@@ -546,6 +549,35 @@ export default grammar({
         seq('var', optional($._parameter_decl), optional('^')),
       ),
 
+    // Function type
+
+    function_type: $ =>
+      seq(
+        'def',
+        field('parameters', optional($.parameters_declaration)),
+        field('arguments', $.function_type_parameters),
+        field('effects', optional($.function_effects)),
+        optional($._function_return_type),
+      ),
+
+    function_type_parameters: $ =>
+      seq('(', optional(trailingCommaSep1($._function_type_parameter)), ')'),
+
+    _function_type_parameter: $ =>
+      seq(optional($._convention), $.function_type_parameter),
+
+    function_type_parameter: $ =>
+      choice(
+        $.constrained_parameter_decl,
+        $.constrained_splat_parameter_decl,
+        $.parameter_decl,
+        $.parameter_member,
+        $.generic_parameter,
+        $.expression,
+        $.positional_only_marker,
+        $.keyword_only_marker,
+      ),
+
     // Callable parameters
 
     callable_parameters: $ =>
@@ -649,20 +681,29 @@ export default grammar({
       ),
 
     parameter_composition: $ =>
-      seq(
-        $._non_composite_parameter,
-        repeat1(seq('&', $._non_composite_parameter)),
-      ),
+      seq($._composable_parameter, repeat1(seq('&', $._composable_parameter))),
+
+    _composable_parameter: $ =>
+      choice($.function_type, $._non_composite_parameter),
 
     named_parameter: $ =>
-      seq($._parameter_decl, '=', field('value', $._parameter_rhs)),
+      seq(
+        $._parameter_decl,
+        '=',
+        field('value', choice($.function_type, $._parameter_rhs)),
+      ),
 
     parameter: $ => choice($.identifier, $.none),
     generic_parameter: $ => $.subscript,
     _non_composite_parameter: $ => choice($.parameter, $.generic_parameter),
 
     _comptime_rhs: $ =>
-      choice($.parameter_union, $.parameter_composition, $.expression),
+      choice(
+        $.function_type,
+        $.parameter_union,
+        $.parameter_composition,
+        $.expression,
+      ),
 
     _parameter_rhs: $ => choice($._standalone_parameter, $.slice),
 
@@ -675,7 +716,9 @@ export default grammar({
         $._return_parameter,
       ),
 
-    _return_parameter: $ => choice($.parameter_union, $._standalone_parameter),
+    _return_parameter: $ =>
+      choice($.function_type, $.parameter_union, $._standalone_parameter),
+
     _standalone_parameter: $ =>
       choice($.parameter_member, $._non_composite_parameter, $.expression),
 

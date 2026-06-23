@@ -2494,6 +2494,183 @@
         }
       ]
     },
+    "function_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "def"
+        },
+        {
+          "type": "FIELD",
+          "name": "parameters",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "parameters_declaration"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "function_type_parameters"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "effects",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "function_effects"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_function_return_type"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "function_type_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_function_type_parameter"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_function_type_parameter"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "_function_type_parameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_convention"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_type_parameter"
+        }
+      ]
+    },
+    "function_type_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "constrained_parameter_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constrained_splat_parameter_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_member"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "positional_only_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "keyword_only_marker"
+        }
+      ]
+    },
     "callable_parameters": {
       "type": "SEQ",
       "members": [
@@ -3227,7 +3404,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_non_composite_parameter"
+          "name": "_composable_parameter"
         },
         {
           "type": "REPEAT1",
@@ -3240,10 +3417,23 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_non_composite_parameter"
+                "name": "_composable_parameter"
               }
             ]
           }
+        }
+      ]
+    },
+    "_composable_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_non_composite_parameter"
         }
       ]
     },
@@ -3262,8 +3452,17 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "SYMBOL",
-            "name": "_parameter_rhs"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "function_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_parameter_rhs"
+              }
+            ]
           }
         }
       ]
@@ -3301,6 +3500,10 @@
     "_comptime_rhs": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function_type"
+        },
         {
           "type": "SYMBOL",
           "name": "parameter_union"
@@ -3369,6 +3572,10 @@
     "_return_parameter": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function_type"
+        },
         {
           "type": "SYMBOL",
           "name": "parameter_union"
@@ -7167,6 +7374,26 @@
     [
       {
         "type": "SYMBOL",
+        "name": "_parameterized_ref_conv"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_ref_conv"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "parameter_decl"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "primary_expression"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
         "name": "member"
       },
       {
@@ -7271,6 +7498,7 @@
     "expression_statement",
     "_compound_statement",
     "parameter_declaration",
+    "function_type_parameter",
     "callable_parameter",
     "lambda_parameter",
     "conformance_parameter",

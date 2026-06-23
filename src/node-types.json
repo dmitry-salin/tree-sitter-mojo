@@ -248,6 +248,44 @@
     ]
   },
   {
+    "type": "function_type_parameter",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "constrained_parameter_decl",
+        "named": true
+      },
+      {
+        "type": "constrained_splat_parameter_decl",
+        "named": true
+      },
+      {
+        "type": "expression",
+        "named": true
+      },
+      {
+        "type": "generic_parameter",
+        "named": true
+      },
+      {
+        "type": "keyword_only_marker",
+        "named": true
+      },
+      {
+        "type": "parameter_decl",
+        "named": true
+      },
+      {
+        "type": "parameter_member",
+        "named": true
+      },
+      {
+        "type": "positional_only_marker",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "lambda_parameter",
     "named": true,
     "subtypes": [
@@ -321,6 +359,10 @@
     "subtypes": [
       {
         "type": "expression",
+        "named": true
+      },
+      {
+        "type": "function_type",
         "named": true
       },
       {
@@ -1413,6 +1455,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "parameter_composition",
             "named": true
           },
@@ -1482,6 +1528,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "generic_parameter",
             "named": true
           },
@@ -1533,6 +1583,10 @@
         "types": [
           {
             "type": "expression",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -1598,6 +1652,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "generic_parameter",
             "named": true
           },
@@ -1659,6 +1717,10 @@
         "types": [
           {
             "type": "expression",
+            "named": true
+          },
+          {
+            "type": "function_type",
             "named": true
           },
           {
@@ -2404,6 +2466,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "generic_parameter",
             "named": true
           },
@@ -2447,6 +2513,101 @@
         },
         {
           "type": "raises",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_type",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_type_parameters",
+            "named": true
+          }
+        ]
+      },
+      "effects": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "function_effects",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameters_declaration",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "generic_parameter",
+            "named": true
+          },
+          {
+            "type": "parameter",
+            "named": true
+          },
+          {
+            "type": "parameter_member",
+            "named": true
+          },
+          {
+            "type": "parameter_union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "convention_parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_type_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "convention_parameters",
+          "named": true
+        },
+        {
+          "type": "function_type_parameter",
           "named": true
         }
       ]
@@ -3136,6 +3297,10 @@
             "named": true
           },
           {
+            "type": "function_type",
+            "named": true
+          },
+          {
             "type": "generic_parameter",
             "named": true
           },
@@ -3244,6 +3409,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "function_type",
+          "named": true
+        },
         {
           "type": "generic_parameter",
           "named": true
