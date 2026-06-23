@@ -466,7 +466,7 @@ export default grammar({
       ),
 
     function_effects: $ => repeat1($._function_effect),
-    _function_effect: $ => choice($.raises, $.abi),
+    _function_effect: $ => choice($.raises, $.abi, $.thin),
 
     raises: $ =>
       prec.right(
@@ -1341,6 +1341,8 @@ export default grammar({
     none: _ => 'None',
 
     self_parameter: _ => 'self',
+
+    thin: _ => 'thin',
 
     underscore: _ => '_',
     ellipsis: _ => '...',

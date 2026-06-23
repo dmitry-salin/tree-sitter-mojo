@@ -108,6 +108,14 @@ def _coro_get_resume_fn(handle: AnyCoroutine) -> def(AnyCoroutine) -> None:
 
 comptime Dynamic1DTileUnitFunc = def(Int, Int) -> None
 
+def call[
+    name: StaticString,
+    return_type: RegisterPassable = NoneType,
+    *T: AnyType,
+](self, *args: *T) -> return_type:
+    var v = args.get_loaded_kgen_pack()
+    return self._get_func[name, def(type_of(v)) thin -> return_type]()(v)
+
 --------------------------------------------------------------------------------
 
 (module
@@ -537,4 +545,62 @@ comptime Dynamic1DTileUnitFunc = def(Int, Int) -> None
         (parameter_decl
           name: (identifier)))
       return_type: (parameter
-        (none)))))
+        (none))))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier)))
+      (default_parameter_decl
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        default: (parameter
+          (identifier)))
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier))))
+    arguments: (callable_parameters
+      (self_parameter)
+      (constrained_splat_parameter_decl
+        name: (identifier)
+        constraint: (parameter_splat
+          (parameter
+            (identifier)))))
+    return_type: (parameter
+      (identifier))
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (call
+          function: (attribute
+            object: (identifier)
+            attribute: (identifier))
+          arguments: (arguments)))
+      (return_statement
+        (call
+          function: (call
+            function: (subscript
+              value: (attribute
+                object: (identifier)
+                attribute: (identifier))
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (function_type
+                  arguments: (function_type_parameters
+                    (call
+                      function: (identifier)
+                      arguments: (arguments
+                        (identifier))))
+                  effects: (function_effects
+                    (thin))
+                  return_type: (parameter
+                    (identifier)))))
+            arguments: (arguments))
+          arguments: (arguments
+            (identifier)))))))

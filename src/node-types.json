@@ -2514,6 +2514,10 @@
         {
           "type": "raises",
           "named": true
+        },
+        {
+          "type": "thin",
+          "named": true
         }
       ]
     }
@@ -4692,6 +4696,10 @@
   {
     "type": "struct",
     "named": false
+  },
+  {
+    "type": "thin",
+    "named": true
   },
   {
     "type": "trait",

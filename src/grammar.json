@@ -1944,6 +1944,10 @@
         {
           "type": "SYMBOL",
           "name": "abi"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "thin"
         }
       ]
     },
@@ -7236,6 +7240,10 @@
     "self_parameter": {
       "type": "STRING",
       "value": "self"
+    },
+    "thin": {
+      "type": "STRING",
+      "value": "thin"
     },
     "underscore": {
       "type": "STRING",

@@ -545,6 +545,11 @@ def m(arg: ArgType) raises abi("C")-> ReturnType:
 def n() abi("C")-> ReturnType:
     pass
 
+def run_action[
+    ErrorType: AnyType
+](action: def() thin raises ErrorType -> Int) raises ErrorType -> Int:
+    pass
+
 --------------------------------------------------------------------------------
 
 (module
@@ -603,6 +608,33 @@ def n() abi("C")-> ReturnType:
           (string_start)
           (string_content)
           (string_end))))
+    return_type: (parameter
+      (identifier))
+    body: (block
+      (pass_statement)))
+  (function_definition
+    name: (identifier)
+    parameters: (parameters_declaration
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (parameter
+          (identifier))))
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (function_type
+          arguments: (function_type_parameters)
+          effects: (function_effects
+            (thin)
+            (raises
+              error_type: (parameter
+                (identifier))))
+          return_type: (parameter
+            (identifier)))))
+    effects: (function_effects
+      (raises
+        error_type: (parameter
+          (identifier))))
     return_type: (parameter
       (identifier))
     body: (block
