@@ -1203,7 +1203,7 @@ export default grammar({
     parenthesized_expression: $ =>
       prec(
         PREC.parenthesized_expression,
-        seq('(', choice($.yield, $.expression), ')'),
+        seq(optional('comptime'), seq('(', choice($.yield, $.expression), ')')),
       ),
 
     generator_expression: $ =>

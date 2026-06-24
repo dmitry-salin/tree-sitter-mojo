@@ -28,6 +28,34 @@ def __init__(out self, var value: Self.T):
           argument: (identifier))))))
 
 ================================================================================
+Comptime: parenthesized expression
+================================================================================
+
+comptime if CurrentPlugin.exp_fn:
+    return comptime (CurrentPlugin.exp_fn.value())(x)
+
+--------------------------------------------------------------------------------
+
+(module
+  (if_statement
+    condition: (attribute
+      object: (identifier)
+      attribute: (identifier))
+    consequence: (block
+      (return_statement
+        (call
+          function: (parenthesized_expression
+            (call
+              function: (attribute
+                object: (attribute
+                  object: (identifier)
+                  attribute: (identifier))
+                attribute: (identifier))
+              arguments: (arguments)))
+          arguments: (arguments
+            (identifier)))))))
+
+================================================================================
 Function: type expressions
 ================================================================================
 
