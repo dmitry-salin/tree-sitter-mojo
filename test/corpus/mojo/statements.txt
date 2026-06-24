@@ -875,6 +875,94 @@ struct I[s: Int, *, e: D = N.i.t()]:
       (pass_statement))))
 
 ================================================================================
+Struct: extension
+================================================================================
+
+__extension SIMD:
+    @staticmethod
+    def strategy(
+        *,
+        min: Scalar[dtype] = Scalar[dtype].MIN_FINITE,
+        max: Scalar[dtype] = Scalar[dtype].MAX_FINITE,
+    ) -> _SIMDStrategy[dtype, size]:
+        return _SIMDStrategy[dtype, size](min=min, max=max)
+
+--------------------------------------------------------------------------------
+
+(module
+  (extension_declaration
+    name: (identifier)
+    body: (block
+      (decorated_definition
+        (decorator
+          (identifier))
+        definition: (function_definition
+          name: (identifier)
+          arguments: (callable_parameters
+            (keyword_only_marker)
+            (default_parameter_decl
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (generic_parameter
+                  (subscript
+                    value: (identifier)
+                    parameters: (parameters
+                      (parameter
+                        (identifier))))))
+              default: (parameter_member
+                (generic_parameter
+                  (subscript
+                    value: (identifier)
+                    parameters: (parameters
+                      (parameter
+                        (identifier)))))
+                (member
+                  (identifier))))
+            (default_parameter_decl
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (generic_parameter
+                  (subscript
+                    value: (identifier)
+                    parameters: (parameters
+                      (parameter
+                        (identifier))))))
+              default: (parameter_member
+                (generic_parameter
+                  (subscript
+                    value: (identifier)
+                    parameters: (parameters
+                      (parameter
+                        (identifier)))))
+                (member
+                  (identifier)))))
+          return_type: (generic_parameter
+            (subscript
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier)))))
+          body: (block
+            (return_statement
+              (call
+                function: (subscript
+                  value: (identifier)
+                  parameters: (parameters
+                    (parameter
+                      (identifier))
+                    (parameter
+                      (identifier))))
+                arguments: (arguments
+                  (keyword_argument
+                    name: (identifier)
+                    value: (identifier))
+                  (keyword_argument
+                    name: (identifier)
+                    value: (identifier)))))))))))
+
+================================================================================
 Trait: declarations
 ================================================================================
 

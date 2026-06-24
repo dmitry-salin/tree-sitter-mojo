@@ -12,6 +12,10 @@
         "named": true
       },
       {
+        "type": "extension_declaration",
+        "named": true
+      },
+      {
         "type": "for_statement",
         "named": true
       },
@@ -2229,6 +2233,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "extension_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -4485,6 +4515,10 @@
   },
   {
     "type": "^=",
+    "named": false
+  },
+  {
+    "type": "__extension",
     "named": false
   },
   {

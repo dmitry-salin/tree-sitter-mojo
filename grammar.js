@@ -317,6 +317,7 @@ export default grammar({
         $.match_statement,
         $.function_definition,
         $.class_definition,
+        $.extension_declaration,
         $.trait_declaration,
         $.decorated_definition,
       ),
@@ -489,6 +490,10 @@ export default grammar({
         $._comptime_parameter,
         field('conformance', optional($.conformance)),
       ),
+
+    extension_declaration: $ =>
+      seq($._extension_header, ':', field('body', $._suite)),
+    _extension_header: $ => seq('__extension', field('name', $.identifier)),
 
     trait_declaration: $ => seq($._trait_header, ':', field('body', $._suite)),
     _trait_header: $ =>
