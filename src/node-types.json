@@ -1810,11 +1810,23 @@
         "required": true,
         "types": [
           {
+            "type": "assignment",
+            "named": true
+          },
+          {
             "type": "class_definition",
             "named": true
           },
           {
+            "type": "comptime_statement",
+            "named": true
+          },
+          {
             "type": "function_definition",
+            "named": true
+          },
+          {
+            "type": "trait_declaration",
             "named": true
           }
         ]

@@ -900,3 +900,61 @@ trait N(A, B):
         (identifier)))
     body: (block
       (pass_statement))))
+
+================================================================================
+Decorator: targets
+================================================================================
+
+@doc_hidden
+comptime INTERNAL_CONSTANT = 42
+
+@deprecated(use=Honkable)
+trait Quackable:
+    def quack(self):
+        ...
+
+struct PublicStruct:
+    @doc_hidden
+    var implementation_detail: Int
+
+    pass
+
+--------------------------------------------------------------------------------
+
+(module
+  (decorated_definition
+    (decorator
+      (identifier))
+    definition: (comptime_statement
+      left: (comptime_parameter
+        name: (identifier))
+      right: (integer)))
+  (decorated_definition
+    (decorator
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (keyword_argument
+            name: (identifier)
+            value: (identifier)))))
+    definition: (trait_declaration
+      name: (identifier)
+      body: (block
+        (function_definition
+          name: (identifier)
+          arguments: (callable_parameters
+            (self_parameter))
+          body: (block
+            (ellipsis))))))
+  (class_definition
+    name: (identifier)
+    body: (block
+      (decorated_definition
+        (decorator
+          (identifier))
+        definition: (assignment
+          left: (constrained_lhs
+            (identifier)
+            constraint: (parameter
+              (identifier)))))
+      (pass_statement))))

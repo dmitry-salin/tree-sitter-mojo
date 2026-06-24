@@ -499,9 +499,15 @@ export default grammar({
       ),
 
     decorated_definition: $ =>
-      seq(
-        repeat1($.decorator),
-        field('definition', choice($.function_definition, $.class_definition)),
+      seq(repeat1($.decorator), field('definition', $._decorator_target)),
+
+    _decorator_target: $ =>
+      choice(
+        seq($.comptime_statement, $._newline),
+        $.function_definition,
+        $.class_definition,
+        $.trait_declaration,
+        seq($.assignment, $._newline),
       ),
 
     decorator: $ => seq('@', $.expression, $._newline),
