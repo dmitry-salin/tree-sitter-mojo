@@ -139,6 +139,8 @@ export default grammar({
 
   inline: $ => [
     $._simple_statement,
+    $._import,
+    $._import_alias,
     $._compound_statement,
     $._if_clause,
     $._function_effect,
@@ -177,8 +179,8 @@ export default grammar({
 
     _simple_statement: $ =>
       choice(
-        $.import_statement,
-        $.import_from_statement,
+        $.module_import_statement,
+        $.selective_import_statement,
         $.future_import_statement,
         $.print_statement,
         $.assert_statement,
@@ -195,42 +197,44 @@ export default grammar({
         $.comptime_statement,
       ),
 
-    import_statement: $ => seq('import', $._import_list),
+    module_import_statement: $ =>
+      seq('import', seq(trailingCommaSep1($._module_import))),
 
-    import_from_statement: $ =>
-      seq(
-        'from',
-        field('module_name', choice($.relative_import, $.dotted_name)),
-        'import',
+    _module_import: $ =>
+      field(
+        'module',
         choice(
-          $.wildcard_import,
-          $._import_list,
-          seq('(', $._import_list, ')'),
+          $.import,
+          $.aliased_import,
+          $.relative_import,
+          $.relative_aliased_import,
         ),
       ),
 
-    relative_import: $ => seq($.import_prefix, optional($.dotted_name)),
-    import_prefix: _ => repeat1('.'),
-    dotted_name: $ => prec(1, sep1($.identifier, '.')),
-    wildcard_import: _ => '*',
+    selective_import_statement: $ =>
+      seq(
+        'from',
+        field('module', choice($.import, $.relative_import)),
+        'import',
+        choice($._future_import, $.wildcard_import),
+      ),
 
     future_import_statement: $ =>
-      seq(
-        'from',
-        '__future__',
-        'import',
-        choice($._import_list, seq('(', $._import_list, ')')),
-      ),
+      seq('from', '__future__', 'import', $._future_import),
 
-    _import_list: $ =>
-      seq(
-        trailingCommaSep1(
-          field('name', choice($.dotted_name, $.aliased_import)),
-        ),
-      ),
+    _future_import: $ => choice($._import_list, seq('(', $._import_list, ')')),
+    _import_list: $ => trailingCommaSep1(choice($.import, $.aliased_import)),
 
-    aliased_import: $ =>
-      seq(field('name', $.dotted_name), 'as', field('alias', $.identifier)),
+    wildcard_import: _ => '*',
+    import: $ => $._import,
+    aliased_import: $ => seq($._import, $._import_alias),
+    relative_import: $ => seq($.import_prefix, optional($._import)),
+    relative_aliased_import: $ =>
+      seq($.import_prefix, optional($._import), $._import_alias),
+
+    import_prefix: _ => repeat1('.'),
+    _import: $ => field('name', $.dotted_name),
+    _import_alias: $ => seq('as', field('alias', $.identifier)),
 
     print_statement: $ =>
       choice(
@@ -1337,6 +1341,7 @@ export default grammar({
     },
 
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
+    dotted_name: $ => sep1($.identifier, '.'),
 
     keyword_identifier: $ =>
       choice(

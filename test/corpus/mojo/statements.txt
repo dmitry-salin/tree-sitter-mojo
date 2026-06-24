@@ -1,4 +1,33 @@
 ================================================================================
+Import: relative module
+================================================================================
+
+import .a
+import ..b.c
+import .d as e
+
+--------------------------------------------------------------------------------
+
+(module
+  (module_import_statement
+    module: (relative_import
+      (import_prefix)
+      name: (dotted_name
+        (identifier))))
+  (module_import_statement
+    module: (relative_import
+      (import_prefix)
+      name: (dotted_name
+        (identifier)
+        (identifier))))
+  (module_import_statement
+    module: (relative_aliased_import
+      (import_prefix)
+      name: (dotted_name
+        (identifier))
+      alias: (identifier))))
+
+================================================================================
 Convention: variable declaration
 ================================================================================
 

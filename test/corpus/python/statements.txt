@@ -1,5 +1,5 @@
 ================================================================================
-Import statements
+Import: module
 ================================================================================
 
 import a, b
@@ -9,25 +9,28 @@ import a.b.c
 --------------------------------------------------------------------------------
 
 (module
-  (import_statement
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier)))
-  (import_statement
-    (aliased_import
-      (dotted_name
+  (module_import_statement
+    module: (import
+      name: (dotted_name
+        (identifier)))
+    module: (import
+      name: (dotted_name
+        (identifier))))
+  (module_import_statement
+    module: (aliased_import
+      name: (dotted_name
         (identifier)
         (identifier))
-      (identifier)))
-  (import_statement
-    (dotted_name
-      (identifier)
-      (identifier)
-      (identifier))))
+      alias: (identifier)))
+  (module_import_statement
+    module: (import
+      name: (dotted_name
+        (identifier)
+        (identifier)
+        (identifier)))))
 
 ================================================================================
-Import-from statements
+Import: selective
 ================================================================================
 
 from a import b
@@ -37,84 +40,104 @@ from a.b import c
 from . import b
 from .. import b
 from .a import b
-from ..a import b
+from ..a import b as d
 
 --------------------------------------------------------------------------------
 
 (module
-  (import_from_statement
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier)))
-  (import_from_statement
-    (dotted_name
-      (identifier))
+  (selective_import_statement
+    module: (import
+      name: (dotted_name
+        (identifier)))
+    (import
+      name: (dotted_name
+        (identifier))))
+  (selective_import_statement
+    module: (import
+      name: (dotted_name
+        (identifier)))
     (wildcard_import))
-  (import_from_statement
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier)))
-  (import_from_statement
-    (dotted_name
-      (identifier)
-      (identifier))
-    (dotted_name
-      (identifier)))
-  (import_from_statement
-    (relative_import
-      (import_prefix))
-    (dotted_name
-      (identifier)))
-  (import_from_statement
-    (relative_import
-      (import_prefix))
-    (dotted_name
-      (identifier)))
-  (import_from_statement
-    (relative_import
-      (import_prefix)
-      (dotted_name
+  (selective_import_statement
+    module: (import
+      name: (dotted_name
         (identifier)))
-    (dotted_name
-      (identifier)))
-  (import_from_statement
-    (relative_import
-      (import_prefix)
-      (dotted_name
+    (import
+      name: (dotted_name
         (identifier)))
-    (dotted_name
-      (identifier))))
+    (import
+      name: (dotted_name
+        (identifier))))
+  (selective_import_statement
+    module: (import
+      name: (dotted_name
+        (identifier)
+        (identifier)))
+    (import
+      name: (dotted_name
+        (identifier))))
+  (selective_import_statement
+    module: (relative_import
+      (import_prefix))
+    (import
+      name: (dotted_name
+        (identifier))))
+  (selective_import_statement
+    module: (relative_import
+      (import_prefix))
+    (import
+      name: (dotted_name
+        (identifier))))
+  (selective_import_statement
+    module: (relative_import
+      (import_prefix)
+      name: (dotted_name
+        (identifier)))
+    (import
+      name: (dotted_name
+        (identifier))))
+  (selective_import_statement
+    module: (relative_import
+      (import_prefix)
+      name: (dotted_name
+        (identifier)))
+    (aliased_import
+      name: (dotted_name
+        (identifier))
+      alias: (identifier))))
 
 ================================================================================
-Future import statements
+Import: future
 ================================================================================
 
 from __future__ import print_statement
 from __future__ import python4
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
+
 --------------------------------------------------------------------------------
 
 (module
   (future_import_statement
-    (dotted_name
-      (identifier)))
+    (import
+      name: (dotted_name
+        (identifier))))
   (future_import_statement
-    (dotted_name
-      (identifier)))
+    (import
+      name: (dotted_name
+        (identifier))))
   (future_import_statement
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier))
-    (dotted_name
-      (identifier))))
+    (import
+      name: (dotted_name
+        (identifier)))
+    (import
+      name: (dotted_name
+        (identifier)))
+    (import
+      name: (dotted_name
+        (identifier)))
+    (import
+      name: (dotted_name
+        (identifier)))))
 
 ================================================================================
 Print statements
