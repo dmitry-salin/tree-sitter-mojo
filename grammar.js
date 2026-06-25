@@ -1049,34 +1049,24 @@ export default grammar({
     _named_expression_lhs: $ => choice($.identifier, $.keyword_identifier),
 
     comparison_operator: $ =>
-      prec.left(
-        PREC.compare,
-        seq(
-          $.primary_expression,
-          repeat1(
-            seq(
-              field(
-                'operators',
-                choice(
-                  '<',
-                  '<=',
-                  '==',
-                  '!=',
-                  '>=',
-                  '>',
-                  '<>',
-                  'in',
-                  alias($._not_in, 'not in'),
-                  'is',
-                  alias($._is_not, 'is not'),
-                ),
-              ),
-              $.primary_expression,
-            ),
-          ),
-        ),
-      ),
+      prec.left(PREC.compare, seq($.primary_expression, $._comparisons_chain)),
 
+    _comparisons_chain: $ =>
+      repeat1(seq($._comparison_operator, $.primary_expression)),
+
+    _comparison_operator: $ =>
+      choice(
+        '<',
+        '<=',
+        '==',
+        '!=',
+        '>=',
+        '>',
+        'in',
+        alias($._not_in, 'not in'),
+        'is',
+        alias($._is_not, 'is not'),
+      ),
     _not_in: _ => seq('not', 'in'),
     _is_not: _ => seq('is', 'not'),
 
