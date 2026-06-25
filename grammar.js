@@ -472,6 +472,7 @@ export default grammar({
         field('effects', optional($.function_effects)),
         field('captures', optional($.capture_parameters)),
         optional($._function_return_type),
+        optional($._where_clauses),
       ),
 
     function_effects: $ => repeat1($._function_effect),
@@ -497,6 +498,7 @@ export default grammar({
         choice('class', 'struct'),
         $._comptime_parameter,
         field('conformance', optional($.conformance)),
+        optional($._where_clauses),
       ),
 
     extension_declaration: $ =>
@@ -536,7 +538,9 @@ export default grammar({
 
     // Parameters declaration
 
-    comptime_parameter: $ => $._comptime_parameter,
+    comptime_parameter: $ =>
+      seq($._comptime_parameter, optional($._where_clauses)),
+
     _comptime_parameter: $ =>
       seq(
         $._parameter_decl,
@@ -544,7 +548,7 @@ export default grammar({
       ),
 
     constrained_comptime_parameter: $ =>
-      seq($.comptime_parameter, $._constraint),
+      seq($.comptime_parameter, $._constraint, optional($._where_clauses)),
 
     parameters_declaration: $ =>
       seq('[', trailingCommaSep1($.parameter_declaration), ']'),
@@ -667,10 +671,18 @@ export default grammar({
     // Conformance
 
     conformance: $ =>
-      seq('(', optional(trailingCommaSep1($.conformance_parameter)), ')'),
+      seq('(', optional(trailingCommaSep1($._conformance_expression)), ')'),
+
+    _conformance_expression: $ =>
+      seq($.conformance_parameter, optional($._where_clauses)),
 
     conformance_parameter: $ =>
       choice($.parameter_splat, $.named_parameter, $._standalone_parameter),
+
+    // Where clause
+
+    _where_clauses: $ => repeat1($.where_clause),
+    where_clause: $ => seq('where', $.expression),
 
     // Parameters
 
