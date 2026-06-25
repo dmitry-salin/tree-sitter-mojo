@@ -120,6 +120,32 @@
     ]
   },
   {
+    "type": "argument",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "dictionary_splat",
+        "named": true
+      },
+      {
+        "type": "expression",
+        "named": true
+      },
+      {
+        "type": "keyword_argument",
+        "named": true
+      },
+      {
+        "type": "list_splat",
+        "named": true
+      },
+      {
+        "type": "parenthesized_expression",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "callable_parameter",
     "named": true,
     "subtypes": [
@@ -494,6 +520,10 @@
         "named": true
       },
       {
+        "type": "initializer_list",
+        "named": true
+      },
+      {
         "type": "integer",
         "named": true
       },
@@ -601,23 +631,7 @@
       "required": false,
       "types": [
         {
-          "type": "dictionary_splat",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "keyword_argument",
-          "named": true
-        },
-        {
-          "type": "list_splat",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
+          "type": "argument",
           "named": true
         }
       ]
@@ -2819,6 +2833,21 @@
     "type": "infer_only_marker",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "initializer_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "argument",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "interpolation",

@@ -28,6 +28,49 @@ def __init__(out self, var value: Self.T):
           argument: (identifier))))))
 
 ================================================================================
+Collection displays: initializer list
+================================================================================
+
+def make() -> Self:
+    return {ptr = self._ptr, length = len(self)}
+
+process({1, message="hello"})
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (parameter
+      (identifier))
+    body: (block
+      (return_statement
+        (initializer_list
+          (keyword_argument
+            name: (identifier)
+            value: (attribute
+              object: (identifier)
+              attribute: (identifier)))
+          (keyword_argument
+            name: (identifier)
+            value: (call
+              function: (identifier)
+              arguments: (arguments
+                (identifier))))))))
+  (call
+    function: (identifier)
+    arguments: (arguments
+      (initializer_list
+        (integer)
+        (keyword_argument
+          name: (identifier)
+          value: (string
+            (string_start)
+            (string_content)
+            (string_end)))))))
+
+================================================================================
 Comptime: parenthesized expression
 ================================================================================
 

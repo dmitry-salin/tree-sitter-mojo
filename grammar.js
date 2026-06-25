@@ -106,6 +106,7 @@ export default grammar({
   conflicts: $ => [
     [$.print_statement, $.primary_expression],
     [$.match_statement, $.primary_expression],
+    [$.argument, $._collection_element],
     [$.pattern, $.primary_expression],
     [$.list_pattern, $.list],
     [$.tuple_pattern, $.tuple],
@@ -120,6 +121,8 @@ export default grammar({
     [$.member, $.primary_expression],
     [$.parameter, $.primary_expression],
     [$.generic_parameter, $.primary_expression],
+    [$.dictionary, $.argument],
+    [$.dictionary, $.initializer_list],
   ],
 
   supertypes: $ => [
@@ -132,6 +135,7 @@ export default grammar({
     $.lambda_parameter,
     $.conformance_parameter,
     $.parameter_expression,
+    $.argument,
     $.pattern,
     $.expression,
     $.primary_expression,
@@ -739,9 +743,9 @@ export default grammar({
 
     // Arguments
 
-    arguments: $ => seq('(', optional(trailingCommaSep1($._argument)), ')'),
-
-    _argument: $ =>
+    arguments: $ => seq('(', optional($._arguments), ')'),
+    _arguments: $ => trailingCommaSep1($.argument),
+    argument: $ =>
       choice(
         $.list_splat,
         alias($.parenthesized_list_splat, $.parenthesized_expression),
@@ -1105,6 +1109,7 @@ export default grammar({
         $.tuple,
         $.list,
         $.set,
+        $.initializer_list,
         $.dictionary,
         $.concatenated_string,
         $.string,
@@ -1226,6 +1231,7 @@ export default grammar({
 
     list: $ => seq('[', optional($._collection_elements), ']'),
     set: $ => seq('{', $._collection_elements, '}'),
+    initializer_list: $ => seq('{', optional($._arguments), '}'),
     dictionary: $ =>
       seq(
         '{',
