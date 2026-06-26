@@ -460,7 +460,7 @@ void *tree_sitter_mojo_external_scanner_create() {
 #else
     assert(sizeof(Delimiter) == sizeof(char));
 #endif
-    Scanner *scanner = calloc(1, sizeof(Scanner));
+    Scanner *scanner = ts_calloc(1, sizeof(Scanner));
     array_init(&scanner->indents);
     array_init(&scanner->delimiters);
     tree_sitter_mojo_external_scanner_deserialize(scanner, NULL, 0);
