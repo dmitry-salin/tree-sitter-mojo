@@ -19,6 +19,7 @@ enum TokenType {
     CLOSE_PAREN,
     CLOSE_BRACE,
     EXCEPT,
+    ERROR_SENTINEL,
 };
 
 typedef enum {
@@ -110,8 +111,7 @@ bool tree_sitter_mojo_external_scanner_scan(void *payload, TSLexer *lexer,
                                             const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
 
-    bool error_recovery_mode =
-        valid_symbols[STRING_CONTENT] && valid_symbols[INDENT];
+    bool error_recovery_mode = valid_symbols[ERROR_SENTINEL];
     bool within_brackets = valid_symbols[CLOSE_BRACE] ||
                            valid_symbols[CLOSE_PAREN] ||
                            valid_symbols[CLOSE_BRACKET];

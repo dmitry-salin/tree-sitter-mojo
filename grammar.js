@@ -101,6 +101,7 @@ export default grammar({
     ')',
     '}',
     'except',
+    $._error_sentinel,
   ],
 
   conflicts: $ => [
