@@ -15,8 +15,8 @@ enum TokenType {
     ESCAPE_INTERPOLATION,
     STRING_END,
     COMMENT,
-    CLOSE_PAREN,
     CLOSE_BRACKET,
+    CLOSE_PAREN,
     CLOSE_BRACE,
     EXCEPT,
 };
