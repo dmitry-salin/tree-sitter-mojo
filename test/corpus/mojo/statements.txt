@@ -90,6 +90,30 @@ comptime byte_length[idx: Int] where idx > 0 = BenchConfig.VERBOSE_TIMING_LABELS
       arguments: (arguments))))
 
 ================================================================================
+Comptime: escaped identifier
+================================================================================
+
+comptime `A` = Byte(ord("A"))
+
+--------------------------------------------------------------------------------
+
+(module
+  (comptime_statement
+    left: (comptime_parameter
+      name: (escaped_identifier
+        (escaped_identifier_content)))
+    right: (call
+      function: (identifier)
+      arguments: (arguments
+        (call
+          function: (identifier)
+          arguments: (arguments
+            (string
+              (string_start)
+              (string_content)
+              (string_end))))))))
+
+================================================================================
 Convention: variable declaration
 ================================================================================
 
@@ -151,6 +175,29 @@ for ref element in self:
             object: (identifier)
             attribute: (identifier))
           arguments: (arguments))))))
+
+================================================================================
+Assignment: escaped identifier
+================================================================================
+
+var `6bit` = shuffled & _repeat_until[width](mask)
+
+--------------------------------------------------------------------------------
+
+(module
+  (assignment
+    left: (escaped_identifier
+      (escaped_identifier_content))
+    right: (binary_operator
+      left: (identifier)
+      right: (call
+        function: (subscript
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))
+        arguments: (arguments
+          (identifier))))))
 
 ================================================================================
 Function: generic declarations
@@ -1053,6 +1100,40 @@ def reshape[
               attribute: (identifier))))))
     body: (block
       (pass_statement))))
+
+================================================================================
+Function: escaped identifier as a name
+================================================================================
+
+def `import`():
+    print("In `import`")
+
+def main():
+    `import`()
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_definition
+    name: (escaped_identifier
+      (escaped_identifier_content))
+    arguments: (callable_parameters)
+    body: (block
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (string
+            (string_start)
+            (string_content)
+            (string_end))))))
+  (function_definition
+    name: (identifier)
+    arguments: (callable_parameters)
+    body: (block
+      (call
+        function: (escaped_identifier
+          (escaped_identifier_content))
+        arguments: (arguments)))))
 
 ================================================================================
 Closure: capture list

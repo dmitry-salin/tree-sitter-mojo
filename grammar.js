@@ -664,7 +664,8 @@ export default grammar({
       seq($._parameter_decl, '=', field('default', $.expression)),
 
     parameter_decl: $ => $._parameter_decl,
-    _parameter_decl: $ => field('name', $.identifier),
+    _parameter_decl: $ =>
+      field('name', choice($.identifier, $.escaped_identifier)),
 
     splat_parameter_decl: $ => $._splat_parameter_decl,
     _splat_parameter_decl: $ => seq(choice('*', '**'), $._parameter_decl),
@@ -936,6 +937,7 @@ export default grammar({
         $.attribute,
         $.subscript,
         $.identifier,
+        $.escaped_identifier,
         $.keyword_identifier,
       ),
 
@@ -1119,6 +1121,7 @@ export default grammar({
         $.integer,
         $.float,
         $.identifier,
+        $.escaped_identifier,
         $.keyword_identifier,
         $.true,
         $.false,
@@ -1351,6 +1354,10 @@ export default grammar({
 
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
     dotted_name: $ => sep1($.identifier, '.'),
+
+    escaped_identifier: $ => seq('`', $.escaped_identifier_content, '`'),
+
+    escaped_identifier_content: _ => /[^`\n\v]+/,
 
     keyword_identifier: $ =>
       choice(

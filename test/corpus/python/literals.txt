@@ -93,7 +93,8 @@ Strings
 UR'bye'
 b'sup'
 B"sup"
-`1`
+"`1`"
+'`1`'
 "\\"
 "/"
 "multiline \
@@ -106,6 +107,10 @@ f'\N{GREEK CAPITAL LETTER DELTA}'
 --------------------------------------------------------------------------------
 
 (module
+  (string
+    (string_start)
+    (string_content)
+    (string_end))
   (string
     (string_start)
     (string_content)

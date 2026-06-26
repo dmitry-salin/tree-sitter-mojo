@@ -1,4 +1,28 @@
 ================================================================================
+Identifier: escaped
+================================================================================
+
+`name`
+
+`struct`
+
+`日本語の変数`
+
+`my value`
+
+--------------------------------------------------------------------------------
+
+(module
+  (escaped_identifier
+    (escaped_identifier_content))
+  (escaped_identifier
+    (escaped_identifier_content))
+  (escaped_identifier
+    (escaped_identifier_content))
+  (escaped_identifier
+    (escaped_identifier_content)))
+
+================================================================================
 Operator: transfer
 ================================================================================
 

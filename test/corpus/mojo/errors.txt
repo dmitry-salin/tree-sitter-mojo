@@ -1,0 +1,25 @@
+================================================================================
+Identifier: escaped content does not allow vertical whitespace characters
+or backticks
+================================================================================
+
+`key
+    value`
+
+`key`value`
+
+``value``
+
+--------------------------------------------------------------------------------
+
+(module
+  (escaped_identifier
+    (escaped_identifier_content)
+    (ERROR
+      (identifier)))
+  (ERROR
+    (escaped_identifier
+      (escaped_identifier_content))
+    (identifier)
+    (escaped_identifier
+      (escaped_identifier_content))))

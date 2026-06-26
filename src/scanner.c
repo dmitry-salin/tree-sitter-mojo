@@ -25,11 +25,10 @@ enum TokenType {
 typedef enum {
     SingleQuote = 1 << 0,
     DoubleQuote = 1 << 1,
-    BackQuote = 1 << 2,
-    Raw = 1 << 3,
-    Format = 1 << 4,
-    Triple = 1 << 5,
-    Bytes = 1 << 6,
+    Raw = 1 << 2,
+    Format = 1 << 3,
+    Triple = 1 << 4,
+    Bytes = 1 << 5,
 } Flags;
 
 typedef struct {
@@ -61,9 +60,6 @@ static inline int32_t end_character(Delimiter *delimiter) {
     if (delimiter->flags & DoubleQuote) {
         return '"';
     }
-    if (delimiter->flags & BackQuote) {
-        return '`';
-    }
     return 0;
 }
 
@@ -88,9 +84,6 @@ static inline void set_end_character(Delimiter *delimiter, int32_t character) {
         break;
     case '"':
         delimiter->flags |= DoubleQuote;
-        break;
-    case '`':
-        delimiter->flags |= BackQuote;
         break;
     default:
         assert(false);
@@ -302,9 +295,8 @@ bool tree_sitter_mojo_external_scanner_scan(void *payload, TSLexer *lexer,
                 return true;
             }
 
-            bool next_tok_is_string_start = lexer->lookahead == '\"' ||
-                                            lexer->lookahead == '\'' ||
-                                            lexer->lookahead == '`';
+            bool next_tok_is_string_start =
+                lexer->lookahead == '\'' || lexer->lookahead == '\"';
 
             if ((valid_symbols[DEDENT] ||
                  (!valid_symbols[NEWLINE] &&
@@ -334,25 +326,21 @@ bool tree_sitter_mojo_external_scanner_scan(void *payload, TSLexer *lexer,
 
         bool has_flags = false;
         while (lexer->lookahead) {
-            if (lexer->lookahead == 'f' || lexer->lookahead == 'F' ||
-                lexer->lookahead == 't' || lexer->lookahead == 'T') {
+            int32_t next = lexer->lookahead;
+            if (next == 'f' || next == 'F' || next == 't' || next == 'T') {
                 set_format(&delimiter);
-            } else if (lexer->lookahead == 'r' || lexer->lookahead == 'R') {
+            } else if (next == 'r' || next == 'R') {
                 set_raw(&delimiter);
-            } else if (lexer->lookahead == 'b' || lexer->lookahead == 'B') {
+            } else if (next == 'b' || next == 'B') {
                 set_bytes(&delimiter);
-            } else if (lexer->lookahead != 'u' && lexer->lookahead != 'U') {
+            } else if (next != 'u' && next != 'U') {
                 break;
             }
             has_flags = true;
             advance(lexer);
         }
 
-        if (lexer->lookahead == '`') {
-            set_end_character(&delimiter, '`');
-            advance(lexer);
-            lexer->mark_end(lexer);
-        } else if (lexer->lookahead == '\'') {
+        if (lexer->lookahead == '\'') {
             set_end_character(&delimiter, '\'');
             advance(lexer);
             lexer->mark_end(lexer);
