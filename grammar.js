@@ -83,10 +83,16 @@ export default grammar({
     $._newline,
     $._indent,
     $._dedent,
+    $.mlir_attr_prefix,
+    $.mlir_attr_special_character,
+    $.mlir_operator,
+    $.mlir_type_prefix,
+    $.mlir_type_special_character,
     $.string_start,
     $._string_content,
     $.escape_interpolation,
     $.string_end,
+    $.escaped_identifier_content,
 
     // Mark comments as external tokens so that the external scanner is always
     // invoked, even if no external token is expected. This allows for better
@@ -160,7 +166,6 @@ export default grammar({
     $._non_composite_parameter,
     $._constraint,
     $._constraint_parameter,
-    $._return_parameter,
     $._declaration_convention,
     $._expressions,
     $.keyword_identifier,
@@ -168,6 +173,7 @@ export default grammar({
 
   reserved: {
     global: _ => [...PYTHON_GLOBAL_KEYWORDS],
+    mlir: _ => [],
   },
 
   word: $ => $.identifier,
@@ -325,6 +331,7 @@ export default grammar({
         $.with_statement,
         $.match_statement,
         $.function_definition,
+        $.mlir_region_declaration,
         $.class_definition,
         $.extension_declaration,
         $.trait_declaration,
@@ -491,6 +498,16 @@ export default grammar({
         '->',
         optional($._parameterized_ref_conv),
         field('return_type', $._return_parameter),
+      ),
+
+    mlir_region_declaration: $ =>
+      seq($._mlir_region_signature, ':', field('body', $._suite)),
+
+    _mlir_region_signature: $ =>
+      seq(
+        '__mlir_region',
+        $._parameter_decl,
+        field('arguments', $.mlir_callable_parameters),
       ),
 
     class_definition: $ => seq($._class_header, ':', field('body', $._suite)),
@@ -684,7 +701,69 @@ export default grammar({
     // Where clause
 
     _where_clauses: $ => repeat1($.where_clause),
-    where_clause: $ => seq('where', $.expression),
+    where_clause: $ => seq('where', choice($.mlir_attr, $.expression)),
+
+    // MLIR
+
+    mlir_callable_parameters: $ =>
+      seq('(', trailingCommaSep1($.constrained_mlir_parameter_decl), ')'),
+
+    constrained_mlir_parameter_decl: $ =>
+      seq($._parameter_decl, $._mlir_constraint),
+
+    _mlir_constraint: $ => seq(':', field('constraint', $.mlir_type)),
+
+    mlir_op_parameters: $ =>
+      seq('[', trailingCommaSep1($.named_parameter), ']'),
+
+    mlir_attr: $ =>
+      seq(
+        choice('__mlir_attr', '__mlir_deferred_attr'),
+        choice(
+          seq('.', choice($._mlir_attr_escaped_parameters, $.identifier)),
+          seq('[', trailingCommaSep1($.mlir_attr_parameter), ']'),
+        ),
+      ),
+
+    mlir_attr_parameter: $ =>
+      choice($._mlir_attr_escaped_parameters, $._standalone_parameter),
+
+    _mlir_attr_escaped_parameters: $ =>
+      seq('`', repeat1($._mlir_attr_escaped_part), '`'),
+
+    _mlir_attr_escaped_part: $ =>
+      choice(
+        $.mlir_attr_prefix,
+        $.mlir_attr_special_character,
+        $.mlir_operator,
+        $._mlir_type_escaped_part,
+      ),
+
+    mlir_type: $ =>
+      seq(
+        choice('__mlir_type', '__mlir_deferred_type'),
+        choice(
+          seq('.', choice($._mlir_type_escaped_parameters, $.identifier)),
+          seq('[', trailingCommaSep1($.mlir_type_parameter), ']'),
+        ),
+      ),
+
+    mlir_type_parameter: $ =>
+      choice($._mlir_type_escaped_parameters, $._standalone_parameter),
+
+    _mlir_type_escaped_parameters: $ =>
+      seq('`', repeat1($._mlir_type_escaped_part), '`'),
+
+    _mlir_type_escaped_part: $ =>
+      choice(
+        $.mlir_type_prefix,
+        $.mlir_type_special_character,
+        $.mlir_parameter,
+        $.mlir_string,
+        $._mlir_whitespaces,
+      ),
+
+    mlir_parameter: $ => choice($.mlir_dotted_identifier, $.integer),
 
     // Parameters
 
@@ -692,7 +771,13 @@ export default grammar({
       seq('[', optional(trailingCommaSep1($.parameter_expression)), ']'),
 
     parameter_expression: $ =>
-      choice($.named_parameter, $._constraint_parameter, $.slice, $.underscore),
+      choice(
+        $.mlir_attr,
+        $.named_parameter,
+        $._constraint_parameter,
+        $.slice,
+        $.underscore,
+      ),
 
     parameter_member: $ =>
       seq($._non_composite_parameter, repeat1(seq('.', $.member))),
@@ -733,12 +818,15 @@ export default grammar({
     _comptime_rhs: $ =>
       choice(
         $.function_type,
+        $.mlir_attr,
+        $.mlir_type,
         $.parameter_union,
         $.parameter_composition,
         $.expression,
       ),
 
-    _parameter_rhs: $ => choice($._standalone_parameter, $.slice),
+    _parameter_rhs: $ =>
+      choice($.mlir_attr, $.mlir_type, $._standalone_parameter, $.slice),
 
     _constraint: $ => seq(':', field('constraint', $._constraint_parameter)),
     _constraint_parameter: $ =>
@@ -750,7 +838,12 @@ export default grammar({
       ),
 
     _return_parameter: $ =>
-      choice($.function_type, $.parameter_union, $._standalone_parameter),
+      choice(
+        $.function_type,
+        $.mlir_type,
+        $.parameter_union,
+        $._standalone_parameter,
+      ),
 
     _standalone_parameter: $ =>
       choice($.parameter_member, $._non_composite_parameter, $.expression),
@@ -761,6 +854,7 @@ export default grammar({
     _arguments: $ => trailingCommaSep1($.argument),
     argument: $ =>
       choice(
+        $.mlir_attr,
         $.list_splat,
         alias($.parenthesized_list_splat, $.parenthesized_expression),
         $.dictionary_splat,
@@ -789,7 +883,7 @@ export default grammar({
       seq(
         field('name', choice($.identifier, $.keyword_identifier)),
         '=',
-        field('value', $.expression),
+        field('value', choice($.mlir_attr, $.expression)),
       ),
 
     // Assignment
@@ -811,6 +905,7 @@ export default grammar({
     _lhs: $ => choice($.pattern_list, $.pattern, $.call),
     _rhs: $ =>
       choice(
+        $.mlir_attr,
         $.assignment,
         $.augmented_assignment,
         $.pattern_list,
@@ -994,7 +1089,7 @@ export default grammar({
         ),
       ),
 
-    _expressions: $ => choice($.expression_list, $.expression),
+    _expressions: $ => choice($.mlir_attr, $.expression_list, $.expression),
 
     expression_list: $ =>
       prec.right(
@@ -1105,6 +1200,7 @@ export default grammar({
       choice(
         alias($.list_splat_pattern, $.list_splat),
         $.call,
+        $.mlir_op,
         $.await,
         $.attribute,
         $.subscript,
@@ -1141,6 +1237,16 @@ export default grammar({
           field('function', $.primary_expression),
           field('arguments', choice($.arguments, $.generator_expression)),
         ),
+      ),
+
+    mlir_op: $ =>
+      seq('__mlir_op', $._mlir_op_parameters, field('arguments', $.arguments)),
+
+    _mlir_op_parameters: $ =>
+      seq(
+        '.',
+        seq('`', $.mlir_dotted_identifier, '`'),
+        field('parameters', optional($.mlir_op_parameters)),
       ),
 
     await: $ => prec(PREC.unary, seq('await', $.primary_expression)),
@@ -1325,6 +1431,9 @@ export default grammar({
 
     _not_escape_sequence: _ => token.immediate('\\'),
 
+    mlir_string: $ => token(seq('"', /[^`"\n\v\\]*/, '"')),
+    _mlir_whitespaces: _ => /[ \t]+/,
+
     integer: _ =>
       token(
         choice(
@@ -1359,8 +1468,8 @@ export default grammar({
 
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
     dotted_identifier: $ => sep1($.identifier, '.'),
+    mlir_dotted_identifier: $ => sep1(reserved('mlir', $.identifier), '.'),
     escaped_identifier: $ => seq('`', $.escaped_identifier_content, '`'),
-    escaped_identifier_content: _ => /[^`\n\v]+/,
 
     keyword_identifier: $ =>
       choice(

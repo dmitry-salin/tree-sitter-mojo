@@ -13,11 +13,10 @@ or backticks
 --------------------------------------------------------------------------------
 
 (module
-  (escaped_identifier
-    (escaped_identifier_content)
-    (ERROR
-      (identifier)))
+  (ERROR)
+  (identifier)
   (ERROR
+    (identifier)
     (escaped_identifier
       (escaped_identifier_content))
     (identifier)

@@ -1001,6 +1001,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "mlir_region_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "class_definition"
         },
         {
@@ -2092,6 +2096,48 @@
           "content": {
             "type": "SYMBOL",
             "name": "_return_parameter"
+          }
+        }
+      ]
+    },
+    "mlir_region_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_region_signature"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_suite"
+          }
+        }
+      ]
+    },
+    "_mlir_region_signature": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "__mlir_region"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_parameter_decl"
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mlir_callable_parameters"
           }
         }
       ]
@@ -3400,8 +3446,462 @@
           "value": "where"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "mlir_attr"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          ]
+        }
+      ]
+    },
+    "mlir_callable_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "constrained_mlir_parameter_decl"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "constrained_mlir_parameter_decl"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "constrained_mlir_parameter_decl": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "SYMBOL",
-          "name": "expression"
+          "name": "_parameter_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_constraint"
+        }
+      ]
+    },
+    "_mlir_constraint": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "constraint",
+          "content": {
+            "type": "SYMBOL",
+            "name": "mlir_type"
+          }
+        }
+      ]
+    },
+    "mlir_op_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "named_parameter"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "named_parameter"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "mlir_attr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "__mlir_attr"
+            },
+            {
+              "type": "STRING",
+              "value": "__mlir_deferred_attr"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_mlir_attr_escaped_parameters"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "["
+                },
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "mlir_attr_parameter"
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": ","
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "mlir_attr_parameter"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "mlir_attr_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_attr_escaped_parameters"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_standalone_parameter"
+        }
+      ]
+    },
+    "_mlir_attr_escaped_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "`"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_mlir_attr_escaped_part"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "`"
+        }
+      ]
+    },
+    "_mlir_attr_escaped_part": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_attr_prefix"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_attr_special_character"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_type_escaped_part"
+        }
+      ]
+    },
+    "mlir_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "__mlir_type"
+            },
+            {
+              "type": "STRING",
+              "value": "__mlir_deferred_type"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_mlir_type_escaped_parameters"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "["
+                },
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "mlir_type_parameter"
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": ","
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "mlir_type_parameter"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": ","
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "]"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "mlir_type_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_type_escaped_parameters"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_standalone_parameter"
+        }
+      ]
+    },
+    "_mlir_type_escaped_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "`"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_mlir_type_escaped_part"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "`"
+        }
+      ]
+    },
+    "_mlir_type_escaped_part": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_type_prefix"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_type_special_character"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_whitespaces"
+        }
+      ]
+    },
+    "mlir_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_dotted_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
         }
       ]
     },
@@ -3466,6 +3966,10 @@
     "parameter_expression": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_attr"
+        },
         {
           "type": "SYMBOL",
           "name": "named_parameter"
@@ -3739,6 +4243,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "mlir_attr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_type"
+        },
+        {
+          "type": "SYMBOL",
           "name": "parameter_union"
         },
         {
@@ -3754,6 +4266,14 @@
     "_parameter_rhs": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_attr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_type"
+        },
         {
           "type": "SYMBOL",
           "name": "_standalone_parameter"
@@ -3808,6 +4328,10 @@
         {
           "type": "SYMBOL",
           "name": "function_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_type"
         },
         {
           "type": "SYMBOL",
@@ -3901,6 +4425,10 @@
     "argument": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_attr"
+        },
         {
           "type": "SYMBOL",
           "name": "list_splat"
@@ -4017,8 +4545,17 @@
           "type": "FIELD",
           "name": "value",
           "content": {
-            "type": "SYMBOL",
-            "name": "expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "mlir_attr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
           }
         }
       ]
@@ -4138,6 +4675,10 @@
     "_rhs": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "mlir_attr"
+        },
         {
           "type": "SYMBOL",
           "name": "assignment"
@@ -5202,6 +5743,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "mlir_attr"
+        },
+        {
+          "type": "SYMBOL",
           "name": "expression_list"
         },
         {
@@ -5747,6 +6292,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "mlir_op"
+        },
+        {
+          "type": "SYMBOL",
           "name": "await"
         },
         {
@@ -5888,6 +6437,69 @@
           }
         ]
       }
+    },
+    "mlir_op": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "__mlir_op"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_mlir_op_parameters"
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "arguments"
+          }
+        }
+      ]
+    },
+    "_mlir_op_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "`"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "mlir_dotted_identifier"
+            },
+            {
+              "type": "STRING",
+              "value": "`"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "parameters",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "mlir_op_parameters"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        }
+      ]
     },
     "await": {
       "type": "PREC",
@@ -7132,6 +7744,30 @@
         "value": "\\"
       }
     },
+    "mlir_string": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\""
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^`\"\\n\\v\\\\]*"
+          },
+          {
+            "type": "STRING",
+            "value": "\""
+          }
+        ]
+      }
+    },
+    "_mlir_whitespaces": {
+      "type": "PATTERN",
+      "value": "[ \\t]+"
+    },
     "integer": {
       "type": "TOKEN",
       "content": {
@@ -7484,6 +8120,39 @@
         }
       ]
     },
+    "mlir_dotted_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "RESERVED",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          "context_name": "mlir"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "RESERVED",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                "context_name": "mlir"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "escaped_identifier": {
       "type": "SEQ",
       "members": [
@@ -7500,10 +8169,6 @@
           "value": "`"
         }
       ]
-    },
-    "escaped_identifier_content": {
-      "type": "PATTERN",
-      "value": "[^`\\n\\v]+"
     },
     "keyword_identifier": {
       "type": "CHOICE",
@@ -7793,6 +8458,26 @@
     },
     {
       "type": "SYMBOL",
+      "name": "mlir_attr_prefix"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "mlir_attr_special_character"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "mlir_operator"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "mlir_type_prefix"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "mlir_type_special_character"
+    },
+    {
+      "type": "SYMBOL",
       "name": "string_start"
     },
     {
@@ -7806,6 +8491,10 @@
     {
       "type": "SYMBOL",
       "name": "string_end"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "escaped_identifier_content"
     },
     {
       "type": "SYMBOL",
@@ -7850,7 +8539,6 @@
     "_non_composite_parameter",
     "_constraint",
     "_constraint_parameter",
-    "_return_parameter",
     "_declaration_convention",
     "_expressions",
     "keyword_identifier"
@@ -8012,6 +8700,7 @@
         "type": "STRING",
         "value": "yield"
       }
-    ]
+    ],
+    "mlir": []
   }
 }

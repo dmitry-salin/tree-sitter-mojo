@@ -10,10 +10,16 @@ enum TokenType {
     NEWLINE,
     INDENT,
     DEDENT,
+    MLIR_ATTR_PREFIX,
+    MLIR_ATTR_SPECIAL_CHARACTER,
+    MLIR_OPERATOR,
+    MLIR_TYPE_PREFIX,
+    MLIR_TYPE_SPECIAL_CHARACTER,
     STRING_START,
     STRING_CONTENT,
     ESCAPE_INTERPOLATION,
     STRING_END,
+    ESCAPED_IDENTIFIER_CONTENT,
     COMMENT,
     CLOSE_BRACKET,
     CLOSE_PAREN,
@@ -108,6 +114,95 @@ bool tree_sitter_mojo_external_scanner_scan(void *payload, TSLexer *lexer,
     bool within_brackets = valid_symbols[CLOSE_BRACE] ||
                            valid_symbols[CLOSE_PAREN] ||
                            valid_symbols[CLOSE_BRACKET];
+    bool mlir_context = valid_symbols[MLIR_ATTR_PREFIX] ||
+                        valid_symbols[MLIR_ATTR_SPECIAL_CHARACTER] ||
+                        valid_symbols[MLIR_OPERATOR] ||
+                        valid_symbols[MLIR_TYPE_PREFIX] ||
+                        valid_symbols[MLIR_TYPE_SPECIAL_CHARACTER];
+
+    if (mlir_context && !error_recovery_mode) {
+        if (lexer->lookahead == '`') {
+            return false;
+        }
+
+        if (valid_symbols[MLIR_ATTR_PREFIX] && lexer->lookahead == '#') {
+            advance(lexer);
+            lexer->mark_end(lexer);
+            lexer->result_symbol = MLIR_ATTR_PREFIX;
+            return true;
+        }
+
+        if (valid_symbols[MLIR_ATTR_SPECIAL_CHARACTER]) {
+            switch (lexer->lookahead) {
+            case '{':
+            case '}':
+                advance(lexer);
+                lexer->mark_end(lexer);
+                lexer->result_symbol = MLIR_ATTR_SPECIAL_CHARACTER;
+                return true;
+            }
+        }
+
+        if (valid_symbols[MLIR_OPERATOR]) {
+            int32_t first = lexer->lookahead;
+            switch (first) {
+            case '-':
+            case '=':
+                advance(lexer);
+                if (first == '-' && lexer->lookahead == '>') {
+                    advance(lexer);
+                }
+                lexer->mark_end(lexer);
+                lexer->result_symbol = MLIR_OPERATOR;
+                return true;
+            }
+        }
+
+        if (valid_symbols[MLIR_TYPE_PREFIX] && lexer->lookahead == '!') {
+            advance(lexer);
+            lexer->mark_end(lexer);
+            lexer->result_symbol = MLIR_TYPE_PREFIX;
+            return true;
+        }
+
+        if (valid_symbols[MLIR_TYPE_SPECIAL_CHARACTER]) {
+            switch (lexer->lookahead) {
+            case ',':
+            case ':':
+            case '<':
+            case '>':
+            case '[':
+            case ']':
+            case '(':
+            case ')':
+                advance(lexer);
+                lexer->mark_end(lexer);
+                lexer->result_symbol = MLIR_TYPE_SPECIAL_CHARACTER;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    if (valid_symbols[ESCAPED_IDENTIFIER_CONTENT] && !error_recovery_mode) {
+        bool has_content = false;
+        while (lexer->lookahead != '`' && !lexer->eof(lexer)) {
+            switch (lexer->lookahead) {
+            case '\n':
+            case '\v':
+                return false;
+            }
+            advance(lexer);
+            has_content = true;
+        }
+
+        if (has_content) {
+            lexer->mark_end(lexer);
+            lexer->result_symbol = ESCAPED_IDENTIFIER_CONTENT;
+        }
+        return has_content;
+    }
 
     bool advanced_once = false;
     if (valid_symbols[ESCAPE_INTERPOLATION] && scanner->delimiters.size > 0 &&
