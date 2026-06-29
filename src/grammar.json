@@ -7503,17 +7503,8 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "type"
-              },
-              {
-                "type": "STRING",
-                "value": "match"
-              }
-            ]
+            "type": "STRING",
+            "value": "match"
           },
           "named": true,
           "value": "identifier"

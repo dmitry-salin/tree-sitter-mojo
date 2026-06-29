@@ -1357,7 +1357,7 @@ export default grammar({
           -3,
           alias(choice('print', 'exec', 'async', 'await'), $.identifier),
         ),
-        alias(choice('type', 'match'), $.identifier),
+        alias('match', $.identifier),
       ),
 
     true: _ => 'True',
