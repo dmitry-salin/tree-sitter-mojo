@@ -238,7 +238,7 @@ export default grammar({
       seq($.import_prefix, optional($._import), $._import_alias),
 
     import_prefix: _ => repeat1('.'),
-    _import: $ => field('name', $.dotted_name),
+    _import: $ => field('name', $.dotted_identifier),
     _import_alias: $ => seq('as', field('alias', $.identifier)),
 
     print_statement: $ =>
@@ -873,7 +873,7 @@ export default grammar({
           $.concatenated_string,
           $.string,
           seq(optional('-'), choice($.integer, $.float)),
-          $.dotted_name,
+          $.dotted_identifier,
           $.true,
           $.false,
           $.none,
@@ -882,7 +882,12 @@ export default grammar({
       ),
 
     class_pattern: $ =>
-      seq($.dotted_name, '(', optional(trailingCommaSep1($.case_pattern)), ')'),
+      seq(
+        $.dotted_identifier,
+        '(',
+        optional(trailingCommaSep1($.case_pattern)),
+        ')',
+      ),
 
     splat_pattern: $ =>
       prec(1, seq(choice('*', '**'), choice($.identifier, $.underscore))),
@@ -1353,10 +1358,8 @@ export default grammar({
     },
 
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
-    dotted_name: $ => sep1($.identifier, '.'),
-
+    dotted_identifier: $ => sep1($.identifier, '.'),
     escaped_identifier: $ => seq('`', $.escaped_identifier_content, '`'),
-
     escaped_identifier_content: _ => /[^`\n\v]+/,
 
     keyword_identifier: $ =>

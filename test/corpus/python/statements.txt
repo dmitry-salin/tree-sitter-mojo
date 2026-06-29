@@ -11,20 +11,20 @@ import a.b.c
 (module
   (module_import_statement
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (module_import_statement
     module: (aliased_import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)
         (identifier))
       alias: (identifier)))
   (module_import_statement
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)
         (identifier)
         (identifier)))))
@@ -47,61 +47,61 @@ from ..a import b as d
 (module
   (selective_import_statement
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (selective_import_statement
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (wildcard_import))
   (selective_import_statement
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (selective_import_statement
     module: (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (selective_import_statement
     module: (relative_import
       (import_prefix))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (selective_import_statement
     module: (relative_import
       (import_prefix))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (selective_import_statement
     module: (relative_import
       (import_prefix)
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (selective_import_statement
     module: (relative_import
       (import_prefix)
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (aliased_import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))
       alias: (identifier))))
 
@@ -119,24 +119,24 @@ from __future__ import (absolute_import, division, print_function,
 (module
   (future_import_statement
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (future_import_statement
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (future_import_statement
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))
     (import
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)))))
 
 ================================================================================

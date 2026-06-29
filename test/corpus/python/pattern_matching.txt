@@ -66,7 +66,7 @@ match command.split():
                 (string_content)
                 (string_end)))
             (case_pattern
-              (dotted_name
+              (dotted_identifier
                 (identifier)))))
         (block
           (call
@@ -85,7 +85,7 @@ match command.split():
                 (string_content)
                 (string_end)))
             (case_pattern
-              (dotted_name
+              (dotted_identifier
                 (identifier)))))
         (block
           (assignment
@@ -184,7 +184,7 @@ match command.split():
                 (string_content)
                 (string_end)))
             (case_pattern
-              (dotted_name
+              (dotted_identifier
                 (identifier)))))
         (block
           (pass_statement)))
@@ -278,7 +278,7 @@ match command.split():
                   (string_content)
                   (string_end)))
               (case_pattern
-                (dotted_name
+                (dotted_identifier
                   (identifier))))
             (list_pattern
               (case_pattern
@@ -292,7 +292,7 @@ match command.split():
                   (string_content)
                   (string_end)))
               (case_pattern
-                (dotted_name
+                (dotted_identifier
                   (identifier))))
             (list_pattern
               (case_pattern
@@ -301,7 +301,7 @@ match command.split():
                   (string_content)
                   (string_end)))
               (case_pattern
-                (dotted_name
+                (dotted_identifier
                   (identifier)))
               (case_pattern
                 (string
@@ -700,10 +700,10 @@ match ..., ...:
     (block
       (case_clause
         (case_pattern
-          (dotted_name
+          (dotted_identifier
             (identifier)))
         (case_pattern
-          (dotted_name
+          (dotted_identifier
             (identifier)))
         (block
           (return_statement
@@ -732,7 +732,7 @@ match match:
     (block
       (case_clause
         (case_pattern
-          (dotted_name
+          (dotted_identifier
             (identifier)))
         (block
           (assignment
@@ -801,17 +801,17 @@ match event.get():
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (keyword_pattern
                 (identifier)
                 (tuple_pattern
                   (case_pattern
-                    (dotted_name
+                    (dotted_identifier
                       (identifier)))
                   (case_pattern
-                    (dotted_name
+                    (dotted_identifier
                       (identifier))))))))
         (block
           (call
@@ -823,7 +823,7 @@ match event.get():
         (case_pattern
           (union_pattern
             (class_pattern
-              (dotted_name
+              (dotted_identifier
                 (identifier))
               (case_pattern
                 (keyword_pattern
@@ -833,7 +833,7 @@ match event.get():
                     (string_content)
                     (string_end)))))
             (class_pattern
-              (dotted_name
+              (dotted_identifier
                 (identifier)))))
         (block
           (call
@@ -844,7 +844,7 @@ match event.get():
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (keyword_pattern
@@ -863,14 +863,14 @@ match event.get():
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))))
         (block
           (pass_statement)
           (comment)))
       (case_clause
         (case_pattern
-          (dotted_name
+          (dotted_identifier
             (identifier)))
         (block
           (raise_statement
@@ -905,15 +905,15 @@ match event.get():
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (tuple_pattern
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))))))
         (block
           (call
@@ -945,20 +945,20 @@ match event.get():
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (tuple_pattern
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))))
             (case_pattern
               (keyword_pattern
                 (identifier)
-                (dotted_name
+                (dotted_identifier
                   (identifier)
                   (identifier))))))
         (comment)
@@ -971,7 +971,7 @@ match event.get():
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))))
         (block
           (pass_statement)
@@ -1012,14 +1012,14 @@ for action in actions:
                   (string_content)
                   (string_end))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))
                 (string
                   (string_start)
                   (string_content)
                   (string_end))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))))
             (block
               (call
@@ -1042,7 +1042,7 @@ for action in actions:
                   (string_content)
                   (string_end))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))))
             (block
               (call
@@ -1059,7 +1059,7 @@ for action in actions:
                   (string_content)
                   (string_end))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))
                 (string
                   (string_start)
@@ -1080,11 +1080,11 @@ for action in actions:
           (case_clause
             (case_pattern
               (dict_pattern
-                (dotted_name
+                (dotted_identifier
                   (identifier)
                   (identifier))
                 (case_pattern
-                  (dotted_name
+                  (dotted_identifier
                     (identifier)))))
             (block
               (call
@@ -1149,10 +1149,10 @@ for action in actions:
                   (string_end))
                 (case_pattern
                   (class_pattern
-                    (dotted_name
+                    (dotted_identifier
                       (identifier))
                     (case_pattern
-                      (dotted_name
+                      (dotted_identifier
                         (identifier)))))
                 (string
                   (string_start)
@@ -1160,10 +1160,10 @@ for action in actions:
                   (string_end))
                 (case_pattern
                   (class_pattern
-                    (dotted_name
+                    (dotted_identifier
                       (identifier))
                     (case_pattern
-                      (dotted_name
+                      (dotted_identifier
                         (identifier)))))))
             (block
               (call
@@ -1187,10 +1187,10 @@ for action in actions:
                   (string_end))
                 (case_pattern
                   (class_pattern
-                    (dotted_name
+                    (dotted_identifier
                       (identifier))
                     (case_pattern
-                      (dotted_name
+                      (dotted_identifier
                         (identifier)))))))
             (block
               (call
@@ -1208,10 +1208,10 @@ for action in actions:
                   (string_end))
                 (case_pattern
                   (class_pattern
-                    (dotted_name
+                    (dotted_identifier
                       (identifier))
                     (case_pattern
-                      (dotted_name
+                      (dotted_identifier
                         (identifier)))))
                 (string
                   (string_start)
@@ -1284,7 +1284,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))))
         (comment)
         (block
@@ -1294,7 +1294,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier)
               (identifier))))
         (comment)
@@ -1305,7 +1305,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (integer))
@@ -1321,7 +1321,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (keyword_pattern
@@ -1343,7 +1343,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (integer))
@@ -1367,7 +1367,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (integer))
@@ -1383,7 +1383,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (keyword_pattern
@@ -1405,7 +1405,7 @@ match x:
       (case_clause
         (case_pattern
           (class_pattern
-            (dotted_name
+            (dotted_identifier
               (identifier))
             (case_pattern
               (integer))
@@ -1512,13 +1512,13 @@ match x:
     (block
       (case_clause
         (case_pattern
-          (dotted_name
+          (dotted_identifier
             (identifier)))
         (case_pattern
           (splat_pattern
             (identifier)))
         (case_pattern
-          (dotted_name
+          (dotted_identifier
             (identifier)))
         (block
           (pass_statement))))))

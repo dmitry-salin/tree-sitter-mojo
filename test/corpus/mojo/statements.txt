@@ -12,18 +12,18 @@ import .d as e
   (module_import_statement
     module: (relative_import
       (import_prefix)
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))))
   (module_import_statement
     module: (relative_import
       (import_prefix)
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier)
         (identifier))))
   (module_import_statement
     module: (relative_aliased_import
       (import_prefix)
-      name: (dotted_name
+      name: (dotted_identifier
         (identifier))
       alias: (identifier))))
 

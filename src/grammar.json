@@ -438,7 +438,7 @@
       "name": "name",
       "content": {
         "type": "SYMBOL",
-        "name": "dotted_name"
+        "name": "dotted_identifier"
       }
     },
     "_import_alias": {
@@ -4390,7 +4390,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "dotted_name"
+            "name": "dotted_identifier"
           },
           {
             "type": "SYMBOL",
@@ -4416,7 +4416,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "dotted_name"
+          "name": "dotted_identifier"
         },
         {
           "type": "STRING",
@@ -7459,7 +7459,7 @@
       "type": "PATTERN",
       "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
     },
-    "dotted_name": {
+    "dotted_identifier": {
       "type": "SEQ",
       "members": [
         {
