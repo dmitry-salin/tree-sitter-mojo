@@ -12,7 +12,6 @@
 const PREC = {
   lambda: -2,
   conditional: -1,
-  list_splat_pattern: -1,
 
   parenthesized_expression: 1,
   parenthesized_list_splat: 1,
@@ -116,7 +115,6 @@ export default grammar({
     [$.pattern, $.primary_expression],
     [$.list_pattern, $.list],
     [$.tuple_pattern, $.tuple],
-    [$.list_splat_pattern, $.primary_expression],
     [$.as_pattern, $.named_expression],
   ],
 
@@ -125,8 +123,11 @@ export default grammar({
     [$._parameterized_ref_conv, $._ref_conv],
     [$.parameter_decl, $.primary_expression],
     [$.member, $.primary_expression],
+    [$.parameter, $.list_splat_pattern],
     [$.parameter, $.primary_expression],
+    [$.generic_parameter, $.list_splat_pattern],
     [$.generic_parameter, $.primary_expression],
+    [$.primary_expression, $.list_splat_pattern],
     [$.dictionary, $.argument],
     [$.dictionary, $.initializer_list],
   ],
@@ -167,7 +168,7 @@ export default grammar({
     $._constraint_parameter,
     $._declaration_convention,
     $._expressions,
-    $.keyword_identifier,
+    $._identifier,
   ],
 
   reserved: {
@@ -849,7 +850,7 @@ export default grammar({
 
     keyword_argument: $ =>
       seq(
-        field('name', choice($.identifier, $.keyword_identifier)),
+        field('name', $._identifier),
         '=',
         field('value', choice($.mlir_attr, $.expression)),
       ),
@@ -1004,9 +1005,8 @@ export default grammar({
         $.list_splat_pattern,
         $.attribute,
         $.subscript,
-        $.identifier,
         $.escaped_identifier,
-        $.keyword_identifier,
+        $._identifier,
       ),
 
     list_pattern: $ => seq('[', optional($._patterns), ']'),
@@ -1014,19 +1014,10 @@ export default grammar({
     _patterns: $ => trailingCommaSep1($.pattern),
 
     list_splat_pattern: $ =>
-      prec(
-        PREC.list_splat_pattern,
-        seq(
-          '*',
-          choice($.attribute, $.subscript, $.identifier, $.keyword_identifier),
-        ),
-      ),
+      seq('*', choice($.attribute, $.subscript, $._identifier)),
 
     dictionary_splat_pattern: $ =>
-      seq(
-        '**',
-        choice($.attribute, $.subscript, $.identifier, $.keyword_identifier),
-      ),
+      seq('**', choice($.attribute, $.subscript, $._identifier)),
 
     // Extended patterns (patterns allowed in match statement are far more flexible than simple patterns though still a subset of "expression")
 
@@ -1111,13 +1102,7 @@ export default grammar({
       ),
 
     named_expression: $ =>
-      seq(
-        field('name', $._named_expression_lhs),
-        ':=',
-        field('value', $.expression),
-      ),
-
-    _named_expression_lhs: $ => choice($.identifier, $.keyword_identifier),
+      seq(field('name', $._identifier), ':=', field('value', $.expression)),
 
     comparison_operator: $ =>
       prec.left(PREC.compare, seq($.primary_expression, $._comparisons_chain)),
@@ -1189,9 +1174,8 @@ export default grammar({
         $.string,
         $.integer,
         $.float,
-        $.identifier,
         $.escaped_identifier,
-        $.keyword_identifier,
+        $._identifier,
         $.true,
         $.false,
         $.none,
@@ -1439,11 +1423,7 @@ export default grammar({
     mlir_dotted_identifier: $ => sep1(reserved('mlir', $.identifier), '.'),
     escaped_identifier: $ => seq('`', $.escaped_identifier_content, '`'),
 
-    keyword_identifier: $ =>
-      choice(
-        prec(-3, alias(choice('async', 'await'), $.identifier)),
-        alias('match', $.identifier),
-      ),
+    _identifier: $ => choice($.identifier, alias('match', $.identifier)),
 
     true: _ => 'True',
     false: _ => 'False',

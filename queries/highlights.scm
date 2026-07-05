@@ -129,6 +129,8 @@
   "while"
   "with"
   "yield"
-  "match"
   "case"
 ] @keyword
+
+(match_statement
+  "match" @keyword)
