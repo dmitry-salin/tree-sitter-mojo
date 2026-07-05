@@ -30,6 +30,16 @@ const PREC = {
   call: 22,
 };
 
+// https://mojolang.org/nightly/docs/reference/keywords
+const MOJO_GLOBAL_KEYWORDS = [
+  'Self',
+  'comptime',
+  'ref',
+  'struct',
+  'trait',
+  'var',
+];
+
 // https://docs.python.org/3/reference/lexical_analysis.html#keywords
 const PYTHON_GLOBAL_KEYWORDS = [
   'False',
@@ -172,7 +182,7 @@ export default grammar({
   ],
 
   reserved: {
-    global: _ => [...PYTHON_GLOBAL_KEYWORDS],
+    global: _ => [...MOJO_GLOBAL_KEYWORDS, ...PYTHON_GLOBAL_KEYWORDS],
     mlir: _ => [],
   },
 

@@ -8329,6 +8329,30 @@
     "global": [
       {
         "type": "STRING",
+        "value": "Self"
+      },
+      {
+        "type": "STRING",
+        "value": "comptime"
+      },
+      {
+        "type": "STRING",
+        "value": "ref"
+      },
+      {
+        "type": "STRING",
+        "value": "struct"
+      },
+      {
+        "type": "STRING",
+        "value": "trait"
+      },
+      {
+        "type": "STRING",
+        "value": "var"
+      },
+      {
+        "type": "STRING",
         "value": "False"
       },
       {
