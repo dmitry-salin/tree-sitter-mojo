@@ -114,6 +114,23 @@ comptime `A` = Byte(ord("A"))
               (string_end))))))))
 
 ================================================================================
+Comptime: `Self` literal
+================================================================================
+
+comptime is_value = not Self.is_tuple
+
+--------------------------------------------------------------------------------
+
+(module
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier))
+    right: (not_operator
+      argument: (attribute
+        object: (self)
+        attribute: (identifier)))))
+
+================================================================================
 Convention: variable declaration
 ================================================================================
 
@@ -610,7 +627,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
               (integer))))))
     return_type: (parameter_member
       (parameter
-        (identifier))
+        (self))
       (member
         (identifier)))
     body: (block
@@ -632,17 +649,17 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
     (convention_parameters
       (parameter_member
         (parameter
-          (identifier))
+          (self))
         (member
           (identifier)))
       (parameter_member
         (parameter
-          (identifier))
+          (self))
         (member
           (identifier))))
     return_type: (parameter_member
       (parameter
-        (identifier))
+        (self))
       (member
         (identifier)))
     body: (block
@@ -881,13 +898,13 @@ def reshape[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
-          (identifier))))
+          (self))))
     (where_clause
       (call
         function: (identifier)
         arguments: (arguments
           (attribute
-            object: (identifier)
+            object: (self)
             attribute: (identifier))
           (identifier))))
     body: (block
@@ -911,7 +928,7 @@ def reshape[
           (parameter_splat
             (parameter_member
               (parameter
-                (identifier))
+                (self))
               (member
                 (identifier)))))))
     body: (block
@@ -929,7 +946,7 @@ def reshape[
     (where_clause
       (comparison_operator
         (attribute
-          object: (identifier)
+          object: (self)
           attribute: (identifier))
         (false)))
     body: (block
@@ -941,7 +958,7 @@ def reshape[
     (where_clause
       (not_operator
         argument: (attribute
-          object: (identifier)
+          object: (self)
           attribute: (identifier))))
     body: (block
       (pass_statement)))
@@ -957,7 +974,7 @@ def reshape[
             (parameter_splat
               (parameter_member
                 (parameter
-                  (identifier))
+                  (self))
                 (member
                   (identifier))))))
         right: (subscript
@@ -966,7 +983,7 @@ def reshape[
             (parameter_splat
               (parameter_member
                 (parameter
-                  (identifier))
+                  (self))
                 (member
                   (identifier))))))))
     body: (block
@@ -1048,7 +1065,7 @@ def reshape[
       (self_parameter))
     return_type: (parameter_member
       (parameter
-        (identifier))
+        (self))
       (member
         (subscript
           value: (identifier)
@@ -1066,10 +1083,10 @@ def reshape[
         (boolean_operator
           left: (boolean_operator
             left: (attribute
-              object: (identifier)
+              object: (self)
               attribute: (identifier))
             right: (attribute
-              object: (identifier)
+              object: (self)
               attribute: (identifier)))
           right: (comparison_operator
             (attribute
@@ -1079,7 +1096,7 @@ def reshape[
                   (parameter_splat
                     (parameter_member
                       (parameter
-                        (identifier))
+                        (self))
                       (member
                         (identifier))
                       (member

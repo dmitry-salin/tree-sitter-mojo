@@ -40,7 +40,7 @@ def __init__(out self, var value: Self.T):
         name: (identifier)
         constraint: (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier)))))
     body: (block
@@ -67,7 +67,7 @@ process({1, message="hello"})
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (parameter
-      (identifier))
+      (self))
     body: (block
       (return_statement
         (initializer_list
@@ -563,7 +563,7 @@ def call[
           arguments: (function_type_parameters
             (parameter_member
               (parameter
-                (identifier))
+                (self))
               (member
                 (identifier)))))))
     arguments: (callable_parameters

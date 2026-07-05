@@ -568,6 +568,10 @@
         "named": true
       },
       {
+        "type": "self",
+        "named": true
+      },
+      {
         "type": "set",
         "named": true
       },
@@ -3812,6 +3816,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "self",
+          "named": true
         }
       ]
     }
@@ -5293,6 +5301,10 @@
   {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "self",
+    "named": true
   },
   {
     "type": "self_parameter",

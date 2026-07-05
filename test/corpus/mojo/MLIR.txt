@@ -208,13 +208,13 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
             arguments: (arguments
               (attribute
                 object: (attribute
-                  object: (identifier)
+                  object: (self)
                   attribute: (identifier))
                 attribute: (identifier)))))
         (mlir_type_parameter
           (parameter_member
             (parameter
-              (identifier))
+              (self))
             (member
               (identifier))
             (member
@@ -294,7 +294,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))
           (member
@@ -306,7 +306,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))))
       (mlir_type_parameter
@@ -381,13 +381,13 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           arguments: (arguments
             (attribute
               object: (attribute
-                object: (identifier)
+                object: (self)
                 attribute: (identifier))
               attribute: (identifier)))))
       (mlir_type_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))
           (member
@@ -420,14 +420,14 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           arguments: (arguments
             (attribute
               object: (attribute
-                object: (identifier)
+                object: (self)
                 attribute: (identifier))
               attribute: (identifier)))))
       (mlir_type_parameter)
       (mlir_type_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))
           (member
@@ -459,7 +459,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))))
       (mlir_type_parameter
@@ -487,6 +487,16 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (parameter_member
           (parameter
+            (self))
+          (member
+            (identifier))))
+      (mlir_type_parameter
+        (mlir_type_special_character))
+      (mlir_type_parameter
+        (parameter_member
+          (parameter
+            (self))
+          (member
             (identifier))
           (member
             (identifier))))
@@ -495,17 +505,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (parameter_member
           (parameter
-            (identifier))
-          (member
-            (identifier))
-          (member
-            (identifier))))
-      (mlir_type_parameter
-        (mlir_type_special_character))
-      (mlir_type_parameter
-        (parameter_member
-          (parameter
-            (identifier))
+            (self))
           (member
             (identifier))
           (member
@@ -541,7 +541,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (unary_operator
           argument: (attribute
-            object: (identifier)
+            object: (self)
             attribute: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character))
@@ -586,7 +586,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
               parameters: (parameters
                 (parameter_member
                   (parameter
-                    (identifier))
+                    (self))
                   (member
                     (identifier))))))))
       (mlir_type_parameter
@@ -1064,7 +1064,7 @@ def _get_860m_target() -> _TargetType:
           (mlir_attr_parameter
             (parameter_member
               (parameter
-                (identifier))
+                (self))
               (member
                 (identifier))))
           (mlir_attr_parameter
@@ -1102,14 +1102,14 @@ def _get_860m_target() -> _TargetType:
       (mlir_attr_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))))
       (mlir_attr_parameter)
       (mlir_attr_parameter
         (unary_operator
           argument: (attribute
-            object: (identifier)
+            object: (self)
             attribute: (identifier))))
       (mlir_attr_parameter
         (mlir_type_special_character))
@@ -1125,7 +1125,7 @@ def _get_860m_target() -> _TargetType:
       (mlir_attr_parameter
         (unary_operator
           argument: (attribute
-            object: (identifier)
+            object: (self)
             attribute: (identifier))))))
   (comptime_statement
     left: (comptime_parameter
@@ -1209,7 +1209,7 @@ def _get_860m_target() -> _TargetType:
       (mlir_attr_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (identifier))))
       (mlir_attr_parameter
@@ -1217,7 +1217,7 @@ def _get_860m_target() -> _TargetType:
       (mlir_attr_parameter
         (parameter_member
           (parameter
-            (identifier))
+            (self))
           (member
             (subscript
               value: (identifier)
@@ -1226,7 +1226,7 @@ def _get_860m_target() -> _TargetType:
                   (identifier))
                 (parameter_member
                   (parameter
-                    (identifier))
+                    (self))
                   (member
                     (subscript
                       value: (identifier)
@@ -1355,7 +1355,7 @@ def _get_860m_target() -> _TargetType:
                 name: (identifier)
                 value: (parameter_member
                   (parameter
-                    (identifier))
+                    (self))
                   (member
                     (identifier))))
               (mlir_attr
@@ -1385,7 +1385,7 @@ def _get_860m_target() -> _TargetType:
                         parameters: (parameters
                           (parameter_member
                             (parameter
-                              (identifier))
+                              (self))
                             (member
                               (identifier))))))))))))))
     (where_clause
@@ -1408,7 +1408,7 @@ def _get_860m_target() -> _TargetType:
         (mlir_attr_parameter
           (parameter_member
             (parameter
-              (identifier))
+              (self))
             (member
               (identifier))))
         (mlir_attr_parameter
@@ -1875,7 +1875,7 @@ def _snprintf[
           name: (identifier)
           value: (parameter_member
             (parameter
-              (identifier))
+              (self))
             (member
               (identifier)))))
       arguments: (arguments
@@ -1893,7 +1893,7 @@ def _snprintf[
                     parameters: (parameters
                       (parameter_member
                         (parameter
-                          (identifier))
+                          (self))
                         (member
                           (identifier))))))
                 (member
@@ -1944,7 +1944,7 @@ def _snprintf[
             (mlir_type_parameter
               (parameter_member
                 (parameter
-                  (identifier))
+                  (self))
                 (member
                   (identifier))
                 (member
@@ -1956,7 +1956,7 @@ def _snprintf[
             (mlir_type_parameter
               (parameter_member
                 (parameter
-                  (identifier))
+                  (self))
                 (member
                   (identifier))))
             (mlir_type_parameter
@@ -2173,7 +2173,7 @@ def _snprintf[
                             parameters: (parameters
                               (parameter_member
                                 (parameter
-                                  (identifier))
+                                  (self))
                                 (member
                                   (identifier)))
                               (call

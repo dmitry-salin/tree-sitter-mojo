@@ -4000,8 +4000,17 @@
       ]
     },
     "parameter": {
-      "type": "SYMBOL",
-      "name": "identifier"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "self"
+        }
+      ]
     },
     "generic_parameter": {
       "type": "SYMBOL",
@@ -6144,6 +6153,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "self"
+        },
+        {
+          "type": "SYMBOL",
           "name": "ellipsis"
         }
       ]
@@ -7943,6 +7956,10 @@
     "none": {
       "type": "STRING",
       "value": "None"
+    },
+    "self": {
+      "type": "STRING",
+      "value": "Self"
     },
     "self_parameter": {
       "type": "STRING",

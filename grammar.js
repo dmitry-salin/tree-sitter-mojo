@@ -780,7 +780,7 @@ export default grammar({
         field('value', choice($.function_type, $._parameter_rhs)),
       ),
 
-    parameter: $ => $.identifier,
+    parameter: $ => choice($.identifier, $.self),
     generic_parameter: $ => $.subscript,
     _non_composite_parameter: $ => choice($.parameter, $.generic_parameter),
 
@@ -1179,6 +1179,7 @@ export default grammar({
         $.true,
         $.false,
         $.none,
+        $.self,
         $.ellipsis,
       ),
 
@@ -1428,6 +1429,7 @@ export default grammar({
     true: _ => 'True',
     false: _ => 'False',
     none: _ => 'None',
+    self: _ => 'Self',
 
     self_parameter: _ => 'self',
 
