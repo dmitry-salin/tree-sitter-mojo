@@ -427,8 +427,7 @@ def call[
                       (identifier))
                     (parameter
                       (identifier))))))
-            return_type: (parameter
-              (none))))))
+            return_type: (none)))))
     arguments: (callable_parameters
       (constrained_parameter_decl
         name: (identifier)
@@ -498,8 +497,7 @@ def call[
               constraint: (parameter_splat
                 (parameter
                   (identifier)))))
-          return_type: (parameter
-            (none)))))
+          return_type: (none))))
     arguments: (callable_parameters
       (self_parameter)
       (keyword_only_marker)
@@ -524,8 +522,7 @@ def call[
           arguments: (function_type_parameters
             (parameter_decl
               name: (identifier)))
-          return_type: (parameter
-            (none)))))
+          return_type: (none))))
     arguments: (callable_parameters
       (constrained_parameter_decl
         name: (identifier)
@@ -554,8 +551,7 @@ def call[
                 arguments: (function_type_parameters
                   (parameter_decl
                     name: (identifier)))
-                return_type: (parameter
-                  (none))))))))
+                return_type: (none)))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -612,8 +608,7 @@ def call[
       arguments: (function_type_parameters
         (parameter_decl
           name: (identifier)))
-      return_type: (parameter
-        (none)))
+      return_type: (none))
     body: (block
       (return_statement
         (call
@@ -626,8 +621,7 @@ def call[
                   arguments: (function_type_parameters
                     (parameter_decl
                       name: (identifier)))
-                  return_type: (parameter
-                    (none))))))
+                  return_type: (none)))))
           arguments: (arguments
             (identifier))))))
   (comptime_statement
@@ -639,8 +633,7 @@ def call[
           name: (identifier))
         (parameter_decl
           name: (identifier)))
-      return_type: (parameter
-        (none))))
+      return_type: (none)))
   (function_declaration
     name: (identifier)
     parameters: (parameters_declaration

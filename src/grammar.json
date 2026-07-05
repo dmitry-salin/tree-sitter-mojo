@@ -4000,17 +4000,8 @@
       ]
     },
     "parameter": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "none"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "generic_parameter": {
       "type": "SYMBOL",

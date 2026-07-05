@@ -700,8 +700,7 @@ async def d(a:str="default", b=c) -> None:
         name: (identifier)
         constraint: (parameter
           (identifier))))
-    return_type: (parameter
-      (none))
+    return_type: (none)
     body: (block
       (return_statement
         (none))))
@@ -721,8 +720,7 @@ async def d(a:str="default", b=c) -> None:
         name: (identifier)
         default: (parameter
           (identifier))))
-    return_type: (parameter
-      (none))
+    return_type: (none)
     body: (block
       (return_statement
         (none)))))

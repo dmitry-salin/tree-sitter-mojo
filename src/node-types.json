@@ -3812,10 +3812,6 @@
         {
           "type": "identifier",
           "named": true
-        },
-        {
-          "type": "none",
-          "named": true
         }
       ]
     }

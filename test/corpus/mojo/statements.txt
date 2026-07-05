@@ -1217,8 +1217,7 @@ def f() {var name^}:
         name: (identifier))
       (capture_parameter
         name: (identifier)))
-    return_type: (parameter
-      (none))
+    return_type: (none)
     body: (block
       (pass_statement)))
   (function_declaration

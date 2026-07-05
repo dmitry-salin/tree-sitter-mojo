@@ -780,7 +780,7 @@ export default grammar({
         field('value', choice($.function_type, $._parameter_rhs)),
       ),
 
-    parameter: $ => choice($.identifier, $.none),
+    parameter: $ => $.identifier,
     generic_parameter: $ => $.subscript,
     _non_composite_parameter: $ => choice($.parameter, $.generic_parameter),
 

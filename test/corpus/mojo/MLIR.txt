@@ -1724,8 +1724,7 @@ def _snprintf[
     parameters: (mlir_op_parameters
       (named_parameter
         name: (identifier)
-        value: (parameter
-          (none))))
+        value: (none)))
     arguments: (arguments))
   (mlir_op
     (mlir_dotted_identifier
@@ -1805,8 +1804,7 @@ def _snprintf[
           (mlir_attr_special_character)))
       (named_parameter
         name: (identifier)
-        value: (parameter
-          (none))))
+        value: (none)))
     arguments: (arguments
       (identifier)
       (identifier)
@@ -2066,8 +2064,7 @@ def _snprintf[
           name: (identifier)))
       effects: (function_effects
         (thin))
-      return_type: (parameter
-        (none)))
+      return_type: (none))
     body: (block
       (return_statement
         (mlir_op
@@ -2083,8 +2080,7 @@ def _snprintf[
                     name: (identifier)))
                 effects: (function_effects
                   (thin))
-                return_type: (parameter
-                  (none)))))
+                return_type: (none))))
           arguments: (arguments
             (identifier))))))
   (function_declaration
@@ -2277,8 +2273,7 @@ def _snprintf[
               arguments: (arguments)))
           (named_parameter
             name: (identifier)
-            value: (parameter
-              (none))))
+            value: (none)))
         arguments: (arguments))))
   (function_declaration
     name: (identifier)
@@ -2405,8 +2400,7 @@ def _snprintf[
                     (identifier))))))
           (named_parameter
             name: (identifier)
-            value: (parameter
-              (none)))
+            value: (none))
           (named_parameter
             name: (identifier)
             value: (mlir_attr
@@ -2774,8 +2768,7 @@ def structured_for_loop() -> __mlir_type.index:
           arguments: (function_type_parameters
             (parameter_decl
               name: (identifier)))
-          return_type: (parameter
-            (none)))))
+          return_type: (none))))
     arguments: (callable_parameters)
     body: (block
       (mlir_region_declaration
