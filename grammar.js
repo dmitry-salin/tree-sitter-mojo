@@ -115,7 +115,6 @@ export default grammar({
     [$.pattern, $.primary_expression],
     [$.list_pattern, $.list],
     [$.tuple_pattern, $.tuple],
-    [$.as_pattern, $.named_expression],
   ],
 
   precedences: $ => [
@@ -127,6 +126,7 @@ export default grammar({
     [$.parameter, $.primary_expression],
     [$.generic_parameter, $.list_splat_pattern],
     [$.generic_parameter, $.primary_expression],
+    [$.named_expression, $.as_pattern],
     [$.primary_expression, $.list_splat_pattern],
     [$.dictionary, $.argument],
     [$.dictionary, $.initializer_list],

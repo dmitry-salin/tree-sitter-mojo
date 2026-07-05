@@ -8086,10 +8086,6 @@
     [
       "tuple_pattern",
       "tuple"
-    ],
-    [
-      "as_pattern",
-      "named_expression"
     ]
   ],
   "precedences": [
@@ -8171,6 +8167,16 @@
       {
         "type": "SYMBOL",
         "name": "primary_expression"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "named_expression"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "as_pattern"
       }
     ],
     [

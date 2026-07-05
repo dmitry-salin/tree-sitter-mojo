@@ -234,6 +234,46 @@ _, y = get_pair()
       arguments: (arguments))))
 
 ================================================================================
+Scope: `with` statement with walrus operator
+================================================================================
+
+# Without parentheses, a conflict arises between `walrus` and the `as` pattern
+
+with (match := open("file.txt")) as f:
+    # content = f.read()
+    content = match.read()
+
+--------------------------------------------------------------------------------
+
+(module
+  (comment)
+  (with_statement
+    (with_clause
+      (with_item
+        value: (as_pattern
+          (parenthesized_expression
+            (named_expression
+              name: (identifier)
+              value: (call
+                function: (identifier)
+                arguments: (arguments
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))))))
+          alias: (as_pattern_target
+            (identifier)))))
+    (comment)
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (call
+          function: (attribute
+            object: (identifier)
+            attribute: (identifier))
+          arguments: (arguments))))))
+
+================================================================================
 Function: generic declarations
 ================================================================================
 
