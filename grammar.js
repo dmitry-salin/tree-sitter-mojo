@@ -196,7 +196,6 @@ export default grammar({
         $.return_statement,
         $.delete_statement,
         $.raise_statement,
-        $.exec_statement,
         $.pass_statement,
         $.break_statement,
         $.continue_statement,
@@ -256,13 +255,6 @@ export default grammar({
         'raise',
         optional($._expressions),
         optional(seq('from', field('cause', $.expression))),
-      ),
-
-    exec_statement: $ =>
-      seq(
-        'exec',
-        field('code', choice($.string, $.identifier)),
-        optional(seq('in', commaSep1($.expression))),
       ),
 
     pass_statement: _ => prec.left('pass'),
@@ -1449,7 +1441,7 @@ export default grammar({
 
     keyword_identifier: $ =>
       choice(
-        prec(-3, alias(choice('exec', 'async', 'await'), $.identifier)),
+        prec(-3, alias(choice('async', 'await'), $.identifier)),
         alias('match', $.identifier),
       ),
 

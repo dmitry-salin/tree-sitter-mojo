@@ -1265,47 +1265,6 @@ global a, b
     (identifier)))
 
 ================================================================================
-Exec statements
-================================================================================
-
-exec '1+1'
-exec 'x+=1' in None
-exec 'x+=1' in a, b
-func = "print"
-exec func in {}
-
---------------------------------------------------------------------------------
-
-(module
-  (exec_statement
-    (string
-      (string_start)
-      (string_content)
-      (string_end)))
-  (exec_statement
-    (string
-      (string_start)
-      (string_content)
-      (string_end))
-    (none))
-  (exec_statement
-    (string
-      (string_start)
-      (string_content)
-      (string_end))
-    (identifier)
-    (identifier))
-  (assignment
-    (identifier)
-    (string
-      (string_start)
-      (string_content)
-      (string_end)))
-  (exec_statement
-    (identifier)
-    (dictionary)))
-
-================================================================================
 Extra newlines
 ================================================================================
 

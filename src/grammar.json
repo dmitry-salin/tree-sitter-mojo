@@ -102,10 +102,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "exec_statement"
-        },
-        {
-          "type": "SYMBOL",
           "name": "pass_statement"
         },
         {
@@ -570,74 +566,6 @@
                     "type": "SYMBOL",
                     "name": "expression"
                   }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "exec_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "exec"
-        },
-        {
-          "type": "FIELD",
-          "name": "code",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "string"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "in"
-                },
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "expression"
-                    },
-                    {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "STRING",
-                            "value": ","
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "expression"
-                          }
-                        ]
-                      }
-                    }
-                  ]
                 }
               ]
             },
@@ -8048,10 +7976,6 @@
             "content": {
               "type": "CHOICE",
               "members": [
-                {
-                  "type": "STRING",
-                  "value": "exec"
-                },
                 {
                   "type": "STRING",
                   "value": "async"
