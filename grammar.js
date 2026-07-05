@@ -1007,6 +1007,7 @@ export default grammar({
         $.subscript,
         $.escaped_identifier,
         $._identifier,
+        $.underscore,
       ),
 
     list_pattern: $ => seq('[', optional($._patterns), ']'),

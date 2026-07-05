@@ -476,6 +476,10 @@
       {
         "type": "tuple_pattern",
         "named": true
+      },
+      {
+        "type": "underscore",
+        "named": true
       }
     ]
   },
