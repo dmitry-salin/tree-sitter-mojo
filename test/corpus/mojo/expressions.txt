@@ -32,7 +32,7 @@ def __init__(out self, var value: Self.T):
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter)
@@ -63,7 +63,7 @@ process({1, message="hello"})
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (parameter
@@ -214,7 +214,7 @@ def call[
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -486,7 +486,7 @@ def call[
       (raises))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -515,7 +515,7 @@ def call[
       (raises))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -541,7 +541,7 @@ def call[
           (identifier))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -558,7 +558,7 @@ def call[
                   (none))))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -578,7 +578,7 @@ def call[
           (identifier))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -601,7 +601,7 @@ def call[
       (raises))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -641,7 +641,7 @@ def call[
           name: (identifier)))
       return_type: (parameter
         (none))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl

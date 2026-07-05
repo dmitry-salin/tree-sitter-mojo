@@ -1,9 +1,9 @@
 (module (expression_statement (assignment left: (identifier) @name) @definition.constant))
 
-(class_definition
+(struct_declaration
   name: (identifier) @name) @definition.class
 
-(function_definition
+(function_declaration
   name: (identifier) @name) @definition.function
 
 (call

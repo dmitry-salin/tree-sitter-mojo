@@ -4,11 +4,7 @@
     "named": true,
     "subtypes": [
       {
-        "type": "class_definition",
-        "named": true
-      },
-      {
-        "type": "decorated_definition",
+        "type": "decorated_declaration",
         "named": true
       },
       {
@@ -20,7 +16,7 @@
         "named": true
       },
       {
-        "type": "function_definition",
+        "type": "function_declaration",
         "named": true
       },
       {
@@ -33,6 +29,10 @@
       },
       {
         "type": "mlir_region_declaration",
+        "named": true
+      },
+      {
+        "type": "struct_declaration",
         "named": true
       },
       {
@@ -1311,66 +1311,6 @@
     }
   },
   {
-    "type": "class_definition",
-    "named": true,
-    "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "block",
-            "named": true
-          }
-        ]
-      },
-      "conformance": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "conformance",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "escaped_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "parameters": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parameters_declaration",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "where_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "class_pattern",
     "named": true,
     "fields": {},
@@ -1907,10 +1847,10 @@
     }
   },
   {
-    "type": "decorated_definition",
+    "type": "decorated_declaration",
     "named": true,
     "fields": {
-      "definition": {
+      "declaration": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1919,15 +1859,15 @@
             "named": true
           },
           {
-            "type": "class_definition",
-            "named": true
-          },
-          {
             "type": "comptime_statement",
             "named": true
           },
           {
-            "type": "function_definition",
+            "type": "function_declaration",
+            "named": true
+          },
+          {
+            "type": "struct_declaration",
             "named": true
           },
           {
@@ -2572,7 +2512,7 @@
     }
   },
   {
-    "type": "function_definition",
+    "type": "function_declaration",
     "named": true,
     "fields": {
       "arguments": {
@@ -4524,6 +4464,66 @@
         },
         {
           "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "conformance": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "conformance",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameters_declaration",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "where_clause",
           "named": true
         }
       ]

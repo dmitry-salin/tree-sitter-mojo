@@ -29,7 +29,7 @@
 
 ; Function definitions
 
-(function_definition
+(function_declaration
   name: (identifier) @function)
 
 (attribute attribute: (identifier) @property)

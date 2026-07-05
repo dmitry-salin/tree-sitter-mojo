@@ -251,7 +251,7 @@ def return_generic_with_attribute() -> I[v.r]:
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (default_parameter_decl
@@ -267,7 +267,7 @@ def return_generic_with_attribute() -> I[v.r]:
     arguments: (callable_parameters)
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -283,7 +283,7 @@ def return_generic_with_attribute() -> I[v.r]:
               (true))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -298,7 +298,7 @@ def return_generic_with_attribute() -> I[v.r]:
               (underscore))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -312,7 +312,7 @@ def return_generic_with_attribute() -> I[v.r]:
               (ellipsis))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -332,7 +332,7 @@ def return_generic_with_attribute() -> I[v.r]:
                 value: (integer)))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -352,7 +352,7 @@ def return_generic_with_attribute() -> I[v.r]:
         (identifier)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_splat_parameter_decl
@@ -367,7 +367,7 @@ def return_generic_with_attribute() -> I[v.r]:
             (identifier)))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -385,7 +385,7 @@ def return_generic_with_attribute() -> I[v.r]:
             right: (identifier)))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -397,7 +397,7 @@ def return_generic_with_attribute() -> I[v.r]:
               (identifier))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -411,7 +411,7 @@ def return_generic_with_attribute() -> I[v.r]:
               (identifier))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -426,7 +426,7 @@ def return_generic_with_attribute() -> I[v.r]:
                 (identifier)))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -446,7 +446,7 @@ def return_generic_with_attribute() -> I[v.r]:
                         (identifier)))))))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -462,7 +462,7 @@ def return_generic_with_attribute() -> I[v.r]:
               attribute: (identifier))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -484,7 +484,7 @@ def return_generic_with_attribute() -> I[v.r]:
                       (identifier))))))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
@@ -511,7 +511,7 @@ def dump[
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -560,7 +560,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -589,7 +589,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           value: (identifier)
           parameters: (parameters
             (integer))))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter))
@@ -615,7 +615,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
         (identifier)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -647,7 +647,7 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
         (identifier)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (convention_parameters
@@ -691,7 +691,7 @@ def run_action[
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -704,7 +704,7 @@ def run_action[
       (identifier))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -719,7 +719,7 @@ def run_action[
       (identifier))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -737,7 +737,7 @@ def run_action[
       (identifier))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     effects: (function_effects
@@ -750,7 +750,7 @@ def run_action[
       (identifier))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -830,7 +830,7 @@ def reshape[
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -873,7 +873,7 @@ def reshape[
         arguments: (arguments)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter)
@@ -892,7 +892,7 @@ def reshape[
           (identifier))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter)
@@ -916,7 +916,7 @@ def reshape[
                 (identifier)))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter)
@@ -934,7 +934,7 @@ def reshape[
         (false)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter))
@@ -945,7 +945,7 @@ def reshape[
           attribute: (identifier))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter))
@@ -971,7 +971,7 @@ def reshape[
                   (identifier))))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1037,7 +1037,7 @@ def reshape[
               (identifier))))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_splat_parameter_decl
@@ -1114,7 +1114,7 @@ def main():
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (escaped_identifier
       (escaped_identifier_content))
     arguments: (callable_parameters)
@@ -1126,7 +1126,7 @@ def main():
             (string_start)
             (string_content)
             (string_end))))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     body: (block
@@ -1166,14 +1166,14 @@ def f() {var name^}:
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     body: (block
       (assignment
         left: (identifier)
         right: (integer))
-      (function_definition
+      (function_declaration
         name: (identifier)
         arguments: (callable_parameters
           (constrained_parameter_decl
@@ -1190,7 +1190,7 @@ def f() {var name^}:
             (comparison_operator
               (identifier)
               (identifier)))))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1207,7 +1207,7 @@ def f() {var name^}:
         name: (identifier)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     captures: (capture_parameters
@@ -1221,7 +1221,7 @@ def f() {var name^}:
       (none))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     captures: (capture_parameters
@@ -1229,21 +1229,21 @@ def f() {var name^}:
         name: (identifier)))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     captures: (capture_parameters
       (capture_parameter))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     captures: (capture_parameters
       (capture_parameter))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     captures: (capture_parameters
@@ -1271,7 +1271,7 @@ struct I[s: Int, *, e: D = N.i.t()]:
 --------------------------------------------------------------------------------
 
 (module
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (default_parameter_decl
@@ -1300,7 +1300,7 @@ struct I[s: Int, *, e: D = N.i.t()]:
         default: (integer)))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1321,7 +1321,7 @@ struct I[s: Int, *, e: D = N.i.t()]:
         (identifier)))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1344,7 +1344,7 @@ struct I[s: Int, *, e: D = N.i.t()]:
         default: (true)))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1406,7 +1406,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
 --------------------------------------------------------------------------------
 
 (module
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1426,7 +1426,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
             (identifier)))))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1464,7 +1464,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
               (identifier))))))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_splat_parameter_decl
@@ -1518,7 +1518,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
         (identifier)))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1543,7 +1543,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
         arguments: (arguments)))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (constrained_parameter_decl
@@ -1584,10 +1584,10 @@ __extension SIMD:
   (extension_declaration
     name: (identifier)
     body: (block
-      (decorated_definition
+      (decorated_declaration
         (decorator
           (identifier))
-        definition: (function_definition
+        declaration: (function_declaration
           name: (identifier)
           arguments: (callable_parameters
             (keyword_only_marker)
@@ -1701,14 +1701,14 @@ struct PublicStruct:
 --------------------------------------------------------------------------------
 
 (module
-  (decorated_definition
+  (decorated_declaration
     (decorator
       (identifier))
-    definition: (comptime_statement
+    declaration: (comptime_statement
       left: (comptime_parameter
         name: (identifier))
       right: (integer)))
-  (decorated_definition
+  (decorated_declaration
     (decorator
       (call
         function: (identifier)
@@ -1716,22 +1716,22 @@ struct PublicStruct:
           (keyword_argument
             name: (identifier)
             value: (identifier)))))
-    definition: (trait_declaration
+    declaration: (trait_declaration
       name: (identifier)
       body: (block
-        (function_definition
+        (function_declaration
           name: (identifier)
           arguments: (callable_parameters
             (self_parameter))
           body: (block
             (ellipsis))))))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     body: (block
-      (decorated_definition
+      (decorated_declaration
         (decorator
           (identifier))
-        definition: (assignment
+        declaration: (assignment
           left: (constrained_lhs
             (identifier)
             constraint: (parameter

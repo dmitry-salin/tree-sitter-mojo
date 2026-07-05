@@ -997,7 +997,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function_definition"
+          "name": "function_declaration"
         },
         {
           "type": "SYMBOL",
@@ -1005,7 +1005,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "class_definition"
+          "name": "struct_declaration"
         },
         {
           "type": "SYMBOL",
@@ -1017,7 +1017,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "decorated_definition"
+          "name": "decorated_declaration"
         }
       ]
     },
@@ -1887,7 +1887,7 @@
       "type": "SYMBOL",
       "name": "_if_clause"
     },
-    "function_definition": {
+    "function_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -2142,7 +2142,7 @@
         }
       ]
     },
-    "class_definition": {
+    "struct_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -2305,7 +2305,7 @@
         }
       ]
     },
-    "decorated_definition": {
+    "decorated_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -2317,7 +2317,7 @@
         },
         {
           "type": "FIELD",
-          "name": "definition",
+          "name": "declaration",
           "content": {
             "type": "SYMBOL",
             "name": "_decorator_target"
@@ -2343,11 +2343,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "function_definition"
+          "name": "function_declaration"
         },
         {
           "type": "SYMBOL",
-          "name": "class_definition"
+          "name": "struct_declaration"
         },
         {
           "type": "SYMBOL",

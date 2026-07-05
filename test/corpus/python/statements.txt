@@ -673,19 +673,19 @@ async def d(a:str="default", b=c) -> None:
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (parameter_decl
         name: (identifier)))
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (parameter_decl
@@ -694,7 +694,7 @@ async def d(a:str="default", b=c) -> None:
         name: (identifier)))
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -703,7 +703,7 @@ async def d(a:str="default", b=c) -> None:
           (identifier))))
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -715,7 +715,7 @@ async def d(a:str="default", b=c) -> None:
             (identifier)))))
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -730,7 +730,7 @@ async def d(a:str="default", b=c) -> None:
       (identifier))
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (parameter_decl
@@ -745,7 +745,7 @@ async def d(a:str="default", b=c) -> None:
         name: (identifier)))
     body: (block
       (identifier)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -757,7 +757,7 @@ async def d(a:str="default", b=c) -> None:
     body: (block
       (return_statement
         (none))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (default_parameter_decl
@@ -807,7 +807,7 @@ def foo():
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_splat_parameter_decl
@@ -816,7 +816,7 @@ def foo():
           (identifier))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (constrained_splat_parameter_decl
@@ -825,13 +825,13 @@ def foo():
           (identifier))))
     body: (block
       (pass_statement)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     body: (block
       (nonlocal_statement
         (identifier))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (parameter_decl
@@ -855,7 +855,7 @@ def foo():
           (identifier)
           (identifier)
           (identifier)))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (splat_parameter_decl
@@ -874,7 +874,7 @@ def foo():
             (parenthesized_expression
               (list_splat
                 (identifier))))))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     body: (block
@@ -904,7 +904,7 @@ if d:
   (comment)
   (comment)
   (comment)
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (parameter_decl
@@ -943,34 +943,34 @@ class D(Sequence[T, U]):
 --------------------------------------------------------------------------------
 
 (module
-  (class_definition
+  (struct_declaration
     name: (identifier)
     body: (block
-      (function_definition
+      (function_declaration
         name: (identifier)
         arguments: (callable_parameters
           (self_parameter))
         body: (block
           (return_statement
             (identifier))))))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance)
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance
       (parameter
         (identifier)))
     body: (block
-      (function_definition
+      (function_declaration
         name: (identifier)
         arguments: (callable_parameters
           (self_parameter))
         body: (block
           (return_statement)))))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance
       (parameter
@@ -983,7 +983,7 @@ class D(Sequence[T, U]):
               (identifier))))))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance
       (generic_parameter
@@ -1014,7 +1014,7 @@ class A(B, c="d"):
 --------------------------------------------------------------------------------
 
 (module
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance
       (parameter
@@ -1022,12 +1022,12 @@ class A(B, c="d"):
       (parameter
         (identifier)))
     body: (block
-      (function_definition
+      (function_declaration
         name: (identifier)
         arguments: (callable_parameters)
         body: (block
           (identifier)))))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance
       (named_parameter
@@ -1039,7 +1039,7 @@ class A(B, c="d"):
             (identifier)))))
     body: (block
       (pass_statement)))
-  (class_definition
+  (struct_declaration
     name: (identifier)
     conformance: (conformance
       (parameter
@@ -1075,15 +1075,15 @@ def spam():
 --------------------------------------------------------------------------------
 
 (module
-  (decorated_definition
+  (decorated_declaration
     (decorator
       (attribute
         (identifier)
         (identifier)))
-    (class_definition
+    (struct_declaration
       (identifier)
       (block
-        (decorated_definition
+        (decorated_declaration
           (decorator
             (call
               (identifier)
@@ -1098,22 +1098,22 @@ def spam():
                     (integer)))
                 (identifier))
               (identifier)))
-          (function_definition
+          (function_declaration
             (identifier)
             (callable_parameters)
             (block
               (identifier))))
-        (decorated_definition
+        (decorated_declaration
           (decorator
             (call
               (identifier)
               (arguments)))
-          (function_definition
+          (function_declaration
             (identifier)
             (callable_parameters)
             (block
               (identifier)))))))
-  (decorated_definition
+  (decorated_declaration
     (decorator
       (attribute
         (attribute
@@ -1123,7 +1123,7 @@ def spam():
               (integer)))
           (identifier))
         (identifier)))
-    (function_definition
+    (function_declaration
       (identifier)
       (callable_parameters)
       (block
@@ -1261,7 +1261,7 @@ def a():
       (identifier)
       (comment)
       (comment)))
-  (function_definition
+  (function_declaration
     (identifier)
     (callable_parameters)
     (block
@@ -1380,7 +1380,7 @@ if a:
       (call
         (identifier)
         (arguments))
-      (function_definition
+      (function_declaration
         (identifier)
         (callable_parameters)
         (block
@@ -1544,7 +1544,7 @@ def more_generic[T, *Ts, **P]():
 --------------------------------------------------------------------------------
 
 (module
-  (function_definition
+  (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
       (parameter_decl

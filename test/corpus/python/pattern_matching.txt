@@ -419,7 +419,7 @@ def foo(**match): pass
       (integer)
       (integer)
       (integer)))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (splat_parameter_decl

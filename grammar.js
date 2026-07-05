@@ -330,12 +330,12 @@ export default grammar({
         $.try_statement,
         $.with_statement,
         $.match_statement,
-        $.function_definition,
+        $.function_declaration,
         $.mlir_region_declaration,
-        $.class_definition,
+        $.struct_declaration,
         $.extension_declaration,
         $.trait_declaration,
-        $.decorated_definition,
+        $.decorated_declaration,
       ),
 
     if_statement: $ =>
@@ -468,7 +468,7 @@ export default grammar({
 
     if_clause: $ => $._if_clause,
 
-    function_definition: $ =>
+    function_declaration: $ =>
       seq($._function_signature, ':', field('body', $._suite)),
 
     _function_signature: $ =>
@@ -510,7 +510,7 @@ export default grammar({
         field('arguments', $.mlir_callable_parameters),
       ),
 
-    class_definition: $ => seq($._class_header, ':', field('body', $._suite)),
+    struct_declaration: $ => seq($._class_header, ':', field('body', $._suite)),
     _class_header: $ =>
       seq(
         choice('class', 'struct'),
@@ -531,14 +531,14 @@ export default grammar({
         field('refinement', optional($.conformance)),
       ),
 
-    decorated_definition: $ =>
-      seq(repeat1($.decorator), field('definition', $._decorator_target)),
+    decorated_declaration: $ =>
+      seq(repeat1($.decorator), field('declaration', $._decorator_target)),
 
     _decorator_target: $ =>
       choice(
         seq($.comptime_statement, $._newline),
-        $.function_definition,
-        $.class_definition,
+        $.function_declaration,
+        $.struct_declaration,
         $.trait_declaration,
         seq($.assignment, $._newline),
       ),

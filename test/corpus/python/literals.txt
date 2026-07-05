@@ -380,7 +380,7 @@ def test(self):
         (list_splat_pattern
           (identifier))))
     (string_end))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     body: (block
@@ -400,7 +400,7 @@ def test(self):
                 (string_content)
                 (string_end))))
           (string_end)))))
-  (function_definition
+  (function_declaration
     name: (identifier)
     arguments: (callable_parameters
       (self_parameter))
