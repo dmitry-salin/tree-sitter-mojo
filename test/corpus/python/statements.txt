@@ -189,15 +189,15 @@ del a[1], b[2]
 --------------------------------------------------------------------------------
 
 (module
-  (delete_statement
+  (del_statement
     (expression_list
       (subscript
-        (identifier)
-        (parameters
+        value: (identifier)
+        parameters: (parameters
           (integer)))
       (subscript
-        (identifier)
-        (parameters
+        value: (identifier)
+        parameters: (parameters
           (integer))))))
 
 ================================================================================

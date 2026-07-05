@@ -94,7 +94,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "delete_statement"
+          "name": "del_statement"
         },
         {
           "type": "SYMBOL",
@@ -517,7 +517,7 @@
         }
       ]
     },
-    "delete_statement": {
+    "del_statement": {
       "type": "SEQ",
       "members": [
         {

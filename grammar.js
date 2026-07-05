@@ -194,7 +194,7 @@ export default grammar({
         $.future_import_statement,
         $.assert_statement,
         $.return_statement,
-        $.delete_statement,
+        $.del_statement,
         $.raise_statement,
         $.pass_statement,
         $.break_statement,
@@ -248,7 +248,7 @@ export default grammar({
       seq(optional('comptime'), 'assert', commaSep1($.expression)),
 
     return_statement: $ => seq('return', optional($._expressions)),
-    delete_statement: $ => seq('del', $._expressions),
+    del_statement: $ => seq('del', $._expressions),
 
     raise_statement: $ =>
       seq(
