@@ -109,7 +109,7 @@ from ..a import b as d
 Import: future
 ================================================================================
 
-from __future__ import print_statement
+from __future__ import print_function
 from __future__ import python4
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
@@ -138,64 +138,6 @@ from __future__ import (absolute_import, division, print_function,
     (import
       name: (dotted_identifier
         (identifier)))))
-
-================================================================================
-Print statements
-================================================================================
-
-print a
-print b, c
-print 0 or 1, 1 or 0,
-print 0 or 1
-print not True
-
---------------------------------------------------------------------------------
-
-(module
-  (print_statement
-    (identifier))
-  (print_statement
-    (identifier)
-    (identifier))
-  (print_statement
-    (boolean_operator
-      (integer)
-      (integer))
-    (boolean_operator
-      (integer)
-      (integer)))
-  (print_statement
-    (boolean_operator
-      (integer)
-      (integer)))
-  (print_statement
-    (not_operator
-      (true))))
-
-================================================================================
-Print statements with redirection
-================================================================================
-
-print >> a
-print >> a, "b", "c"
-
---------------------------------------------------------------------------------
-
-(module
-  (print_statement
-    (chevron
-      (identifier)))
-  (print_statement
-    (chevron
-      (identifier))
-    (string
-      (string_start)
-      (string_content)
-      (string_end))
-    (string
-      (string_start)
-      (string_content)
-      (string_end))))
 
 ================================================================================
 Assert statements
@@ -431,11 +373,11 @@ For statements
 ================================================================================
 
 for line, i in lines:
-  print line
+  print(line)
   for character, j in line:
-    print character
+    print(character)
 else:
-  print x
+  print(x)
 
 for x, in [(1,), (2,), (3,)]:
   x
@@ -449,20 +391,26 @@ for x, in [(1,), (2,), (3,)]:
       (identifier))
     right: (identifier)
     body: (block
-      (print_statement
-        argument: (identifier))
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (identifier)))
       (for_statement
         left: (pattern_list
           (identifier)
           (identifier))
         right: (identifier)
         body: (block
-          (print_statement
-            argument: (identifier)))))
+          (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier))))))
     alternative: (else_clause
       body: (block
-        (print_statement
-          argument: (identifier)))))
+        (call
+          function: (identifier)
+          arguments: (arguments
+            (identifier))))))
   (for_statement
     left: (pattern_list
       (identifier))
@@ -894,7 +842,7 @@ Empty blocks
 def a(b, c):
 
 if d:
-  print e
+  print(e)
   while f():
 
 --------------------------------------------------------------------------------
@@ -915,8 +863,10 @@ if d:
   (if_statement
     condition: (identifier)
     consequence: (block
-      (print_statement
-        argument: (identifier))
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (identifier)))
       (while_statement
         condition: (call
           function: (identifier)
@@ -1163,22 +1113,28 @@ raise RunTimeError('NO') from e
 Comments
 ================================================================================
 
-print a
+print(a)
 # hi
-print b # bye
-print c
+print(b) # bye
+print(c)
 
 --------------------------------------------------------------------------------
 
 (module
-  (print_statement
-    (identifier))
+  (call
+    function: (identifier)
+    arguments: (arguments
+      (identifier)))
   (comment)
-  (print_statement
-    (identifier))
+  (call
+    function: (identifier)
+    arguments: (arguments
+      (identifier)))
   (comment)
-  (print_statement
-    (identifier)))
+  (call
+    function: (identifier)
+    arguments: (arguments
+      (identifier))))
 
 ================================================================================
 Comments at different indentation levels
@@ -1196,11 +1152,11 @@ if a:
 
 (module
   (if_statement
-    (identifier)
+    condition: (identifier)
     (comment)
     (comment)
     (comment)
-    (block
+    consequence: (block
       (identifier)
       (comment)
       (identifier))))
@@ -1219,8 +1175,8 @@ c
 
 (module
   (if_statement
-    (identifier)
-    (block
+    condition: (identifier)
+    consequence: (block
       (identifier)))
   (comment)
   (identifier))
@@ -1250,24 +1206,24 @@ def a():
 
 (module
   (if_statement
-    (identifier)
-    (block
+    condition: (identifier)
+    consequence: (block
       (identifier)
       (comment)
       (comment)))
   (if_statement
-    (identifier)
-    (block
+    condition: (identifier)
+    consequence: (block
       (identifier)
       (comment)
       (comment)))
   (function_declaration
-    (identifier)
-    (callable_parameters)
-    (block
+    name: (identifier)
+    arguments: (callable_parameters)
+    body: (block
       (if_statement
-        (identifier)
-        (block
+        condition: (identifier)
+        consequence: (block
           (identifier)
           (comment)))
       (identifier)
@@ -1278,16 +1234,18 @@ def a():
 Newline tokens followed by comments
 ================================================================================
 
-print "a"
+print("a")
   # We need to recognize the newline *preceding* this comment, because there's no newline after it
 --------------------------------------------------------------------------------
 
 (module
-  (print_statement
-    (string
-      (string_start)
-      (string_content)
-      (string_end)))
+  (call
+    function: (identifier)
+    arguments: (arguments
+      (string
+        (string_start)
+        (string_content)
+        (string_end))))
   (comment))
 
 ================================================================================

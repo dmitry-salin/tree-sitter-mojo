@@ -1,4 +1,4 @@
-print a
+print(a)
 
 if b:    
     if c:

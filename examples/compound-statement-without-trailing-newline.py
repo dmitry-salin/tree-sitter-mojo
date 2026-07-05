@@ -1,3 +1,3 @@
 class Foo:
   def bar():
-    print "hi"
+    print("hi")

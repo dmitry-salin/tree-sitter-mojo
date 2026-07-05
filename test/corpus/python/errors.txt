@@ -64,7 +64,8 @@ def test_incomplete_call():
   (function_declaration
     (identifier)
     (callable_parameters)
-    (ERROR)
+    (ERROR
+      (identifier))
     (comment)
     (block
       (struct_declaration

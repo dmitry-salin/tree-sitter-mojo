@@ -254,7 +254,8 @@ def print():
     arguments: (callable_parameters
       (default_parameter_decl
         name: (identifier)
-        default: (identifier)))
+        default: (parameter
+          (identifier))))
     body: (block
       (identifier)))
   (function_declaration
@@ -318,7 +319,6 @@ Async / await used as identifiers
 
 async = 4
 await = 5
-print async, await
 
 --------------------------------------------------------------------------------
 
@@ -328,10 +328,7 @@ print async, await
     (integer))
   (assignment
     (identifier)
-    (integer))
-  (print_statement
-    (identifier)
-    (identifier)))
+    (integer)))
 
 ================================================================================
 Calls with splats

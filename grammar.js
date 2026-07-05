@@ -111,7 +111,6 @@ export default grammar({
   ],
 
   conflicts: $ => [
-    [$.print_statement, $.primary_expression],
     [$.match_statement, $.primary_expression],
     [$.argument, $._collection_element],
     [$.pattern, $.primary_expression],
@@ -193,7 +192,6 @@ export default grammar({
         $.module_import_statement,
         $.selective_import_statement,
         $.future_import_statement,
-        $.print_statement,
         $.assert_statement,
         $.return_statement,
         $.delete_statement,
@@ -246,28 +244,6 @@ export default grammar({
     import_prefix: _ => repeat1('.'),
     _import: $ => field('name', $.dotted_identifier),
     _import_alias: $ => seq('as', field('alias', $.identifier)),
-
-    print_statement: $ =>
-      choice(
-        prec(
-          1,
-          seq(
-            'print',
-            $.chevron,
-            repeat(seq(',', field('argument', $.expression))),
-            optional(','),
-          ),
-        ),
-        prec(
-          -3,
-          prec.dynamic(
-            -1,
-            seq('print', trailingCommaSep1(field('argument', $.expression))),
-          ),
-        ),
-      ),
-
-    chevron: $ => seq('>>', $.expression),
 
     assert_statement: $ =>
       seq(optional('comptime'), 'assert', commaSep1($.expression)),
@@ -1473,10 +1449,7 @@ export default grammar({
 
     keyword_identifier: $ =>
       choice(
-        prec(
-          -3,
-          alias(choice('print', 'exec', 'async', 'await'), $.identifier),
-        ),
+        prec(-3, alias(choice('exec', 'async', 'await'), $.identifier)),
         alias('match', $.identifier),
       ),
 
