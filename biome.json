@@ -1,6 +1,12 @@
 {
   "files": {
-    "includes": ["package.json", "eslint.config.mjs", "grammar.js"]
+    "includes": [
+      ".tsqueryrc.json",
+      "eslint.config.mjs",
+      "grammar.js",
+      "package.json",
+      "parser.json"
+    ]
   },
   "formatter": {
     "indentStyle": "space"

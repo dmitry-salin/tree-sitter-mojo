@@ -9,6 +9,9 @@ on:
       - test/**
       - bindings/**
       - binding.gyp
+      - nvim-queries/**
+      - tests/**
+      - parser.json
   pull_request:
     paths:
       - grammar.js
@@ -16,6 +19,9 @@ on:
       - test/**
       - bindings/**
       - binding.gyp
+      - nvim-queries/**
+      - tests/**
+      - parser.json
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -41,3 +47,6 @@ jobs:
         with:
           files: |
             examples/**/*.py
+  query:
+    name: Validate queries
+    uses: neovim-treesitter/.github/.github/workflows/self-contained-validate.yml@main
