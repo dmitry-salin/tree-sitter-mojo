@@ -193,6 +193,7 @@ export default grammar({
 
     _statement: $ => choice($._simple_statements, $._compound_statement),
 
+    // -----------------------------------------------------------------------
     // Simple statements
 
     _simple_statements: $ =>
@@ -299,6 +300,7 @@ export default grammar({
         ),
       ),
 
+    // -----------------------------------------------------------------------
     // Compound statements
 
     _compound_statement: $ =>
@@ -533,6 +535,7 @@ export default grammar({
 
     block: $ => seq(repeat($._statement), $._dedent),
 
+    // -----------------------------------------------------------------------
     // Parameters declaration
 
     comptime_parameter: $ =>
@@ -553,6 +556,7 @@ export default grammar({
     parameter_declaration: $ =>
       choice($._any_parameter_decl, $.infer_only_marker),
 
+    // -----------------------------------------------------------------------
     // Capture parameters
 
     capture_parameters: $ =>
@@ -569,6 +573,7 @@ export default grammar({
         seq('var', optional($._parameter_decl), optional('^')),
       ),
 
+    // -----------------------------------------------------------------------
     // Function type
 
     function_type: $ =>
@@ -598,6 +603,7 @@ export default grammar({
         $.keyword_only_marker,
       ),
 
+    // -----------------------------------------------------------------------
     // Callable parameters
 
     callable_parameters: $ =>
@@ -640,6 +646,7 @@ export default grammar({
     constrained_splat_parameter_decl: $ =>
       seq($._splat_parameter_decl, $._constraint),
 
+    // -----------------------------------------------------------------------
     // Lambda parameters
 
     lambda_parameters: $ => trailingCommaSep1($.lambda_parameter),
@@ -664,6 +671,7 @@ export default grammar({
     splat_parameter_decl: $ => $._splat_parameter_decl,
     _splat_parameter_decl: $ => seq(choice('*', '**'), $._parameter_decl),
 
+    // -----------------------------------------------------------------------
     // Conformance
 
     conformance: $ =>
@@ -680,6 +688,7 @@ export default grammar({
     _where_clauses: $ => repeat1($.where_clause),
     where_clause: $ => seq('where', choice($.mlir_attr, $.expression)),
 
+    // -----------------------------------------------------------------------
     // MLIR
 
     mlir_callable_parameters: $ =>
@@ -742,6 +751,7 @@ export default grammar({
 
     mlir_parameter: $ => choice($.mlir_dotted_identifier, $.integer),
 
+    // -----------------------------------------------------------------------
     // Parameters
 
     parameters: $ =>
@@ -825,6 +835,7 @@ export default grammar({
     _standalone_parameter: $ =>
       choice($.parameter_member, $._non_composite_parameter, $.expression),
 
+    // -----------------------------------------------------------------------
     // Arguments
 
     arguments: $ => seq('(', optional($._arguments), ')'),
@@ -863,6 +874,7 @@ export default grammar({
         field('value', choice($.mlir_attr, $.expression)),
       ),
 
+    // -----------------------------------------------------------------------
     // Assignment
 
     assignment: $ =>
@@ -915,6 +927,7 @@ export default grammar({
         field('right', $._rhs),
       ),
 
+    // -----------------------------------------------------------------------
     // Match cases
 
     case_pattern: $ =>
@@ -998,6 +1011,7 @@ export default grammar({
         ),
       ),
 
+    // -----------------------------------------------------------------------
     // Patterns
 
     pattern_list: $ =>
@@ -1028,7 +1042,8 @@ export default grammar({
     dictionary_splat_pattern: $ =>
       seq('**', choice($.attribute, $.subscript, $._identifier)),
 
-    // Extended patterns (patterns allowed in match statement are far more flexible than simple patterns though still a subset of "expression")
+    // Extended patterns (patterns allowed in match statement are far more
+    // flexible than simple patterns though still a subset of "expression")
 
     as_pattern: $ =>
       prec.left(
@@ -1039,6 +1054,7 @@ export default grammar({
         ),
       ),
 
+    // -----------------------------------------------------------------------
     // Expressions
 
     slice: $ =>
@@ -1277,6 +1293,7 @@ export default grammar({
     transfer_operator: $ =>
       prec(PREC.xor - 1, seq(field('argument', $.primary_expression), '^')),
 
+    // -----------------------------------------------------------------------
     // Comprehensions
 
     list_comprehension: $ =>
@@ -1291,6 +1308,7 @@ export default grammar({
     _comprehension_clauses: $ =>
       seq($.for_in_clause, repeat(choice($.for_in_clause, $.if_clause))),
 
+    // -----------------------------------------------------------------------
     // Parenthesized expressions
 
     parenthesized_expression: $ =>
@@ -1302,10 +1320,12 @@ export default grammar({
     generator_expression: $ =>
       seq('(', field('body', $.expression), $._comprehension_clauses, ')'),
 
+    // -----------------------------------------------------------------------
     // Tuple
 
     tuple: $ => seq('(', optional($._collection_elements), ')'),
 
+    // -----------------------------------------------------------------------
     // Collection displays
 
     list: $ => seq('[', optional($._collection_elements), ']'),
@@ -1324,6 +1344,9 @@ export default grammar({
     _collection_elements: $ => trailingCommaSep1($._collection_element),
     _collection_element: $ =>
       choice($.list_splat, $.parenthesized_list_splat, $.yield, $.expression),
+
+    // -----------------------------------------------------------------------
+    // Strings
 
     concatenated_string: $ => seq($.string, repeat1($.string)),
 
@@ -1396,6 +1419,9 @@ export default grammar({
     mlir_string: $ => token(seq('"', /[^`"\n\v\\]*/, '"')),
     _mlir_whitespaces: _ => /[ \t]+/,
 
+    // -----------------------------------------------------------------------
+    // Numeric literals
+
     integer: _ =>
       token(
         choice(
@@ -1428,12 +1454,18 @@ export default grammar({
       );
     },
 
+    // -----------------------------------------------------------------------
+    // Identifiers
+
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
     dotted_identifier: $ => sep1($.identifier, '.'),
     mlir_dotted_identifier: $ => sep1(reserved('mlir', $.identifier), '.'),
     escaped_identifier: $ => seq('`', $.escaped_identifier_content, '`'),
 
     _identifier: $ => choice($.identifier, alias('match', $.identifier)),
+
+    // -----------------------------------------------------------------------
+    // Literals
 
     true: _ => 'True',
     false: _ => 'False',
