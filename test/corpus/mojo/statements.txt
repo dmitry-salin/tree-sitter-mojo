@@ -599,7 +599,7 @@ def dump[
             (identifier)))))
     arguments: (callable_parameters
       (constrained_parameter_decl
-        (self_parameter)
+        name: (identifier)
         constraint: (generic_parameter
           (subscript
             value: (identifier)
@@ -666,7 +666,8 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter))
+      (parameter_decl
+        name: (identifier)))
     effects: (function_effects
       (raises
         error_type: (parameter
@@ -698,7 +699,8 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           (identifier)))
       (infer_only_marker))
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -950,7 +952,8 @@ def reshape[
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (keyword_only_marker)
       (constrained_parameter_decl
         name: (identifier)
@@ -969,7 +972,8 @@ def reshape[
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
@@ -993,7 +997,8 @@ def reshape[
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -1011,7 +1016,8 @@ def reshape[
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter))
+      (parameter_decl
+        name: (identifier)))
     (where_clause
       (not_operator
         argument: (attribute
@@ -1022,7 +1028,8 @@ def reshape[
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter))
+      (parameter_decl
+        name: (identifier)))
     (where_clause
       (boolean_operator
         left: (subscript
@@ -1119,7 +1126,8 @@ def reshape[
         constraint: (parameter
           (identifier))))
     arguments: (callable_parameters
-      (self_parameter))
+      (parameter_decl
+        name: (identifier)))
     return_type: (parameter_member
       (parameter
         (self))
@@ -1795,7 +1803,8 @@ struct PublicStruct:
         (function_declaration
           name: (identifier)
           arguments: (callable_parameters
-            (self_parameter))
+            (parameter_decl
+              name: (identifier)))
           body: (block
             (ellipsis))))))
   (struct_declaration

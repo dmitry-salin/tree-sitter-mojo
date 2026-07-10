@@ -403,7 +403,8 @@ def test(self):
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter))
+      (parameter_decl
+        name: (identifier)))
     body: (block
       (call
         function: (attribute

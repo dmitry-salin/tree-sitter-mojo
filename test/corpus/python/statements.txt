@@ -897,7 +897,8 @@ class D(Sequence[T, U]):
       (function_declaration
         name: (identifier)
         arguments: (callable_parameters
-          (self_parameter))
+          (parameter_decl
+            name: (identifier)))
         body: (block
           (return_statement
             (identifier))))))
@@ -915,7 +916,8 @@ class D(Sequence[T, U]):
       (function_declaration
         name: (identifier)
         arguments: (callable_parameters
-          (self_parameter))
+          (parameter_decl
+            name: (identifier)))
         body: (block
           (return_statement)))))
   (struct_declaration

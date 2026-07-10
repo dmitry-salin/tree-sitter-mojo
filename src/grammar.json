@@ -2919,10 +2919,6 @@
         {
           "type": "SYMBOL",
           "name": "_lambda_parameter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "self_parameter"
         }
       ]
     },
@@ -2960,17 +2956,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_parameter_decl"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "self_parameter"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_parameter_decl"
         },
         {
           "type": "SYMBOL",
@@ -7964,10 +7951,6 @@
     "self": {
       "type": "STRING",
       "value": "Self"
-    },
-    "self_parameter": {
-      "type": "STRING",
-      "value": "self"
     },
     "thin": {
       "type": "STRING",

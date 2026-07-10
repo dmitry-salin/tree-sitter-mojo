@@ -35,7 +35,8 @@ def __init__(out self, var value: Self.T):
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_member
@@ -499,7 +500,8 @@ def call[
                   (identifier)))))
           return_type: (none))))
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (keyword_only_marker)
       (constrained_parameter_decl
         name: (identifier)
@@ -567,7 +569,8 @@ def call[
               (member
                 (identifier)))))))
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -653,7 +656,8 @@ def call[
         constraint: (parameter
           (identifier))))
     arguments: (callable_parameters
-      (self_parameter)
+      (parameter_decl
+        name: (identifier))
       (constrained_splat_parameter_decl
         name: (identifier)
         constraint: (parameter_splat

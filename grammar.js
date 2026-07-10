@@ -626,7 +626,6 @@ export default grammar({
         $.constrained_parameter_decl,
         $.constrained_splat_parameter_decl,
         $._lambda_parameter,
-        $.self_parameter,
       ),
 
     default_parameter_decl: $ =>
@@ -636,8 +635,7 @@ export default grammar({
         field('default', $._parameter_rhs),
       ),
 
-    constrained_parameter_decl: $ =>
-      seq(choice($._parameter_decl, $.self_parameter), $._constraint),
+    constrained_parameter_decl: $ => seq($._parameter_decl, $._constraint),
 
     constrained_splat_parameter_decl: $ =>
       seq($._splat_parameter_decl, $._constraint),
@@ -1441,8 +1439,6 @@ export default grammar({
     false: _ => 'False',
     none: _ => 'None',
     self: _ => 'Self',
-
-    self_parameter: _ => 'self',
 
     thin: _ => 'thin',
 
