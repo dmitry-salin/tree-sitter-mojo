@@ -251,45 +251,70 @@
 (escaped_identifier (escaped_identifier_content) @variable)
 
 ; ---------------------------------------------------------------------------- 
-; Attributes
+; Subscripts
 (
-  (attribute
-    attribute: (identifier) @variable.member)
+  (member_subscript
+    value: (identifier) @variable.member)
   (#lua-match? @variable.member "^[a-z0-9_].*$")
 )
 
+([
+  (member_subscript
+    value: (identifier) @type)
+  (subscript
+    value: (identifier) @type)
+](#lua-match? @type "^_*[A-Z][A-Za-z0-9_]*$"))
+
+; ---------------------------------------------------------------------------- 
+; Member accesses
 (
-  (attribute
-    object: (identifier) @variable.builtin)
+  (member_access
+    member: (identifier) @variable.member)
+(#lua-match? @variable.member "^[a-z0-9_].*$"))
+
+([
+  (member_access
+    value: (identifier) @type)
+  (member_access
+    member: (identifier) @type)
+](#lua-match? @type "^_*[A-Z][A-Za-z0-9_]*$"))
+
+(
+  (member_access
+    value: (identifier) @variable.builtin)
   (#eq? @variable.builtin "self")
 )
 
 ; ---------------------------------------------------------------------------- 
 ; Function calls
-(call[
-  function: (identifier) @function.call
-  function: (subscript
-    value: (identifier) @function.call)
-  function: (subscript
-    value: (attribute
-      attribute: (identifier) @function.method.call))
-  function: (attribute
-    attribute: (identifier) @function.method.call)
-])
-
-(
-  (call[
-    function: (identifier) @constructor
-    function: (subscript
-      value: (identifier) @constructor)
-    function: (subscript
-      value: (attribute
-        attribute: (identifier) @constructor))
-    function: (attribute
-      attribute: (identifier) @constructor)
+(call
+  function: [
+    (identifier) @function.call
+    (subscript
+      value: (identifier) @function.call)
   ])
-  (#lua-match? @constructor "^_*[A-Z]")
-)
+
+(member_call
+  function: [
+    (identifier) @function.method.call
+    (member_subscript
+      value: (identifier) @function.method.call)
+  ])
+
+([
+  (call
+    function: [
+      (identifier) @constructor
+      (subscript
+        value: (identifier) @constructor)
+    ])
+  (member_call
+    function: [
+      (identifier) @constructor
+      (member_subscript
+        value: (identifier) @constructor)
+    ])
+](#lua-match? @constructor "^_*[A-Z]"))
 
 ; ---------------------------------------------------------------------------- 
 ; Built-in functions
@@ -315,38 +340,30 @@
 
 ; ---------------------------------------------------------------------------- 
 ; Parameters
-(parameter (identifier) @variable.parameter)
+(parameter_member (member_access
+  value: [
+    (identifier) @variable.parameter
+    (subscript
+      value: (identifier) @variable.parameter)
+  ]))
 (generic_parameter (subscript
   value: (identifier) @variable.parameter))
+(parameter (identifier) @variable.parameter)
 (named_parameter
   name: (identifier) @variable.parameter)
-(member (identifier) @variable.member)
-(member (subscript
-  value: (identifier) @variable.member))
-(member (call[
-  function: (identifier) @function.method.call
-  function: (subscript
-    value: (identifier) @function.method.call)
-]))
-
-(
-  (member (call[
-    function: (identifier) @constructor
-    function: (subscript
-      value: (identifier) @constructor)
-  ]))
-  (#lua-match? @constructor "^_*[A-Z]")
-)
 
 ([
-  (parameter (identifier) @type)
+  (parameter_member (member_access
+    value: [
+      (identifier) @type
+      (subscript
+        value: (identifier) @type)
+    ]))
   (generic_parameter (subscript
     value: (identifier) @type))
+  (parameter (identifier) @type)
   (named_parameter
     name: (identifier) @type)
-  (member (identifier) @type)
-  (member (subscript
-    value: (identifier) @type))
 ](#lua-match? @type "^_*[A-Z][A-Za-z0-9_]*$"))
 
 ; ---------------------------------------------------------------------------- 
@@ -444,11 +461,16 @@
 ; Decorators
 (decorator "@" @attribute[
   (identifier) @attribute
-  (attribute
-    attribute: (identifier) @attribute)
-  (call (identifier) @attribute)
-  (call (attribute
-    attribute: (identifier) @attribute))
+  (member_access
+    member: [
+      (identifier) @attribute
+      (member_call
+        function: (identifier) @attribute)
+    ] .)
+  (member_call
+    function: (identifier) @attribute)
+  (call
+    function: (identifier) @attribute)
 ])
 
 (
@@ -466,19 +488,20 @@
 )
 
 (
-  (decorator (call (identifier) @attribute.builtin))
+  (decorator (call
+    function: (identifier) @attribute.builtin))
   (#any-of? @attribute.builtin
     "align"
     "always_inline"
     "deprecated"
-    "export"
-  )
+    "export")
 )
 
 (
-  (decorator (call (attribute
-    object: (identifier) @attribute.builtin @_first
-    attribute: (identifier) @attribute.builtin @_second)))
+  (decorator (member_access
+    value: (identifier) @attribute.builtin @_first
+    . member: (member_call
+      function: (identifier) @attribute.builtin @_second)))
   (#eq? @_first "compiler")
   (#eq? @_second "register")
 )
@@ -600,8 +623,29 @@
 ; Built-in types
 (self) @type.builtin
 
-([
-  (parameter (identifier) @type.builtin)
+(
+  (member_access
+    value: (subscript
+      value: (identifier) @type.builtin))
+  (#eq? @type.builtin "reflect")
+)
+
+(
   (generic_parameter (subscript
     value: (identifier) @type.builtin))
-](#eq? @type.builtin "SIMD"))
+  (#any-of? @type.builtin
+    "SIMD"
+    "Reflected")
+)
+
+(
+  (selective_import_statement "import" [
+    (import
+      name: (dotted_identifier (identifier) @type.builtin))
+    (aliased_import
+      name: (dotted_identifier (identifier) @type.builtin))
+  ])
+  (#any-of? @type.builtin
+    "SIMD"
+    "Reflected")
+)

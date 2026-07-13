@@ -81,11 +81,10 @@ a.b.c
 --------------------------------------------------------------------------------
 
 (module
-  (attribute
-    (attribute
-      (identifier)
-      (identifier))
-    (identifier)))
+  (member_access
+    value: (identifier)
+    member: (identifier)
+    member: (identifier)))
 
 ================================================================================
 Await expressions
@@ -456,11 +455,10 @@ a() + b[c] * c.d.e
         parameters: (parameters
           (parameter
             (identifier))))
-      right: (attribute
-        object: (attribute
-          object: (identifier)
-          attribute: (identifier))
-        attribute: (identifier)))))
+      right: (member_access
+        value: (identifier)
+        member: (identifier)
+        member: (identifier)))))
 
 ================================================================================
 Bitwise operators
@@ -613,9 +611,9 @@ a, *b.c = d
     left: (pattern_list
       (identifier)
       (list_splat_pattern
-        (attribute
-          object: (identifier)
-          attribute: (identifier))))
+        (member_access
+          value: (identifier)
+          member: (identifier))))
     right: (identifier)))
 
 ================================================================================

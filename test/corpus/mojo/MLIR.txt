@@ -206,19 +206,16 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (call
             function: (identifier)
             arguments: (arguments
-              (attribute
-                object: (attribute
-                  object: (self)
-                  attribute: (identifier))
-                attribute: (identifier)))))
+              (member_access
+                value: (self)
+                member: (identifier)
+                member: (identifier)))))
         (mlir_type_parameter
           (parameter_member
-            (parameter
-              (self))
-            (member
-              (identifier))
-            (member
-              (identifier))))
+            (member_access
+              value: (self)
+              member: (identifier)
+              member: (identifier))))
         (mlir_type_parameter
           (mlir_parameter
             (mlir_dotted_identifier
@@ -237,17 +234,17 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
-    right: (subscript
-      value: (attribute
-        object: (identifier)
-        attribute: (identifier))
-      parameters: (parameters
-        (mlir_type
-          (mlir_type_prefix)
-          (mlir_parameter
-            (mlir_dotted_identifier
-              (identifier)
-              (identifier)))))))
+    right: (member_access
+      value: (identifier)
+      member: (member_subscript
+        value: (identifier)
+        parameters: (parameters
+          (mlir_type
+            (mlir_type_prefix)
+            (mlir_parameter
+              (mlir_dotted_identifier
+                (identifier)
+                (identifier))))))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier)
@@ -255,10 +252,9 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parameter_member
-            (parameter
-              (identifier))
-            (member
-              (identifier))))))
+            (member_access
+              value: (identifier)
+              member: (identifier))))))
     right: (mlir_type
       (mlir_type_parameter
         (mlir_type_prefix)
@@ -293,22 +289,19 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))
-          (member
-            (call
+          (member_access
+            value: (self)
+            member: (identifier)
+            member: (member_call
               function: (identifier)
               arguments: (arguments)))))
       (mlir_type_parameter
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character))))
   (comptime_statement
@@ -333,12 +326,11 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_type_special_character))
       (mlir_type_parameter
         (unary_operator
-          argument: (attribute
-            object: (call
-              function: (subscript
-                value: (attribute
-                  object: (identifier)
-                  attribute: (identifier))
+          argument: (member_access
+            value: (identifier)
+            member: (member_call
+              function: (member_subscript
+                value: (identifier)
                 parameters: (parameters
                   (named_parameter
                     name: (identifier)
@@ -357,7 +349,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
                           (parameter
                             (identifier))))))))
               arguments: (arguments))
-            attribute: (identifier))))
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_parameter
           (mlir_dotted_identifier
@@ -379,19 +371,16 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (call
           function: (identifier)
           arguments: (arguments
-            (attribute
-              object: (attribute
-                object: (self)
-                attribute: (identifier))
-              attribute: (identifier)))))
+            (member_access
+              value: (self)
+              member: (identifier)
+              member: (identifier)))))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_parameter
           (mlir_dotted_identifier
@@ -418,20 +407,17 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (call
           function: (identifier)
           arguments: (arguments
-            (attribute
-              object: (attribute
-                object: (self)
-                attribute: (identifier))
-              attribute: (identifier)))))
+            (member_access
+              value: (self)
+              member: (identifier)
+              member: (identifier)))))
       (mlir_type_parameter)
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character)
         (mlir_type_special_character)
@@ -458,10 +444,9 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_parameter
           (mlir_dotted_identifier
@@ -486,30 +471,25 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character))))
   (comptime_statement
@@ -540,9 +520,9 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_type_special_character))
       (mlir_type_parameter
         (unary_operator
-          argument: (attribute
-            object: (self)
-            attribute: (identifier))))
+          argument: (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_type_parameter
         (mlir_type_special_character))
       (mlir_type_parameter
@@ -578,17 +558,15 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_type_special_character))
       (mlir_type_parameter
         (parameter_member
-          (parameter
-            (identifier))
-          (member
-            (subscript
+          (member_access
+            value: (identifier)
+            member: (member_subscript
               value: (identifier)
               parameters: (parameters
                 (parameter_member
-                  (parameter
-                    (self))
-                  (member
-                    (identifier))))))))
+                  (member_access
+                    value: (self)
+                    member: (identifier))))))))
       (mlir_type_parameter
         (mlir_type_special_character)
         (mlir_string)
@@ -796,9 +774,9 @@ def _get_860m_target() -> _TargetType:
   (if_statement
     condition: (comparison_operator
       (identifier)
-      (attribute
-        object: (identifier)
-        attribute: (identifier)))
+      (member_access
+        value: (identifier)
+        member: (identifier)))
     consequence: (block
       (return_statement
         (mlir_attr
@@ -808,11 +786,11 @@ def _get_860m_target() -> _TargetType:
       left: (comparison_operator
         (identifier)
         (identifier))
-      right: (call
-        function: (attribute
-          object: (identifier)
-          attribute: (identifier))
-        arguments: (arguments)))
+      right: (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments))))
     consequence: (block
       (return_statement
         (mlir_attr
@@ -822,9 +800,9 @@ def _get_860m_target() -> _TargetType:
   (if_statement
     condition: (comparison_operator
       (identifier)
-      (attribute
-        object: (identifier)
-        attribute: (identifier)))
+      (member_access
+        value: (identifier)
+        member: (identifier)))
     consequence: (block
       (return_statement
         (mlir_attr
@@ -979,9 +957,9 @@ def _get_860m_target() -> _TargetType:
   (if_statement
     condition: (comparison_operator
       (identifier)
-      (attribute
-        object: (identifier)
-        attribute: (identifier)))
+      (member_access
+        value: (identifier)
+        member: (identifier)))
     consequence: (block
       (return_statement
         (call
@@ -1063,18 +1041,16 @@ def _get_860m_target() -> _TargetType:
             (mlir_type_special_character))
           (mlir_attr_parameter
             (parameter_member
-              (parameter
-                (self))
-              (member
-                (identifier))))
+              (member_access
+                value: (self)
+                member: (identifier))))
           (mlir_attr_parameter
             (mlir_type_special_character))
           (mlir_attr_parameter
             (parameter_member
-              (parameter
-                (identifier))
-              (member
-                (identifier))))
+              (member_access
+                value: (identifier)
+                member: (identifier))))
           (mlir_attr_parameter
             (mlir_type_special_character)
             (mlir_type_special_character))
@@ -1101,32 +1077,30 @@ def _get_860m_target() -> _TargetType:
         (mlir_type_special_character))
       (mlir_attr_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_attr_parameter)
       (mlir_attr_parameter
         (unary_operator
-          argument: (attribute
-            object: (self)
-            attribute: (identifier))))
+          argument: (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_attr_parameter
         (mlir_type_special_character))
       (mlir_attr_parameter
         (parameter_member
-          (parameter
-            (identifier))
-          (member
-            (identifier))))
+          (member_access
+            value: (identifier)
+            member: (identifier))))
       (mlir_attr_parameter
         (mlir_type_special_character)
         (mlir_type_special_character))
       (mlir_attr_parameter
         (unary_operator
-          argument: (attribute
-            object: (self)
-            attribute: (identifier))))))
+          argument: (member_access
+            value: (self)
+            member: (identifier))))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -1208,27 +1182,24 @@ def _get_860m_target() -> _TargetType:
         (mlir_type_special_character))
       (mlir_attr_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier))))
+          (member_access
+            value: (self)
+            member: (identifier))))
       (mlir_attr_parameter
         (mlir_type_special_character))
       (mlir_attr_parameter
         (parameter_member
-          (parameter
-            (self))
-          (member
-            (subscript
+          (member_access
+            value: (self)
+            member: (member_subscript
               value: (identifier)
               parameters: (parameters
                 (parameter
                   (identifier))
                 (parameter_member
-                  (parameter
-                    (self))
-                  (member
-                    (subscript
+                  (member_access
+                    value: (self)
+                    member: (member_subscript
                       value: (identifier)
                       parameters: (parameters
                         (parameter
@@ -1302,11 +1273,11 @@ def _get_860m_target() -> _TargetType:
             (mlir_operator))
           (mlir_attr_parameter
             (unary_operator
-              argument: (call
-                function: (attribute
-                  object: (identifier)
-                  attribute: (identifier))
-                arguments: (arguments))))
+              argument: (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments)))))
           (mlir_attr_parameter
             (mlir_type_special_character)
             (mlir_parameter
@@ -1315,11 +1286,11 @@ def _get_860m_target() -> _TargetType:
             (mlir_operator))
           (mlir_attr_parameter
             (unary_operator
-              argument: (call
-                function: (attribute
-                  object: (identifier)
-                  attribute: (identifier))
-                arguments: (arguments))))
+              argument: (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments)))))
           (mlir_attr_parameter
             (mlir_type_special_character)
             (mlir_parameter
@@ -1328,11 +1299,11 @@ def _get_860m_target() -> _TargetType:
             (mlir_operator))
           (mlir_attr_parameter
             (unary_operator
-              argument: (call
-                function: (attribute
-                  object: (identifier)
-                  attribute: (identifier))
-                arguments: (arguments))))
+              argument: (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments)))))
           (mlir_attr_parameter
             (mlir_type_special_character))))))
   (function_declaration
@@ -1354,10 +1325,9 @@ def _get_860m_target() -> _TargetType:
               (named_parameter
                 name: (identifier)
                 value: (parameter_member
-                  (parameter
-                    (self))
-                  (member
-                    (identifier))))
+                  (member_access
+                    value: (self)
+                    member: (identifier))))
               (mlir_attr
                 (mlir_attr_parameter
                   (mlir_attr_prefix)
@@ -1368,26 +1338,23 @@ def _get_860m_target() -> _TargetType:
                   (mlir_type_special_character))
                 (mlir_attr_parameter
                   (parameter_member
-                    (parameter
-                      (identifier))
-                    (member
-                      (identifier))))
+                    (member_access
+                      value: (identifier)
+                      member: (identifier))))
                 (mlir_attr_parameter
                   (mlir_type_special_character)
                   (mlir_type_special_character))
                 (mlir_attr_parameter
                   (parameter_member
-                    (parameter
-                      (identifier))
-                    (member
-                      (subscript
+                    (member_access
+                      value: (identifier)
+                      member: (member_subscript
                         value: (identifier)
                         parameters: (parameters
                           (parameter_member
-                            (parameter
-                              (self))
-                            (member
-                              (identifier))))))))))))))
+                            (member_access
+                              value: (self)
+                              member: (identifier))))))))))))))
     (where_clause
       (mlir_attr
         (mlir_attr_parameter
@@ -1399,18 +1366,16 @@ def _get_860m_target() -> _TargetType:
           (mlir_type_special_character))
         (mlir_attr_parameter
           (parameter_member
-            (parameter
-              (identifier))
-            (member
-              (identifier))))
+            (member_access
+              value: (identifier)
+              member: (identifier))))
         (mlir_attr_parameter
           (mlir_type_special_character))
         (mlir_attr_parameter
           (parameter_member
-            (parameter
-              (self))
-            (member
-              (identifier))))
+            (member_access
+              value: (self)
+              member: (identifier))))
         (mlir_attr_parameter
           (mlir_type_special_character))))
     body: (block
@@ -1862,9 +1827,9 @@ def _snprintf[
         arguments: (arguments
           (identifier)))))
   (assignment
-    left: (attribute
-      object: (identifier)
-      attribute: (identifier))
+    left: (member_access
+      value: (identifier)
+      member: (identifier))
     right: (mlir_op
       (mlir_dotted_identifier
         (identifier)
@@ -1874,10 +1839,9 @@ def _snprintf[
         (named_parameter
           name: (identifier)
           value: (parameter_member
-            (parameter
-              (self))
-            (member
-              (identifier)))))
+            (member_access
+              value: (self)
+              member: (identifier)))))
       arguments: (arguments
         (mlir_op
           (mlir_dotted_identifier
@@ -1887,17 +1851,15 @@ def _snprintf[
             (named_parameter
               name: (identifier)
               value: (parameter_member
-                (generic_parameter
-                  (subscript
+                (member_access
+                  value: (subscript
                     value: (identifier)
                     parameters: (parameters
                       (parameter_member
-                        (parameter
-                          (self))
-                        (member
-                          (identifier))))))
-                (member
-                  (identifier)))))
+                        (member_access
+                          value: (self)
+                          member: (identifier)))))
+                  member: (identifier)))))
           arguments: (arguments
             (mlir_op
               (mlir_dotted_identifier
@@ -1918,13 +1880,13 @@ def _snprintf[
                         (identifier)))
                     (mlir_type_special_character))))
               arguments: (arguments
-                (attribute
-                  object: (identifier)
-                  attribute: (identifier)))))))))
+                (member_access
+                  value: (identifier)
+                  member: (identifier)))))))))
   (assignment
-    left: (attribute
-      object: (identifier)
-      attribute: (identifier))
+    left: (member_access
+      value: (identifier)
+      member: (identifier))
     right: (mlir_op
       (mlir_dotted_identifier
         (identifier)
@@ -1943,22 +1905,19 @@ def _snprintf[
               (mlir_type_special_character))
             (mlir_type_parameter
               (parameter_member
-                (parameter
-                  (self))
-                (member
-                  (identifier))
-                (member
-                  (call
+                (member_access
+                  value: (self)
+                  member: (identifier)
+                  member: (member_call
                     function: (identifier)
                     arguments: (arguments)))))
             (mlir_type_parameter
               (mlir_type_special_character))
             (mlir_type_parameter
               (parameter_member
-                (parameter
-                  (self))
-                (member
-                  (identifier))))
+                (member_access
+                  value: (self)
+                  member: (identifier))))
             (mlir_type_parameter
               (mlir_type_special_character)))))
       arguments: (arguments
@@ -2014,14 +1973,15 @@ def _snprintf[
       parameters: (mlir_op_parameters
         (named_parameter
           name: (identifier)
-          value: (call
-            function: (attribute
-              object: (call
+          value: (parameter_member
+            (member_access
+              value: (call
                 function: (identifier)
                 arguments: (arguments
                   (integer)))
-              attribute: (identifier))
-            arguments: (arguments)))
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments)))))
         (named_parameter
           name: (identifier)
           value: (generic_parameter
@@ -2112,11 +2072,11 @@ def _snprintf[
             (identifier)
             (identifier))
           arguments: (arguments
-            (call
-              function: (attribute
-                object: (identifier)
-                attribute: (identifier))
-              arguments: (arguments))
+            (member_access
+              value: (identifier)
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments)))
             (identifier)
             (identifier))))))
   (function_declaration
@@ -2146,25 +2106,23 @@ def _snprintf[
                 (named_parameter
                   name: (identifier)
                   value: (parameter_member
-                    (generic_parameter
-                      (subscript
+                    (member_access
+                      value: (subscript
                         value: (identifier)
                         parameters: (parameters
                           (parameter_member
-                            (parameter
-                              (identifier))
-                            (member
-                              (identifier)))
-                          (integer))))
-                    (member
-                      (identifier))))
+                            (member_access
+                              value: (identifier)
+                              member: (identifier)))
+                          (integer)))
+                      member: (identifier))))
                 (named_parameter
                   name: (identifier)
                   value: (mlir_attr
                     (identifier))))
               arguments: (arguments
-                (attribute
-                  object: (call
+                (member_access
+                  value: (call
                     function: (subscript
                       value: (identifier)
                       parameters: (parameters
@@ -2173,17 +2131,16 @@ def _snprintf[
                             value: (identifier)
                             parameters: (parameters
                               (parameter_member
-                                (parameter
-                                  (self))
-                                (member
-                                  (identifier)))
+                                (member_access
+                                  value: (self)
+                                  member: (identifier)))
                               (call
                                 function: (identifier)
                                 arguments: (arguments
                                   (integer))))))))
                     arguments: (arguments
                       (identifier)))
-                  attribute: (identifier)))))))))
+                  member: (identifier)))))))))
   (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
@@ -2253,13 +2210,14 @@ def _snprintf[
         parameters: (mlir_op_parameters
           (named_parameter
             name: (identifier)
-            value: (call
-              function: (attribute
-                object: (parenthesized_expression
+            value: (parameter_member
+              (member_access
+                value: (parenthesized_expression
                   (not_operator
                     argument: (identifier)))
-                attribute: (identifier))
-              arguments: (arguments)))
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments)))))
           (named_parameter
             name: (identifier)
             value: (call
@@ -2315,12 +2273,12 @@ def _snprintf[
                 (identifier)
                 (identifier))
               arguments: (arguments
-                (attribute
-                  object: (identifier)
-                  attribute: (identifier))
-                (attribute
-                  object: (identifier)
-                  attribute: (identifier)))))))))
+                (member_access
+                  value: (identifier)
+                  member: (identifier))
+                (member_access
+                  value: (identifier)
+                  member: (identifier)))))))))
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
@@ -2457,11 +2415,11 @@ def _snprintf[
     body: (block
       (assignment
         left: (identifier)
-        right: (call
-          function: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          arguments: (arguments)))
+        right: (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments))))
       (return_statement
         (mlir_op
           (mlir_dotted_identifier
@@ -2601,11 +2559,11 @@ def _snprintf[
     body: (block
       (assignment
         left: (identifier)
-        right: (call
-          function: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          arguments: (arguments)))
+        right: (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments))))
       (return_statement
         (call
           function: (identifier)
@@ -2617,12 +2575,13 @@ def _snprintf[
               parameters: (mlir_op_parameters
                 (named_parameter
                   name: (identifier)
-                  value: (attribute
-                    object: (string
-                      (string_start)
-                      (string_content)
-                      (string_end))
-                    attribute: (identifier)))
+                  value: (parameter_member
+                    (member_access
+                      value: (string
+                        (string_start)
+                        (string_content)
+                        (string_end))
+                      member: (identifier))))
                 (named_parameter
                   name: (identifier)
                   value: (mlir_attr
@@ -2694,17 +2653,17 @@ def _snprintf[
                 (identifier)
                 (identifier)
                 (comment)
-                (call
-                  function: (attribute
-                    object: (call
-                      function: (subscript
-                        value: (identifier)
-                        parameters: (parameters
-                          (parameter
-                            (identifier))))
-                      arguments: (arguments))
-                    attribute: (identifier))
-                  arguments: (arguments))
+                (member_access
+                  value: (call
+                    function: (subscript
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter
+                          (identifier))))
+                    arguments: (arguments))
+                  member: (member_call
+                    function: (identifier)
+                    arguments: (arguments)))
                 (identifier)))))))))
 
 ================================================================================
@@ -2801,12 +2760,13 @@ def structured_for_loop() -> __mlir_type.index:
         parameters: (mlir_op_parameters
           (named_parameter
             name: (identifier)
-            value: (attribute
-              object: (string
-                (string_start)
-                (string_content)
-                (string_end))
-              attribute: (identifier))))
+            value: (parameter_member
+              (member_access
+                value: (string
+                  (string_start)
+                  (string_content)
+                  (string_end))
+                member: (identifier)))))
         arguments: (arguments))))
   (function_declaration
     name: (identifier)

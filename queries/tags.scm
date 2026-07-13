@@ -7,8 +7,9 @@
   name: (identifier) @name) @definition.function
 
 (call
-  function: [
-      (identifier) @name
-      (attribute
-        attribute: (identifier) @name)
-  ]) @reference.call
+  function: (identifier) @name
+) @reference.call
+
+(member_call
+  function: (identifier) @name
+) @reference.call

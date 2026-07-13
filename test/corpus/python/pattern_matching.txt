@@ -18,13 +18,13 @@ match command.split():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -32,18 +32,18 @@ match command.split():
                 (string_start)
                 (string_content)
                 (string_end)))))
-        (block
+        consequence: (block
           (call
-            (identifier)
-            (arguments
+            function: (identifier)
+            arguments: (arguments
               (string
                 (string_start)
                 (string_content)
                 (string_end))))
           (call
-            (identifier)
-            (arguments))))
-      (case_clause
+            function: (identifier)
+            arguments: (arguments))))
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -51,13 +51,13 @@ match command.split():
                 (string_start)
                 (string_content)
                 (string_end)))))
-        (block
-          (call
-            (attribute
-              (identifier)
-              (identifier))
-            (arguments))))
-      (case_clause
+        consequence: (block
+          (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments)))))
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -68,34 +68,34 @@ match command.split():
             (case_pattern
               (dotted_identifier
                 (identifier)))))
-        (block
-          (call
-            (attribute
-              (identifier)
-              (identifier))
-            (arguments
-              (identifier)
-              (identifier)))))
-      (case_clause
-        (case_pattern
-          (list_pattern
-            (case_pattern
-              (string
-                (string_start)
-                (string_content)
-                (string_end)))
-            (case_pattern
-              (dotted_identifier
-                (identifier)))))
-        (block
-          (assignment
-            (identifier)
-            (call
-              (attribute
+        consequence: (block
+          (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments
                 (identifier)
-                (identifier))
-              (arguments
                 (identifier))))))
+      alternative: (case_clause
+        (case_pattern
+          (list_pattern
+            (case_pattern
+              (string
+                (string_start)
+                (string_content)
+                (string_end)))
+            (case_pattern
+              (dotted_identifier
+                (identifier)))))
+        consequence: (block
+          (assignment
+            left: (identifier)
+            right: (member_access
+              value: (identifier)
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments
+                  (identifier)))))))
       (comment))))
 
 ================================================================================
@@ -111,13 +111,13 @@ match command.split():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -128,18 +128,18 @@ match command.split():
             (case_pattern
               (splat_pattern
                 (identifier)))))
-        (block
+        consequence: (block
           (for_statement
-            (identifier)
-            (identifier)
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)
-                  (identifier))))))))))
+            left: (identifier)
+            right: (identifier)
+            body: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier)
+                    (identifier)))))))))))
 
 ================================================================================
 Adding a wild card
@@ -157,14 +157,14 @@ match command.split():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
       (comment)
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -172,10 +172,10 @@ match command.split():
                 (string_start)
                 (string_content)
                 (string_end)))))
-        (block
+        consequence: (block
           (ellipsis)
           (comment)))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -186,9 +186,9 @@ match command.split():
             (case_pattern
               (dotted_identifier
                 (identifier)))))
-        (block
+        consequence: (block
           (pass_statement)))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -199,21 +199,21 @@ match command.split():
             (case_pattern
               (splat_pattern
                 (identifier)))))
-        (block
+        consequence: (block
           (pass_statement)))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (underscore))
-        (block
+        consequence: (block
           (call
-            (identifier)
-            (arguments
+            function: (identifier)
+            arguments: (arguments
               (string
                 (string_start)
                 (string_content)
                 (interpolation
-                  (identifier)
-                  (type_conversion))
+                  expression: (identifier)
+                  type_conversion: (type_conversion))
                 (string_end)))))))))
 
 ================================================================================
@@ -230,13 +230,13 @@ match command.split():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (union_pattern
             (list_pattern
@@ -256,19 +256,19 @@ match command.split():
                   (string_start)
                   (string_content)
                   (string_end))))))
-        (block
+        consequence: (block
           (assignment
-            (identifier)
-            (call
-              (attribute
-                (identifier)
-                (identifier))
-              (arguments
-                (string
-                  (string_start)
-                  (string_content)
-                  (string_end)))))))
-      (case_clause
+            left: (identifier)
+            right: (member_access
+              value: (identifier)
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments
+                  (string
+                    (string_start)
+                    (string_content)
+                    (string_end))))))))
+      alternative: (case_clause
         (case_pattern
           (union_pattern
             (list_pattern
@@ -308,7 +308,7 @@ match command.split():
                   (string_start)
                   (string_content)
                   (string_end))))))
-        (block
+        consequence: (block
           (pass_statement))))))
 
 ================================================================================
@@ -323,13 +323,13 @@ match command.split():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (list_pattern
             (case_pattern
@@ -360,15 +360,15 @@ match command.split():
                           (string_content)
                           (string_end))))))
                 (identifier)))))
-        (block
+        consequence: (block
           (assignment
-            (identifier)
-            (call
-              (attribute
-                (identifier)
-                (identifier))
-              (arguments
-                (identifier)))))))))
+            left: (identifier)
+            right: (member_access
+              value: (identifier)
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments
+                  (identifier))))))))))
 
 ================================================================================
 Actually not match
@@ -750,24 +750,24 @@ if match := re.fullmatch(r"(-)?(\d+:)?\d?\d:\d\d(\.\d*)?", time, flags=re.ASCII)
 
 (module
   (if_statement
-    (named_expression
-      (identifier)
-      (call
-        (attribute
-          (identifier)
-          (identifier))
-        (arguments
-          (string
-            (string_start)
-            (string_content)
-            (string_end))
-          (identifier)
-          (keyword_argument
+    condition: (named_expression
+      name: (identifier)
+      value: (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments
+            (string
+              (string_start)
+              (string_content)
+              (string_end))
             (identifier)
-            (attribute
-              (identifier)
-              (identifier))))))
-    (block
+            (keyword_argument
+              name: (identifier)
+              value: (member_access
+                value: (identifier)
+                member: (identifier)))))))
+    consequence: (block
       (return_statement
         (integer)))))
 
@@ -792,13 +792,13 @@ match event.get():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (class_pattern
             (dotted_identifier
@@ -813,13 +813,13 @@ match event.get():
                   (case_pattern
                     (dotted_identifier
                       (identifier))))))))
-        (block
+        consequence: (block
           (call
-            (identifier)
-            (arguments
+            function: (identifier)
+            arguments: (arguments
               (identifier)
               (identifier)))))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (union_pattern
             (class_pattern
@@ -835,13 +835,13 @@ match event.get():
             (class_pattern
               (dotted_identifier
                 (identifier)))))
-        (block
-          (call
-            (attribute
-              (identifier)
-              (identifier))
-            (arguments))))
-      (case_clause
+        consequence: (block
+          (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments)))))
+      alternative: (case_clause
         (case_pattern
           (class_pattern
             (dotted_identifier
@@ -853,35 +853,35 @@ match event.get():
                   (string_start)
                   (string_content)
                   (string_end))))))
-        (block
-          (call
-            (attribute
-              (identifier)
-              (identifier))
-            (arguments))
+        consequence: (block
+          (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments)))
           (ellipsis)))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (class_pattern
             (dotted_identifier
               (identifier))))
-        (block
+        consequence: (block
           (pass_statement)
           (comment)))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (dotted_identifier
             (identifier)))
-        (block
+        consequence: (block
           (raise_statement
             (call
-              (identifier)
-              (arguments
+              function: (identifier)
+              arguments: (arguments
                 (string
                   (string_start)
                   (string_content)
                   (interpolation
-                    (identifier))
+                    expression: (identifier))
                   (string_end))))))))))
 
 ================================================================================
@@ -896,13 +896,13 @@ match event.get():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (class_pattern
             (dotted_identifier
@@ -915,10 +915,10 @@ match event.get():
                 (case_pattern
                   (dotted_identifier
                     (identifier)))))))
-        (block
+        consequence: (block
           (call
-            (identifier)
-            (arguments
+            function: (identifier)
+            arguments: (arguments
               (identifier)
               (identifier))))))))
 
@@ -936,13 +936,13 @@ match event.get():
 
 (module
   (match_statement
-    (call
-      (attribute
-        (identifier)
-        (identifier))
-      (arguments))
-    (block
-      (case_clause
+    subject: (member_access
+      value: (identifier)
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))
+    body: (block
+      alternative: (case_clause
         (case_pattern
           (class_pattern
             (dotted_identifier
@@ -962,18 +962,18 @@ match event.get():
                   (identifier)
                   (identifier))))))
         (comment)
-        (block
+        consequence: (block
           (call
-            (identifier)
-            (arguments
+            function: (identifier)
+            arguments: (arguments
               (identifier)
               (identifier)))))
-      (case_clause
+      alternative: (case_clause
         (case_pattern
           (class_pattern
             (dotted_identifier
               (identifier))))
-        (block
+        consequence: (block
           (pass_statement)
           (comment))))))
 
@@ -998,117 +998,117 @@ for action in actions:
 
 (module
   (for_statement
-    (identifier)
-    (identifier)
-    (block
+    left: (identifier)
+    right: (identifier)
+    body: (block
       (match_statement
-        (identifier)
-        (block
-          (case_clause
+        subject: (identifier)
+        body: (block
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (dotted_identifier
                     (identifier)))
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (dotted_identifier
                     (identifier)))))
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))))
-          (case_clause
+            consequence: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (dotted_identifier
                     (identifier)))))
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))))
-          (case_clause
+            consequence: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (dotted_identifier
                     (identifier)))
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (string
                     (string_start)
                     (string_content)
                     (string_end)))))
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))))
-          (case_clause
+            consequence: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (dotted_identifier
+                key: (dotted_identifier
                   (identifier)
                   (identifier))
-                (case_pattern
+                value: (case_pattern
                   (dotted_identifier
                     (identifier)))))
-            (block
+            consequence: (block
               (call
-                (identifier)
-                (arguments))))
-          (case_clause
+                function: (identifier)
+                arguments: (arguments))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (underscore))
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (underscore))))
-            (block
+            consequence: (block
               (call
-                (identifier)
-                (arguments
+                function: (identifier)
+                arguments: (arguments
                   (string
                     (string_start)
                     (string_content)
@@ -1134,120 +1134,120 @@ for action in actions:
 
 (module
   (for_statement
-    (identifier)
-    (identifier)
-    (block
+    left: (identifier)
+    right: (identifier)
+    body: (block
       (match_statement
-        (identifier)
-        (block
-          (case_clause
+        subject: (identifier)
+        body: (block
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (class_pattern
                     (dotted_identifier
                       (identifier))
                     (case_pattern
                       (dotted_identifier
                         (identifier)))))
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (class_pattern
                     (dotted_identifier
                       (identifier))
                     (case_pattern
                       (dotted_identifier
                         (identifier)))))))
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))))
-          (case_clause
+            consequence: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (class_pattern
                     (dotted_identifier
                       (identifier))
                     (case_pattern
                       (dotted_identifier
                         (identifier)))))))
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))))
-          (case_clause
+            consequence: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (class_pattern
                     (dotted_identifier
                       (identifier))
                     (case_pattern
                       (dotted_identifier
                         (identifier)))))
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (string
                     (string_start)
                     (string_content)
                     (string_end)))))
-            (block
-              (call
-                (attribute
-                  (identifier)
-                  (identifier))
-                (arguments
-                  (identifier)))))
-          (case_clause
+            consequence: (block
+              (member_access
+                value: (identifier)
+                member: (member_call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))))
+          alternative: (case_clause
             (case_pattern
               (dict_pattern
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (underscore))
-                (string
+                key: (string
                   (string_start)
                   (string_content)
                   (string_end))
-                (case_pattern
+                value: (case_pattern
                   (underscore))))
-            (block
+            consequence: (block
               (call
-                (identifier)
-                (arguments
+                function: (identifier)
+                arguments: (arguments
                   (string
                     (string_start)
                     (string_content)

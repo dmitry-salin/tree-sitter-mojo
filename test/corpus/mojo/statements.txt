@@ -77,17 +77,16 @@ comptime byte_length[idx: Int] where idx > 0 = BenchConfig.VERBOSE_TIMING_LABELS
         (comparison_operator
           (identifier)
           (integer))))
-    right: (call
-      function: (attribute
-        object: (subscript
-          value: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          parameters: (parameters
-            (parameter
-              (identifier))))
-        attribute: (identifier))
-      arguments: (arguments))))
+    right: (member_access
+      value: (identifier)
+      member: (member_subscript
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier))))
+      member: (member_call
+        function: (identifier)
+        arguments: (arguments)))))
 
 ================================================================================
 Comptime: escaped identifier
@@ -126,9 +125,9 @@ comptime is_value = not Self.is_tuple
     left: (comptime_parameter
       name: (identifier))
     right: (not_operator
-      argument: (attribute
-        object: (self)
-        attribute: (identifier)))))
+      argument: (member_access
+        value: (self)
+        member: (identifier)))))
 
 ================================================================================
 Convention: variable declaration
@@ -158,11 +157,11 @@ for ref element in self:
     body: (block
       (assignment
         left: (identifier)
-        right: (call
-          function: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          arguments: (arguments))))))
+        right: (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments)))))))
 
 ================================================================================
 Assignment: function call on the left-hand side
@@ -187,11 +186,11 @@ for ref element in self:
                 (identifier))))
           arguments: (arguments
             (identifier)))
-        right: (call
-          function: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          arguments: (arguments))))))
+        right: (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments)))))))
 
 ================================================================================
 Assignment: escaped identifier
@@ -267,11 +266,11 @@ with (match := open("file.txt")) as f:
     body: (block
       (assignment
         left: (identifier)
-        right: (call
-          function: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          arguments: (arguments))))))
+        right: (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments)))))))
 
 ================================================================================
 Function: generic declarations
@@ -494,10 +493,9 @@ def return_generic_with_attribute() -> I[v.r]:
         parameters: (parameters
           (parameter_splat
             (parameter_member
-              (parameter
-                (identifier))
-              (member
-                (identifier)))))))
+              (member_access
+                value: (identifier)
+                member: (identifier)))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -514,10 +512,9 @@ def return_generic_with_attribute() -> I[v.r]:
                 parameters: (parameters
                   (parameter_splat
                     (parameter_member
-                      (parameter
-                        (identifier))
-                      (member
-                        (identifier)))))))))))
+                      (member_access
+                        value: (identifier)
+                        member: (identifier)))))))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -527,13 +524,14 @@ def return_generic_with_attribute() -> I[v.r]:
       (subscript
         value: (identifier)
         parameters: (parameters
-          (list_splat
-            (attribute
-              object: (call
-                function: (identifier)
-                arguments: (arguments
-                  (identifier)))
-              attribute: (identifier))))))
+          (parameter_splat
+            (parameter_member
+              (member_access
+                value: (call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier)))
+                member: (identifier)))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -566,10 +564,9 @@ def return_generic_with_attribute() -> I[v.r]:
         value: (identifier)
         parameters: (parameters
           (parameter_member
-            (parameter
-              (identifier))
-            (member
-              (identifier))))))
+            (member_access
+              value: (identifier)
+              member: (identifier))))))
     body: (block
       (pass_statement))))
 
@@ -674,20 +671,18 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           (identifier))))
     (convention_parameters
       (parameter_member
-        (parameter
-          (identifier))
-        (member
-          (subscript
-            value: (subscript
+        (member_access
+          value: (identifier)
+          member: (member_subscript
+            value: (member_subscript
               value: (identifier)
               parameters: (parameters))
             parameters: (parameters
               (integer))))))
     return_type: (parameter_member
-      (parameter
-        (self))
-      (member
-        (identifier)))
+      (member_access
+        value: (self)
+        member: (identifier)))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -707,20 +702,17 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           (identifier))))
     (convention_parameters
       (parameter_member
-        (parameter
-          (self))
-        (member
-          (identifier)))
+        (member_access
+          value: (self)
+          member: (identifier)))
       (parameter_member
-        (parameter
-          (self))
-        (member
-          (identifier))))
+        (member_access
+          value: (self)
+          member: (identifier))))
     return_type: (parameter_member
-      (parameter
-        (self))
-      (member
-        (identifier)))
+      (member_access
+        value: (self)
+        member: (identifier)))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -734,10 +726,9 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           (identifier))))
     (convention_parameters
       (parameter_member
-        (parameter
-          (identifier))
-        (member
-          (identifier))))
+        (member_access
+          value: (identifier)
+          member: (identifier))))
     return_type: (parameter
       (identifier))
     body: (block
@@ -920,10 +911,9 @@ def reshape[
           constraint: (parameter
             (identifier)))
         default: (parameter_member
-          (parameter
-            (identifier))
-          (member
-            (identifier)))))
+          (member_access
+            value: (identifier)
+            member: (identifier)))))
     arguments: (callable_parameters
       (constrained_parameter_decl
         name: (identifier)
@@ -936,17 +926,17 @@ def reshape[
           (parameter
             (identifier)))))
     (where_clause
-      (call
-        function: (attribute
-          object: (identifier)
-          attribute: (identifier))
-        arguments: (arguments)))
+      (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments))))
     (where_clause
-      (call
-        function: (attribute
-          object: (identifier)
-          attribute: (identifier))
-        arguments: (arguments)))
+      (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -963,9 +953,9 @@ def reshape[
       (call
         function: (identifier)
         arguments: (arguments
-          (attribute
-            object: (self)
-            attribute: (identifier))
+          (member_access
+            value: (self)
+            member: (identifier))
           (identifier))))
     body: (block
       (pass_statement)))
@@ -988,10 +978,9 @@ def reshape[
         parameters: (parameters
           (parameter_splat
             (parameter_member
-              (parameter
-                (self))
-              (member
-                (identifier)))))))
+              (member_access
+                value: (self)
+                member: (identifier)))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -1007,9 +996,9 @@ def reshape[
       (raises))
     (where_clause
       (comparison_operator
-        (attribute
-          object: (self)
-          attribute: (identifier))
+        (member_access
+          value: (self)
+          member: (identifier))
         (false)))
     body: (block
       (pass_statement)))
@@ -1020,9 +1009,9 @@ def reshape[
         name: (identifier)))
     (where_clause
       (not_operator
-        argument: (attribute
-          object: (self)
-          attribute: (identifier))))
+        argument: (member_access
+          value: (self)
+          member: (identifier))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -1037,19 +1026,17 @@ def reshape[
           parameters: (parameters
             (parameter_splat
               (parameter_member
-                (parameter
-                  (self))
-                (member
-                  (identifier))))))
+                (member_access
+                  value: (self)
+                  member: (identifier))))))
         right: (subscript
           value: (identifier)
           parameters: (parameters
             (parameter_splat
               (parameter_member
-                (parameter
-                  (self))
-                (member
-                  (identifier))))))))
+                (member_access
+                  value: (self)
+                  member: (identifier))))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -1081,25 +1068,25 @@ def reshape[
             parameters: (parameters
               (parameter_splat
                 (parameter_member
-                  (parameter
-                    (identifier))
-                  (member
-                    (call
-                      function: (subscript
+                  (member_access
+                    value: (identifier)
+                    member: (member_call
+                      function: (member_subscript
                         value: (identifier)
                         parameters: (parameters
                           (named_parameter
                             name: (identifier)
                             value: (parameter
                               (identifier)))
-                          (call
-                            function: (attribute
-                              object: (call
+                          (parameter_member
+                            (member_access
+                              value: (call
                                 function: (identifier)
                                 arguments: (arguments
                                   (identifier)))
-                              attribute: (identifier))
-                            arguments: (arguments))
+                              member: (member_call
+                                function: (identifier)
+                                arguments: (arguments))))
                           (generic_parameter
                             (subscript
                               value: (identifier)
@@ -1129,10 +1116,9 @@ def reshape[
       (parameter_decl
         name: (identifier)))
     return_type: (parameter_member
-      (parameter
-        (self))
-      (member
-        (subscript
+      (member_access
+        value: (self)
+        member: (member_subscript
           value: (identifier)
           parameters: (parameters
             (parameter_splat
@@ -1147,28 +1133,26 @@ def reshape[
       (parenthesized_expression
         (boolean_operator
           left: (boolean_operator
-            left: (attribute
-              object: (self)
-              attribute: (identifier))
-            right: (attribute
-              object: (self)
-              attribute: (identifier)))
+            left: (member_access
+              value: (self)
+              member: (identifier))
+            right: (member_access
+              value: (self)
+              member: (identifier)))
           right: (comparison_operator
-            (attribute
-              object: (subscript
+            (member_access
+              value: (subscript
                 value: (identifier)
                 parameters: (parameters
                   (parameter_splat
                     (parameter_member
-                      (parameter
-                        (self))
-                      (member
-                        (identifier))
-                      (member
-                        (identifier))))))
-              attribute: (identifier))
-            (attribute
-              object: (subscript
+                      (member_access
+                        value: (self)
+                        member: (identifier)
+                        member: (identifier))))))
+              member: (identifier))
+            (member_access
+              value: (subscript
                 value: (identifier)
                 parameters: (parameters
                   (parameter_splat
@@ -1179,7 +1163,7 @@ def reshape[
                           (parameter_splat
                             (parameter
                               (identifier)))))))))
-              attribute: (identifier))))))
+              member: (identifier))))))
     body: (block
       (pass_statement))))
 
@@ -1439,12 +1423,10 @@ struct I[s: Int, *, e: D = N.i.t()]:
           constraint: (parameter
             (identifier)))
         default: (parameter_member
-          (parameter
-            (identifier))
-          (member
-            (identifier))
-          (member
-            (call
+          (member_access
+            value: (identifier)
+            member: (identifier)
+            member: (member_call
               function: (identifier)
               arguments: (arguments))))))
     body: (block
@@ -1613,15 +1595,15 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
     (where_clause
       (comparison_operator
         (identifier)
-        (attribute
-          object: (identifier)
-          attribute: (identifier))))
+        (member_access
+          value: (identifier)
+          member: (identifier))))
     (where_clause
-      (call
-        function: (attribute
-          object: (identifier)
-          attribute: (identifier))
-        arguments: (arguments)))
+      (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments))))
     body: (block
       (pass_statement)))
   (struct_declaration
@@ -1682,14 +1664,13 @@ __extension SIMD:
                       (parameter
                         (identifier))))))
               default: (parameter_member
-                (generic_parameter
-                  (subscript
+                (member_access
+                  value: (subscript
                     value: (identifier)
                     parameters: (parameters
                       (parameter
-                        (identifier)))))
-                (member
-                  (identifier))))
+                        (identifier))))
+                  member: (identifier))))
             (default_parameter_decl
               (constrained_parameter_decl
                 name: (identifier)
@@ -1700,14 +1681,13 @@ __extension SIMD:
                       (parameter
                         (identifier))))))
               default: (parameter_member
-                (generic_parameter
-                  (subscript
+                (member_access
+                  value: (subscript
                     value: (identifier)
                     parameters: (parameters
                       (parameter
-                        (identifier)))))
-                (member
-                  (identifier)))))
+                        (identifier))))
+                  member: (identifier)))))
           return_type: (generic_parameter
             (subscript
               value: (identifier)

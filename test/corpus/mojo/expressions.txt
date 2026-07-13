@@ -40,15 +40,14 @@ def __init__(out self, var value: Self.T):
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_member
-          (parameter
-            (self))
-          (member
-            (identifier)))))
+          (member_access
+            value: (self)
+            member: (identifier)))))
     body: (block
       (assignment
-        left: (attribute
-          object: (identifier)
-          attribute: (identifier))
+        left: (member_access
+          value: (identifier)
+          member: (identifier))
         right: (transfer_operator
           argument: (identifier))))))
 
@@ -74,9 +73,9 @@ process({1, message="hello"})
         (initializer_list
           (keyword_argument
             name: (identifier)
-            value: (attribute
-              object: (identifier)
-              attribute: (identifier)))
+            value: (member_access
+              value: (identifier)
+              member: (identifier)))
           (keyword_argument
             name: (identifier)
             value: (call
@@ -106,20 +105,19 @@ comptime if CurrentPlugin.exp_fn:
 
 (module
   (if_statement
-    condition: (attribute
-      object: (identifier)
-      attribute: (identifier))
+    condition: (member_access
+      value: (identifier)
+      member: (identifier))
     consequence: (block
       (return_statement
         (call
           function: (parenthesized_expression
-            (call
-              function: (attribute
-                object: (attribute
-                  object: (identifier)
-                  attribute: (identifier))
-                attribute: (identifier))
-              arguments: (arguments)))
+            (member_access
+              value: (identifier)
+              member: (identifier)
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments))))
           arguments: (arguments
             (identifier)))))))
 
@@ -564,10 +562,9 @@ def call[
         constraint: (function_type
           arguments: (function_type_parameters
             (parameter_member
-              (parameter
-                (self))
-              (member
-                (identifier)))))))
+              (member_access
+                value: (self)
+                member: (identifier)))))))
     arguments: (callable_parameters
       (parameter_decl
         name: (identifier))
@@ -668,31 +665,31 @@ def call[
     body: (block
       (assignment
         left: (identifier)
-        right: (call
-          function: (attribute
-            object: (identifier)
-            attribute: (identifier))
-          arguments: (arguments)))
+        right: (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments))))
       (return_statement
-        (call
-          function: (call
-            function: (subscript
-              value: (attribute
-                object: (identifier)
-                attribute: (identifier))
-              parameters: (parameters
-                (parameter
-                  (identifier))
-                (function_type
-                  arguments: (function_type_parameters
-                    (call
-                      function: (identifier)
-                      arguments: (arguments
-                        (identifier))))
-                  effects: (function_effects
-                    (thin))
-                  return_type: (parameter
-                    (identifier)))))
-            arguments: (arguments))
-          arguments: (arguments
-            (identifier)))))))
+        (member_access
+          value: (identifier)
+          member: (member_call
+            function: (member_call
+              function: (member_subscript
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (function_type
+                    arguments: (function_type_parameters
+                      (call
+                        function: (identifier)
+                        arguments: (arguments
+                          (identifier))))
+                    effects: (function_effects
+                      (thin))
+                    return_type: (parameter
+                      (identifier)))))
+              arguments: (arguments))
+            arguments: (arguments
+              (identifier))))))))

@@ -2675,11 +2675,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "parameter_member"
+          "name": "generic_parameter"
         },
         {
           "type": "SYMBOL",
-          "name": "generic_parameter"
+          "name": "parameter_member"
         },
         {
           "type": "SYMBOL",
@@ -3770,48 +3770,6 @@
         }
       ]
     },
-    "parameter_member": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_non_composite_parameter"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "."
-              },
-              {
-                "type": "SYMBOL",
-                "name": "member"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "member": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "call"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "subscript"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        }
-      ]
-    },
     "parameter_splat": {
       "type": "SEQ",
       "members": [
@@ -3833,11 +3791,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "parameter_member"
+              "name": "_non_composite_parameter"
             },
             {
               "type": "SYMBOL",
-              "name": "_non_composite_parameter"
+              "name": "parameter_member"
             }
           ]
         }
@@ -4016,6 +3974,10 @@
         }
       ]
     },
+    "parameter_member": {
+      "type": "SYMBOL",
+      "name": "member_access"
+    },
     "_comptime_rhs": {
       "type": "CHOICE",
       "members": [
@@ -4130,11 +4092,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "parameter_member"
+          "name": "_non_composite_parameter"
         },
         {
           "type": "SYMBOL",
-          "name": "_non_composite_parameter"
+          "name": "parameter_member"
         },
         {
           "type": "SYMBOL",
@@ -5205,7 +5167,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "attribute"
+          "name": "member_access"
         },
         {
           "type": "SYMBOL",
@@ -5324,7 +5286,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "attribute"
+              "name": "member_access"
             },
             {
               "type": "SYMBOL",
@@ -5350,7 +5312,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "attribute"
+              "name": "member_access"
             },
             {
               "type": "SYMBOL",
@@ -6036,11 +5998,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "call"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "mlir_op"
+          "name": "_primary"
         },
         {
           "type": "SYMBOL",
@@ -6048,11 +6006,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "attribute"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "subscript"
+          "name": "member_access"
         },
         {
           "type": "SYMBOL",
@@ -6066,6 +6020,40 @@
           "type": "SYMBOL",
           "name": "transfer_operator"
         },
+        {
+          "type": "SYMBOL",
+          "name": "initializer_list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "concatenated_string"
+        }
+      ]
+    },
+    "_primary": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_atom"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "mlir_op"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript"
+        }
+      ]
+    },
+    "_atom": {
+      "type": "CHOICE",
+      "members": [
         {
           "type": "SYMBOL",
           "name": "list_comprehension"
@@ -6100,15 +6088,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "initializer_list"
-        },
-        {
-          "type": "SYMBOL",
           "name": "dictionary"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "concatenated_string"
         },
         {
           "type": "SYMBOL",
@@ -6152,6 +6132,27 @@
         }
       ]
     },
+    "_member": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "member_call"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "member_subscript"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "escaped_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifier"
+        }
+      ]
+    },
     "call": {
       "type": "PREC",
       "value": 22,
@@ -6163,7 +6164,41 @@
             "name": "function",
             "content": {
               "type": "SYMBOL",
-              "name": "primary_expression"
+              "name": "_primary"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "arguments",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "arguments"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "generator_expression"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "member_call": {
+      "type": "PREC",
+      "value": 22,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "function",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_member"
             }
           },
           {
@@ -6266,7 +6301,7 @@
         ]
       }
     },
-    "attribute": {
+    "member_access": {
       "type": "PREC",
       "value": 22,
       "content": {
@@ -6274,22 +6309,39 @@
         "members": [
           {
             "type": "FIELD",
-            "name": "object",
+            "name": "value",
             "content": {
-              "type": "SYMBOL",
-              "name": "primary_expression"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_primary"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "transfer_operator"
+                }
+              ]
             }
           },
           {
-            "type": "STRING",
-            "value": "."
-          },
-          {
-            "type": "FIELD",
-            "name": "attribute",
+            "type": "REPEAT1",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "."
+                },
+                {
+                  "type": "FIELD",
+                  "name": "member",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_member"
+                  }
+                }
+              ]
             }
           }
         ]
@@ -6306,7 +6358,32 @@
             "name": "value",
             "content": {
               "type": "SYMBOL",
-              "name": "primary_expression"
+              "name": "_primary"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "parameters",
+            "content": {
+              "type": "SYMBOL",
+              "name": "parameters"
+            }
+          }
+        ]
+      }
+    },
+    "member_subscript": {
+      "type": "PREC",
+      "value": 22,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_member"
             }
           },
           {
@@ -8052,7 +8129,7 @@
   "conflicts": [
     [
       "match_statement",
-      "primary_expression"
+      "_primary"
     ],
     [
       "argument",
@@ -8061,6 +8138,10 @@
     [
       "pattern",
       "primary_expression"
+    ],
+    [
+      "pattern",
+      "_primary"
     ],
     [
       "list_pattern",
@@ -8099,17 +8180,7 @@
       },
       {
         "type": "SYMBOL",
-        "name": "primary_expression"
-      }
-    ],
-    [
-      {
-        "type": "SYMBOL",
-        "name": "member"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "primary_expression"
+        "name": "_primary"
       }
     ],
     [
@@ -8129,7 +8200,7 @@
       },
       {
         "type": "SYMBOL",
-        "name": "primary_expression"
+        "name": "_primary"
       }
     ],
     [
@@ -8146,6 +8217,26 @@
       {
         "type": "SYMBOL",
         "name": "generic_parameter"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "_primary"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "parameter_member"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "list_splat_pattern"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "parameter_member"
       },
       {
         "type": "SYMBOL",
@@ -8166,6 +8257,16 @@
       {
         "type": "SYMBOL",
         "name": "primary_expression"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "list_splat_pattern"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "_primary"
       },
       {
         "type": "SYMBOL",
@@ -8291,6 +8392,7 @@
     "_constraint_parameter",
     "_declaration_convention",
     "_expressions",
+    "_atom",
     "_identifier"
   ],
   "supertypes": [

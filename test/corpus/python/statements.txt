@@ -657,10 +657,9 @@ async def d(a:str="default", b=c) -> None:
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_member
-          (parameter
-            (identifier))
-          (member
-            (identifier)))))
+          (member_access
+            value: (identifier)
+            member: (identifier)))))
     body: (block
       (identifier)))
   (function_declaration
@@ -983,10 +982,9 @@ class A(B, c="d"):
       (named_parameter
         name: (identifier)
         value: (parameter_member
-          (parameter
-            (identifier))
-          (member
-            (identifier)))))
+          (member_access
+            value: (identifier)
+            member: (identifier)))))
     body: (block
       (pass_statement)))
   (struct_declaration
@@ -1027,56 +1025,54 @@ def spam():
 (module
   (decorated_declaration
     (decorator
-      (attribute
-        (identifier)
-        (identifier)))
-    (struct_declaration
-      (identifier)
-      (block
+      (member_access
+        value: (identifier)
+        member: (identifier)))
+    declaration: (struct_declaration
+      name: (identifier)
+      body: (block
         (decorated_declaration
           (decorator
             (call
-              (identifier)
-              (arguments
+              function: (identifier)
+              arguments: (arguments
                 (integer))))
           (decorator
-            (attribute
-              (attribute
-                (subscript
-                  (identifier)
-                  (parameters
-                    (integer)))
-                (identifier))
-              (identifier)))
-          (function_declaration
-            (identifier)
-            (callable_parameters)
-            (block
+            (member_access
+              value: (subscript
+                value: (identifier)
+                parameters: (parameters
+                  (integer)))
+              member: (identifier)
+              member: (identifier)))
+          declaration: (function_declaration
+            name: (identifier)
+            arguments: (callable_parameters)
+            body: (block
               (identifier))))
         (decorated_declaration
           (decorator
             (call
-              (identifier)
-              (arguments)))
-          (function_declaration
-            (identifier)
-            (callable_parameters)
-            (block
+              function: (identifier)
+              arguments: (arguments)))
+          declaration: (function_declaration
+            name: (identifier)
+            arguments: (callable_parameters)
+            body: (block
               (identifier)))))))
   (decorated_declaration
     (decorator
-      (attribute
-        (attribute
-          (subscript
-            (identifier)
-            (parameters
-              (integer)))
-          (identifier))
-        (identifier)))
-    (function_declaration
-      (identifier)
-      (callable_parameters)
-      (block
+      (member_access
+        value: (subscript
+          value: (identifier)
+          parameters: (parameters
+            (integer)))
+        member: (identifier)
+        member: (identifier)))
+    declaration: (function_declaration
+      name: (identifier)
+      arguments: (callable_parameters)
+      body: (block
         (ellipsis)))))
 
 ================================================================================

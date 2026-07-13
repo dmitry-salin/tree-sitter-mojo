@@ -249,20 +249,20 @@ re.compile(r"(\n|\A)#include\s*['\"]"
 --------------------------------------------------------------------------------
 
 (module
-  (call
-    (attribute
-      (identifier)
-      (identifier))
-    (arguments
-      (concatenated_string
-        (string
-          (string_start)
-          (string_content)
-          (string_end))
-        (string
-          (string_start)
-          (string_content)
-          (string_end))))))
+  (member_access
+    value: (identifier)
+    member: (member_call
+      function: (identifier)
+      arguments: (arguments
+        (concatenated_string
+          (string
+            (string_start)
+            (string_content)
+            (string_end))
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))))))
 
 ================================================================================
 Format strings
@@ -406,22 +406,22 @@ def test(self):
       (parameter_decl
         name: (identifier)))
     body: (block
-      (call
-        function: (attribute
-          object: (identifier)
-          attribute: (identifier))
-        arguments: (arguments
-          (string
-            (string_start)
-            (string_content)
-            (interpolation
-              expression: (integer)
-              (comment))
-            (string_end))
-          (string
-            (string_start)
-            (string_content)
-            (string_end)))))))
+      (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments
+            (string
+              (string_start)
+              (string_content)
+              (interpolation
+                expression: (integer)
+                (comment))
+              (string_end))
+            (string
+              (string_start)
+              (string_content)
+              (string_end))))))))
 
 ================================================================================
 Format strings with format specifiers
@@ -454,13 +454,13 @@ f"{value:{width + padding!r}.{precision}}"
       expression: (identifier)
       format_specifier: (format_specifier
         (format_expression
-          expression: (attribute
-            object: (identifier)
-            attribute: (identifier)))
+          expression: (member_access
+            value: (identifier)
+            member: (identifier)))
         (format_expression
-          expression: (attribute
-            object: (identifier)
-            attribute: (identifier)))))
+          expression: (member_access
+            value: (identifier)
+            member: (identifier)))))
     (string_end))
   (string
     (string_start)
@@ -725,18 +725,18 @@ Lists
       (identifier)))
   (list
     (list_splat
-      (attribute
-        object: (identifier)
-        attribute: (identifier))))
+      (member_access
+        value: (identifier)
+        member: (identifier))))
   (list
     (list_splat
-      (attribute
-        object: (subscript
+      (member_access
+        value: (subscript
           value: (identifier)
           parameters: (parameters
             (parameter
               (identifier))))
-        attribute: (identifier))))
+        member: (identifier))))
   (list
     (list_splat
       (call
@@ -834,18 +834,18 @@ Dictionaries
       (identifier)))
   (dictionary
     (dictionary_splat
-      (attribute
-        object: (identifier)
-        attribute: (identifier))))
+      (member_access
+        value: (identifier)
+        member: (identifier))))
   (dictionary
     (dictionary_splat
-      (attribute
-        object: (subscript
+      (member_access
+        value: (subscript
           value: (identifier)
           parameters: (parameters
             (parameter
               (identifier))))
-        attribute: (identifier))))
+        member: (identifier))))
   (dictionary
     (dictionary_splat
       (call

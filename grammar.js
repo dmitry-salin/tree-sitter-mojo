@@ -120,9 +120,10 @@ export default grammar({
   ],
 
   conflicts: $ => [
-    [$.match_statement, $.primary_expression],
+    [$.match_statement, $._primary],
     [$.argument, $._collection_element],
     [$.pattern, $.primary_expression],
+    [$.pattern, $._primary],
     [$.list_pattern, $.list],
     [$.tuple_pattern, $.tuple],
   ],
@@ -130,14 +131,16 @@ export default grammar({
   precedences: $ => [
     [$.with_item, $._collection_element],
     [$._parameterized_ref_conv, $._ref_conv],
-    [$.parameter_decl, $.primary_expression],
-    [$.member, $.primary_expression],
+    [$.parameter_decl, $._primary],
     [$.parameter, $.list_splat_pattern],
-    [$.parameter, $.primary_expression],
+    [$.parameter, $._primary],
     [$.generic_parameter, $.list_splat_pattern],
-    [$.generic_parameter, $.primary_expression],
+    [$.generic_parameter, $._primary],
+    [$.parameter_member, $.list_splat_pattern],
+    [$.parameter_member, $.primary_expression],
     [$.named_expression, $.as_pattern],
     [$.primary_expression, $.list_splat_pattern],
+    [$._primary, $.list_splat_pattern],
     [$.dictionary, $.argument],
     [$.dictionary, $.initializer_list],
   ],
@@ -178,6 +181,7 @@ export default grammar({
     $._constraint_parameter,
     $._declaration_convention,
     $._expressions,
+    $._atom,
     $._identifier,
   ],
 
@@ -596,8 +600,8 @@ export default grammar({
         $.constrained_parameter_decl,
         $.constrained_splat_parameter_decl,
         $.parameter_decl,
-        $.parameter_member,
         $.generic_parameter,
+        $.parameter_member,
         $.expression,
         $.positional_only_marker,
         $.keyword_only_marker,
@@ -766,14 +770,10 @@ export default grammar({
         $.underscore,
       ),
 
-    parameter_member: $ =>
-      seq($._non_composite_parameter, repeat1(seq('.', $.member))),
-    member: $ => choice($.call, $.subscript, $.identifier),
-
     parameter_splat: $ =>
       seq(
         choice('*', '**'),
-        choice($.parameter_member, $._non_composite_parameter),
+        choice($._non_composite_parameter, $.parameter_member),
       ),
 
     parameter_tuple: $ =>
@@ -801,6 +801,8 @@ export default grammar({
     parameter: $ => choice($.identifier, $.self),
     generic_parameter: $ => $.subscript,
     _non_composite_parameter: $ => choice($.parameter, $.generic_parameter),
+
+    parameter_member: $ => $.member_access,
 
     _comptime_rhs: $ =>
       choice(
@@ -833,7 +835,7 @@ export default grammar({
       ),
 
     _standalone_parameter: $ =>
-      choice($.parameter_member, $._non_composite_parameter, $.expression),
+      choice($._non_composite_parameter, $.parameter_member, $.expression),
 
     // -----------------------------------------------------------------------
     // Arguments
@@ -1025,7 +1027,7 @@ export default grammar({
         $.list_pattern,
         $.tuple_pattern,
         $.list_splat_pattern,
-        $.attribute,
+        $.member_access,
         $.subscript,
         $.escaped_identifier,
         $._identifier,
@@ -1037,10 +1039,10 @@ export default grammar({
     _patterns: $ => trailingCommaSep1($.pattern),
 
     list_splat_pattern: $ =>
-      seq('*', choice($.attribute, $.subscript, $._identifier)),
+      seq('*', choice($.member_access, $.subscript, $._identifier)),
 
     dictionary_splat_pattern: $ =>
-      seq('**', choice($.attribute, $.subscript, $._identifier)),
+      seq('**', choice($.member_access, $.subscript, $._identifier)),
 
     // Extended patterns (patterns allowed in match statement are far more
     // flexible than simple patterns though still a subset of "expression")
@@ -1177,14 +1179,19 @@ export default grammar({
     primary_expression: $ =>
       choice(
         alias($.list_splat_pattern, $.list_splat),
-        $.call,
-        $.mlir_op,
+        $._primary,
         $.await,
-        $.attribute,
-        $.subscript,
+        $.member_access,
         $.binary_operator,
         $.unary_operator,
         $.transfer_operator,
+        $.initializer_list,
+        $.concatenated_string,
+      ),
+
+    _primary: $ => choice($._atom, $.call, $.mlir_op, $.subscript),
+    _atom: $ =>
+      choice(
         $.list_comprehension,
         $.set_comprehension,
         $.dictionary_comprehension,
@@ -1193,9 +1200,7 @@ export default grammar({
         $.tuple,
         $.list,
         $.set,
-        $.initializer_list,
         $.dictionary,
-        $.concatenated_string,
         $.string,
         $.integer,
         $.float,
@@ -1207,12 +1212,28 @@ export default grammar({
         $.self,
         $.ellipsis,
       ),
+    _member: $ =>
+      choice(
+        $.member_call,
+        $.member_subscript,
+        $.escaped_identifier,
+        $._identifier,
+      ),
 
     call: $ =>
       prec(
         PREC.call,
         seq(
-          field('function', $.primary_expression),
+          field('function', $._primary),
+          field('arguments', choice($.arguments, $.generator_expression)),
+        ),
+      ),
+
+    member_call: $ =>
+      prec(
+        PREC.call,
+        seq(
+          field('function', $._member),
           field('arguments', choice($.arguments, $.generator_expression)),
         ),
       ),
@@ -1229,23 +1250,25 @@ export default grammar({
 
     await: $ => prec(PREC.unary, seq('await', $.primary_expression)),
 
-    attribute: $ =>
+    member_access: $ =>
       prec(
         PREC.call,
         seq(
-          field('object', $.primary_expression),
-          '.',
-          field('attribute', $.identifier),
+          field('value', choice($._primary, $.transfer_operator)),
+          repeat1(seq('.', field('member', $._member))),
         ),
       ),
 
     subscript: $ =>
       prec(
         PREC.call,
-        seq(
-          field('value', $.primary_expression),
-          field('parameters', $.parameters),
-        ),
+        seq(field('value', $._primary), field('parameters', $.parameters)),
+      ),
+
+    member_subscript: $ =>
+      prec(
+        PREC.call,
+        seq(field('value', $._member), field('parameters', $.parameters)),
       ),
 
     binary_operator: $ => {

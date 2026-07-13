@@ -14,8 +14,8 @@
 (decorator
   (identifier) @function)
 
-(call
-  function: (attribute attribute: (identifier) @function.method))
+(member_call
+  function: (identifier) @function.method)
 (call
   function: (identifier) @function)
 
@@ -32,7 +32,7 @@
 (function_declaration
   name: (identifier) @function)
 
-(attribute attribute: (identifier) @property)
+(member_access member: (identifier) @property)
 (parameter (identifier) @type)
 
 ; Literals
