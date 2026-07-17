@@ -513,7 +513,7 @@
 
 ; ---------------------------------------------------------------------------- 
 ; Trait declarations
-(trait_declaration name: (identifier) @type)
+(trait_declaration name: (identifier) @type.definition)
 
 (trait_declaration
   body: (block[
@@ -539,7 +539,7 @@
 
 ; ---------------------------------------------------------------------------- 
 ; Struct declarations
-(struct_declaration name: (identifier) @type)
+(struct_declaration name: (identifier) @type.definition)
 
 (
   (struct_declaration
