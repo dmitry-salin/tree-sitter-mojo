@@ -629,11 +629,10 @@ tail_leaves: List[Leaf] = []
     left: (constrained_lhs
       (identifier)
       constraint: (generic_parameter
-        (subscript
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))))))
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier)))))
     right: (list)))
 
 ================================================================================
@@ -1064,20 +1063,18 @@ y: type[int] = int
       (identifier)
       constraint: (parameter_union
         (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier)))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))
         (parameter
           (identifier)))))
   (assignment
     left: (constrained_lhs
       (identifier)
       constraint: (generic_parameter
-        (subscript
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))))))
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier)))))
     right: (identifier)))

@@ -234,17 +234,18 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
-    right: (member_access
-      value: (identifier)
-      member: (member_subscript
+    right: (parameter_member
+      (member_access
         value: (identifier)
-        parameters: (parameters
-          (mlir_type
-            (mlir_type_prefix)
-            (mlir_parameter
-              (mlir_dotted_identifier
-                (identifier)
-                (identifier))))))))
+        member: (member_subscript
+          value: (identifier)
+          parameters: (parameters
+            (mlir_type
+              (mlir_type_prefix)
+              (mlir_parameter
+                (mlir_dotted_identifier
+                  (identifier)
+                  (identifier)))))))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier)
@@ -343,11 +344,10 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
                   (named_parameter
                     name: (identifier)
                     value: (generic_parameter
-                      (subscript
-                        value: (identifier)
-                        parameters: (parameters
-                          (parameter
-                            (identifier))))))))
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter
+                          (identifier)))))))
               arguments: (arguments))
             member: (identifier))))
       (mlir_type_parameter
@@ -967,11 +967,10 @@ def _get_860m_target() -> _TargetType:
             value: (identifier)
             parameters: (parameters
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier)))))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))))))
           arguments: (arguments
             (mlir_attr
               (mlir_attr_prefix)
@@ -1028,7 +1027,7 @@ def _get_860m_target() -> _TargetType:
           name: (identifier)
           constraint: (parameter
             (identifier)))))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (mlir_attr
@@ -1312,49 +1311,47 @@ def _get_860m_target() -> _TargetType:
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (ellipsis)))))
+          value: (identifier)
+          parameters: (parameters
+            (ellipsis))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (named_parameter
-                name: (identifier)
-                value: (parameter_member
+          value: (identifier)
+          parameters: (parameters
+            (named_parameter
+              name: (identifier)
+              value: (parameter_member
+                (member_access
+                  value: (self)
+                  member: (identifier))))
+            (mlir_attr
+              (mlir_attr_parameter
+                (mlir_attr_prefix)
+                (mlir_parameter
+                  (mlir_dotted_identifier
+                    (identifier)
+                    (identifier)))
+                (mlir_type_special_character))
+              (mlir_attr_parameter
+                (parameter_member
                   (member_access
-                    value: (self)
+                    value: (identifier)
                     member: (identifier))))
-              (mlir_attr
-                (mlir_attr_parameter
-                  (mlir_attr_prefix)
-                  (mlir_parameter
-                    (mlir_dotted_identifier
-                      (identifier)
-                      (identifier)))
-                  (mlir_type_special_character))
-                (mlir_attr_parameter
-                  (parameter_member
-                    (member_access
+              (mlir_attr_parameter
+                (mlir_type_special_character)
+                (mlir_type_special_character))
+              (mlir_attr_parameter
+                (parameter_member
+                  (member_access
+                    value: (identifier)
+                    member: (member_subscript
                       value: (identifier)
-                      member: (identifier))))
-                (mlir_attr_parameter
-                  (mlir_type_special_character)
-                  (mlir_type_special_character))
-                (mlir_attr_parameter
-                  (parameter_member
-                    (member_access
-                      value: (identifier)
-                      member: (member_subscript
-                        value: (identifier)
-                        parameters: (parameters
-                          (parameter_member
-                            (member_access
-                              value: (self)
-                              member: (identifier))))))))))))))
+                      parameters: (parameters
+                        (parameter_member
+                          (member_access
+                            value: (self)
+                            member: (identifier)))))))))))))
     (where_clause
       (mlir_attr
         (mlir_attr_parameter
@@ -1985,19 +1982,18 @@ def _snprintf[
         (named_parameter
           name: (identifier)
           value: (generic_parameter
-            (subscript
-              value: (identifier)
-              parameters: (parameters
-                (mlir_type
-                  (identifier))
-                (mlir_type
-                  (identifier))
-                (mlir_type
-                  (mlir_type_prefix)
-                  (mlir_parameter
-                    (mlir_dotted_identifier
-                      (identifier)
-                      (identifier)))))))))
+            value: (identifier)
+            parameters: (parameters
+              (mlir_type
+                (identifier))
+              (mlir_type
+                (identifier))
+              (mlir_type
+                (mlir_type_prefix)
+                (mlir_parameter
+                  (mlir_dotted_identifier
+                    (identifier)
+                    (identifier))))))))
       arguments: (arguments)))
   (function_declaration
     name: (identifier)
@@ -2020,8 +2016,8 @@ def _snprintf[
           (identifier))))
     return_type: (function_type
       arguments: (function_type_parameters
-        (parameter_decl
-          name: (identifier)))
+        (parameter
+          (identifier)))
       effects: (function_effects
         (thin))
       return_type: (none))
@@ -2036,8 +2032,8 @@ def _snprintf[
               name: (identifier)
               value: (function_type
                 arguments: (function_type_parameters
-                  (parameter_decl
-                    name: (identifier)))
+                  (parameter
+                    (identifier)))
                 effects: (function_effects
                   (thin))
                 return_type: (none))))
@@ -2127,17 +2123,16 @@ def _snprintf[
                       value: (identifier)
                       parameters: (parameters
                         (generic_parameter
-                          (subscript
-                            value: (identifier)
-                            parameters: (parameters
-                              (parameter_member
-                                (member_access
-                                  value: (self)
-                                  member: (identifier)))
-                              (call
-                                function: (identifier)
-                                arguments: (arguments
-                                  (integer))))))))
+                          value: (identifier)
+                          parameters: (parameters
+                            (parameter_member
+                              (member_access
+                                value: (self)
+                                member: (identifier)))
+                            (call
+                              function: (identifier)
+                              arguments: (arguments
+                                (integer)))))))
                     arguments: (arguments
                       (identifier)))
                   member: (identifier)))))))))
@@ -2246,12 +2241,11 @@ def _snprintf[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier))
-              (underscore)))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (underscore))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (call
@@ -2331,15 +2325,14 @@ def _snprintf[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (named_parameter
-                name: (identifier)
-                value: (true))
-              (parameter
-                (identifier))
-              (ellipsis))))))
+          value: (identifier)
+          parameters: (parameters
+            (named_parameter
+              name: (identifier)
+              value: (true))
+            (parameter
+              (identifier))
+            (ellipsis)))))
     body: (block
       (mlir_op
         (mlir_dotted_identifier
@@ -2536,15 +2529,14 @@ def _snprintf[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (named_parameter
-                name: (identifier)
-                value: (true))
-              (parameter
-                (identifier))
-              (underscore)))))
+          value: (identifier)
+          parameters: (parameters
+            (named_parameter
+              name: (identifier)
+              value: (true))
+            (parameter
+              (identifier))
+            (underscore))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -2726,8 +2718,8 @@ def structured_for_loop() -> __mlir_type.index:
         name: (identifier)
         constraint: (function_type
           arguments: (function_type_parameters
-            (parameter_decl
-              name: (identifier)))
+            (parameter
+              (identifier)))
           return_type: (none))))
     arguments: (callable_parameters)
     body: (block

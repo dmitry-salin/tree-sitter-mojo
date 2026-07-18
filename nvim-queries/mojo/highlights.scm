@@ -346,8 +346,8 @@
     (subscript
       value: (identifier) @variable.parameter)
   ]))
-(generic_parameter (subscript
-  value: (identifier) @variable.parameter))
+(generic_parameter
+  value: (identifier) @variable.parameter)
 (parameter (identifier) @variable.parameter)
 (named_parameter
   name: (identifier) @variable.parameter)
@@ -359,8 +359,8 @@
       (subscript
         value: (identifier) @type)
     ]))
-  (generic_parameter (subscript
-    value: (identifier) @type))
+  (generic_parameter
+    value: (identifier) @type)
   (parameter (identifier) @type)
   (named_parameter
     name: (identifier) @type)
@@ -424,14 +424,6 @@
   (callable_parameter/constrained_parameter_decl
     name: (identifier) @variable.builtin)
 ](#eq? @variable.builtin "self"))
-
-; ---------------------------------------------------------------------------- 
-; Function type
-(
-  (function_type_parameter/parameter_decl
-    name: (identifier) @type)
-  (#lua-match? @type "^_*[A-Z][A-Za-z0-9_]*$")
-)
 
 ; ---------------------------------------------------------------------------- 
 ; Capture parameters
@@ -630,13 +622,14 @@
   (#eq? @type.builtin "reflect")
 )
 
-(
-  (generic_parameter (subscript
-    value: (identifier) @type.builtin))
-  (#any-of? @type.builtin
-    "SIMD"
-    "Reflected")
-)
+([
+  (generic_parameter
+    value: (identifier) @type.builtin)
+  (subscript
+    value: (identifier) @type.builtin)
+](#any-of? @type.builtin
+  "SIMD"
+  "Reflected"))
 
 (
   (selective_import_statement "import" [

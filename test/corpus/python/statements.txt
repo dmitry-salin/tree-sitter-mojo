@@ -668,11 +668,10 @@ async def d(a:str="default", b=c) -> None:
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     return_type: (parameter
       (identifier))
     body: (block
@@ -925,24 +924,22 @@ class D(Sequence[T, U]):
       (parameter
         (identifier))
       (generic_parameter
-        (subscript
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))))))
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier)))))
     body: (block
       (pass_statement)))
   (struct_declaration
     name: (identifier)
     conformance: (conformance
       (generic_parameter
-        (subscript
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))
-            (parameter
-              (identifier))))))
+        value: (identifier)
+        parameters: (parameters
+          (parameter
+            (identifier))
+          (parameter
+            (identifier)))))
     body: (block
       (pass_statement))))
 
@@ -1365,7 +1362,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
@@ -1378,7 +1375,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
       parameters: (parameters_declaration
         (parameter_decl
           name: (identifier))))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
@@ -1391,7 +1388,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
       parameters: (parameters_declaration
         (splat_parameter_decl
           name: (identifier))))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
@@ -1405,7 +1402,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
       parameters: (parameters_declaration
         (splat_parameter_decl
           name: (identifier))))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
@@ -1422,7 +1419,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
           name: (identifier)
           constraint: (parameter
             (identifier)))))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
@@ -1439,7 +1436,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
               (identifier))
             (parameter
               (identifier))))))
-    right: (subscript
+    right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
@@ -1478,38 +1475,34 @@ def more_generic[T, *Ts, **P]():
               name: (identifier))
             (splat_parameter_decl
               name: (identifier))))
-        right: (subscript
+        right: (generic_parameter
           value: (identifier)
           parameters: (parameters
             (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (parameter
-                    (identifier))
-                  (generic_parameter
-                    (subscript
-                      value: (identifier)
-                      parameters: (parameters
-                        (parameter
-                          (identifier))
-                        (parameter_splat
-                          (parameter
-                            (identifier)))))))))
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (generic_parameter
+                  value: (identifier)
+                  parameters: (parameters
+                    (parameter
+                      (identifier))
+                    (parameter_splat
+                      (parameter
+                        (identifier)))))))
             (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (parameter
-                    (identifier))
-                  (generic_parameter
-                    (subscript
-                      value: (identifier)
-                      parameters: (parameters
-                        (parameter
-                          (identifier))
-                        (parameter_splat
-                          (parameter
-                            (identifier))))))))))))
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (generic_parameter
+                  value: (identifier)
+                  parameters: (parameters
+                    (parameter
+                      (identifier))
+                    (parameter_splat
+                      (parameter
+                        (identifier))))))))))
       (return_statement
         (identifier)))))

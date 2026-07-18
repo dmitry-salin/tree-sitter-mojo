@@ -236,12 +236,11 @@ def call[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier))
-              (ellipsis)))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (ellipsis))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -260,28 +259,24 @@ def call[
           (function_type
             arguments: (function_type_parameters
               (generic_parameter
-                (subscript
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (ellipsis))))
+            return_type: (generic_parameter
+              value: (identifier)
+              parameters: (parameters
+                (generic_parameter
                   value: (identifier)
                   parameters: (parameters
                     (parameter
-                      (identifier))
-                    (ellipsis)))))
-            return_type: (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (generic_parameter
-                    (subscript
-                      value: (identifier)
-                      parameters: (parameters
-                        (parameter
-                          (identifier)))))
-                  (generic_parameter
-                    (subscript
-                      value: (identifier)
-                      parameters: (parameters
-                        (parameter
-                          (identifier)))))))))))
+                      (identifier))))
+                (generic_parameter
+                  value: (identifier)
+                  parameters: (parameters
+                    (parameter
+                      (identifier)))))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_composition
@@ -316,20 +311,18 @@ def call[
                   (identifier))))
             arguments: (function_type_parameters
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier))
-                    (ellipsis)))))
-            return_type: (generic_parameter
-              (subscript
                 value: (identifier)
                 parameters: (parameters
                   (parameter
                     (identifier))
-                  (parameter
-                    (identifier))))))))
+                  (ellipsis))))
+            return_type: (generic_parameter
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier)))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_composition
@@ -345,13 +338,12 @@ def call[
                   (identifier))))
             arguments: (function_type_parameters)
             return_type: (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (parameter
-                    (identifier))
-                  (parameter
-                    (identifier))))))))
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier)))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_composition
@@ -367,36 +359,32 @@ def call[
                   (identifier))))
             arguments: (function_type_parameters
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier))
-                    (ellipsis))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (ellipsis)))
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier))
-                    (parameter
-                      (identifier)))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (parameter
+                    (identifier))))
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier))
-                    (parameter
-                      (identifier))))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (parameter
+                    (identifier)))))
             return_type: (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (parameter
-                    (identifier))
-                  (parameter
-                    (identifier))))))))
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier)))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter_composition
@@ -412,20 +400,18 @@ def call[
                   (identifier))))
             arguments: (function_type_parameters
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier))
-                    (ellipsis))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (ellipsis)))
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier))
-                    (parameter
-                      (identifier))))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter
+                    (identifier))
+                  (parameter
+                    (identifier)))))
             return_type: (none)))))
     arguments: (callable_parameters
       (constrained_parameter_decl
@@ -435,27 +421,25 @@ def call[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier))
-              (named_parameter
-                name: (identifier)
-                value: (parameter
-                  (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (named_parameter
+              name: (identifier)
+              value: (parameter
+                (identifier))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier))
-              (named_parameter
-                name: (identifier)
-                value: (parameter
-                  (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (named_parameter
+              name: (identifier)
+              value: (parameter
+                (identifier))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -504,11 +488,10 @@ def call[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     effects: (function_effects
       (raises))
     body: (block
@@ -520,18 +503,17 @@ def call[
         name: (identifier)
         constraint: (function_type
           arguments: (function_type_parameters
-            (parameter_decl
-              name: (identifier)))
+            (parameter
+              (identifier)))
           return_type: (none))))
     arguments: (callable_parameters
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier)))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (parameter
@@ -544,14 +526,13 @@ def call[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (function_type
-                arguments: (function_type_parameters
-                  (parameter_decl
-                    name: (identifier)))
-                return_type: (none)))))))
+          value: (identifier)
+          parameters: (parameters
+            (function_type
+              arguments: (function_type_parameters
+                (parameter
+                  (identifier)))
+              return_type: (none))))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -581,10 +562,10 @@ def call[
         name: (identifier)
         constraint: (function_type
           arguments: (function_type_parameters
-            (parameter_decl
-              name: (identifier))
-            (parameter_decl
-              name: (identifier))
+            (parameter
+              (identifier))
+            (parameter
+              (identifier))
             (positional_only_marker))
           return_type: (parameter
             (identifier)))))
@@ -606,8 +587,8 @@ def call[
           (identifier))))
     return_type: (function_type
       arguments: (function_type_parameters
-        (parameter_decl
-          name: (identifier)))
+        (parameter
+          (identifier)))
       return_type: (none))
     body: (block
       (return_statement
@@ -619,8 +600,8 @@ def call[
                 name: (identifier)
                 value: (function_type
                   arguments: (function_type_parameters
-                    (parameter_decl
-                      name: (identifier)))
+                    (parameter
+                      (identifier)))
                   return_type: (none)))))
           arguments: (arguments
             (identifier))))))
@@ -629,10 +610,10 @@ def call[
       name: (identifier))
     right: (function_type
       arguments: (function_type_parameters
-        (parameter_decl
-          name: (identifier))
-        (parameter_decl
-          name: (identifier)))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier)))
       return_type: (none)))
   (function_declaration
     name: (identifier)

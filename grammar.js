@@ -134,8 +134,8 @@ export default grammar({
     [$.parameter_decl, $._primary],
     [$.parameter, $.list_splat_pattern],
     [$.parameter, $._primary],
-    [$.generic_parameter, $.list_splat_pattern],
-    [$.generic_parameter, $._primary],
+    [$._non_composite_parameter, $._primary],
+    [$._non_composite_parameter, $.list_splat_pattern],
     [$.parameter_member, $.list_splat_pattern],
     [$.parameter_member, $.primary_expression],
     [$.named_expression, $.as_pattern],
@@ -176,7 +176,6 @@ export default grammar({
     $._lambda_parameter,
     $._parameter_decl,
     $._splat_parameter_decl,
-    $._non_composite_parameter,
     $._constraint,
     $._constraint_parameter,
     $._declaration_convention,
@@ -599,8 +598,7 @@ export default grammar({
       choice(
         $.constrained_parameter_decl,
         $.constrained_splat_parameter_decl,
-        $.parameter_decl,
-        $.generic_parameter,
+        $._non_composite_parameter,
         $.parameter_member,
         $.expression,
         $.positional_only_marker,
@@ -799,8 +797,8 @@ export default grammar({
       ),
 
     parameter: $ => choice($.identifier, $.self),
-    generic_parameter: $ => $.subscript,
-    _non_composite_parameter: $ => choice($.parameter, $.generic_parameter),
+    _non_composite_parameter: $ =>
+      choice($.parameter, alias($.subscript, $.generic_parameter)),
 
     parameter_member: $ => $.member_access,
 
@@ -811,7 +809,7 @@ export default grammar({
         $.mlir_type,
         $.parameter_union,
         $.parameter_composition,
-        $.expression,
+        $._standalone_parameter,
       ),
 
     _parameter_rhs: $ =>

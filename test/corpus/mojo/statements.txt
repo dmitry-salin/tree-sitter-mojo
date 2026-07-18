@@ -77,16 +77,17 @@ comptime byte_length[idx: Int] where idx > 0 = BenchConfig.VERBOSE_TIMING_LABELS
         (comparison_operator
           (identifier)
           (integer))))
-    right: (member_access
-      value: (identifier)
-      member: (member_subscript
+    right: (parameter_member
+      (member_access
         value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier))))
-      member: (member_call
-        function: (identifier)
-        arguments: (arguments)))))
+        member: (member_subscript
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments))))))
 
 ================================================================================
 Comptime: escaped identifier
@@ -346,79 +347,74 @@ def return_generic_with_attribute() -> I[v.r]:
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (underscore)
+            (underscore)
+            (true)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          value: (identifier)
+          parameters: (parameters
+            (underscore)
+            (underscore)
+            (underscore)
+            (underscore)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (ellipsis)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          value: (identifier)
+          parameters: (parameters
+            (integer)
+            (integer)
+            (named_parameter
+              name: (identifier)
+              value: (parameter
+                (identifier)))
+            (named_parameter
+              name: (identifier)
+              value: (integer))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters
+      (constrained_parameter_decl
+        name: (identifier)
+        constraint: (generic_parameter
+          value: (identifier)
+          parameters: (parameters
+            (parameter_composition
               (parameter
                 (identifier))
-              (underscore)
-              (underscore)
-              (true))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (underscore)
-              (underscore)
-              (underscore)
-              (underscore))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
               (parameter
-                (identifier))
-              (ellipsis))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (integer)
-              (integer)
-              (named_parameter
-                name: (identifier)
-                value: (parameter
-                  (identifier)))
-              (named_parameter
-                name: (identifier)
-                value: (integer)))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter_composition
-                (parameter
-                  (identifier))
-                (parameter
-                  (identifier))))))))
+                (identifier)))))))
     return_type: (call
       function: (identifier)
       arguments: (arguments
@@ -444,129 +440,118 @@ def return_generic_with_attribute() -> I[v.r]:
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (generic_parameter
-            (subscript
-              value: (identifier)
-              parameters: (parameters
-                (parameter
-                  (identifier)))))
-          (binary_operator
-            left: (identifier)
-            right: (identifier)))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter_splat
+      value: (identifier)
+      parameters: (parameters
+        (generic_parameter
+          value: (identifier)
+          parameters: (parameters
             (parameter
-              (identifier))))))
+              (identifier))))
+        (binary_operator
+          left: (identifier)
+          right: (identifier))))
     body: (block
       (pass_statement)))
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
+      value: (identifier)
+      parameters: (parameters
+        (parameter_splat
           (parameter
-            (identifier))
-          (parameter_splat
-            (parameter
-              (identifier))))))
+            (identifier)))))
     body: (block
       (pass_statement)))
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter_splat
-            (parameter_member
-              (member_access
-                value: (identifier)
-                member: (identifier)))))))
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier))
+        (parameter_splat
+          (parameter
+            (identifier)))))
     body: (block
       (pass_statement)))
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters)
     return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter_splat
-            (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (parameter_splat
-                    (parameter_member
-                      (member_access
-                        value: (identifier)
-                        member: (identifier)))))))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter_splat
-            (parameter_member
-              (member_access
-                value: (call
-                  function: (identifier)
-                  arguments: (arguments
-                    (identifier)))
-                member: (identifier)))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (named_parameter
-            name: (identifier)
-            value: (parameter
-              (identifier)))
-          (named_parameter
-            name: (identifier)
-            value: (generic_parameter
-              (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (parameter_splat
-                    (parameter
-                      (identifier))))))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
+      value: (identifier)
+      parameters: (parameters
+        (parameter_splat
           (parameter_member
             (member_access
               value: (identifier)
               member: (identifier))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      value: (identifier)
+      parameters: (parameters
+        (parameter_splat
+          (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter_splat
+                (parameter_member
+                  (member_access
+                    value: (identifier)
+                    member: (identifier)))))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      value: (identifier)
+      parameters: (parameters
+        (parameter_splat
+          (parameter_member
+            (member_access
+              value: (call
+                function: (identifier)
+                arguments: (arguments
+                  (identifier)))
+              member: (identifier))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      value: (identifier)
+      parameters: (parameters
+        (named_parameter
+          name: (identifier)
+          value: (parameter
+            (identifier)))
+        (named_parameter
+          name: (identifier)
+          value: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter_splat
+                (parameter
+                  (identifier))))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    name: (identifier)
+    arguments: (callable_parameters)
+    return_type: (generic_parameter
+      value: (identifier)
+      parameters: (parameters
+        (parameter_member
+          (member_access
+            value: (identifier)
+            member: (identifier)))))
     body: (block
       (pass_statement))))
 
@@ -598,11 +583,10 @@ def dump[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     body: (block
       (pass_statement))))
 
@@ -642,11 +626,10 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     (convention_parameters
       (call
         function: (identifier)
@@ -920,11 +903,10 @@ def reshape[
         constraint: (parameter
           (identifier))))
     return_type: (generic_parameter
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier)))))
+      value: (identifier)
+      parameters: (parameters
+        (parameter
+          (identifier))))
     (where_clause
       (member_access
         value: (identifier)
@@ -967,11 +949,10 @@ def reshape[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     (where_clause
       (subscript
         value: (identifier)
@@ -1054,46 +1035,43 @@ def reshape[
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter_splat
-                (parameter
-                  (identifier)))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter_splat
+              (parameter
+                (identifier))))))
       (constrained_parameter_decl
         name: (identifier)
         constraint: (generic_parameter
-          (subscript
-            value: (identifier)
-            parameters: (parameters
-              (parameter_splat
-                (parameter_member
-                  (member_access
-                    value: (identifier)
-                    member: (member_call
-                      function: (member_subscript
-                        value: (identifier)
-                        parameters: (parameters
-                          (named_parameter
-                            name: (identifier)
-                            value: (parameter
-                              (identifier)))
-                          (parameter_member
-                            (member_access
-                              value: (call
-                                function: (identifier)
-                                arguments: (arguments
-                                  (identifier)))
-                              member: (member_call
-                                function: (identifier)
-                                arguments: (arguments))))
-                          (generic_parameter
-                            (subscript
-                              value: (identifier)
-                              parameters: (parameters
-                                (parameter
-                                  (identifier)))))))
-                      arguments: (arguments))))))))))
+          value: (identifier)
+          parameters: (parameters
+            (parameter_splat
+              (parameter_member
+                (member_access
+                  value: (identifier)
+                  member: (member_call
+                    function: (member_subscript
+                      value: (identifier)
+                      parameters: (parameters
+                        (named_parameter
+                          name: (identifier)
+                          value: (parameter
+                            (identifier)))
+                        (parameter_member
+                          (member_access
+                            value: (call
+                              function: (identifier)
+                              arguments: (arguments
+                                (identifier)))
+                            member: (member_call
+                              function: (identifier)
+                              arguments: (arguments))))
+                        (generic_parameter
+                          value: (identifier)
+                          parameters: (parameters
+                            (parameter
+                              (identifier))))))
+                    arguments: (arguments)))))))))
     (where_clause
       (subscript
         value: (identifier)
@@ -1123,12 +1101,11 @@ def reshape[
           parameters: (parameters
             (parameter_splat
               (generic_parameter
-                (subscript
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter_splat
-                      (parameter
-                        (identifier)))))))))))
+                value: (identifier)
+                parameters: (parameters
+                  (parameter_splat
+                    (parameter
+                      (identifier))))))))))
     (where_clause
       (parenthesized_expression
         (boolean_operator
@@ -1157,12 +1134,11 @@ def reshape[
                 parameters: (parameters
                   (parameter_splat
                     (generic_parameter
-                      (subscript
-                        value: (identifier)
-                        parameters: (parameters
-                          (parameter_splat
-                            (parameter
-                              (identifier)))))))))
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter_splat
+                          (parameter
+                            (identifier))))))))
               member: (identifier))))))
     body: (block
       (pass_statement))))
@@ -1658,11 +1634,10 @@ __extension SIMD:
               (constrained_parameter_decl
                 name: (identifier)
                 constraint: (generic_parameter
-                  (subscript
-                    value: (identifier)
-                    parameters: (parameters
-                      (parameter
-                        (identifier))))))
+                  value: (identifier)
+                  parameters: (parameters
+                    (parameter
+                      (identifier)))))
               default: (parameter_member
                 (member_access
                   value: (subscript
@@ -1675,11 +1650,10 @@ __extension SIMD:
               (constrained_parameter_decl
                 name: (identifier)
                 constraint: (generic_parameter
-                  (subscript
-                    value: (identifier)
-                    parameters: (parameters
-                      (parameter
-                        (identifier))))))
+                  value: (identifier)
+                  parameters: (parameters
+                    (parameter
+                      (identifier)))))
               default: (parameter_member
                 (member_access
                   value: (subscript
@@ -1689,13 +1663,12 @@ __extension SIMD:
                         (identifier))))
                   member: (identifier)))))
           return_type: (generic_parameter
-            (subscript
-              value: (identifier)
-              parameters: (parameters
-                (parameter
-                  (identifier))
-                (parameter
-                  (identifier)))))
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))
+              (parameter
+                (identifier))))
           body: (block
             (return_statement
               (call

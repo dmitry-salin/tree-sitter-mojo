@@ -2671,11 +2671,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "parameter_decl"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "generic_parameter"
+          "name": "_non_composite_parameter"
         },
         {
           "type": "SYMBOL",
@@ -3957,10 +3953,6 @@
         }
       ]
     },
-    "generic_parameter": {
-      "type": "SYMBOL",
-      "name": "subscript"
-    },
     "_non_composite_parameter": {
       "type": "CHOICE",
       "members": [
@@ -3969,8 +3961,13 @@
           "name": "parameter"
         },
         {
-          "type": "SYMBOL",
-          "name": "generic_parameter"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "subscript"
+          },
+          "named": true,
+          "value": "generic_parameter"
         }
       ]
     },
@@ -4003,7 +4000,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "expression"
+          "name": "_standalone_parameter"
         }
       ]
     },
@@ -8206,21 +8203,21 @@
     [
       {
         "type": "SYMBOL",
-        "name": "generic_parameter"
+        "name": "_non_composite_parameter"
       },
       {
         "type": "SYMBOL",
-        "name": "list_splat_pattern"
+        "name": "_primary"
       }
     ],
     [
       {
         "type": "SYMBOL",
-        "name": "generic_parameter"
+        "name": "_non_composite_parameter"
       },
       {
         "type": "SYMBOL",
-        "name": "_primary"
+        "name": "list_splat_pattern"
       }
     ],
     [
@@ -8387,7 +8384,6 @@
     "_lambda_parameter",
     "_parameter_decl",
     "_splat_parameter_decl",
-    "_non_composite_parameter",
     "_constraint",
     "_constraint_parameter",
     "_declaration_convention",
