@@ -146,9 +146,7 @@ export default grammar({
   ],
 
   supertypes: $ => [
-    $._simple_statement,
     $.expression_statement,
-    $._compound_statement,
     $.parameter_declaration,
     $.function_type_parameter,
     $.callable_parameter,
