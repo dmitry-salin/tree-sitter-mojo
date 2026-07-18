@@ -405,13 +405,13 @@
   name: (identifier) @variable.parameter)
 (constrained_mlir_parameter_decl
   name: (identifier) @variable.parameter)
-(splat_parameter_decl
+(variadic_parameter_decl
   name: (identifier) @variable.parameter)
 (parameter_decl
   name: (identifier) @variable.parameter)
 (lambda_default_parameter_decl
   name: (identifier) @variable.parameter)
-(constrained_splat_parameter_decl
+(constrained_variadic_parameter_decl
   name: (identifier) @variable.parameter)
 (constrained_parameter_decl
   name: (identifier) @variable.parameter)
@@ -433,11 +433,11 @@
 ; ---------------------------------------------------------------------------- 
 ; Parameter declarations
 ([
-  (parameter_declaration/splat_parameter_decl
+  (parameter_declaration/variadic_parameter_decl
     name: (identifier) @type.definition)
   (parameter_declaration/parameter_decl
     name: (identifier) @type.definition)
-  (parameter_declaration/constrained_splat_parameter_decl
+  (parameter_declaration/constrained_variadic_parameter_decl
     name: (identifier) @type.definition)
   (parameter_declaration/constrained_parameter_decl
     name: (identifier) @type.definition)

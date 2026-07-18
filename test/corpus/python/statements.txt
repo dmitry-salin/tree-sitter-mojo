@@ -685,9 +685,9 @@ async def d(a:str="default", b=c) -> None:
         name: (identifier)
         default: (parameter
           (identifier)))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (block
       (identifier)))
@@ -754,7 +754,7 @@ def foo():
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
@@ -763,7 +763,7 @@ def foo():
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
@@ -789,7 +789,7 @@ def foo():
       (default_parameter_decl
         name: (identifier)
         default: (integer))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (block
       (return_statement
@@ -802,7 +802,7 @@ def foo():
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (block
       (call
@@ -1386,7 +1386,7 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     left: (comptime_parameter
       name: (identifier)
       parameters: (parameters_declaration
-        (splat_parameter_decl
+        (variadic_parameter_decl
           name: (identifier))))
     right: (generic_parameter
       value: (identifier)
@@ -1400,14 +1400,14 @@ type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
     left: (comptime_parameter
       name: (identifier)
       parameters: (parameters_declaration
-        (splat_parameter_decl
+        (variadic_parameter_decl
           name: (identifier))))
     right: (generic_parameter
       value: (identifier)
       parameters: (parameters
         (parameter
           (identifier))
-        (parameter_splat
+        (variadic_parameter
           (parameter
             (identifier))))))
   (comment)
@@ -1459,9 +1459,9 @@ def more_generic[T, *Ts, **P]():
     parameters: (parameters_declaration
       (parameter_decl
         name: (identifier))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     arguments: (callable_parameters)
     body: (block
@@ -1471,9 +1471,9 @@ def more_generic[T, *Ts, **P]():
           parameters: (parameters_declaration
             (parameter_decl
               name: (identifier))
-            (splat_parameter_decl
+            (variadic_parameter_decl
               name: (identifier))
-            (splat_parameter_decl
+            (variadic_parameter_decl
               name: (identifier))))
         right: (generic_parameter
           value: (identifier)
@@ -1488,7 +1488,7 @@ def more_generic[T, *Ts, **P]():
                   parameters: (parameters
                     (parameter
                       (identifier))
-                    (parameter_splat
+                    (variadic_parameter
                       (parameter
                         (identifier)))))))
             (generic_parameter
@@ -1501,7 +1501,7 @@ def more_generic[T, *Ts, **P]():
                   parameters: (parameters
                     (parameter
                       (identifier))
-                    (parameter_splat
+                    (variadic_parameter
                       (parameter
                         (identifier))))))))))
       (return_statement

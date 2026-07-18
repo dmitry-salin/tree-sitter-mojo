@@ -334,7 +334,7 @@ def return_generic_with_attribute() -> I[v.r]:
           constraint: (parameter
             (identifier)))
         default: (integer))
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
@@ -424,14 +424,14 @@ def return_generic_with_attribute() -> I[v.r]:
   (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
     arguments: (callable_parameters
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
-        constraint: (parameter_splat
+        constraint: (variadic_parameter
           (parameter
             (identifier)))))
     body: (block
@@ -458,7 +458,7 @@ def return_generic_with_attribute() -> I[v.r]:
     return_type: (generic_parameter
       value: (identifier)
       parameters: (parameters
-        (parameter_splat
+        (variadic_parameter
           (parameter
             (identifier)))))
     body: (block
@@ -471,7 +471,7 @@ def return_generic_with_attribute() -> I[v.r]:
       parameters: (parameters
         (parameter
           (identifier))
-        (parameter_splat
+        (variadic_parameter
           (parameter
             (identifier)))))
     body: (block
@@ -482,7 +482,7 @@ def return_generic_with_attribute() -> I[v.r]:
     return_type: (generic_parameter
       value: (identifier)
       parameters: (parameters
-        (parameter_splat
+        (variadic_parameter
           (parameter_member
             (member_access
               value: (identifier)
@@ -495,11 +495,11 @@ def return_generic_with_attribute() -> I[v.r]:
     return_type: (generic_parameter
       value: (identifier)
       parameters: (parameters
-        (parameter_splat
+        (variadic_parameter
           (generic_parameter
             value: (identifier)
             parameters: (parameters
-              (parameter_splat
+              (variadic_parameter
                 (parameter_member
                   (member_access
                     value: (identifier)
@@ -512,7 +512,7 @@ def return_generic_with_attribute() -> I[v.r]:
     return_type: (generic_parameter
       value: (identifier)
       parameters: (parameters
-        (parameter_splat
+        (variadic_parameter
           (parameter_member
             (member_access
               value: (call
@@ -537,7 +537,7 @@ def return_generic_with_attribute() -> I[v.r]:
           value: (generic_parameter
             value: (identifier)
             parameters: (parameters
-              (parameter_splat
+              (variadic_parameter
                 (parameter
                   (identifier))))))))
     body: (block
@@ -957,7 +957,7 @@ def reshape[
       (subscript
         value: (identifier)
         parameters: (parameters
-          (parameter_splat
+          (variadic_parameter
             (parameter_member
               (member_access
                 value: (self)
@@ -1005,7 +1005,7 @@ def reshape[
         left: (subscript
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (parameter_member
                 (member_access
                   value: (self)
@@ -1013,7 +1013,7 @@ def reshape[
         right: (subscript
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (parameter_member
                 (member_access
                   value: (self)
@@ -1027,7 +1027,7 @@ def reshape[
         name: (identifier)
         constraint: (parameter
           (identifier)))
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
@@ -1037,7 +1037,7 @@ def reshape[
         constraint: (generic_parameter
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (parameter
                 (identifier))))))
       (constrained_parameter_decl
@@ -1045,7 +1045,7 @@ def reshape[
         constraint: (generic_parameter
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (parameter_member
                 (member_access
                   value: (identifier)
@@ -1078,7 +1078,7 @@ def reshape[
         parameters: (parameters
           (parameter
             (identifier))
-          (parameter_splat
+          (variadic_parameter
             (parameter
               (identifier))))))
     body: (block
@@ -1086,7 +1086,7 @@ def reshape[
   (function_declaration
     name: (identifier)
     parameters: (parameters_declaration
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
@@ -1099,11 +1099,11 @@ def reshape[
         member: (member_subscript
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (generic_parameter
                 value: (identifier)
                 parameters: (parameters
-                  (parameter_splat
+                  (variadic_parameter
                     (parameter
                       (identifier))))))))))
     (where_clause
@@ -1121,7 +1121,7 @@ def reshape[
               value: (subscript
                 value: (identifier)
                 parameters: (parameters
-                  (parameter_splat
+                  (variadic_parameter
                     (parameter_member
                       (member_access
                         value: (self)
@@ -1132,11 +1132,11 @@ def reshape[
               value: (subscript
                 value: (identifier)
                 parameters: (parameters
-                  (parameter_splat
+                  (variadic_parameter
                     (generic_parameter
                       value: (identifier)
                       parameters: (parameters
-                        (parameter_splat
+                        (variadic_parameter
                           (parameter
                             (identifier))))))))
               member: (identifier))))))
@@ -1506,7 +1506,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
   (struct_declaration
     name: (identifier)
     parameters: (parameters_declaration
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
@@ -1517,7 +1517,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
         (subscript
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (parameter
                 (identifier))))))
       (parameter
@@ -1526,7 +1526,7 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
         (subscript
           value: (identifier)
           parameters: (parameters
-            (parameter_splat
+            (variadic_parameter
               (parameter
                 (identifier))))))
       (parameter
@@ -1538,19 +1538,19 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
               left: (subscript
                 value: (identifier)
                 parameters: (parameters
-                  (parameter_splat
+                  (variadic_parameter
                     (parameter
                       (identifier)))))
               right: (subscript
                 value: (identifier)
                 parameters: (parameters
-                  (parameter_splat
+                  (variadic_parameter
                     (parameter
                       (identifier))))))
             right: (subscript
               value: (identifier)
               parameters: (parameters
-                (parameter_splat
+                (variadic_parameter
                   (parameter
                     (identifier))))))))
       (parameter

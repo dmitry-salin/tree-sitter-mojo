@@ -260,14 +260,14 @@ def print():
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (block
       (identifier)))
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (block
       (identifier)))
@@ -869,9 +869,9 @@ lambda a, b = c, *d, **e: a
       (lambda_default_parameter_decl
         name: (identifier)
         default: (identifier))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier))
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (identifier)))
 

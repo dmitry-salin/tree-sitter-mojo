@@ -2667,7 +2667,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "constrained_splat_parameter_decl"
+          "name": "constrained_variadic_parameter_decl"
         },
         {
           "type": "SYMBOL",
@@ -2910,7 +2910,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "constrained_splat_parameter_decl"
+          "name": "constrained_variadic_parameter_decl"
         },
         {
           "type": "SYMBOL",
@@ -2961,12 +2961,12 @@
         }
       ]
     },
-    "constrained_splat_parameter_decl": {
+    "constrained_variadic_parameter_decl": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_splat_parameter_decl"
+          "name": "_variadic_parameter_decl"
         },
         {
           "type": "SYMBOL",
@@ -3033,7 +3033,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "splat_parameter_decl"
+          "name": "variadic_parameter_decl"
         },
         {
           "type": "SYMBOL",
@@ -3087,11 +3087,11 @@
         ]
       }
     },
-    "splat_parameter_decl": {
+    "variadic_parameter_decl": {
       "type": "SYMBOL",
-      "name": "_splat_parameter_decl"
+      "name": "_variadic_parameter_decl"
     },
-    "_splat_parameter_decl": {
+    "_variadic_parameter_decl": {
       "type": "SEQ",
       "members": [
         {
@@ -3197,11 +3197,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "parameter_splat"
+          "name": "named_parameter"
         },
         {
           "type": "SYMBOL",
-          "name": "named_parameter"
+          "name": "variadic_parameter"
         },
         {
           "type": "SYMBOL",
@@ -3766,37 +3766,6 @@
         }
       ]
     },
-    "parameter_splat": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "*"
-            },
-            {
-              "type": "STRING",
-              "value": "**"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_non_composite_parameter"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "parameter_member"
-            }
-          ]
-        }
-      ]
-    },
     "parameter_tuple": {
       "type": "SEQ",
       "members": [
@@ -3940,6 +3909,37 @@
         }
       ]
     },
+    "variadic_parameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "*"
+            },
+            {
+              "type": "STRING",
+              "value": "**"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_non_composite_parameter"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "parameter_member"
+            }
+          ]
+        }
+      ]
+    },
     "parameter": {
       "type": "CHOICE",
       "members": [
@@ -4047,15 +4047,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "parameter_splat"
-        },
-        {
-          "type": "SYMBOL",
           "name": "parameter_tuple"
         },
         {
           "type": "SYMBOL",
           "name": "parameter_composition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variadic_parameter"
         },
         {
           "type": "SYMBOL",
@@ -8374,7 +8374,7 @@
     "_any_parameter_decl",
     "_lambda_parameter",
     "_parameter_decl",
-    "_splat_parameter_decl",
+    "_variadic_parameter_decl",
     "_constraint",
     "_constraint_parameter",
     "_declaration_convention",

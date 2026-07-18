@@ -38,7 +38,7 @@
         "named": true
       },
       {
-        "type": "constrained_splat_parameter_decl",
+        "type": "constrained_variadic_parameter_decl",
         "named": true
       },
       {
@@ -58,7 +58,7 @@
         "named": true
       },
       {
-        "type": "splat_parameter_decl",
+        "type": "variadic_parameter_decl",
         "named": true
       }
     ]
@@ -88,7 +88,7 @@
         "named": true
       },
       {
-        "type": "parameter_splat",
+        "type": "variadic_parameter",
         "named": true
       }
     ]
@@ -166,7 +166,7 @@
         "named": true
       },
       {
-        "type": "constrained_splat_parameter_decl",
+        "type": "constrained_variadic_parameter_decl",
         "named": true
       },
       {
@@ -216,7 +216,7 @@
         "named": true
       },
       {
-        "type": "splat_parameter_decl",
+        "type": "variadic_parameter_decl",
         "named": true
       }
     ]
@@ -230,7 +230,7 @@
         "named": true
       },
       {
-        "type": "constrained_splat_parameter_decl",
+        "type": "constrained_variadic_parameter_decl",
         "named": true
       },
       {
@@ -254,7 +254,7 @@
         "named": true
       },
       {
-        "type": "splat_parameter_decl",
+        "type": "variadic_parameter_decl",
         "named": true
       }
     ]
@@ -300,10 +300,6 @@
         "named": true
       },
       {
-        "type": "parameter_splat",
-        "named": true
-      },
-      {
         "type": "parameter_tuple",
         "named": true
       },
@@ -317,6 +313,10 @@
       },
       {
         "type": "underscore",
+        "named": true
+      },
+      {
+        "type": "variadic_parameter",
         "named": true
       }
     ]
@@ -1551,15 +1551,15 @@
             "named": true
           },
           {
-            "type": "parameter_splat",
-            "named": true
-          },
-          {
             "type": "parameter_tuple",
             "named": true
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "variadic_parameter",
             "named": true
           }
         ]
@@ -1617,15 +1617,15 @@
             "named": true
           },
           {
-            "type": "parameter_splat",
-            "named": true
-          },
-          {
             "type": "parameter_tuple",
             "named": true
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "variadic_parameter",
             "named": true
           }
         ]
@@ -1717,15 +1717,15 @@
             "named": true
           },
           {
-            "type": "parameter_splat",
-            "named": true
-          },
-          {
             "type": "parameter_tuple",
             "named": true
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "variadic_parameter",
             "named": true
           }
         ]
@@ -1747,7 +1747,7 @@
     }
   },
   {
-    "type": "constrained_splat_parameter_decl",
+    "type": "constrained_variadic_parameter_decl",
     "named": true,
     "fields": {
       "constraint": {
@@ -1783,15 +1783,15 @@
             "named": true
           },
           {
-            "type": "parameter_splat",
-            "named": true
-          },
-          {
             "type": "parameter_tuple",
             "named": true
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "variadic_parameter",
             "named": true
           }
         ]
@@ -4252,29 +4252,6 @@
     }
   },
   {
-    "type": "parameter_splat",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "generic_parameter",
-          "named": true
-        },
-        {
-          "type": "parameter",
-          "named": true
-        },
-        {
-          "type": "parameter_member",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parameter_tuple",
     "named": true,
     "fields": {},
@@ -4668,26 +4645,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "splat_parameter_decl",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "escaped_identifier",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -5194,6 +5151,49 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "variadic_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_parameter",
+          "named": true
+        },
+        {
+          "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "parameter_member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "variadic_parameter_decl",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "escaped_identifier",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

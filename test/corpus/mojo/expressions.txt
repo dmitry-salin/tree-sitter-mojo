@@ -475,9 +475,9 @@ def call[
         name: (identifier)
         constraint: (function_type
           arguments: (function_type_parameters
-            (constrained_splat_parameter_decl
+            (constrained_variadic_parameter_decl
               name: (identifier)
-              constraint: (parameter_splat
+              constraint: (variadic_parameter
                 (parameter
                   (identifier)))))
           return_type: (none))))
@@ -629,16 +629,16 @@ def call[
             (identifier)))
         default: (parameter
           (identifier)))
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
         constraint: (parameter
           (identifier))))
     arguments: (callable_parameters
       (parameter_decl
         name: (identifier))
-      (constrained_splat_parameter_decl
+      (constrained_variadic_parameter_decl
         name: (identifier)
-        constraint: (parameter_splat
+        constraint: (variadic_parameter
           (parameter
             (identifier)))))
     return_type: (parameter

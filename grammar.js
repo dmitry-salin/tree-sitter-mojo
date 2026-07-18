@@ -173,7 +173,7 @@ export default grammar({
     $._any_parameter_decl,
     $._lambda_parameter,
     $._parameter_decl,
-    $._splat_parameter_decl,
+    $._variadic_parameter_decl,
     $._constraint,
     $._constraint_parameter,
     $._declaration_convention,
@@ -596,7 +596,7 @@ export default grammar({
     function_type_parameter: $ =>
       choice(
         $.constrained_parameter_decl,
-        $.constrained_splat_parameter_decl,
+        $.constrained_variadic_parameter_decl,
         $._non_composite_parameter,
         $.parameter_member,
         $.expression,
@@ -631,7 +631,7 @@ export default grammar({
       choice(
         $.default_parameter_decl,
         $.constrained_parameter_decl,
-        $.constrained_splat_parameter_decl,
+        $.constrained_variadic_parameter_decl,
         $._lambda_parameter,
       ),
 
@@ -644,8 +644,8 @@ export default grammar({
 
     constrained_parameter_decl: $ => seq($._parameter_decl, $._constraint),
 
-    constrained_splat_parameter_decl: $ =>
-      seq($._splat_parameter_decl, $._constraint),
+    constrained_variadic_parameter_decl: $ =>
+      seq($._variadic_parameter_decl, $._constraint),
 
     // -----------------------------------------------------------------------
     // Lambda parameters
@@ -657,7 +657,7 @@ export default grammar({
     _lambda_parameter: $ =>
       choice(
         $.parameter_decl,
-        $.splat_parameter_decl,
+        $.variadic_parameter_decl,
         $.positional_only_marker,
         $.keyword_only_marker,
       ),
@@ -669,8 +669,8 @@ export default grammar({
     _parameter_decl: $ =>
       field('name', choice($.identifier, $.escaped_identifier)),
 
-    splat_parameter_decl: $ => $._splat_parameter_decl,
-    _splat_parameter_decl: $ => seq(choice('*', '**'), $._parameter_decl),
+    variadic_parameter_decl: $ => $._variadic_parameter_decl,
+    _variadic_parameter_decl: $ => seq(choice('*', '**'), $._parameter_decl),
 
     // -----------------------------------------------------------------------
     // Conformance
@@ -682,7 +682,7 @@ export default grammar({
       seq($.conformance_parameter, optional($._where_clauses)),
 
     conformance_parameter: $ =>
-      choice($.parameter_splat, $.named_parameter, $._standalone_parameter),
+      choice($.named_parameter, $.variadic_parameter, $._standalone_parameter),
 
     // Where clause
 
@@ -767,12 +767,6 @@ export default grammar({
         $.underscore,
       ),
 
-    parameter_splat: $ =>
-      seq(
-        choice('*', '**'),
-        choice($._non_composite_parameter, $.parameter_member),
-      ),
-
     parameter_tuple: $ =>
       seq('(', trailingCommaSep1($._non_composite_parameter), ')'),
 
@@ -793,6 +787,12 @@ export default grammar({
         $._parameter_decl,
         '=',
         field('value', choice($.function_type, $._parameter_rhs)),
+      ),
+
+    variadic_parameter: $ =>
+      seq(
+        choice('*', '**'),
+        choice($._non_composite_parameter, $.parameter_member),
       ),
 
     parameter: $ => choice($.identifier, $.self),
@@ -817,9 +817,9 @@ export default grammar({
     _constraint: $ => seq(':', field('constraint', $._constraint_parameter)),
     _constraint_parameter: $ =>
       choice(
-        $.parameter_splat,
         $.parameter_tuple,
         $.parameter_composition,
+        $.variadic_parameter,
         $._return_parameter,
       ),
 

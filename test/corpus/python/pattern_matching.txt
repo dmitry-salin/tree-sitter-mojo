@@ -422,7 +422,7 @@ def foo(**match): pass
   (function_declaration
     name: (identifier)
     arguments: (callable_parameters
-      (splat_parameter_decl
+      (variadic_parameter_decl
         name: (identifier)))
     body: (block
       (pass_statement))))
