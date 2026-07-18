@@ -470,13 +470,11 @@
   (#any-of? @attribute.builtin
     "always_inline"
     "doc_hidden"
-    "explicit_destroy"
     "export"
     "fieldwise_init"
     "implicit"
     "no_inline"
-    "staticmethod"
-  )
+    "staticmethod")
 )
 
 (
@@ -486,6 +484,7 @@
     "align"
     "always_inline"
     "deprecated"
+    "explicit_destroy"
     "export")
 )
 
