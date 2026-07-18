@@ -750,7 +750,7 @@ if match := re.fullmatch(r"(-)?(\d+:)?\d?\d:\d\d(\.\d*)?", time, flags=re.ASCII)
 
 (module
   (if_statement
-    condition: (named_expression
+    condition: (walrus_operator
       name: (identifier)
       value: (member_access
         value: (identifier)

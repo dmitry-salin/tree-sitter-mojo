@@ -138,7 +138,7 @@ export default grammar({
     [$._non_composite_parameter, $.list_splat_pattern],
     [$.parameter_member, $.list_splat_pattern],
     [$.parameter_member, $.primary_expression],
-    [$.named_expression, $.as_pattern],
+    [$.walrus_operator, $.as_pattern],
     [$.primary_expression, $.list_splat_pattern],
     [$._primary, $.list_splat_pattern],
     [$.dictionary, $.argument],
@@ -1088,7 +1088,7 @@ export default grammar({
         $.as_pattern,
         $.lambda,
         $.conditional_expression,
-        $.named_expression,
+        $.walrus_operator,
         $.comparison_operator,
         $.not_operator,
         $.boolean_operator,
@@ -1123,7 +1123,7 @@ export default grammar({
         seq($.expression, 'if', $.expression, 'else', $.expression),
       ),
 
-    named_expression: $ =>
+    walrus_operator: $ =>
       seq(field('name', $._identifier), ':=', field('value', $.expression)),
 
     comparison_operator: $ =>

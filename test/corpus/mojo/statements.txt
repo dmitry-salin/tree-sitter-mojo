@@ -252,7 +252,7 @@ with (match := open("file.txt")) as f:
       (with_item
         value: (as_pattern
           (parenthesized_expression
-            (named_expression
+            (walrus_operator
               name: (identifier)
               value: (call
                 function: (identifier)

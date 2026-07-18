@@ -118,15 +118,15 @@
         "named": true
       },
       {
-        "type": "named_expression",
-        "named": true
-      },
-      {
         "type": "not_operator",
         "named": true
       },
       {
         "type": "primary_expression",
+        "named": true
+      },
+      {
+        "type": "walrus_operator",
         "named": true
       }
     ]
@@ -4070,32 +4070,6 @@
     }
   },
   {
-    "type": "named_expression",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "named_parameter",
     "named": true,
     "fields": {
@@ -5220,6 +5194,32 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "walrus_operator",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

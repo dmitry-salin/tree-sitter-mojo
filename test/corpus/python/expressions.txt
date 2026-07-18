@@ -714,11 +714,11 @@ foo(x := 3, cat='vector')
 --------------------------------------------------------------------------------
 
 (module
-  (named_expression
+  (walrus_operator
     name: (identifier)
     value: (identifier))
   (parenthesized_expression
-    (named_expression
+    (walrus_operator
       name: (identifier)
       value: (call
         function: (identifier)
@@ -730,7 +730,7 @@ foo(x := 3, cat='vector')
       (keyword_argument
         name: (identifier)
         value: (parenthesized_expression
-          (named_expression
+          (walrus_operator
             name: (identifier)
             value: (call
               function: (identifier)
@@ -739,7 +739,7 @@ foo(x := 3, cat='vector')
   (assignment
     left: (identifier)
     right: (parenthesized_expression
-      (named_expression
+      (walrus_operator
         name: (identifier)
         value: (call
           function: (identifier)
@@ -751,7 +751,7 @@ foo(x := 3, cat='vector')
       (default_parameter_decl
         name: (identifier)
         default: (parenthesized_expression
-          (named_expression
+          (walrus_operator
             name: (identifier)
             value: (integer)))))
     body: (block
@@ -764,7 +764,7 @@ foo(x := 3, cat='vector')
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parenthesized_expression
-            (named_expression
+            (walrus_operator
               name: (identifier)
               value: (integer))))
         default: (integer)))
@@ -774,7 +774,7 @@ foo(x := 3, cat='vector')
   (call
     function: (identifier)
     arguments: (arguments
-      (named_expression
+      (walrus_operator
         name: (identifier)
         value: (integer))
       (keyword_argument
@@ -784,13 +784,13 @@ foo(x := 3, cat='vector')
           (string_content)
           (string_end)))))
   (parenthesized_expression
-    (named_expression
+    (walrus_operator
       name: (identifier)
       value: (parenthesized_expression
-        (named_expression
+        (walrus_operator
           name: (identifier)
           value: (parenthesized_expression
-            (named_expression
+            (walrus_operator
               name: (identifier)
               value: (integer))))))))
 

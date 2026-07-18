@@ -5596,7 +5596,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "named_expression"
+          "name": "walrus_operator"
         },
         {
           "type": "SYMBOL",
@@ -5741,7 +5741,7 @@
         ]
       }
     },
-    "named_expression": {
+    "walrus_operator": {
       "type": "SEQ",
       "members": [
         {
@@ -8234,7 +8234,7 @@
     [
       {
         "type": "SYMBOL",
-        "name": "named_expression"
+        "name": "walrus_operator"
       },
       {
         "type": "SYMBOL",
