@@ -104,7 +104,7 @@
   "lambda"
 ] @keyword.function
 
-(mlir_region_declaration "__mlir_region" @keyword.function)
+(mlir_region_signature "__mlir_region" @keyword.function)
 
 [
   "as"
@@ -157,7 +157,7 @@
   "trait"
 ] @keyword.type
 
-(extension_declaration "__extension" @keyword.type)
+(extension_header "__extension" @keyword.type)
 
 [
   "async"
@@ -500,38 +500,40 @@
 
 ; ---------------------------------------------------------------------------- 
 ; Function declarations
-(function_declaration name: (identifier) @function)
+(function_signature name: (identifier) @function)
 (type_conversion) @function.macro
 
 ; ---------------------------------------------------------------------------- 
 ; Trait declarations
-(trait_declaration name: (identifier) @type.definition)
+(trait_header name: (identifier) @type.definition)
 
 (trait_declaration
   body: (block[
-    (function_declaration
-      name: (identifier) @function.method)
+    (function_declaration (function_signature
+      name: (identifier) @function.method))
     (decorated_declaration
       declaration: (function_declaration
-        name: (identifier) @function.method))
+        (function_signature
+          name: (identifier) @function.method)))
   ]))
 
 ; ---------------------------------------------------------------------------- 
 ; Extension declarations
-(extension_declaration name: (identifier) @type)
+(extension_header name: (identifier) @type)
 
 (extension_declaration
   body: (block[
-    (function_declaration
-      name: (identifier) @function.method)
+    (function_declaration (function_signature
+      name: (identifier) @function.method))
     (decorated_declaration
       declaration: (function_declaration
-        name: (identifier) @function.method))
+        (function_signature
+          name: (identifier) @function.method)))
   ]))
 
 ; ---------------------------------------------------------------------------- 
 ; Struct declarations
-(struct_declaration name: (identifier) @type.definition)
+(struct_header name: (identifier) @type.definition)
 
 (
   (struct_declaration
@@ -547,28 +549,30 @@
 
 (struct_declaration
   body: (block[
-    (function_declaration
-      name: (identifier) @function.method)
+    (function_declaration (function_signature
+      name: (identifier) @function.method))
     (decorated_declaration
       declaration: (function_declaration
-        name: (identifier) @function.method))
+        (function_signature
+          name: (identifier) @function.method)))
   ]))
 
 (
   (struct_declaration
     body: (block[
-      (function_declaration
-        name: (identifier) @constructor)
+      (function_declaration (function_signature
+        name: (identifier) @function.method))
       (decorated_declaration
         declaration: (function_declaration
-          name: (identifier) @constructor))
+          (function_signature
+            name: (identifier) @constructor)))
     ]))
   (#eq? @constructor "__init__")
 )
 
 ; ---------------------------------------------------------------------------- 
 ; MLIR region declarations
-(mlir_region_declaration name: (identifier) @function)
+(mlir_region_signature name: (identifier) @function)
 
 ; ---------------------------------------------------------------------------- 
 ; Imports

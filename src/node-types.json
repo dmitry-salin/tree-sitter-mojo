@@ -2292,7 +2292,23 @@
             "named": true
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "extension_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "extension_header",
+    "named": true,
+    "fields": {
       "name": {
         "multiple": false,
         "required": true,
@@ -2487,22 +2503,61 @@
     "type": "function_declaration",
     "named": true,
     "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "callable_parameters",
-            "named": true
-          }
-        ]
-      },
       "body": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_effects",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "abi",
+          "named": true
+        },
+        {
+          "type": "raises",
+          "named": true
+        },
+        {
+          "type": "thin",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_signature",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "callable_parameters",
             "named": true
           }
         ]
@@ -2596,29 +2651,6 @@
         },
         {
           "type": "where_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_effects",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "abi",
-          "named": true
-        },
-        {
-          "type": "raises",
-          "named": true
-        },
-        {
-          "type": "thin",
           "named": true
         }
       ]
@@ -3796,22 +3828,38 @@
     "type": "mlir_region_declaration",
     "named": true,
     "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "mlir_callable_parameters",
-            "named": true
-          }
-        ]
-      },
       "body": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "mlir_region_signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "mlir_region_signature",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "mlir_callable_parameters",
             "named": true
           }
         ]
@@ -4725,7 +4773,23 @@
             "named": true
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "struct_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct_header",
+    "named": true,
+    "fields": {
       "conformance": {
         "multiple": false,
         "required": false,
@@ -4910,7 +4974,23 @@
             "named": true
           }
         ]
-      },
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "trait_header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trait_header",
+    "named": true,
+    "fields": {
       "name": {
         "multiple": false,
         "required": true,

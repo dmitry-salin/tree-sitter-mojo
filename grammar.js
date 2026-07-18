@@ -452,9 +452,9 @@ export default grammar({
     if_clause: $ => $._if_clause,
 
     function_declaration: $ =>
-      seq($._function_signature, ':', field('body', $._suite)),
+      seq($.function_signature, ':', field('body', $._suite)),
 
-    _function_signature: $ =>
+    function_signature: $ =>
       seq(
         optional('async'),
         'def',
@@ -484,17 +484,17 @@ export default grammar({
       ),
 
     mlir_region_declaration: $ =>
-      seq($._mlir_region_signature, ':', field('body', $._suite)),
+      seq($.mlir_region_signature, ':', field('body', $._suite)),
 
-    _mlir_region_signature: $ =>
+    mlir_region_signature: $ =>
       seq(
         '__mlir_region',
         $._parameter_decl,
         field('arguments', $.mlir_callable_parameters),
       ),
 
-    struct_declaration: $ => seq($._class_header, ':', field('body', $._suite)),
-    _class_header: $ =>
+    struct_declaration: $ => seq($.struct_header, ':', field('body', $._suite)),
+    struct_header: $ =>
       seq(
         choice('class', 'struct'),
         $._comptime_parameter,
@@ -503,11 +503,12 @@ export default grammar({
       ),
 
     extension_declaration: $ =>
-      seq($._extension_header, ':', field('body', $._suite)),
-    _extension_header: $ => seq('__extension', field('name', $.identifier)),
+      seq($.extension_header, ':', field('body', $._suite)),
 
-    trait_declaration: $ => seq($._trait_header, ':', field('body', $._suite)),
-    _trait_header: $ =>
+    extension_header: $ => seq('__extension', field('name', $.identifier)),
+
+    trait_declaration: $ => seq($.trait_header, ':', field('body', $._suite)),
+    trait_header: $ =>
       seq(
         'trait',
         field('name', $.identifier),

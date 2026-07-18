@@ -420,10 +420,11 @@ def foo(**match): pass
       (integer)
       (integer)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (variadic_parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (block
       (pass_statement))))
 

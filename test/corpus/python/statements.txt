@@ -622,103 +622,112 @@ async def d(a:str="default", b=c) -> None:
 
 (module
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (parameter_decl
+          name: (identifier))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter_member
-          (member_access
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter_member
+            (member_access
+              value: (identifier)
+              member: (identifier))))))
+    body: (block
+      (identifier)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
             value: (identifier)
-            member: (identifier)))))
+            parameters: (parameters
+              (parameter
+                (identifier))))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (default_parameter_decl
+          name: (identifier)
+          default: (parameter
+            (identifier)))
+        (variadic_parameter_decl
+          name: (identifier))
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (default_parameter_decl
-        name: (identifier)
-        default: (parameter
-          (identifier)))
-      (variadic_parameter_decl
-        name: (identifier))
-      (variadic_parameter_decl
-        name: (identifier)))
-    body: (block
-      (identifier)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    return_type: (none)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      return_type: (none))
     body: (block
       (return_statement
         (none))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (default_parameter_decl
-        (constrained_parameter_decl
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (string
+            (string_start)
+            (string_content)
+            (string_end)))
+        (default_parameter_decl
           name: (identifier)
-          constraint: (parameter
-            (identifier)))
-        default: (string
-          (string_start)
-          (string_content)
-          (string_end)))
-      (default_parameter_decl
-        name: (identifier)
-        default: (parameter
-          (identifier))))
-    return_type: (none)
+          default: (parameter
+            (identifier))))
+      return_type: (none))
     body: (block
       (return_statement
         (none)))))
@@ -752,45 +761,49 @@ def foo():
 
 (module
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (nonlocal_statement
         (identifier))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (parameter_decl
-        name: (identifier))
-      (positional_only_marker)
-      (parameter_decl
-        name: (identifier))
-      (keyword_only_marker)
-      (default_parameter_decl
-        name: (identifier)
-        default: (integer))
-      (variadic_parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (parameter_decl
+          name: (identifier))
+        (positional_only_marker)
+        (parameter_decl
+          name: (identifier))
+        (keyword_only_marker)
+        (default_parameter_decl
+          name: (identifier)
+          default: (integer))
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (block
       (return_statement
         (expression_list
@@ -800,10 +813,11 @@ def foo():
           (identifier)
           (identifier)))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (variadic_parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (block
       (call
         function: (identifier)
@@ -819,8 +833,9 @@ def foo():
               (list_splat
                 (identifier))))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (pass_statement)))
   (line_continuation)
@@ -849,12 +864,13 @@ if d:
   (comment)
   (comment)
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (parameter_decl
+          name: (identifier))))
     body: (block))
   (if_statement
     condition: (identifier)
@@ -890,56 +906,63 @@ class D(Sequence[T, U]):
 
 (module
   (struct_declaration
-    name: (identifier)
+    (struct_header
+      name: (identifier))
     body: (block
       (function_declaration
-        name: (identifier)
-        arguments: (callable_parameters
-          (parameter_decl
-            name: (identifier)))
+        (function_signature
+          name: (identifier)
+          arguments: (callable_parameters
+            (parameter_decl
+              name: (identifier))))
         body: (block
           (return_statement
             (identifier))))))
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance)
+    (struct_header
+      name: (identifier)
+      conformance: (conformance))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance
-      (parameter
-        (identifier)))
+    (struct_header
+      name: (identifier)
+      conformance: (conformance
+        (parameter
+          (identifier))))
     body: (block
       (function_declaration
-        name: (identifier)
-        arguments: (callable_parameters
-          (parameter_decl
-            name: (identifier)))
+        (function_signature
+          name: (identifier)
+          arguments: (callable_parameters
+            (parameter_decl
+              name: (identifier))))
         body: (block
           (return_statement)))))
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (generic_parameter
-        value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier)))))
+    (struct_header
+      name: (identifier)
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (generic_parameter
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))))))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance
-      (generic_parameter
-        value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier))
-          (parameter
-            (identifier)))))
+    (struct_header
+      name: (identifier)
+      conformance: (conformance
+        (generic_parameter
+          value: (identifier)
+          parameters: (parameters
+            (parameter
+              (identifier))
+            (parameter
+              (identifier))))))
     body: (block
       (pass_statement))))
 
@@ -961,40 +984,44 @@ class A(B, c="d"):
 
 (module
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (parameter
-        (identifier)))
+    (struct_header
+      name: (identifier)
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))))
     body: (block
       (function_declaration
-        name: (identifier)
-        arguments: (callable_parameters)
+        (function_signature
+          name: (identifier)
+          arguments: (callable_parameters))
         body: (block
           (identifier)))))
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance
-      (named_parameter
-        name: (identifier)
-        value: (parameter_member
-          (member_access
-            value: (identifier)
-            member: (identifier)))))
+    (struct_header
+      name: (identifier)
+      conformance: (conformance
+        (named_parameter
+          name: (identifier)
+          value: (parameter_member
+            (member_access
+              value: (identifier)
+              member: (identifier))))))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (named_parameter
-        name: (identifier)
-        value: (string
-          (string_start)
-          (string_content)
-          (string_end))))
+    (struct_header
+      name: (identifier)
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (named_parameter
+          name: (identifier)
+          value: (string
+            (string_start)
+            (string_content)
+            (string_end)))))
     body: (block
       (pass_statement))))
 
@@ -1026,7 +1053,8 @@ def spam():
         value: (identifier)
         member: (identifier)))
     declaration: (struct_declaration
-      name: (identifier)
+      (struct_header
+        name: (identifier))
       body: (block
         (decorated_declaration
           (decorator
@@ -1043,8 +1071,9 @@ def spam():
               member: (identifier)
               member: (identifier)))
           declaration: (function_declaration
-            name: (identifier)
-            arguments: (callable_parameters)
+            (function_signature
+              name: (identifier)
+              arguments: (callable_parameters))
             body: (block
               (identifier))))
         (decorated_declaration
@@ -1053,8 +1082,9 @@ def spam():
               function: (identifier)
               arguments: (arguments)))
           declaration: (function_declaration
-            name: (identifier)
-            arguments: (callable_parameters)
+            (function_signature
+              name: (identifier)
+              arguments: (callable_parameters))
             body: (block
               (identifier)))))))
   (decorated_declaration
@@ -1067,8 +1097,9 @@ def spam():
         member: (identifier)
         member: (identifier)))
     declaration: (function_declaration
-      name: (identifier)
-      arguments: (callable_parameters)
+      (function_signature
+        name: (identifier)
+        arguments: (callable_parameters))
       body: (block
         (ellipsis)))))
 
@@ -1211,8 +1242,9 @@ def a():
       (comment)
       (comment)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (if_statement
         condition: (identifier)
@@ -1291,8 +1323,9 @@ if a:
         (identifier)
         (arguments))
       (function_declaration
-        (identifier)
-        (callable_parameters)
+        (function_signature
+          (identifier)
+          (callable_parameters))
         (block
           (call
             (identifier)
@@ -1455,15 +1488,16 @@ def more_generic[T, *Ts, **P]():
 
 (module
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (parameter_decl
-        name: (identifier))
-      (variadic_parameter_decl
-        name: (identifier))
-      (variadic_parameter_decl
-        name: (identifier)))
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (parameter_decl
+          name: (identifier))
+        (variadic_parameter_decl
+          name: (identifier))
+        (variadic_parameter_decl
+          name: (identifier)))
+      arguments: (callable_parameters))
     body: (block
       (comptime_statement
         left: (comptime_parameter

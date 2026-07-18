@@ -114,14 +114,15 @@ assert await a(b) == c
           (identifier)
           (integer)))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (comparison_operator
@@ -242,38 +243,43 @@ def print():
 
 (module
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (default_parameter_decl
-        name: (identifier)
-        default: (parameter
-          (identifier))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (default_parameter_decl
+          name: (identifier)
+          default: (parameter
+            (identifier)))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (variadic_parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (variadic_parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (block
       (identifier)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (identifier))))
 
@@ -746,28 +752,30 @@ foo(x := 3, cat='vector')
           arguments: (arguments
             (identifier))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (default_parameter_decl
-        name: (identifier)
-        default: (parenthesized_expression
-          (walrus_operator
-            name: (identifier)
-            value: (integer)))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (default_parameter_decl
+          name: (identifier)
+          default: (parenthesized_expression
+            (walrus_operator
+              name: (identifier)
+              value: (integer))))))
     body: (block
       (return_statement
         (identifier))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (default_parameter_decl
-        (constrained_parameter_decl
-          name: (identifier)
-          constraint: (parenthesized_expression
-            (walrus_operator
-              name: (identifier)
-              value: (integer))))
-        default: (integer)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parenthesized_expression
+              (walrus_operator
+                name: (identifier)
+                value: (integer))))
+          default: (integer))))
     body: (block
       (return_statement
         (identifier))))
@@ -809,8 +817,9 @@ def example():
 
 (module
   (function_declaration
-    (identifier)
-    (callable_parameters)
+    (function_signature
+      (identifier)
+      (callable_parameters))
     (block
       (yield)
       (yield
@@ -988,8 +997,9 @@ def a():
 
 (module
   (function_declaration
-    (identifier)
-    (callable_parameters)
+    (function_signature
+      (identifier)
+      (callable_parameters))
     (block
       (call
         (identifier)

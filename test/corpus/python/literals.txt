@@ -381,8 +381,9 @@ def test(self):
           (identifier))))
     (string_end))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (return_statement
         (string
@@ -401,10 +402,11 @@ def test(self):
                 (string_end))))
           (string_end)))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))))
     body: (block
       (member_access
         value: (identifier)

@@ -326,232 +326,247 @@ def return_generic_with_attribute() -> I[v.r]:
 
 (module
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (default_parameter_decl
-        (constrained_parameter_decl
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (integer))
+        (constrained_variadic_parameter_decl
           name: (identifier)
           constraint: (parameter
-            (identifier)))
-        default: (integer))
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters)
+            (identifier))))
+      arguments: (callable_parameters))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))
-            (underscore)
-            (underscore)
-            (true)))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (underscore)
-            (underscore)
-            (underscore)
-            (underscore)))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))
-            (ellipsis)))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (integer)
-            (integer)
-            (named_parameter
-              name: (identifier)
-              value: (parameter
-                (identifier)))
-            (named_parameter
-              name: (identifier)
-              value: (integer))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter_composition
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
               (parameter
                 (identifier))
+              (underscore)
+              (underscore)
+              (true))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (underscore)
+              (underscore)
+              (underscore)
+              (underscore))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
               (parameter
-                (identifier)))))))
-    return_type: (call
-      function: (identifier)
-      arguments: (arguments
-        (identifier)))
+                (identifier))
+              (ellipsis))))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (integer)
+              (integer)
+              (named_parameter
+                name: (identifier)
+                value: (parameter
+                  (identifier)))
+              (named_parameter
+                name: (identifier)
+                value: (integer)))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter_composition
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier)))))))
+      return_type: (call
+        function: (identifier)
+        arguments: (arguments
           (identifier))))
-    arguments: (callable_parameters
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (variadic_parameter
-          (parameter
-            (identifier)))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (generic_parameter
-          value: (identifier)
-          parameters: (parameters
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (variadic_parameter
             (parameter
-              (identifier))))
-        (binary_operator
-          left: (identifier)
-          right: (identifier))))
+              (identifier))))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (variadic_parameter
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
+          (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))))
+          (binary_operator
+            left: (identifier)
+            right: (identifier)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
+          (variadic_parameter
+            (parameter
+              (identifier))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
           (parameter
-            (identifier)))))
+            (identifier))
+          (variadic_parameter
+            (parameter
+              (identifier))))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (parameter
-          (identifier))
-        (variadic_parameter
-          (parameter
-            (identifier)))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
+          (variadic_parameter
+            (parameter_member
+              (member_access
+                value: (identifier)
+                member: (identifier)))))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (variadic_parameter
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
+          (variadic_parameter
+            (generic_parameter
+              value: (identifier)
+              parameters: (parameters
+                (variadic_parameter
+                  (parameter_member
+                    (member_access
+                      value: (identifier)
+                      member: (identifier))))))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
+          (variadic_parameter
+            (parameter_member
+              (member_access
+                value: (call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier)))
+                member: (identifier)))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
+          (named_parameter
+            name: (identifier)
+            value: (parameter
+              (identifier)))
+          (named_parameter
+            name: (identifier)
+            value: (generic_parameter
+              value: (identifier)
+              parameters: (parameters
+                (variadic_parameter
+                  (parameter
+                    (identifier)))))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (generic_parameter
+        value: (identifier)
+        parameters: (parameters
           (parameter_member
             (member_access
               value: (identifier)
               member: (identifier))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (variadic_parameter
-          (generic_parameter
-            value: (identifier)
-            parameters: (parameters
-              (variadic_parameter
-                (parameter_member
-                  (member_access
-                    value: (identifier)
-                    member: (identifier)))))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (variadic_parameter
-          (parameter_member
-            (member_access
-              value: (call
-                function: (identifier)
-                arguments: (arguments
-                  (identifier)))
-              member: (identifier))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (named_parameter
-          name: (identifier)
-          value: (parameter
-            (identifier)))
-        (named_parameter
-          name: (identifier)
-          value: (generic_parameter
-            value: (identifier)
-            parameters: (parameters
-              (variadic_parameter
-                (parameter
-                  (identifier))))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (parameter_member
-          (member_access
-            value: (identifier)
-            member: (identifier)))))
     body: (block
       (pass_statement))))
 
@@ -568,25 +583,26 @@ def dump[
 
 (module
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter_composition
-          (parameter
-            (identifier))
-          (parameter
-            (identifier))
-          (parameter
-            (identifier)))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter_composition
             (parameter
-              (identifier))))))
+              (identifier))
+            (parameter
+              (identifier))
+            (parameter
+              (identifier)))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier)))))))
     body: (block
       (pass_statement))))
 
@@ -616,27 +632,28 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
 
 (module
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))))))
-    (convention_parameters
-      (call
-        function: (identifier)
-        arguments: (arguments
-          (identifier))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))))))
+      (convention_parameters
+        (call
+          function: (identifier)
+          arguments: (arguments
+            (identifier))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (subscript
@@ -644,76 +661,79 @@ def comp(ref [_] agg: Aggregate) -> ref [agg.field] String:
           parameters: (parameters
             (integer))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
-    effects: (function_effects
-      (raises
-        error_type: (parameter
-          (identifier))))
-    (convention_parameters
-      (parameter_member
-        (member_access
-          value: (identifier)
-          member: (member_subscript
-            value: (member_subscript
-              value: (identifier)
-              parameters: (parameters))
-            parameters: (parameters
-              (integer))))))
-    return_type: (parameter_member
-      (member_access
-        value: (self)
-        member: (identifier)))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (infer_only_marker))
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    (convention_parameters
-      (parameter_member
-        (member_access
-          value: (self)
-          member: (identifier)))
-      (parameter_member
-        (member_access
-          value: (self)
-          member: (identifier))))
-    return_type: (parameter_member
-      (member_access
-        value: (self)
-        member: (identifier)))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier)))
+      effects: (function_effects
+        (raises
+          error_type: (parameter
+            (identifier))))
       (convention_parameters
-        (underscore))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    (convention_parameters
-      (parameter_member
+        (parameter_member
+          (member_access
+            value: (identifier)
+            member: (member_subscript
+              value: (member_subscript
+                value: (identifier)
+                parameters: (parameters))
+              parameters: (parameters
+                (integer))))))
+      return_type: (parameter_member
         (member_access
-          value: (identifier)
+          value: (self)
           member: (identifier))))
-    return_type: (parameter
-      (identifier))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (infer_only_marker))
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      (convention_parameters
+        (parameter_member
+          (member_access
+            value: (self)
+            member: (identifier)))
+        (parameter_member
+          (member_access
+            value: (self)
+            member: (identifier))))
+      return_type: (parameter_member
+        (member_access
+          value: (self)
+          member: (identifier))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (convention_parameters
+          (underscore))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      (convention_parameters
+        (parameter_member
+          (member_access
+            value: (identifier)
+            member: (identifier))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (pass_statement))))
 
@@ -742,89 +762,94 @@ def run_action[
 
 (module
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    effects: (function_effects
-      (raises))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      effects: (function_effects
+        (raises))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    effects: (function_effects
-      (raises
-        error_type: (parameter
-          (identifier))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      effects: (function_effects
+        (raises
+          error_type: (parameter
+            (identifier))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    effects: (function_effects
-      (raises)
-      (abi
-        (string
-          (string_start)
-          (string_content)
-          (string_end))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      effects: (function_effects
+        (raises)
+        (abi
+          (string
+            (string_start)
+            (string_content)
+            (string_end))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    effects: (function_effects
-      (abi
-        (string
-          (string_start)
-          (string_content)
-          (string_end))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      effects: (function_effects
+        (abi
+          (string
+            (string_start)
+            (string_content)
+            (string_end))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (function_type
-          arguments: (function_type_parameters)
-          effects: (function_effects
-            (thin)
-            (raises
-              error_type: (parameter
-                (identifier))))
-          return_type: (parameter
-            (identifier)))))
-    effects: (function_effects
-      (raises
-        error_type: (parameter
-          (identifier))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (function_type
+            arguments: (function_type_parameters)
+            effects: (function_effects
+              (thin)
+              (raises
+                error_type: (parameter
+                  (identifier))))
+            return_type: (parameter
+              (identifier)))))
+      effects: (function_effects
+        (raises
+          error_type: (parameter
+            (identifier))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (pass_statement))))
 
@@ -881,136 +906,83 @@ def reshape[
 
 (module
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (infer_only_marker)
-      (default_parameter_decl
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parameter
             (identifier)))
-        default: (parameter_member
-          (member_access
-            value: (identifier)
-            member: (identifier)))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    return_type: (generic_parameter
-      value: (identifier)
-      parameters: (parameters
-        (parameter
-          (identifier))))
-    (where_clause
-      (member_access
-        value: (identifier)
-        member: (member_call
-          function: (identifier)
-          arguments: (arguments))))
-    (where_clause
-      (member_access
-        value: (identifier)
-        member: (member_call
-          function: (identifier)
-          arguments: (arguments))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (keyword_only_marker)
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (self))))
-    (where_clause
-      (call
-        function: (identifier)
-        arguments: (arguments
-          (member_access
-            value: (self)
-            member: (identifier))
-          (identifier))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))))))
-    (where_clause
-      (subscript
+        (infer_only_marker)
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (parameter_member
+            (member_access
+              value: (identifier)
+              member: (identifier)))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      return_type: (generic_parameter
         value: (identifier)
         parameters: (parameters
-          (variadic_parameter
-            (parameter_member
-              (member_access
-                value: (self)
-                member: (identifier)))))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    effects: (function_effects
-      (raises))
-    (where_clause
-      (comparison_operator
+          (parameter
+            (identifier))))
+      (where_clause
         (member_access
-          value: (self)
-          member: (identifier))
-        (false)))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
-    (where_clause
-      (not_operator
-        argument: (member_access
-          value: (self)
-          member: (identifier))))
-    body: (block
-      (pass_statement)))
-  (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
-    (where_clause
-      (boolean_operator
-        left: (subscript
           value: (identifier)
-          parameters: (parameters
-            (variadic_parameter
-              (parameter_member
-                (member_access
-                  value: (self)
-                  member: (identifier))))))
-        right: (subscript
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments))))
+      (where_clause
+        (member_access
+          value: (identifier)
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (keyword_only_marker)
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (self))))
+      (where_clause
+        (call
+          function: (identifier)
+          arguments: (arguments
+            (member_access
+              value: (self)
+              member: (identifier))
+            (identifier)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))))))
+      (where_clause
+        (subscript
           value: (identifier)
           parameters: (parameters
             (variadic_parameter
@@ -1021,125 +993,186 @@ def reshape[
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (variadic_parameter
-              (parameter
-                (identifier))))))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (variadic_parameter
-              (parameter_member
-                (member_access
-                  value: (identifier)
-                  member: (member_call
-                    function: (member_subscript
-                      value: (identifier)
-                      parameters: (parameters
-                        (named_parameter
-                          name: (identifier)
-                          value: (parameter
-                            (identifier)))
-                        (parameter_member
-                          (member_access
-                            value: (call
-                              function: (identifier)
-                              arguments: (arguments
-                                (identifier)))
-                            member: (member_call
-                              function: (identifier)
-                              arguments: (arguments))))
-                        (generic_parameter
-                          value: (identifier)
-                          parameters: (parameters
-                            (parameter
-                              (identifier))))))
-                    arguments: (arguments)))))))))
-    (where_clause
-      (subscript
-        value: (identifier)
-        parameters: (parameters
-          (parameter
-            (identifier))
-          (variadic_parameter
-            (parameter
-              (identifier))))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      effects: (function_effects
+        (raises))
+      (where_clause
+        (comparison_operator
+          (member_access
+            value: (self)
+            member: (identifier))
+          (false))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
-    return_type: (parameter_member
-      (member_access
-        value: (self)
-        member: (member_subscript
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier)))
+      (where_clause
+        (not_operator
+          argument: (member_access
+            value: (self)
+            member: (identifier)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier)))
+      (where_clause
+        (boolean_operator
+          left: (subscript
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (parameter_member
+                  (member_access
+                    value: (self)
+                    member: (identifier))))))
+          right: (subscript
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (parameter_member
+                  (member_access
+                    value: (self)
+                    member: (identifier)))))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (parameter
+                  (identifier))))))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (parameter_member
+                  (member_access
+                    value: (identifier)
+                    member: (member_call
+                      function: (member_subscript
+                        value: (identifier)
+                        parameters: (parameters
+                          (named_parameter
+                            name: (identifier)
+                            value: (parameter
+                              (identifier)))
+                          (parameter_member
+                            (member_access
+                              value: (call
+                                function: (identifier)
+                                arguments: (arguments
+                                  (identifier)))
+                              member: (member_call
+                                function: (identifier)
+                                arguments: (arguments))))
+                          (generic_parameter
+                            value: (identifier)
+                            parameters: (parameters
+                              (parameter
+                                (identifier))))))
+                      arguments: (arguments)))))))))
+      (where_clause
+        (subscript
           value: (identifier)
           parameters: (parameters
+            (parameter
+              (identifier))
             (variadic_parameter
-              (generic_parameter
-                value: (identifier)
-                parameters: (parameters
-                  (variadic_parameter
-                    (parameter
-                      (identifier))))))))))
-    (where_clause
-      (parenthesized_expression
-        (boolean_operator
-          left: (boolean_operator
-            left: (member_access
-              value: (self)
-              member: (identifier))
-            right: (member_access
-              value: (self)
-              member: (identifier)))
-          right: (comparison_operator
-            (member_access
-              value: (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (variadic_parameter
-                    (parameter_member
-                      (member_access
-                        value: (self)
-                        member: (identifier)
-                        member: (identifier))))))
-              member: (identifier))
-            (member_access
-              value: (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (variadic_parameter
-                    (generic_parameter
-                      value: (identifier)
-                      parameters: (parameters
-                        (variadic_parameter
-                          (parameter
-                            (identifier))))))))
-              member: (identifier))))))
+              (parameter
+                (identifier)))))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier)))
+      return_type: (parameter_member
+        (member_access
+          value: (self)
+          member: (member_subscript
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (generic_parameter
+                  value: (identifier)
+                  parameters: (parameters
+                    (variadic_parameter
+                      (parameter
+                        (identifier))))))))))
+      (where_clause
+        (parenthesized_expression
+          (boolean_operator
+            left: (boolean_operator
+              left: (member_access
+                value: (self)
+                member: (identifier))
+              right: (member_access
+                value: (self)
+                member: (identifier)))
+            right: (comparison_operator
+              (member_access
+                value: (subscript
+                  value: (identifier)
+                  parameters: (parameters
+                    (variadic_parameter
+                      (parameter_member
+                        (member_access
+                          value: (self)
+                          member: (identifier)
+                          member: (identifier))))))
+                member: (identifier))
+              (member_access
+                value: (subscript
+                  value: (identifier)
+                  parameters: (parameters
+                    (variadic_parameter
+                      (generic_parameter
+                        value: (identifier)
+                        parameters: (parameters
+                          (variadic_parameter
+                            (parameter
+                              (identifier))))))))
+                member: (identifier)))))))
     body: (block
       (pass_statement))))
 
@@ -1157,9 +1190,10 @@ def main():
 
 (module
   (function_declaration
-    name: (escaped_identifier
-      (escaped_identifier_content))
-    arguments: (callable_parameters)
+    (function_signature
+      name: (escaped_identifier
+        (escaped_identifier_content))
+      arguments: (callable_parameters))
     body: (block
       (call
         function: (identifier)
@@ -1169,8 +1203,9 @@ def main():
             (string_content)
             (string_end))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (call
         function: (escaped_identifier
@@ -1209,87 +1244,95 @@ def f() {var name^}:
 
 (module
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (assignment
         left: (identifier)
         right: (integer))
       (function_declaration
-        name: (identifier)
-        arguments: (callable_parameters
-          (constrained_parameter_decl
-            name: (identifier)
-            constraint: (parameter
-              (identifier))))
-        captures: (capture_parameters
-          (capture_parameter
-            name: (identifier)))
-        return_type: (parameter
-          (identifier))
+        (function_signature
+          name: (identifier)
+          arguments: (callable_parameters
+            (constrained_parameter_decl
+              name: (identifier)
+              constraint: (parameter
+                (identifier))))
+          captures: (capture_parameters
+            (capture_parameter
+              name: (identifier)))
+          return_type: (parameter
+            (identifier)))
         body: (block
           (return_statement
             (comparison_operator
               (identifier)
               (identifier)))))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    captures: (capture_parameters
-      (capture_parameter
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      captures: (capture_parameters
+        (capture_parameter
+          name: (identifier))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    captures: (capture_parameters
-      (capture_parameter
-        name: (identifier))
-      (capture_parameter
-        name: (identifier))
-      (capture_parameter
-        name: (identifier)))
-    return_type: (none)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      captures: (capture_parameters
+        (capture_parameter
+          name: (identifier))
+        (capture_parameter
+          name: (identifier))
+        (capture_parameter
+          name: (identifier)))
+      return_type: (none))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    captures: (capture_parameters
-      (capture_parameter
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      captures: (capture_parameters
+        (capture_parameter
+          name: (identifier))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    captures: (capture_parameters
-      (capture_parameter))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      captures: (capture_parameters
+        (capture_parameter)))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    captures: (capture_parameters
-      (capture_parameter))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      captures: (capture_parameters
+        (capture_parameter)))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    captures: (capture_parameters
-      (capture_parameter
-        name: (identifier)))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      captures: (capture_parameters
+        (capture_parameter
+          name: (identifier))))
     body: (block
       (pass_statement))))
 
@@ -1313,98 +1356,102 @@ struct I[s: Int, *, e: D = N.i.t()]:
 
 (module
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (default_parameter_decl
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (integer))
+        (positional_only_marker)
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (integer))
+        (keyword_only_marker)
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parameter
             (identifier)))
-        default: (integer))
-      (positional_only_marker)
-      (default_parameter_decl
-        (constrained_parameter_decl
-          name: (identifier)
-          constraint: (parameter
-            (identifier)))
-        default: (integer))
-      (keyword_only_marker)
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (default_parameter_decl
-        (constrained_parameter_decl
-          name: (identifier)
-          constraint: (parameter
-            (identifier)))
-        default: (integer)))
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (integer))))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (infer_only_marker)
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (call
-          function: (identifier)
-          arguments: (arguments
-            (identifier)))))
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (parameter
-        (identifier)))
-    body: (block
-      (pass_statement)))
-  (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (default_parameter_decl
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parameter
             (identifier)))
-        default: (true)))
+        (infer_only_marker)
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier)))))
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (keyword_only_marker)
-      (default_parameter_decl
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parameter
             (identifier)))
-        default: (parameter_member
-          (member_access
-            value: (identifier)
-            member: (identifier)
-            member: (member_call
-              function: (identifier)
-              arguments: (arguments))))))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (true))))
+    body: (block
+      (pass_statement)))
+  (struct_declaration
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (keyword_only_marker)
+        (default_parameter_decl
+          (constrained_parameter_decl
+            name: (identifier)
+            constraint: (parameter
+              (identifier)))
+          default: (parameter_member
+            (member_access
+              value: (identifier)
+              member: (identifier)
+              member: (member_call
+                function: (identifier)
+                arguments: (arguments)))))))
     body: (block
       (pass_statement))))
 
@@ -1446,57 +1493,20 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
 
 (module
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (where_clause
-        (call
-          function: (identifier)
-          arguments: (arguments
-            (identifier)
-            (identifier)))))
-    body: (block
-      (pass_statement)))
-  (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (where_clause
-        (call
-          function: (identifier)
-          arguments: (arguments
-            (identifier)
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
             (identifier))))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (where_clause
-        (boolean_operator
-          left: (call
-            function: (identifier)
-            arguments: (arguments
-              (identifier)
-              (identifier)))
-          right: (call
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (where_clause
+          (call
             function: (identifier)
             arguments: (arguments
               (identifier)
@@ -1504,103 +1514,145 @@ struct Matrix[m: Int, n: Int] where m > 0 where n > 0:
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (where_clause
-        (subscript
-          value: (identifier)
-          parameters: (parameters
-            (variadic_parameter
-              (parameter
-                (identifier))))))
-      (parameter
-        (identifier))
-      (where_clause
-        (subscript
-          value: (identifier)
-          parameters: (parameters
-            (variadic_parameter
-              (parameter
-                (identifier))))))
-      (parameter
-        (identifier))
-      (where_clause
-        (parenthesized_expression
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (where_clause
+          (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier)
+              (identifier))))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (where_clause
           (boolean_operator
-            left: (boolean_operator
-              left: (subscript
-                value: (identifier)
-                parameters: (parameters
-                  (variadic_parameter
-                    (parameter
-                      (identifier)))))
+            left: (call
+              function: (identifier)
+              arguments: (arguments
+                (identifier)
+                (identifier)))
+            right: (call
+              function: (identifier)
+              arguments: (arguments
+                (identifier)
+                (identifier)))))))
+    body: (block
+      (pass_statement)))
+  (struct_declaration
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (where_clause
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (parameter
+                  (identifier))))))
+        (parameter
+          (identifier))
+        (where_clause
+          (subscript
+            value: (identifier)
+            parameters: (parameters
+              (variadic_parameter
+                (parameter
+                  (identifier))))))
+        (parameter
+          (identifier))
+        (where_clause
+          (parenthesized_expression
+            (boolean_operator
+              left: (boolean_operator
+                left: (subscript
+                  value: (identifier)
+                  parameters: (parameters
+                    (variadic_parameter
+                      (parameter
+                        (identifier)))))
+                right: (subscript
+                  value: (identifier)
+                  parameters: (parameters
+                    (variadic_parameter
+                      (parameter
+                        (identifier))))))
               right: (subscript
                 value: (identifier)
                 parameters: (parameters
                   (variadic_parameter
                     (parameter
-                      (identifier))))))
-            right: (subscript
-              value: (identifier)
-              parameters: (parameters
-                (variadic_parameter
-                  (parameter
-                    (identifier))))))))
-      (parameter
-        (identifier)))
+                      (identifier))))))))
+        (parameter
+          (identifier))))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    (where_clause
-      (comparison_operator
-        (identifier)
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      (where_clause
+        (comparison_operator
+          (identifier)
+          (member_access
+            value: (identifier)
+            member: (identifier))))
+      (where_clause
         (member_access
           value: (identifier)
-          member: (identifier))))
-    (where_clause
-      (member_access
-        value: (identifier)
-        member: (member_call
-          function: (identifier)
-          arguments: (arguments))))
+          member: (member_call
+            function: (identifier)
+            arguments: (arguments)))))
     body: (block
       (pass_statement)))
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    (where_clause
-      (comparison_operator
-        (identifier)
-        (integer)))
-    (where_clause
-      (comparison_operator
-        (identifier)
-        (integer)))
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      (where_clause
+        (comparison_operator
+          (identifier)
+          (integer)))
+      (where_clause
+        (comparison_operator
+          (identifier)
+          (integer))))
     body: (block
       (pass_statement))))
 
@@ -1621,54 +1673,56 @@ __extension SIMD:
 
 (module
   (extension_declaration
-    name: (identifier)
+    (extension_header
+      name: (identifier))
     body: (block
       (decorated_declaration
         (decorator
           (identifier))
         declaration: (function_declaration
-          name: (identifier)
-          arguments: (callable_parameters
-            (keyword_only_marker)
-            (default_parameter_decl
-              (constrained_parameter_decl
-                name: (identifier)
-                constraint: (generic_parameter
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier)))))
-              default: (parameter_member
-                (member_access
-                  value: (subscript
+          (function_signature
+            name: (identifier)
+            arguments: (callable_parameters
+              (keyword_only_marker)
+              (default_parameter_decl
+                (constrained_parameter_decl
+                  name: (identifier)
+                  constraint: (generic_parameter
                     value: (identifier)
                     parameters: (parameters
                       (parameter
-                        (identifier))))
-                  member: (identifier))))
-            (default_parameter_decl
-              (constrained_parameter_decl
-                name: (identifier)
-                constraint: (generic_parameter
-                  value: (identifier)
-                  parameters: (parameters
-                    (parameter
-                      (identifier)))))
-              default: (parameter_member
-                (member_access
-                  value: (subscript
+                        (identifier)))))
+                default: (parameter_member
+                  (member_access
+                    value: (subscript
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter
+                          (identifier))))
+                    member: (identifier))))
+              (default_parameter_decl
+                (constrained_parameter_decl
+                  name: (identifier)
+                  constraint: (generic_parameter
                     value: (identifier)
                     parameters: (parameters
                       (parameter
-                        (identifier))))
-                  member: (identifier)))))
-          return_type: (generic_parameter
-            value: (identifier)
-            parameters: (parameters
-              (parameter
-                (identifier))
-              (parameter
-                (identifier))))
+                        (identifier)))))
+                default: (parameter_member
+                  (member_access
+                    value: (subscript
+                      value: (identifier)
+                      parameters: (parameters
+                        (parameter
+                          (identifier))))
+                    member: (identifier)))))
+            return_type: (generic_parameter
+              value: (identifier)
+              parameters: (parameters
+                (parameter
+                  (identifier))
+                (parameter
+                  (identifier)))))
           body: (block
             (return_statement
               (call
@@ -1701,16 +1755,18 @@ trait N(A, B):
 
 (module
   (trait_declaration
-    name: (identifier)
+    (trait_header
+      name: (identifier))
     body: (block
       (pass_statement)))
   (trait_declaration
-    name: (identifier)
-    refinement: (conformance
-      (parameter
-        (identifier))
-      (parameter
-        (identifier)))
+    (trait_header
+      name: (identifier)
+      refinement: (conformance
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))))
     body: (block
       (pass_statement))))
 
@@ -1751,17 +1807,20 @@ struct PublicStruct:
             name: (identifier)
             value: (identifier)))))
     declaration: (trait_declaration
-      name: (identifier)
+      (trait_header
+        name: (identifier))
       body: (block
         (function_declaration
-          name: (identifier)
-          arguments: (callable_parameters
-            (parameter_decl
-              name: (identifier)))
+          (function_signature
+            name: (identifier)
+            arguments: (callable_parameters
+              (parameter_decl
+                name: (identifier))))
           body: (block
             (ellipsis))))))
   (struct_declaration
-    name: (identifier)
+    (struct_header
+      name: (identifier))
     body: (block
       (decorated_declaration
         (decorator

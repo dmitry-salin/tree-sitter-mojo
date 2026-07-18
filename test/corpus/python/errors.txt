@@ -49,27 +49,31 @@ def test_incomplete_call():
 
 (module
   (function_declaration
-    (identifier)
-    (callable_parameters)
+    (function_signature
+      (identifier)
+      (callable_parameters))
     (ERROR
       (identifier))
     (comment)
     (block
       (function_declaration
-        (identifier)
-        (callable_parameters)
+        (function_signature
+          (identifier)
+          (callable_parameters))
         (comment)
         (block
           (pass_statement)))))
   (function_declaration
-    (identifier)
-    (callable_parameters)
+    (function_signature
+      (identifier)
+      (callable_parameters))
     (ERROR
       (identifier))
     (comment)
     (block
       (struct_declaration
-        (identifier)
+        (struct_header
+          (identifier))
         (comment)
         (block
           (pass_statement))))))
@@ -90,13 +94,14 @@ lambda (a, b): (a, b)
 
 (module
   (function_declaration
-    (identifier)
-    (ERROR)
-    (callable_parameters
-      (parameter_decl
-        (identifier))
-      (parameter_decl
-        (identifier)))
+    (function_signature
+      (identifier)
+      (ERROR)
+      (callable_parameters
+        (parameter_decl
+          (identifier))
+        (parameter_decl
+          (identifier))))
     (ERROR)
     (block
       (return_statement
@@ -104,17 +109,18 @@ lambda (a, b): (a, b)
           (identifier)
           (identifier)))))
   (function_declaration
-    (identifier)
-    (ERROR
-      (callable_parameters
-        (parameter_decl
-          (identifier))
-        (parameter_decl
-          (identifier))))
-    (callable_parameters
+    (function_signature
+      (identifier)
       (ERROR
-        (integer)
-        (integer)))
+        (callable_parameters
+          (parameter_decl
+            (identifier))
+          (parameter_decl
+            (identifier))))
+      (callable_parameters
+        (ERROR
+          (integer)
+          (integer))))
     (ERROR)
     (block
       (return_statement

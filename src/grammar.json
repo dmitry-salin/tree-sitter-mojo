@@ -1687,7 +1687,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_function_signature"
+          "name": "function_signature"
         },
         {
           "type": "STRING",
@@ -1703,7 +1703,7 @@
         }
       ]
     },
-    "_function_signature": {
+    "function_signature": {
       "type": "SEQ",
       "members": [
         {
@@ -1900,7 +1900,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_mlir_region_signature"
+          "name": "mlir_region_signature"
         },
         {
           "type": "STRING",
@@ -1916,7 +1916,7 @@
         }
       ]
     },
-    "_mlir_region_signature": {
+    "mlir_region_signature": {
       "type": "SEQ",
       "members": [
         {
@@ -1942,7 +1942,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_class_header"
+          "name": "struct_header"
         },
         {
           "type": "STRING",
@@ -1958,7 +1958,7 @@
         }
       ]
     },
-    "_class_header": {
+    "struct_header": {
       "type": "SEQ",
       "members": [
         {
@@ -2013,7 +2013,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_extension_header"
+          "name": "extension_header"
         },
         {
           "type": "STRING",
@@ -2029,7 +2029,7 @@
         }
       ]
     },
-    "_extension_header": {
+    "extension_header": {
       "type": "SEQ",
       "members": [
         {
@@ -2051,7 +2051,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_trait_header"
+          "name": "trait_header"
         },
         {
           "type": "STRING",
@@ -2067,7 +2067,7 @@
         }
       ]
     },
-    "_trait_header": {
+    "trait_header": {
       "type": "SEQ",
       "members": [
         {

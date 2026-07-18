@@ -582,51 +582,53 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
       (mlir_type_parameter
         (mlir_type_special_character))))
   (struct_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (mlir_type
-          (mlir_type_prefix)
-          (mlir_parameter
-            (mlir_dotted_identifier
-              (identifier)
-              (identifier))))))
-    conformance: (conformance
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier))
-      (parameter
-        (identifier)))
+    (struct_header
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (mlir_type
+            (mlir_type_prefix)
+            (mlir_parameter
+              (mlir_dotted_identifier
+                (identifier)
+                (identifier))))))
+      conformance: (conformance
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))
+        (parameter
+          (identifier))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters)
-    return_type: (mlir_type
-      (mlir_type_prefix)
-      (mlir_parameter
-        (mlir_dotted_identifier
-          (identifier)
-          (identifier))))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      return_type: (mlir_type
+        (mlir_type_prefix)
+        (mlir_parameter
+          (mlir_dotted_identifier
+            (identifier)
+            (identifier)))))
     body: (block
       (pass_statement))))
 
@@ -1212,10 +1214,11 @@ def _get_860m_target() -> _TargetType:
         (unary_operator
           argument: (identifier)))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (mlir_attr
@@ -1235,27 +1238,28 @@ def _get_860m_target() -> _TargetType:
             (mlir_dotted_identifier
               (identifier)))))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters)
-    return_type: (mlir_type
-      (mlir_type_prefix)
-      (mlir_parameter
-        (mlir_dotted_identifier
-          (identifier)
-          (identifier))))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      return_type: (mlir_type
+        (mlir_type_prefix)
+        (mlir_parameter
+          (mlir_dotted_identifier
+            (identifier)
+            (identifier)))))
     body: (block
       (return_statement
         (mlir_attr
@@ -1306,91 +1310,93 @@ def _get_860m_target() -> _TargetType:
           (mlir_attr_parameter
             (mlir_type_special_character))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (ellipsis))))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (named_parameter
-              name: (identifier)
-              value: (parameter_member
-                (member_access
-                  value: (self)
-                  member: (identifier))))
-            (mlir_attr
-              (mlir_attr_parameter
-                (mlir_attr_prefix)
-                (mlir_parameter
-                  (mlir_dotted_identifier
-                    (identifier)
-                    (identifier)))
-                (mlir_type_special_character))
-              (mlir_attr_parameter
-                (parameter_member
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (ellipsis))))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (named_parameter
+                name: (identifier)
+                value: (parameter_member
                   (member_access
-                    value: (identifier)
+                    value: (self)
                     member: (identifier))))
-              (mlir_attr_parameter
-                (mlir_type_special_character)
-                (mlir_type_special_character))
-              (mlir_attr_parameter
-                (parameter_member
-                  (member_access
-                    value: (identifier)
-                    member: (member_subscript
+              (mlir_attr
+                (mlir_attr_parameter
+                  (mlir_attr_prefix)
+                  (mlir_parameter
+                    (mlir_dotted_identifier
+                      (identifier)
+                      (identifier)))
+                  (mlir_type_special_character))
+                (mlir_attr_parameter
+                  (parameter_member
+                    (member_access
                       value: (identifier)
-                      parameters: (parameters
-                        (parameter_member
-                          (member_access
-                            value: (self)
-                            member: (identifier)))))))))))))
-    (where_clause
-      (mlir_attr
-        (mlir_attr_parameter
-          (mlir_attr_prefix)
-          (mlir_parameter
-            (mlir_dotted_identifier
-              (identifier)
-              (identifier)))
-          (mlir_type_special_character))
-        (mlir_attr_parameter
-          (parameter_member
-            (member_access
-              value: (identifier)
-              member: (identifier))))
-        (mlir_attr_parameter
-          (mlir_type_special_character))
-        (mlir_attr_parameter
-          (parameter_member
-            (member_access
-              value: (self)
-              member: (identifier))))
-        (mlir_attr_parameter
-          (mlir_type_special_character))))
+                      member: (identifier))))
+                (mlir_attr_parameter
+                  (mlir_type_special_character)
+                  (mlir_type_special_character))
+                (mlir_attr_parameter
+                  (parameter_member
+                    (member_access
+                      value: (identifier)
+                      member: (member_subscript
+                        value: (identifier)
+                        parameters: (parameters
+                          (parameter_member
+                            (member_access
+                              value: (self)
+                              member: (identifier)))))))))))))
+      (where_clause
+        (mlir_attr
+          (mlir_attr_parameter
+            (mlir_attr_prefix)
+            (mlir_parameter
+              (mlir_dotted_identifier
+                (identifier)
+                (identifier)))
+            (mlir_type_special_character))
+          (mlir_attr_parameter
+            (parameter_member
+              (member_access
+                value: (identifier)
+                member: (identifier))))
+          (mlir_attr_parameter
+            (mlir_type_special_character))
+          (mlir_attr_parameter
+            (parameter_member
+              (member_access
+                value: (self)
+                member: (identifier))))
+          (mlir_attr_parameter
+            (mlir_type_special_character)))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters)
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (mlir_attr
@@ -1458,10 +1464,11 @@ def _get_860m_target() -> _TargetType:
                 (identifier)))
             (mlir_type_special_character))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (mlir_attr
@@ -1996,10 +2003,11 @@ def _snprintf[
                     (identifier))))))))
       arguments: (arguments)))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (parameter
+        (identifier)))
     body: (block
       (mlir_op
         (mlir_dotted_identifier
@@ -2008,19 +2016,20 @@ def _snprintf[
           (identifier))
         arguments: (arguments))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    return_type: (function_type
-      arguments: (function_type_parameters
-        (parameter
-          (identifier)))
-      effects: (function_effects
-        (thin))
-      return_type: (none))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      return_type: (function_type
+        arguments: (function_type_parameters
+          (parameter
+            (identifier)))
+        effects: (function_effects
+          (thin))
+        return_type: (none)))
     body: (block
       (return_statement
         (mlir_op
@@ -2040,27 +2049,28 @@ def _snprintf[
           arguments: (arguments
             (identifier))))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (mlir_op
@@ -2076,12 +2086,13 @@ def _snprintf[
             (identifier)
             (identifier))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (parameter_decl
-        name: (identifier)))
-    return_type: (mlir_type
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (parameter_decl
+          name: (identifier)))
+      return_type: (mlir_type
+        (identifier)))
     body: (block
       (return_statement
         (mlir_op
@@ -2137,15 +2148,16 @@ def _snprintf[
                       (identifier)))
                   member: (identifier)))))))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters)
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      return_type: (parameter
+        (identifier)))
     body: (block
       (return_statement
         (mlir_op
@@ -2181,21 +2193,22 @@ def _snprintf[
                   (identifier)))
               (mlir_type_special_character)))))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters))
     body: (block
       (mlir_op
         (mlir_dotted_identifier
@@ -2230,33 +2243,34 @@ def _snprintf[
             value: (none)))
         arguments: (arguments))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (infer_only_marker))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (parameter
-              (identifier))
-            (underscore))))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (call
-          function: (identifier)
-          arguments: (arguments
-            (identifier))))
-      (positional_only_marker))
-    return_type: (call
-      function: (identifier)
-      arguments: (arguments
-        (identifier)))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (infer_only_marker))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))
+              (underscore))))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier))))
+        (positional_only_marker))
+      return_type: (call
+        function: (identifier)
+        arguments: (arguments
+          (identifier))))
     body: (block
       (return_statement
         (initializer_list
@@ -2274,8 +2288,9 @@ def _snprintf[
                   value: (identifier)
                   member: (identifier)))))))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
     body: (block
       (mlir_op
         (mlir_dotted_identifier
@@ -2320,19 +2335,20 @@ def _snprintf[
               (mlir_attr_special_character))))
         arguments: (arguments))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (named_parameter
-              name: (identifier)
-              value: (true))
-            (parameter
-              (identifier))
-            (ellipsis)))))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (named_parameter
+                name: (identifier)
+                value: (true))
+              (parameter
+                (identifier))
+              (ellipsis))))))
     body: (block
       (mlir_op
         (mlir_dotted_identifier
@@ -2383,28 +2399,29 @@ def _snprintf[
         arguments: (arguments
           (identifier)))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (variadic_parameter
-          (parameter
-            (identifier)))))
-    return_type: (parameter
-      (identifier))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (variadic_parameter
+            (parameter
+              (identifier)))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (assignment
         left: (identifier)
@@ -2515,39 +2532,40 @@ def _snprintf[
           arguments: (arguments
             (identifier))))))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier))))
-    arguments: (callable_parameters
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (generic_parameter
-          value: (identifier)
-          parameters: (parameters
-            (named_parameter
-              name: (identifier)
-              value: (true))
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (generic_parameter
+            value: (identifier)
+            parameters: (parameters
+              (named_parameter
+                name: (identifier)
+                value: (true))
+              (parameter
+                (identifier))
+              (underscore))))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_variadic_parameter_decl
+          name: (identifier)
+          constraint: (variadic_parameter
             (parameter
-              (identifier))
-            (underscore))))
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (parameter
-          (identifier)))
-      (constrained_variadic_parameter_decl
-        name: (identifier)
-        constraint: (variadic_parameter
-          (parameter
-            (identifier)))))
-    return_type: (parameter
-      (identifier))
+              (identifier)))))
+      return_type: (parameter
+        (identifier)))
     body: (block
       (assignment
         left: (identifier)
@@ -2690,50 +2708,53 @@ def structured_for_loop() -> __mlir_type.index:
 
 (module
   (mlir_region_declaration
-    name: (identifier)
-    arguments: (mlir_callable_parameters
-      (constrained_mlir_parameter_decl
-        name: (identifier)
-        constraint: (mlir_type
-          (identifier)))
-      (constrained_mlir_parameter_decl
-        name: (identifier)
-        constraint: (mlir_type
-          (mlir_type_prefix)
-          (mlir_parameter
-            (mlir_dotted_identifier
-              (identifier)
-              (identifier)))
-          (mlir_type_special_character)
-          (mlir_parameter
-            (mlir_dotted_identifier
-              (identifier)))
-          (mlir_type_special_character))))
+    (mlir_region_signature
+      name: (identifier)
+      arguments: (mlir_callable_parameters
+        (constrained_mlir_parameter_decl
+          name: (identifier)
+          constraint: (mlir_type
+            (identifier)))
+        (constrained_mlir_parameter_decl
+          name: (identifier)
+          constraint: (mlir_type
+            (mlir_type_prefix)
+            (mlir_parameter
+              (mlir_dotted_identifier
+                (identifier)
+                (identifier)))
+            (mlir_type_special_character)
+            (mlir_parameter
+              (mlir_dotted_identifier
+                (identifier)))
+            (mlir_type_special_character)))))
     body: (block
       (pass_statement)))
   (function_declaration
-    name: (identifier)
-    parameters: (parameters_declaration
-      (constrained_parameter_decl
-        name: (identifier)
-        constraint: (function_type
-          arguments: (function_type_parameters
-            (parameter
-              (identifier)))
-          return_type: (none))))
-    arguments: (callable_parameters)
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (function_type
+            arguments: (function_type_parameters
+              (parameter
+                (identifier)))
+            return_type: (none))))
+      arguments: (callable_parameters))
     body: (block
       (mlir_region_declaration
-        name: (identifier)
-        arguments: (mlir_callable_parameters
-          (constrained_mlir_parameter_decl
-            name: (identifier)
-            constraint: (mlir_type
-              (mlir_type_prefix)
-              (mlir_parameter
-                (mlir_dotted_identifier
-                  (identifier)
-                  (identifier))))))
+        (mlir_region_signature
+          name: (identifier)
+          arguments: (mlir_callable_parameters
+            (constrained_mlir_parameter_decl
+              name: (identifier)
+              constraint: (mlir_type
+                (mlir_type_prefix)
+                (mlir_parameter
+                  (mlir_dotted_identifier
+                    (identifier)
+                    (identifier)))))))
         body: (block
           (call
             function: (identifier)
@@ -2761,18 +2782,20 @@ def structured_for_loop() -> __mlir_type.index:
                 member: (identifier)))))
         arguments: (arguments))))
   (function_declaration
-    name: (identifier)
-    arguments: (callable_parameters)
-    return_type: (mlir_type
-      (identifier))
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      return_type: (mlir_type
+        (identifier)))
     body: (block
       (mlir_region_declaration
-        name: (identifier)
-        arguments: (mlir_callable_parameters
-          (constrained_mlir_parameter_decl
-            name: (identifier)
-            constraint: (mlir_type
-              (identifier))))
+        (mlir_region_signature
+          name: (identifier)
+          arguments: (mlir_callable_parameters
+            (constrained_mlir_parameter_decl
+              name: (identifier)
+              constraint: (mlir_type
+                (identifier)))))
         body: (block
           (mlir_op
             (mlir_dotted_identifier
