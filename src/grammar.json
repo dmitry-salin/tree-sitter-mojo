@@ -5279,21 +5279,8 @@
           "value": "*"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "member_access"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "subscript"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_identifier"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_splat_pattern"
         }
       ]
     },
@@ -5305,21 +5292,25 @@
           "value": "**"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "member_access"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "subscript"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_identifier"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_splat_pattern"
+        }
+      ]
+    },
+    "_splat_pattern": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "member_access"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_identifier"
         }
       ]
     },
@@ -8387,6 +8378,7 @@
     "_constraint",
     "_constraint_parameter",
     "_declaration_convention",
+    "_splat_pattern",
     "_expressions",
     "_atom",
     "_identifier"

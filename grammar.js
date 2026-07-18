@@ -177,6 +177,7 @@ export default grammar({
     $._constraint,
     $._constraint_parameter,
     $._declaration_convention,
+    $._splat_pattern,
     $._expressions,
     $._atom,
     $._identifier,
@@ -1034,11 +1035,9 @@ export default grammar({
     tuple_pattern: $ => seq('(', optional($._patterns), ')'),
     _patterns: $ => trailingCommaSep1($.pattern),
 
-    list_splat_pattern: $ =>
-      seq('*', choice($.member_access, $.subscript, $._identifier)),
-
-    dictionary_splat_pattern: $ =>
-      seq('**', choice($.member_access, $.subscript, $._identifier)),
+    list_splat_pattern: $ => seq('*', $._splat_pattern),
+    dictionary_splat_pattern: $ => seq('**', $._splat_pattern),
+    _splat_pattern: $ => choice($.member_access, $.subscript, $._identifier),
 
     // Extended patterns (patterns allowed in match statement are far more
     // flexible than simple patterns though still a subset of "expression")
