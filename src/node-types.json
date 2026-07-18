@@ -110,10 +110,6 @@
         "named": true
       },
       {
-        "type": "conditional_expression",
-        "named": true
-      },
-      {
         "type": "lambda",
         "named": true
       },
@@ -123,6 +119,10 @@
       },
       {
         "type": "primary_expression",
+        "named": true
+      },
+      {
+        "type": "ternary_conditional",
         "named": true
       },
       {
@@ -1490,21 +1490,6 @@
       "types": [
         {
           "type": "string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "conditional_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
           "named": true
         }
       ]
@@ -4938,6 +4923,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "ternary_conditional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
     }
   },
   {

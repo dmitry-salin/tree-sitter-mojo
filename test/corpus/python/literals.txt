@@ -389,7 +389,7 @@ def test(self):
           (string_start)
           (string_content)
           (interpolation
-            expression: (conditional_expression
+            expression: (ternary_conditional
               (string
                 (string_start)
                 (string_content)

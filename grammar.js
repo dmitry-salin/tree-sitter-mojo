@@ -1087,7 +1087,7 @@ export default grammar({
       choice(
         $.as_pattern,
         $.lambda,
-        $.conditional_expression,
+        $.ternary_conditional,
         $.walrus_operator,
         $.comparison_operator,
         $.not_operator,
@@ -1117,7 +1117,7 @@ export default grammar({
     _expression_within_for_in_clause: $ =>
       choice($.expression, alias($.lambda_within_for_in_clause, $.lambda)),
 
-    conditional_expression: $ =>
+    ternary_conditional: $ =>
       prec.right(
         PREC.conditional,
         seq($.expression, 'if', $.expression, 'else', $.expression),

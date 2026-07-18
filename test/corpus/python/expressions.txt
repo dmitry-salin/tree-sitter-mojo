@@ -921,17 +921,17 @@ slice(1,1,1) if a else d
 (module
   (assignment
     (identifier)
-    (conditional_expression
+    (ternary_conditional
       (identifier)
       (identifier)
       (identifier)))
-  (conditional_expression
+  (ternary_conditional
     (call
       (identifier)
       (arguments))
     (identifier)
     (identifier))
-  (conditional_expression
+  (ternary_conditional
     (call
       (identifier)
       (arguments

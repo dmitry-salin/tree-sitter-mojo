@@ -5592,7 +5592,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "conditional_expression"
+          "name": "ternary_conditional"
         },
         {
           "type": "SYMBOL",
@@ -5712,7 +5712,7 @@
         }
       ]
     },
-    "conditional_expression": {
+    "ternary_conditional": {
       "type": "PREC_RIGHT",
       "value": -1,
       "content": {
