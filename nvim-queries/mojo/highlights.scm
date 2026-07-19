@@ -445,6 +445,8 @@
     name: (identifier) @type.definition)
   (parameter_declaration/default_parameter_decl (constrained_parameter_decl
     name: (identifier) @type.definition))
+  (constrained_comptime_parameter
+    name: (identifier) @type.definition)
   (comptime_parameter
     name: (identifier) @type.definition)
 ](#lua-match? @type.definition "^_*[A-Z][A-Za-z0-9_]*$"))

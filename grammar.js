@@ -551,7 +551,10 @@ export default grammar({
       ),
 
     constrained_comptime_parameter: $ =>
-      seq($.comptime_parameter, $._constraint, optional($._where_clauses)),
+      seq($._constrained_comptime_parameter, optional($._where_clauses)),
+
+    _constrained_comptime_parameter: $ =>
+      seq($._comptime_parameter, $._constraint),
 
     parameters_declaration: $ =>
       seq('[', trailingCommaSep1($.parameter_declaration), ']'),
@@ -685,6 +688,7 @@ export default grammar({
     conformance_parameter: $ =>
       choice($.named_parameter, $.variadic_parameter, $._standalone_parameter),
 
+    // -----------------------------------------------------------------------
     // Where clause
 
     _where_clauses: $ => repeat1($.where_clause),

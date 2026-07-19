@@ -2283,11 +2283,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "comptime_parameter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_constraint"
+          "name": "_constrained_comptime_parameter"
         },
         {
           "type": "CHOICE",
@@ -2300,6 +2296,19 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "_constrained_comptime_parameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_comptime_parameter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_constraint"
         }
       ]
     },

@@ -42,17 +42,16 @@ comptime byte_length[idx: Int] where idx > 0 = BenchConfig.VERBOSE_TIMING_LABELS
 (module
   (comptime_statement
     left: (constrained_comptime_parameter
-      (comptime_parameter
-        name: (identifier)
-        parameters: (parameters_declaration
-          (constrained_parameter_decl
-            name: (identifier)
-            constraint: (parameter
-              (identifier)))
-          (constrained_parameter_decl
-            name: (identifier)
-            constraint: (parameter
-              (identifier)))))
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
       constraint: (parameter
         (identifier))
       (where_clause
