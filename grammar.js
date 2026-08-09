@@ -9,27 +9,6 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-const PREC = {
-  lambda: -2,
-  conditional: -1,
-
-  parenthesized_expression: 1,
-  parenthesized_list_splat: 1,
-  or: 10,
-  and: 11,
-  not: 12,
-  compare: 13,
-  bitwise_or: 14,
-  bitwise_and: 15,
-  xor: 16,
-  shift: 17,
-  plus: 18,
-  times: 19,
-  unary: 20,
-  power: 21,
-  call: 22,
-};
-
 // https://mojolang.org/nightly/docs/reference/keywords
 const MOJO_GLOBAL_KEYWORDS = [
   'Self',
@@ -130,19 +109,49 @@ export default grammar({
 
   precedences: $ => [
     [$.with_item, $._collection_element],
+    [$.if_clause, $.ternary_conditional],
     [$._parameterized_ref_conv, $._ref_conv],
-    [$.parameter_decl, $._primary],
     [$.parameter, $.list_splat_pattern],
     [$.parameter, $._primary],
-    [$._non_composite_parameter, $._primary],
     [$._non_composite_parameter, $.list_splat_pattern],
+    [$._non_composite_parameter, $._primary],
     [$.parameter_member, $.list_splat_pattern],
     [$.parameter_member, $.primary_expression],
-    [$.walrus_operator, $.as_pattern],
-    [$.primary_expression, $.list_splat_pattern],
-    [$._primary, $.list_splat_pattern],
+    [$.parenthesized_list_splat, $._collection_element],
+    [$.as_pattern, $.lambda],
+    [$.parenthesized_expression, $.with_item],
+    [$.parenthesized_expression, $._collection_element],
     [$.dictionary, $.argument],
     [$.dictionary, $.initializer_list],
+    [$._expression_within_for_in_clause, $.lambda],
+    [$._expression_within_for_in_clause, $.ternary_conditional],
+    [$.ternary_conditional, $.lambda],
+    [$.walrus_operator, $.as_pattern],
+    [$.not_operator, $.as_pattern],
+    [$.boolean_operator, $.lambda],
+    [$.primary_expression, $.list_splat_pattern],
+    [$._primary, $.list_splat_pattern],
+    [$.binary_operator, $.expression],
+
+    // https://mojolang.org/nightly/docs/reference/operators/#from-highest-to-lowest-precedence
+    [
+      'call',
+      'exponentiation',
+      'unary',
+      'multiplicative',
+      'additive',
+      'bitwise_shift',
+      'bitwise_and',
+      'bitwise_xor',
+      $.transfer_operator,
+      'bitwise_or',
+      'comparisons',
+      $.not_operator,
+      'and',
+      'or',
+      $.ternary_conditional,
+      $.walrus_operator,
+    ],
   ],
 
   supertypes: $ => [
@@ -393,7 +402,7 @@ export default grammar({
     except_clause: $ =>
       seq(
         'except',
-        optional(token(prec(1, '*'))),
+        optional(token('*')),
         optional(
           choice(
             seq(
@@ -857,16 +866,13 @@ export default grammar({
     list_splat: $ => seq('*', $.expression),
 
     parenthesized_list_splat: $ =>
-      prec(
-        PREC.parenthesized_list_splat,
-        seq(
-          '(',
-          choice(
-            $.list_splat,
-            alias($.parenthesized_list_splat, $.parenthesized_expression),
-          ),
-          ')',
+      seq(
+        '(',
+        choice(
+          $.list_splat,
+          alias($.parenthesized_list_splat, $.parenthesized_expression),
         ),
+        ')',
       ),
 
     dictionary_splat: $ => seq('**', $.expression),
@@ -935,13 +941,10 @@ export default grammar({
     // Match cases
 
     case_pattern: $ =>
-      prec(
-        1,
-        choice(
-          alias($._case_as_pattern, $.as_pattern),
-          $.keyword_pattern,
-          $._simple_pattern,
-        ),
+      choice(
+        alias($._case_as_pattern, $.as_pattern),
+        $.keyword_pattern,
+        $._simple_pattern,
       ),
 
     _case_as_pattern: $ => seq($.case_pattern, 'as', $.identifier),
@@ -949,25 +952,22 @@ export default grammar({
     keyword_pattern: $ => seq($.identifier, '=', $._simple_pattern),
 
     _simple_pattern: $ =>
-      prec(
-        1,
-        choice(
-          $.class_pattern,
-          $.splat_pattern,
-          $.union_pattern,
-          alias($._list_pattern, $.list_pattern),
-          alias($._tuple_pattern, $.tuple_pattern),
-          $.dict_pattern,
-          $.complex_pattern,
-          $.concatenated_string,
-          $.string,
-          seq(optional('-'), choice($.integer, $.float)),
-          $.dotted_identifier,
-          $.true,
-          $.false,
-          $.none,
-          $.underscore,
-        ),
+      choice(
+        $.class_pattern,
+        $.splat_pattern,
+        $.union_pattern,
+        alias($._list_pattern, $.list_pattern),
+        alias($._tuple_pattern, $.tuple_pattern),
+        $.dict_pattern,
+        $.complex_pattern,
+        $.concatenated_string,
+        $.string,
+        seq(optional('-'), choice($.integer, $.float)),
+        $.dotted_identifier,
+        $.true,
+        $.false,
+        $.none,
+        $.underscore,
       ),
 
     class_pattern: $ =>
@@ -979,7 +979,7 @@ export default grammar({
       ),
 
     splat_pattern: $ =>
-      prec(1, seq(choice('*', '**'), choice($.identifier, $.underscore))),
+      seq(choice('*', '**'), choice($.identifier, $.underscore)),
 
     union_pattern: $ =>
       prec.right(
@@ -1005,14 +1005,11 @@ export default grammar({
       seq(field('key', $._simple_pattern), ':', field('value', $.case_pattern)),
 
     complex_pattern: $ =>
-      prec(
-        1,
-        seq(
-          optional('-'),
-          choice($.integer, $.float),
-          choice('+', '-'),
-          choice($.integer, $.float),
-        ),
+      seq(
+        optional('-'),
+        choice($.integer, $.float),
+        choice('+', '-'),
+        choice($.integer, $.float),
       ),
 
     // -----------------------------------------------------------------------
@@ -1055,6 +1052,55 @@ export default grammar({
           field('alias', alias($.expression, $.as_pattern_target)),
         ),
       ),
+
+    // -----------------------------------------------------------------------
+    // Comprehensions
+
+    list_comprehension: $ =>
+      seq('[', field('body', $.expression), $._comprehension_clauses, ']'),
+
+    set_comprehension: $ =>
+      seq('{', field('body', $.expression), $._comprehension_clauses, '}'),
+
+    dictionary_comprehension: $ =>
+      seq('{', field('body', $.pair), $._comprehension_clauses, '}'),
+
+    _comprehension_clauses: $ =>
+      seq($.for_in_clause, repeat(choice($.for_in_clause, $.if_clause))),
+
+    // -----------------------------------------------------------------------
+    // Parenthesized expressions
+
+    parenthesized_expression: $ =>
+      seq(optional('comptime'), seq('(', choice($.yield, $.expression), ')')),
+
+    generator_expression: $ =>
+      seq('(', field('body', $.expression), $._comprehension_clauses, ')'),
+
+    // -----------------------------------------------------------------------
+    // Tuple
+
+    tuple: $ => seq('(', optional($._collection_elements), ')'),
+
+    // -----------------------------------------------------------------------
+    // Collection displays
+
+    list: $ => seq('[', optional($._collection_elements), ']'),
+    set: $ => seq('{', $._collection_elements, '}'),
+    initializer_list: $ => seq('{', optional($._arguments), '}'),
+    dictionary: $ =>
+      seq(
+        '{',
+        optional(trailingCommaSep1(choice($.dictionary_splat, $.pair))),
+        '}',
+      ),
+
+    pair: $ =>
+      seq(field('key', $.expression), ':', field('value', $.expression)),
+
+    _collection_elements: $ => trailingCommaSep1($._collection_element),
+    _collection_element: $ =>
+      choice($.list_splat, $.parenthesized_list_splat, $.yield, $.expression),
 
     // -----------------------------------------------------------------------
     // Expressions
@@ -1101,14 +1147,11 @@ export default grammar({
       ),
 
     lambda: $ =>
-      prec(
-        PREC.lambda,
-        seq(
-          'lambda',
-          field('arguments', optional($.lambda_parameters)),
-          ':',
-          field('body', $.expression),
-        ),
+      seq(
+        'lambda',
+        field('arguments', optional($.lambda_parameters)),
+        ':',
+        field('body', $.expression),
       ),
 
     lambda_within_for_in_clause: $ =>
@@ -1123,19 +1166,21 @@ export default grammar({
       choice($.expression, alias($.lambda_within_for_in_clause, $.lambda)),
 
     ternary_conditional: $ =>
-      prec.right(
-        PREC.conditional,
-        seq($.expression, 'if', $.expression, 'else', $.expression),
-      ),
+      prec.right(seq($.expression, 'if', $.expression, 'else', $.expression)),
 
     walrus_operator: $ =>
       seq(field('name', $._identifier), ':=', field('value', $.expression)),
 
     comparison_operator: $ =>
-      prec.left(PREC.compare, seq($.primary_expression, $._comparisons_chain)),
-
-    _comparisons_chain: $ =>
-      repeat1(seq($._comparison_operator, $.primary_expression)),
+      seq(
+        $.primary_expression,
+        repeat1(
+          prec.left(
+            'comparisons',
+            seq($._comparison_operator, $.primary_expression),
+          ),
+        ),
+      ),
 
     _comparison_operator: $ =>
       choice(
@@ -1153,13 +1198,11 @@ export default grammar({
     _not_in: _ => seq('not', 'in'),
     _is_not: _ => seq('is', 'not'),
 
-    not_operator: $ =>
-      prec(PREC.not, seq('not', field('argument', $.expression))),
-
+    not_operator: $ => seq('not', field('argument', $.expression)),
     boolean_operator: $ =>
       choice(
         prec.left(
-          PREC.and,
+          'and',
           seq(
             field('left', $.expression),
             field('operator', 'and'),
@@ -1167,7 +1210,7 @@ export default grammar({
           ),
         ),
         prec.left(
-          PREC.or,
+          'or',
           seq(
             field('left', $.expression),
             field('operator', 'or'),
@@ -1179,17 +1222,120 @@ export default grammar({
     primary_expression: $ =>
       choice(
         alias($.list_splat_pattern, $.list_splat),
-        $._primary,
+        $.initializer_list,
         $.await,
-        $.member_access,
-        $.binary_operator,
         $.unary_operator,
         $.transfer_operator,
-        $.initializer_list,
+        $.binary_operator,
+        $.member_access,
+        $._primary,
         $.concatenated_string,
       ),
 
-    _primary: $ => choice($._atom, $.call, $.mlir_op, $.subscript),
+    await: $ => prec('unary', seq('await', $.primary_expression)),
+
+    unary_operator: $ =>
+      prec(
+        'unary',
+        seq(
+          field('operator', choice('+', '-', '~')),
+          field('argument', $.primary_expression),
+        ),
+      ),
+
+    transfer_operator: $ => seq(field('argument', $.primary_expression), '^'),
+
+    binary_operator: $ => {
+      const table = [
+        [prec.right, 'exponentiation', '**'],
+        [prec.left, 'multiplicative', '*'],
+        [prec.left, 'multiplicative', '@'],
+        [prec.left, 'multiplicative', '/'],
+        [prec.left, 'multiplicative', '//'],
+        [prec.left, 'multiplicative', '%'],
+        [prec.left, 'additive', '+'],
+        [prec.left, 'additive', '-'],
+        [prec.left, 'bitwise_shift', '<<'],
+        [prec.left, 'bitwise_shift', '>>'],
+        [prec.left, 'bitwise_and', '&'],
+        [prec.left, 'bitwise_xor', '^'],
+        [prec.left, 'bitwise_or', '|'],
+      ];
+
+      // @ts-ignore
+      return choice(
+        ...table.map(([fn, precedence, operator]) =>
+          fn(
+            precedence,
+            seq(
+              field('left', $.primary_expression),
+              // @ts-ignore
+              field('operator', operator),
+              field('right', $.primary_expression),
+            ),
+          ),
+        ),
+      );
+    },
+
+    member_access: $ =>
+      prec(
+        'call',
+        seq(
+          field('value', choice($._primary, $.transfer_operator)),
+          repeat1(seq('.', field('member', $._member))),
+        ),
+      ),
+
+    _member: $ =>
+      choice(
+        $.member_call,
+        $.member_subscript,
+        $.escaped_identifier,
+        $._identifier,
+      ),
+
+    call: $ =>
+      prec(
+        'call',
+        seq(
+          field('function', $._primary),
+          field('arguments', choice($.arguments, $.generator_expression)),
+        ),
+      ),
+
+    member_call: $ =>
+      prec(
+        'call',
+        seq(
+          field('function', $._member),
+          field('arguments', choice($.arguments, $.generator_expression)),
+        ),
+      ),
+
+    mlir_op: $ =>
+      seq('__mlir_op', $._mlir_op_parameters, field('arguments', $.arguments)),
+
+    _mlir_op_parameters: $ =>
+      seq(
+        '.',
+        seq('`', $.mlir_dotted_identifier, '`'),
+        field('parameters', optional($.mlir_op_parameters)),
+      ),
+
+    subscript: $ =>
+      prec(
+        'call',
+        seq(field('value', $._primary), field('parameters', $.parameters)),
+      ),
+
+    member_subscript: $ =>
+      prec(
+        'call',
+        seq(field('value', $._member), field('parameters', $.parameters)),
+      ),
+
+    _primary: $ => choice($.call, $.mlir_op, $.subscript, $._atom),
     _atom: $ =>
       choice(
         $.list_comprehension,
@@ -1212,161 +1358,6 @@ export default grammar({
         $.self,
         $.ellipsis,
       ),
-    _member: $ =>
-      choice(
-        $.member_call,
-        $.member_subscript,
-        $.escaped_identifier,
-        $._identifier,
-      ),
-
-    call: $ =>
-      prec(
-        PREC.call,
-        seq(
-          field('function', $._primary),
-          field('arguments', choice($.arguments, $.generator_expression)),
-        ),
-      ),
-
-    member_call: $ =>
-      prec(
-        PREC.call,
-        seq(
-          field('function', $._member),
-          field('arguments', choice($.arguments, $.generator_expression)),
-        ),
-      ),
-
-    mlir_op: $ =>
-      seq('__mlir_op', $._mlir_op_parameters, field('arguments', $.arguments)),
-
-    _mlir_op_parameters: $ =>
-      seq(
-        '.',
-        seq('`', $.mlir_dotted_identifier, '`'),
-        field('parameters', optional($.mlir_op_parameters)),
-      ),
-
-    await: $ => prec(PREC.unary, seq('await', $.primary_expression)),
-
-    member_access: $ =>
-      prec(
-        PREC.call,
-        seq(
-          field('value', choice($._primary, $.transfer_operator)),
-          repeat1(seq('.', field('member', $._member))),
-        ),
-      ),
-
-    subscript: $ =>
-      prec(
-        PREC.call,
-        seq(field('value', $._primary), field('parameters', $.parameters)),
-      ),
-
-    member_subscript: $ =>
-      prec(
-        PREC.call,
-        seq(field('value', $._member), field('parameters', $.parameters)),
-      ),
-
-    binary_operator: $ => {
-      const table = [
-        [prec.left, '+', PREC.plus],
-        [prec.left, '-', PREC.plus],
-        [prec.left, '*', PREC.times],
-        [prec.left, '@', PREC.times],
-        [prec.left, '/', PREC.times],
-        [prec.left, '%', PREC.times],
-        [prec.left, '//', PREC.times],
-        [prec.right, '**', PREC.power],
-        [prec.left, '|', PREC.bitwise_or],
-        [prec.left, '&', PREC.bitwise_and],
-        [prec.left, '^', PREC.xor],
-        [prec.left, '<<', PREC.shift],
-        [prec.left, '>>', PREC.shift],
-      ];
-
-      // @ts-ignore
-      return choice(
-        ...table.map(([fn, operator, precedence]) =>
-          fn(
-            precedence,
-            seq(
-              field('left', $.primary_expression),
-              // @ts-ignore
-              field('operator', operator),
-              field('right', $.primary_expression),
-            ),
-          ),
-        ),
-      );
-    },
-
-    unary_operator: $ =>
-      prec(
-        PREC.unary,
-        seq(
-          field('operator', choice('+', '-', '~')),
-          field('argument', $.primary_expression),
-        ),
-      ),
-
-    transfer_operator: $ =>
-      prec(PREC.xor - 1, seq(field('argument', $.primary_expression), '^')),
-
-    // -----------------------------------------------------------------------
-    // Comprehensions
-
-    list_comprehension: $ =>
-      seq('[', field('body', $.expression), $._comprehension_clauses, ']'),
-
-    set_comprehension: $ =>
-      seq('{', field('body', $.expression), $._comprehension_clauses, '}'),
-
-    dictionary_comprehension: $ =>
-      seq('{', field('body', $.pair), $._comprehension_clauses, '}'),
-
-    _comprehension_clauses: $ =>
-      seq($.for_in_clause, repeat(choice($.for_in_clause, $.if_clause))),
-
-    // -----------------------------------------------------------------------
-    // Parenthesized expressions
-
-    parenthesized_expression: $ =>
-      prec(
-        PREC.parenthesized_expression,
-        seq(optional('comptime'), seq('(', choice($.yield, $.expression), ')')),
-      ),
-
-    generator_expression: $ =>
-      seq('(', field('body', $.expression), $._comprehension_clauses, ')'),
-
-    // -----------------------------------------------------------------------
-    // Tuple
-
-    tuple: $ => seq('(', optional($._collection_elements), ')'),
-
-    // -----------------------------------------------------------------------
-    // Collection displays
-
-    list: $ => seq('[', optional($._collection_elements), ']'),
-    set: $ => seq('{', $._collection_elements, '}'),
-    initializer_list: $ => seq('{', optional($._arguments), '}'),
-    dictionary: $ =>
-      seq(
-        '{',
-        optional(trailingCommaSep1(choice($.dictionary_splat, $.pair))),
-        '}',
-      ),
-
-    pair: $ =>
-      seq(field('key', $.expression), ':', field('value', $.expression)),
-
-    _collection_elements: $ => trailingCommaSep1($._collection_element),
-    _collection_element: $ =>
-      choice($.list_splat, $.parenthesized_list_splat, $.yield, $.expression),
 
     // -----------------------------------------------------------------------
     // Strings
@@ -1420,19 +1411,16 @@ export default grammar({
 
     escape_sequence: _ =>
       token.immediate(
-        prec(
-          1,
-          seq(
-            '\\',
-            choice(
-              /u[a-fA-F\d]{4}/,
-              /U[a-fA-F\d]{8}/,
-              /x[a-fA-F\d]{2}/,
-              /\d{1,3}/,
-              /\r?\n/,
-              /['"abfrntv\\]/,
-              /N\{[^}]+\}/,
-            ),
+        seq(
+          '\\',
+          choice(
+            /u[a-fA-F\d]{4}/,
+            /U[a-fA-F\d]{8}/,
+            /x[a-fA-F\d]{2}/,
+            /\d{1,3}/,
+            /\r?\n/,
+            /['"abfrntv\\]/,
+            /N\{[^}]+\}/,
           ),
         ),
       ),
@@ -1510,8 +1498,6 @@ export default grammar({
       token(seq('\\', choice(seq(optional('\r'), '\n'), '\0'))),
   },
 });
-
-export {PREC};
 
 /**
  * Creates a rule that matches one or more
