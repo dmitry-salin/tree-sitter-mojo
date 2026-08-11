@@ -43,22 +43,15 @@
     "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.4",
+    "@biomejs/biome": "^2.5.8",
     "clang-format-node": "^3.0.7",
-    "concurrently": "^10.0.3",
+    "concurrently": "^10.0.4",
     "eslint": "^9.39.5",
     "eslint-config-treesitter": "^1.0.2",
-    "globals": "^17.7.0",
+    "globals": "^17.9.0",
     "prebuildify": "^6.0.1",
+    "tree-sitter": "^0.25.1",
     "tree-sitter-cli": "^0.26.12"
-  },
-  "peerDependencies": {
-    "tree-sitter": "^0.25.0"
-  },
-  "peerDependenciesMeta": {
-    "tree-sitter": {
-      "optional": true
-    }
   },
   "scripts": {
     "check": "concurrently npm:check:*",
@@ -75,6 +68,7 @@
   },
   "allowScripts": {
     "clang-format-node@3.0.7": true,
+    "tree-sitter@0.25.1": true,
     "tree-sitter-cli@0.26.12": true
   }
 }
