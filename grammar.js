@@ -229,18 +229,7 @@ export default grammar({
       ),
 
     module_import_statement: $ =>
-      seq('import', seq(trailingCommaSep1($._module_import))),
-
-    _module_import: $ =>
-      field(
-        'module',
-        choice(
-          $.import,
-          $.aliased_import,
-          $.relative_import,
-          $.relative_aliased_import,
-        ),
-      ),
+      seq('import', trailingCommaSep1(field('module', $._absolute_import))),
 
     selective_import_statement: $ =>
       seq(
@@ -254,14 +243,13 @@ export default grammar({
       seq('from', '__future__', 'import', $._future_import),
 
     _future_import: $ => choice($._import_list, seq('(', $._import_list, ')')),
-    _import_list: $ => trailingCommaSep1(choice($.import, $.aliased_import)),
+    _import_list: $ => trailingCommaSep1($._absolute_import),
 
     wildcard_import: _ => '*',
     import: $ => $._import,
     aliased_import: $ => seq($._import, $._import_alias),
     relative_import: $ => seq($.import_prefix, optional($._import)),
-    relative_aliased_import: $ =>
-      seq($.import_prefix, optional($._import), $._import_alias),
+    _absolute_import: $ => choice($.import, $.aliased_import),
 
     import_prefix: _ => repeat1('.'),
     _import: $ => field('name', $.dotted_identifier),

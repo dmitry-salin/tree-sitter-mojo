@@ -1,4 +1,26 @@
 ================================================================================
+Import: relative imports must use `from`
+================================================================================
+
+import .a
+import .b as c
+
+--------------------------------------------------------------------------------
+
+(module
+  (module_import_statement
+    (ERROR)
+    (import
+      (dotted_identifier
+        (identifier))))
+  (module_import_statement
+    (ERROR)
+    (aliased_import
+      (dotted_identifier
+        (identifier))
+      (identifier))))
+
+================================================================================
 Identifier: escaped content does not allow vertical whitespace characters
 or backticks
 ================================================================================

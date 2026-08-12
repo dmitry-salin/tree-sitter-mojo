@@ -1,33 +1,4 @@
 ================================================================================
-Import: relative module
-================================================================================
-
-import .a
-import ..b.c
-import .d as e
-
---------------------------------------------------------------------------------
-
-(module
-  (module_import_statement
-    module: (relative_import
-      (import_prefix)
-      name: (dotted_identifier
-        (identifier))))
-  (module_import_statement
-    module: (relative_import
-      (import_prefix)
-      name: (dotted_identifier
-        (identifier)
-        (identifier))))
-  (module_import_statement
-    module: (relative_aliased_import
-      (import_prefix)
-      name: (dotted_identifier
-        (identifier))
-      alias: (identifier))))
-
-================================================================================
 Comptime: where clause
 ================================================================================
 

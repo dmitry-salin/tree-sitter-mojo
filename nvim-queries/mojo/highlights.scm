@@ -201,7 +201,6 @@
 
 "import" @keyword.import
 (aliased_import "as" @keyword.import)
-(relative_aliased_import "as" @keyword.import)
 (selective_import_statement "from" @keyword.import)
 
 ; ---------------------------------------------------------------------------- 
@@ -603,11 +602,6 @@
       name: (dotted_identifier (identifier) @module))
     (aliased_import
       name: (dotted_identifier (identifier) @module)
-      alias: (identifier) @module)
-    (relative_import
-      name: (dotted_identifier (identifier) @module))
-    (relative_aliased_import
-      name: ((dotted_identifier (identifier) @module))?
       alias: (identifier) @module)
   ])
 

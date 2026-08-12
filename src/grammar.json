@@ -141,70 +141,48 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SEQ",
+              "type": "FIELD",
+              "name": "module",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_absolute_import"
+              }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "module",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_absolute_import"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_module_import"
+                  "type": "STRING",
+                  "value": ","
                 },
                 {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": ","
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_module_import"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": ","
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "BLANK"
                 }
               ]
             }
           ]
         }
       ]
-    },
-    "_module_import": {
-      "type": "FIELD",
-      "name": "module",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "import"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "aliased_import"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "relative_import"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "relative_aliased_import"
-          }
-        ]
-      }
     },
     "selective_import_statement": {
       "type": "SEQ",
@@ -300,17 +278,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "import"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "aliased_import"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_absolute_import"
         },
         {
           "type": "REPEAT",
@@ -322,17 +291,8 @@
                 "value": ","
               },
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "import"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "aliased_import"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "_absolute_import"
               }
             ]
           }
@@ -393,28 +353,16 @@
         }
       ]
     },
-    "relative_aliased_import": {
-      "type": "SEQ",
+    "_absolute_import": {
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "import_prefix"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_import"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "name": "import"
         },
         {
           "type": "SYMBOL",
-          "name": "_import_alias"
+          "name": "aliased_import"
         }
       ]
     },

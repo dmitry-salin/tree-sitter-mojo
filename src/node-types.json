@@ -4109,14 +4109,6 @@
           {
             "type": "import",
             "named": true
-          },
-          {
-            "type": "relative_aliased_import",
-            "named": true
-          },
-          {
-            "type": "relative_import",
-            "named": true
           }
         ]
       }
@@ -4518,42 +4510,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "relative_aliased_import",
-    "named": true,
-    "fields": {
-      "alias": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "dotted_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "import_prefix",
-          "named": true
-        }
-      ]
     }
   },
   {
