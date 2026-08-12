@@ -1,4 +1,25 @@
 ================================================================================
+Import: packages and modules with escaped identifiers
+================================================================================
+
+from `package.with.dots`.subpackage.`module.with.dots` import foo
+
+--------------------------------------------------------------------------------
+
+(module
+  (selective_import_statement
+    module: (import
+      name: (dotted_escaped_identifier
+        (escaped_identifier
+          (escaped_identifier_content))
+        (identifier)
+        (escaped_identifier
+          (escaped_identifier_content))))
+    (import
+      name: (dotted_escaped_identifier
+        (identifier)))))
+
+================================================================================
 Comptime: where clause
 ================================================================================
 

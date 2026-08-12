@@ -252,7 +252,7 @@ export default grammar({
     _absolute_import: $ => choice($.import, $.aliased_import),
 
     import_prefix: _ => repeat1('.'),
-    _import: $ => field('name', $.dotted_identifier),
+    _import: $ => field('name', $.dotted_escaped_identifier),
     _import_alias: $ => seq('as', field('alias', $.identifier)),
 
     assert_statement: $ =>
@@ -1457,9 +1457,11 @@ export default grammar({
     // Identifiers
 
     identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
-    dotted_identifier: $ => sep1($.identifier, '.'),
-    mlir_dotted_identifier: $ => sep1(reserved('mlir', $.identifier), '.'),
     escaped_identifier: $ => seq('`', $.escaped_identifier_content, '`'),
+    dotted_identifier: $ => sep1($.identifier, '.'),
+    dotted_escaped_identifier: $ =>
+      sep1(choice($.identifier, $.escaped_identifier), '.'),
+    mlir_dotted_identifier: $ => sep1(reserved('mlir', $.identifier), '.'),
 
     _identifier: $ => choice($.identifier, alias('match', $.identifier)),
 

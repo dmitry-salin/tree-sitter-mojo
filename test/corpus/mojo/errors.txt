@@ -11,12 +11,12 @@ import .b as c
   (module_import_statement
     (ERROR)
     (import
-      (dotted_identifier
+      (dotted_escaped_identifier
         (identifier))))
   (module_import_statement
     (ERROR)
     (aliased_import
-      (dotted_identifier
+      (dotted_escaped_identifier
         (identifier))
       (identifier))))
 

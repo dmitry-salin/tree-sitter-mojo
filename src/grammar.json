@@ -378,7 +378,7 @@
       "name": "name",
       "content": {
         "type": "SYMBOL",
-        "name": "dotted_identifier"
+        "name": "dotted_escaped_identifier"
       }
     },
     "_import_alias": {
@@ -7817,6 +7817,23 @@
       "type": "PATTERN",
       "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
     },
+    "escaped_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "`"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "escaped_identifier_content"
+        },
+        {
+          "type": "STRING",
+          "value": "`"
+        }
+      ]
+    },
     "dotted_identifier": {
       "type": "SEQ",
       "members": [
@@ -7836,6 +7853,49 @@
               {
                 "type": "SYMBOL",
                 "name": "identifier"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "dotted_escaped_identifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "escaped_identifier"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "escaped_identifier"
+                  }
+                ]
               }
             ]
           }
@@ -7872,23 +7932,6 @@
               }
             ]
           }
-        }
-      ]
-    },
-    "escaped_identifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "`"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "escaped_identifier_content"
-        },
-        {
-          "type": "STRING",
-          "value": "`"
         }
       ]
     },

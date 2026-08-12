@@ -579,17 +579,17 @@
 (selective_import_statement
   module: [
     (import
-      name: (dotted_identifier (identifier) @module))
+      name: (dotted_escaped_identifier (identifier) @module))
     (relative_import
-      name: (dotted_identifier (identifier) @module))
+      name: (dotted_escaped_identifier (identifier) @module))
   ])
 
 (
   (selective_import_statement "import" [
     (import
-      name: (dotted_identifier (identifier) @type))
+      name: (dotted_escaped_identifier (identifier) @type))
     (aliased_import
-      name: (dotted_identifier (identifier) @type))
+      name: (dotted_escaped_identifier (identifier) @type))
     (aliased_import
       alias: (identifier) @type)
   ])
@@ -599,9 +599,9 @@
 (module_import_statement
   module: [
     (import
-      name: (dotted_identifier (identifier) @module))
+      name: (dotted_escaped_identifier (identifier) @module))
     (aliased_import
-      name: (dotted_identifier (identifier) @module)
+      name: (dotted_escaped_identifier (identifier) @module)
       alias: (identifier) @module)
   ])
 
@@ -633,9 +633,9 @@
 (
   (selective_import_statement "import" [
     (import
-      name: (dotted_identifier (identifier) @type.builtin))
+      name: (dotted_escaped_identifier (identifier) @type.builtin))
     (aliased_import
-      name: (dotted_identifier (identifier) @type.builtin))
+      name: (dotted_escaped_identifier (identifier) @type.builtin))
   ])
   (#any-of? @type.builtin
     "SIMD"
