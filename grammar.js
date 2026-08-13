@@ -617,7 +617,7 @@ export default grammar({
     _convention: $ =>
       choice('deinit', 'out', 'var', $._ref_conv, $._parameterized_ref_conv),
 
-    _ref_conv: $ => choice('mut', 'read', 'ref'),
+    _ref_conv: $ => choice('imm', 'mut', 'ref'),
     _parameterized_ref_conv: $ => seq('ref', $.convention_parameters),
 
     convention_parameters: $ =>

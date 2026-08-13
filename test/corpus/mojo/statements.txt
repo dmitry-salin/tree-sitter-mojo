@@ -1241,7 +1241,7 @@ Closure: capture list
 def main():
     var limit = 10
 
-    def check(x: Int) {read limit} -> Bool:
+    def check(x: Int) {imm limit} -> Bool:
         return x < limit
 
 def pow[width: Int](i: Int) {mut ptr}:

@@ -126,9 +126,9 @@
 (callable_parameters
   [
     "deinit"
+    "imm"
     "mut"
     "out"
-    "read"
     "ref"
     "var"
   ] @keyword.modifier)
@@ -136,17 +136,17 @@
 (function_type_parameters
   [
     "deinit"
+    "imm"
     "mut"
     "out"
-    "read"
     "ref"
     "var"
   ] @keyword.modifier)
 
 (capture_parameter
   [
+    "imm"
     "mut"
-    "read"
     "ref"
     "var"
   ] @keyword.modifier)
