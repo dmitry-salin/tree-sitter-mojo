@@ -1168,6 +1168,37 @@ def reshape[
       (pass_statement))))
 
 ================================================================================
+Function: where clause with custom message
+================================================================================
+
+def foo[sc: Int]() where (sc > 1, "scaling factor must be greater than 1"):
+    ...
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      (where_clause
+        (tuple
+          (comparison_operator
+            (identifier)
+            (integer))
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))))
+    body: (block
+      (ellipsis))))
+
+================================================================================
 Function: escaped identifier as a name
 ================================================================================
 
