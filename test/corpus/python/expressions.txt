@@ -855,11 +855,12 @@ lambda a, b = c, *d, **e: a
 
 (module
   (lambda
-    arguments: (lambda_parameters
-      (parameter_decl
-        name: (identifier))
-      (parameter_decl
-        name: (identifier)))
+    (lambda_signature
+      arguments: (lambda_parameters
+        (parameter_decl
+          name: (identifier))
+        (parameter_decl
+          name: (identifier))))
     body: (call
       function: (identifier)
       arguments: (arguments
@@ -870,18 +871,20 @@ lambda a, b = c, *d, **e: a
             (string_end))
           right: (identifier)))))
   (lambda
+    (lambda_signature)
     body: (true))
   (lambda
-    arguments: (lambda_parameters
-      (parameter_decl
-        name: (identifier))
-      (lambda_default_parameter_decl
-        name: (identifier)
-        default: (identifier))
-      (variadic_parameter_decl
-        name: (identifier))
-      (variadic_parameter_decl
-        name: (identifier)))
+    (lambda_signature
+      arguments: (lambda_parameters
+        (parameter_decl
+          name: (identifier))
+        (lambda_default_parameter_decl
+          name: (identifier)
+          default: (identifier))
+        (variadic_parameter_decl
+          name: (identifier))
+        (variadic_parameter_decl
+          name: (identifier))))
     body: (identifier)))
 
 ================================================================================

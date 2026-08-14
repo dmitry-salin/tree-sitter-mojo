@@ -758,52 +758,54 @@ List comprehensions
 
 (module
   (list_comprehension
-    (binary_operator
-      (identifier)
-      (identifier))
+    body: (binary_operator
+      left: (identifier)
+      right: (identifier))
     (for_in_clause
-      (tuple_pattern
+      left: (tuple_pattern
         (identifier)
         (identifier))
-      (identifier)))
+      right: (identifier)))
   (list_comprehension
-    (identifier)
+    body: (identifier)
     (for_in_clause
+      left: (identifier)
+      right: (identifier))
+    (for_in_clause
+      left: (identifier)
+      right: (identifier)))
+  (list_comprehension
+    body: (tuple
       (identifier)
       (identifier))
     (for_in_clause
-      (identifier)
-      (identifier)))
-  (list_comprehension
-    (tuple
-      (identifier)
-      (identifier))
-    (for_in_clause
-      (identifier)
-      (list
+      left: (identifier)
+      right: (list
         (integer)
         (integer)
         (integer)))
     (for_in_clause
-      (identifier)
-      (list
+      left: (identifier)
+      right: (list
         (integer)
         (integer)
         (integer)))
     (if_clause
-      (true)))
+      condition: (true)))
   (list_comprehension
-    (identifier)
+    body: (identifier)
     (for_in_clause
-      (identifier)
-      (lambda
-        (true))
-      (lambda
-        (false)))
+      left: (identifier)
+      right: (lambda
+        (lambda_signature)
+        body: (true))
+      right: (lambda
+        (lambda_signature)
+        body: (false)))
     (if_clause
-      (call
-        (identifier)
-        (arguments)))))
+      condition: (call
+        function: (identifier)
+        arguments: (arguments)))))
 
 ================================================================================
 Dictionaries

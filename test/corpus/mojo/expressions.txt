@@ -684,3 +684,480 @@ def call[
               arguments: (arguments))
             arguments: (arguments
               (identifier))))))))
+
+================================================================================
+Lambda
+================================================================================
+
+lambda: None
+
+def a():
+    var no_args = lambda -> Int: 42
+
+    var a = lambda (x: Int) {} -> Int: x + 1
+
+    var b = lambda [T: Intable](x: T) -> Int: Int(x) + 1
+
+    var c = lambda [N: Int](x: Int) {} -> Int: x + N
+
+    var d = lambda (x: Int) -> Int: x * 2 + y
+
+    var e = lambda (x: Int) {mut list}: list.append(x)
+
+    var f = lambda {mut list}: list.append(0)
+
+def b():
+    ptr.unsafe_write(init_with=lambda () -> Pinned: Pinned(7))
+
+    _storage.unsafe_ptr[T]().unsafe_write(
+            init_with=lambda () {ref} -> T: init_with()
+        )
+
+def c():
+    var own_arg = lambda (var x: Int) {} -> Int: x + 1
+    var mut_arg = lambda (mut x: Int) {}: x.__iadd__(1)
+
+def d():
+    var count = lambda (*args: Int) {} -> Int: len(args)
+    var named = lambda (var **kwargs: Int) {} -> Int: len(kwargs)
+
+def e():
+    var fp = lambda (a: Int32, b: Int32) abi("C") -> Int32: a + b
+
+def f():
+    comptime whole = (lambda (x: Int) {} -> Int: x * 2)(21)
+
+def g() raises:
+    print(apply_raising(lambda (x: Int) raises -> Int: x + 1, 2))
+
+def h():
+    var f = lambda (x: Int) {} -> Int: (
+        lambda (y: Int) {imm x} -> Int: y + x
+    )(3)
+    print(f(6))
+
+def i():
+    return _to_string_list[
+        lambda (v: Span[Byte, O]) -> Int: len(v),
+        lambda (v: Span[Byte, O]) -> Pointer[Byte, O]: v.unsafe_ptr(),
+    ](items)
+
+--------------------------------------------------------------------------------
+
+(module
+  (lambda
+    (lambda_signature)
+    body: (none))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            return_type: (parameter
+              (identifier)))
+          body: (integer)))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters)
+            return_type: (parameter
+              (identifier)))
+          body: (binary_operator
+            left: (identifier)
+            right: (integer))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            parameters: (parameters_declaration
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            return_type: (parameter
+              (identifier)))
+          body: (binary_operator
+            left: (call
+              function: (identifier)
+              arguments: (arguments
+                (identifier)))
+            right: (integer))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            parameters: (parameters_declaration
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters)
+            return_type: (parameter
+              (identifier)))
+          body: (binary_operator
+            left: (identifier)
+            right: (identifier))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            return_type: (parameter
+              (identifier)))
+          body: (binary_operator
+            left: (binary_operator
+              left: (identifier)
+              right: (integer))
+            right: (identifier))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters
+              (capture_parameter
+                name: (identifier))))
+          body: (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments
+                (identifier))))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            captures: (capture_parameters
+              (capture_parameter
+                name: (identifier))))
+          body: (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments
+                (integer))))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (member_access
+        value: (identifier)
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments
+            (keyword_argument
+              name: (identifier)
+              value: (lambda
+                (lambda_typed_signature
+                  arguments: (callable_parameters)
+                  return_type: (parameter
+                    (identifier)))
+                body: (call
+                  function: (identifier)
+                  arguments: (arguments
+                    (integer))))))))
+      (member_access
+        value: (identifier)
+        member: (member_call
+          function: (member_subscript
+            value: (identifier)
+            parameters: (parameters
+              (parameter
+                (identifier))))
+          arguments: (arguments))
+        member: (member_call
+          function: (identifier)
+          arguments: (arguments
+            (keyword_argument
+              name: (identifier)
+              value: (lambda
+                (lambda_typed_signature
+                  arguments: (callable_parameters)
+                  captures: (capture_parameters
+                    (capture_parameter))
+                  return_type: (parameter
+                    (identifier)))
+                body: (call
+                  function: (identifier)
+                  arguments: (arguments)))))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters)
+            return_type: (parameter
+              (identifier)))
+          body: (binary_operator
+            left: (identifier)
+            right: (integer))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters))
+          body: (member_access
+            value: (identifier)
+            member: (member_call
+              function: (identifier)
+              arguments: (arguments
+                (integer))))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_variadic_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters)
+            return_type: (parameter
+              (identifier)))
+          body: (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier)))))
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_variadic_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters)
+            return_type: (parameter
+              (identifier)))
+          body: (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier)))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier)))
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            effects: (function_effects
+              (abi
+                (string
+                  (string_start)
+                  (string_content)
+                  (string_end))))
+            return_type: (parameter
+              (identifier)))
+          body: (binary_operator
+            left: (identifier)
+            right: (identifier))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (comptime_statement
+        left: (comptime_parameter
+          name: (identifier))
+        right: (call
+          function: (parenthesized_expression
+            (lambda
+              (lambda_typed_signature
+                arguments: (callable_parameters
+                  (constrained_parameter_decl
+                    name: (identifier)
+                    constraint: (parameter
+                      (identifier))))
+                captures: (capture_parameters)
+                return_type: (parameter
+                  (identifier)))
+              body: (binary_operator
+                left: (identifier)
+                right: (integer))))
+          arguments: (arguments
+            (integer))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters)
+      effects: (function_effects
+        (raises)))
+    body: (block
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (call
+            function: (identifier)
+            arguments: (arguments
+              (lambda
+                (lambda_typed_signature
+                  arguments: (callable_parameters
+                    (constrained_parameter_decl
+                      name: (identifier)
+                      constraint: (parameter
+                        (identifier))))
+                  effects: (function_effects
+                    (raises))
+                  return_type: (parameter
+                    (identifier)))
+                body: (binary_operator
+                  left: (identifier)
+                  right: (integer)))
+              (integer)))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (assignment
+        left: (identifier)
+        right: (lambda
+          (lambda_typed_signature
+            arguments: (callable_parameters
+              (constrained_parameter_decl
+                name: (identifier)
+                constraint: (parameter
+                  (identifier))))
+            captures: (capture_parameters)
+            return_type: (parameter
+              (identifier)))
+          body: (call
+            function: (parenthesized_expression
+              (lambda
+                (lambda_typed_signature
+                  arguments: (callable_parameters
+                    (constrained_parameter_decl
+                      name: (identifier)
+                      constraint: (parameter
+                        (identifier))))
+                  captures: (capture_parameters
+                    (capture_parameter
+                      name: (identifier)))
+                  return_type: (parameter
+                    (identifier)))
+                body: (binary_operator
+                  left: (identifier)
+                  right: (identifier))))
+            arguments: (arguments
+              (integer)))))
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (call
+            function: (identifier)
+            arguments: (arguments
+              (integer)))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (return_statement
+        (call
+          function: (subscript
+            value: (identifier)
+            parameters: (parameters
+              (lambda
+                (lambda_typed_signature
+                  arguments: (callable_parameters
+                    (constrained_parameter_decl
+                      name: (identifier)
+                      constraint: (generic_parameter
+                        value: (identifier)
+                        parameters: (parameters
+                          (parameter
+                            (identifier))
+                          (parameter
+                            (identifier))))))
+                  return_type: (parameter
+                    (identifier)))
+                body: (call
+                  function: (identifier)
+                  arguments: (arguments
+                    (identifier))))
+              (lambda
+                (lambda_typed_signature
+                  arguments: (callable_parameters
+                    (constrained_parameter_decl
+                      name: (identifier)
+                      constraint: (generic_parameter
+                        value: (identifier)
+                        parameters: (parameters
+                          (parameter
+                            (identifier))
+                          (parameter
+                            (identifier))))))
+                  return_type: (generic_parameter
+                    value: (identifier)
+                    parameters: (parameters
+                      (parameter
+                        (identifier))
+                      (parameter
+                        (identifier)))))
+                body: (member_access
+                  value: (identifier)
+                  member: (member_call
+                    function: (identifier)
+                    arguments: (arguments))))))
+          arguments: (arguments
+            (identifier)))))))

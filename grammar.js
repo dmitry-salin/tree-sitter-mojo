@@ -123,6 +123,7 @@ export default grammar({
     [$.parenthesized_expression, $._collection_element],
     [$.dictionary, $.argument],
     [$.dictionary, $.initializer_list],
+    [$.lambda_signature, $.lambda_typed_signature],
     [$._expression_within_for_in_clause, $.lambda],
     [$._expression_within_for_in_clause, $.ternary_conditional],
     [$.ternary_conditional, $.lambda],
@@ -1136,16 +1137,27 @@ export default grammar({
 
     lambda: $ =>
       seq(
-        'lambda',
-        field('arguments', optional($.lambda_parameters)),
+        choice($.lambda_signature, $.lambda_typed_signature),
         ':',
         field('body', $.expression),
       ),
 
-    lambda_within_for_in_clause: $ =>
+    lambda_signature: $ =>
+      seq('lambda', field('arguments', optional($.lambda_parameters))),
+
+    lambda_typed_signature: $ =>
       seq(
         'lambda',
-        field('arguments', optional($.lambda_parameters)),
+        field('parameters', optional($.parameters_declaration)),
+        field('arguments', optional($.callable_parameters)),
+        field('effects', optional($.function_effects)),
+        field('captures', optional($.capture_parameters)),
+        optional($._function_return_type),
+      ),
+
+    lambda_within_for_in_clause: $ =>
+      seq(
+        $.lambda_signature,
         ':',
         field('body', $._expression_within_for_in_clause),
       ),

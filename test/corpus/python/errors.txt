@@ -1,7 +1,7 @@
-====================================
+================================================================================
 An error before a string literal
 :error
-====================================
+================================================================================
 
 def a(b):
     c.
@@ -12,7 +12,7 @@ def a(b):
 
     e
 
----
+--------------------------------------------------------------------------------
 
 (module
   (function_declaration
@@ -30,9 +30,9 @@ def a(b):
       (expression_statement
         (identifier)))))
 
-=================================================
+================================================================================
 Error detected at globally reserved keyword
-=================================================
+================================================================================
 
 def test_comprehension():
     [x for.    # Should error here, and not use def as a method call
@@ -45,7 +45,7 @@ def test_incomplete_call():
     class Example:    # Should still parse as valid class definition
         pass
 
----
+--------------------------------------------------------------------------------
 
 (module
   (function_declaration
@@ -78,9 +78,9 @@ def test_incomplete_call():
         (block
           (pass_statement))))))
 
-=================================================
+================================================================================
 PEP 3113 - Removal of Tuple Parameter Unpacking
-=================================================
+================================================================================
 
 def e((a,b)):
     return (a,b)
@@ -88,9 +88,7 @@ def e((a,b)):
 def comp_args((a, b)=(3, 4)):
     return a, b
 
-lambda (a, b): (a, b)
-
----
+--------------------------------------------------------------------------------
 
 (module
   (function_declaration
@@ -126,15 +124,4 @@ lambda (a, b): (a, b)
       (return_statement
         (expression_list
           (identifier)
-          (identifier)))))
-  (ERROR)
-  (assignment
-    (constrained_lhs
-      (tuple_pattern
-        (identifier)
-        (identifier))
-      (parameter_tuple
-        (parameter
-          (identifier))
-        (parameter
-          (identifier))))))
+         (identifier))))))
