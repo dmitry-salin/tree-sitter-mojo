@@ -110,13 +110,14 @@ export default grammar({
   precedences: $ => [
     [$.with_item, $._collection_element],
     [$.if_clause, $.ternary_conditional],
+    [$.function_type_parameter, $.primary_expression],
     [$._parameterized_ref_conv, $._ref_conv],
+    [$.variadic_parameter, $.list_splat_pattern],
     [$.parameter, $.list_splat_pattern],
     [$.parameter, $._primary],
     [$._non_composite_parameter, $.list_splat_pattern],
     [$._non_composite_parameter, $._primary],
-    [$.parameter_member, $.list_splat_pattern],
-    [$.parameter_member, $.primary_expression],
+    [$._standalone_parameter, $.primary_expression],
     [$.parenthesized_list_splat, $._collection_element],
     [$.as_pattern, $.lambda],
     [$.parenthesized_expression, $.with_item],
@@ -184,6 +185,7 @@ export default grammar({
     $._lambda_parameter,
     $._parameter_decl,
     $._variadic_parameter_decl,
+    $._parameter_member,
     $._constraint,
     $._constraint_parameter,
     $._declaration_convention,
@@ -600,7 +602,7 @@ export default grammar({
         $.constrained_parameter_decl,
         $.constrained_variadic_parameter_decl,
         $._non_composite_parameter,
-        $.parameter_member,
+        $._parameter_member,
         $.expression,
         $.positional_only_marker,
         $.keyword_only_marker,
@@ -795,14 +797,14 @@ export default grammar({
     variadic_parameter: $ =>
       seq(
         choice('*', '**'),
-        choice($._non_composite_parameter, $.parameter_member),
+        choice($._non_composite_parameter, $._parameter_member),
       ),
 
     parameter: $ => choice($.identifier, $.self),
     _non_composite_parameter: $ =>
       choice($.parameter, alias($.subscript, $.generic_parameter)),
 
-    parameter_member: $ => $.member_access,
+    _parameter_member: $ => alias($.member_access, $.parameter_member),
 
     _comptime_rhs: $ =>
       choice(
@@ -835,7 +837,7 @@ export default grammar({
       ),
 
     _standalone_parameter: $ =>
-      choice($._non_composite_parameter, $.parameter_member, $.expression),
+      choice($._non_composite_parameter, $._parameter_member, $.expression),
 
     // -----------------------------------------------------------------------
     // Arguments

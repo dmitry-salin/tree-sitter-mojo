@@ -2628,7 +2628,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "parameter_member"
+          "name": "_parameter_member"
         },
         {
           "type": "SYMBOL",
@@ -3887,7 +3887,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "parameter_member"
+              "name": "_parameter_member"
             }
           ]
         }
@@ -3924,9 +3924,14 @@
         }
       ]
     },
-    "parameter_member": {
-      "type": "SYMBOL",
-      "name": "member_access"
+    "_parameter_member": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "member_access"
+      },
+      "named": true,
+      "value": "parameter_member"
     },
     "_comptime_rhs": {
       "type": "CHOICE",
@@ -4046,7 +4051,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "parameter_member"
+          "name": "_parameter_member"
         },
         {
           "type": "SYMBOL",
@@ -8203,6 +8208,16 @@
     [
       {
         "type": "SYMBOL",
+        "name": "function_type_parameter"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "primary_expression"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
         "name": "_parameterized_ref_conv"
       },
       {
@@ -8213,6 +8228,16 @@
     [
       {
         "type": "SYMBOL",
+        "name": "variadic_parameter"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "list_splat_pattern"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
         "name": "parameter"
       },
       {
@@ -8253,17 +8278,7 @@
     [
       {
         "type": "SYMBOL",
-        "name": "parameter_member"
-      },
-      {
-        "type": "SYMBOL",
-        "name": "list_splat_pattern"
-      }
-    ],
-    [
-      {
-        "type": "SYMBOL",
-        "name": "parameter_member"
+        "name": "_standalone_parameter"
       },
       {
         "type": "SYMBOL",
@@ -8590,6 +8605,7 @@
     "_lambda_parameter",
     "_parameter_decl",
     "_variadic_parameter_decl",
+    "_parameter_member",
     "_constraint",
     "_constraint_parameter",
     "_declaration_convention",

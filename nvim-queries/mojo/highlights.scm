@@ -339,12 +339,14 @@
 
 ; ---------------------------------------------------------------------------- 
 ; Parameters
-(parameter_member (member_access
+(parameter_member
   value: [
     (identifier) @variable.parameter
     (subscript
       value: (identifier) @variable.parameter)
-  ]))
+  ])
+(parameter_member
+  member: (identifier) @variable.parameter)
 (generic_parameter
   value: (identifier) @variable.parameter)
 (parameter (identifier) @variable.parameter)
@@ -352,12 +354,14 @@
   name: (identifier) @variable.parameter)
 
 ([
-  (parameter_member (member_access
+  (parameter_member
     value: [
       (identifier) @type
       (subscript
         value: (identifier) @type)
-    ]))
+    ])
+  (parameter_member
+    member: (identifier) @type)
   (generic_parameter
     value: (identifier) @type)
   (parameter (identifier) @type)

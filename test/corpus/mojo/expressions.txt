@@ -41,9 +41,8 @@ def __init__(out self, var value: Self.T):
         (constrained_parameter_decl
           name: (identifier)
           constraint: (parameter_member
-            (member_access
-              value: (self)
-              member: (identifier))))))
+            value: (self)
+            member: (identifier)))))
     body: (block
       (assignment
         left: (member_access
@@ -550,9 +549,8 @@ def call[
           constraint: (function_type
             arguments: (function_type_parameters
               (parameter_member
-                (member_access
-                  value: (self)
-                  member: (identifier)))))))
+                value: (self)
+                member: (identifier))))))
       arguments: (callable_parameters
         (parameter_decl
           name: (identifier))
