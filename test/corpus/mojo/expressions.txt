@@ -750,6 +750,89 @@ def drop_while[
       (pass_statement))))
 
 ================================================================================
+Function: type expressions with trailing where clauses
+================================================================================
+
+def inner_constraint[n: Int]() -> def() thin -> None where n > 0:
+    pass
+
+def outer_constraint[n: Int]() -> (def() thin -> None) where n > 0:
+    pass
+
+comptime Kernel = def[w: Int](Int) thin -> None where (
+    w > 0, "width must be positive"
+)
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      return_type: (function_type
+        arguments: (function_type_parameters)
+        effects: (function_effects
+          (thin))
+        return_type: (none)
+        (where_clause
+          (comparison_operator
+            (identifier)
+            (integer)))))
+    body: (block
+      (pass_statement)))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (callable_parameters)
+      return_type: (parenthesized_function_type
+        (function_type
+          arguments: (function_type_parameters)
+          effects: (function_effects
+            (thin))
+          return_type: (none)))
+      (where_clause
+        (comparison_operator
+          (identifier)
+          (integer))))
+    body: (block
+      (pass_statement)))
+  (comptime_statement
+    left: (comptime_parameter
+      name: (identifier))
+    right: (function_type
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier))))
+      arguments: (function_type_parameters
+        (parameter
+          (identifier)))
+      effects: (function_effects
+        (thin))
+      return_type: (none)
+      (where_clause
+        (tuple
+          (comparison_operator
+            (identifier)
+            (integer))
+          (string
+            (string_start)
+            (string_content)
+            (string_end)))))))
+
+================================================================================
 Lambda
 ================================================================================
 

@@ -308,6 +308,10 @@
         "named": true
       },
       {
+        "type": "parenthesized_function_type",
+        "named": true
+      },
+      {
         "type": "slice",
         "named": true
       },
@@ -1559,6 +1563,10 @@
             "named": true
           },
           {
+            "type": "parenthesized_function_type",
+            "named": true
+          },
+          {
             "type": "variadic_parameter",
             "named": true
           }
@@ -1642,6 +1650,10 @@
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "parenthesized_function_type",
             "named": true
           },
           {
@@ -1745,6 +1757,10 @@
             "named": true
           },
           {
+            "type": "parenthesized_function_type",
+            "named": true
+          },
+          {
             "type": "variadic_parameter",
             "named": true
           }
@@ -1808,6 +1824,10 @@
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "parenthesized_function_type",
             "named": true
           },
           {
@@ -2676,6 +2696,10 @@
           {
             "type": "parameter_union",
             "named": true
+          },
+          {
+            "type": "parenthesized_function_type",
+            "named": true
           }
         ]
       }
@@ -2760,16 +2784,24 @@
           {
             "type": "parameter_union",
             "named": true
+          },
+          {
+            "type": "parenthesized_function_type",
+            "named": true
           }
         ]
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "convention_parameters",
+          "named": true
+        },
+        {
+          "type": "where_clause",
           "named": true
         }
       ]
@@ -3397,6 +3429,10 @@
           },
           {
             "type": "parameter_union",
+            "named": true
+          },
+          {
+            "type": "parenthesized_function_type",
             "named": true
           }
         ]
@@ -4641,6 +4677,21 @@
         },
         {
           "type": "yield",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesized_function_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_type",
           "named": true
         }
       ]

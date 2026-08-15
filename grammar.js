@@ -583,13 +583,18 @@ export default grammar({
     // Function type
 
     function_type: $ =>
-      seq(
-        'def',
-        field('parameters', optional($.parameters_declaration)),
-        field('arguments', $.function_type_parameters),
-        field('effects', optional($.function_effects)),
-        optional($._function_return_type),
+      prec.right(
+        seq(
+          'def',
+          field('parameters', optional($.parameters_declaration)),
+          field('arguments', $.function_type_parameters),
+          field('effects', optional($.function_effects)),
+          optional($._function_return_type),
+          optional($._where_clauses),
+        ),
       ),
+
+    parenthesized_function_type: $ => seq('(', $.function_type, ')'),
 
     function_type_parameters: $ =>
       seq('(', optional(trailingCommaSep1($._function_type_parameter)), ')'),
@@ -831,6 +836,7 @@ export default grammar({
     _return_parameter: $ =>
       choice(
         $.function_type,
+        $.parenthesized_function_type,
         $.mlir_type,
         $.parameter_union,
         $._standalone_parameter,
