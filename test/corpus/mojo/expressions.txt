@@ -23,6 +23,37 @@ Identifier: escaped
     (escaped_identifier_content)))
 
 ================================================================================
+Operator: walrus
+================================================================================
+
+def main():
+    if var x := True:
+        print(x)
+    print(x)
+
+--------------------------------------------------------------------------------
+
+(module
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      arguments: (callable_parameters))
+    body: (block
+      (if_statement
+        condition: (walrus_operator
+          name: (identifier)
+          value: (true))
+        consequence: (block
+          (call
+            function: (identifier)
+            arguments: (arguments
+              (identifier)))))
+      (call
+        function: (identifier)
+        arguments: (arguments
+          (identifier))))))
+
+================================================================================
 Operator: transfer
 ================================================================================
 
@@ -210,6 +241,13 @@ def call[
 ](self, *args: *T) -> return_type:
     var v = args.get_loaded_kgen_pack()
     return self._get_func[name, def(type_of(v)) thin -> return_type]()(v)
+
+def drop_while[
+    IterableType: IterableOwned,
+    //,
+    predicate: def(IterableType.IteratorOwnedType.Element) thin -> Bool,
+](var iterable: IterableType):
+    pass
 
 --------------------------------------------------------------------------------
 
@@ -681,7 +719,35 @@ def call[
                       (identifier)))))
               arguments: (arguments))
             arguments: (arguments
-              (identifier))))))))
+              (identifier)))))))
+  (function_declaration
+    (function_signature
+      name: (identifier)
+      parameters: (parameters_declaration
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))
+        (infer_only_marker)
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (function_type
+            arguments: (function_type_parameters
+              (parameter_member
+                value: (identifier)
+                member: (identifier)
+                member: (identifier)))
+            effects: (function_effects
+              (thin))
+            return_type: (parameter
+              (identifier)))))
+      arguments: (callable_parameters
+        (constrained_parameter_decl
+          name: (identifier)
+          constraint: (parameter
+            (identifier)))))
+    body: (block
+      (pass_statement))))
 
 ================================================================================
 Lambda

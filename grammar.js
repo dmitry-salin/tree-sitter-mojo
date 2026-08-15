@@ -603,7 +603,7 @@ export default grammar({
         $.constrained_variadic_parameter_decl,
         $._non_composite_parameter,
         $._parameter_member,
-        $.expression,
+        $.call,
         $.positional_only_marker,
         $.keyword_only_marker,
       ),
@@ -1171,7 +1171,12 @@ export default grammar({
       prec.right(seq($.expression, 'if', $.expression, 'else', $.expression)),
 
     walrus_operator: $ =>
-      seq(field('name', $._identifier), ':=', field('value', $.expression)),
+      seq(
+        optional($._declaration_convention),
+        field('name', $._identifier),
+        ':=',
+        field('value', $.expression),
+      ),
 
     comparison_operator: $ =>
       seq(

@@ -2632,7 +2632,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "expression"
+          "name": "call"
         },
         {
           "type": "SYMBOL",
@@ -6184,6 +6184,18 @@
     "walrus_operator": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_declaration_convention"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "FIELD",
           "name": "name",

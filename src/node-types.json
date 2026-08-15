@@ -162,15 +162,15 @@
     "named": true,
     "subtypes": [
       {
+        "type": "call",
+        "named": true
+      },
+      {
         "type": "constrained_parameter_decl",
         "named": true
       },
       {
         "type": "constrained_variadic_parameter_decl",
-        "named": true
-      },
-      {
-        "type": "expression",
         "named": true
       },
       {
