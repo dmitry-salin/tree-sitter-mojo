@@ -241,8 +241,8 @@
 
 ; ---------------------------------------------------------------------------- 
 ; Docstrings
-(module _* (string (string_content) @spell)+ @string.documentation)
-(block _* (string (string_content) @spell)+ @string.documentation)
+(module (string (string_content) @spell) @string.documentation)
+(block (string (string_content) @spell) @string.documentation)
 
 ; ---------------------------------------------------------------------------- 
 ; Variables
