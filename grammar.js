@@ -297,7 +297,8 @@ export default grammar({
               'left',
               choice($.comptime_parameter, $.constrained_comptime_parameter),
             ),
-            seq('=', field('right', $._comptime_rhs)),
+            field('operator', '='),
+            field('right', $._comptime_rhs),
           ),
         ),
       ),
@@ -891,7 +892,8 @@ export default grammar({
           field('left', $.constrained_lhs),
           seq(
             field('left', choice($.constrained_lhs, $._lhs)),
-            seq('=', field('right', $._rhs)),
+            field('operator', '='),
+            field('right', $._rhs),
           ),
         ),
       ),
@@ -1180,7 +1182,7 @@ export default grammar({
       seq(
         optional($._declaration_convention),
         field('name', $._identifier),
-        ':=',
+        field('operator', ':='),
         field('value', $.expression),
       ),
 
@@ -1190,7 +1192,10 @@ export default grammar({
         repeat1(
           prec.left(
             'comparisons',
-            seq($._comparison_operator, $.primary_expression),
+            seq(
+              field('operator', $._comparison_operator),
+              $.primary_expression,
+            ),
           ),
         ),
       ),
