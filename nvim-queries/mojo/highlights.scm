@@ -334,7 +334,9 @@
       value: (identifier) @function.builtin))
   (#any-of? @function.builtin
     "bit_width_of"
-    "debug_assert")
+    "debug_assert"
+    "rebind"
+    "rebind_var")
 )
 
 ; ---------------------------------------------------------------------------- 
