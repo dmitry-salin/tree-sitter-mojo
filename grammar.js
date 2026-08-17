@@ -394,7 +394,7 @@ export default grammar({
     except_clause: $ =>
       seq(
         'except',
-        optional(token('*')),
+        optional('*'),
         optional(
           choice(
             seq(
