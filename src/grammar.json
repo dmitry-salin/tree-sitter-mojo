@@ -5257,19 +5257,6 @@
         }
       ]
     },
-    "dictionary_splat_pattern": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "**"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_splat_pattern"
-        }
-      ]
-    },
     "_splat_pattern": {
       "type": "CHOICE",
       "members": [

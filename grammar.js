@@ -1037,7 +1037,6 @@ export default grammar({
     _patterns: $ => trailingCommaSep1($.pattern),
 
     list_splat_pattern: $ => seq('*', $._splat_pattern),
-    dictionary_splat_pattern: $ => seq('**', $._splat_pattern),
     _splat_pattern: $ => choice($.member_access, $.subscript, $._identifier),
 
     // Extended patterns (patterns allowed in match statement are far more
