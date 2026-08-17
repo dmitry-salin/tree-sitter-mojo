@@ -10,25 +10,6 @@
 ; ---------------------------------------------------------------------------- 
 ; Symbols
 [
-  (line_continuation)
-  (keyword_only_marker)
-  (positional_only_marker)
-  (infer_only_marker)
-  (ellipsis)
-  "`"
-  (import_prefix)
-  (mlir_attr_punctuation)
-  (mlir_type_punctuation)
-] @punctuation.special
-
-[
-  (underscore)
-  (wildcard_import)
-  (mlir_attr_prefix)
-  (mlir_type_prefix)
-] @character.special
-
-[
   "("
   ")"
   "["
@@ -44,47 +25,103 @@
   ";"
 ] @punctuation.delimiter
 
+; Reset highlighting in f-string interpolations
+(interpolation) @none @nospell
+
+(interpolation[
+  "{"
+  "}"
+] @punctuation.special)
+
+(format_expression[
+  "{"
+  "}"
+] @punctuation.special)
+
+[
+  (line_continuation)
+  (keyword_only_marker)
+  (positional_only_marker)
+  (infer_only_marker)
+  "`"
+  (mlir_type_punctuation)
+  (mlir_attr_punctuation)
+] @punctuation.special
+
+[
+  (ellipsis)
+  (underscore)
+  (import_prefix)
+  (wildcard_import)
+  (mlir_type_prefix)
+  (mlir_attr_prefix)
+] @character.special
+
+(list_splat_pattern "*" @character.special)
+(splat_pattern ["*" "**"] @character.special)
+(variadic_parameter ["*" "**"] @character.special)
+(variadic_parameter_decl ["*" "**"] @character.special)
+(constrained_variadic_parameter_decl ["*" "**"] @character.special)
+(except_clause "except" "*" @character.special)
+
 ; ---------------------------------------------------------------------------- 
 ; Operators
 [
-  "-"
-  "-="
-  "->"
-  ":="
-  "!="
-  "@"
-  "@="
-  "*"
-  "**"
-  "**="
-  "*="
-  "/"
-  "//"
-  "//="
-  "/="
-  "&"
-  "&="
-  "%"
-  "%="
-  "^"
-  "^="
-  "+"
-  "+="
-  "<"
-  "<<"
-  "<<="
-  "<="
   "="
-  "=="
-  ">"
-  ">="
-  ">>"
-  ">>="
-  "|"
-  "|="
+  "->"
+  "+"
+  "-"
   "~"
+  "^"
+  "&"
+  "|"
   (mlir_operator)
 ] @operator
+
+(binary_operator
+  operator: [
+    "**"
+    "*"
+    "@"
+    "/"
+    "//"
+    "%"
+    "<<"
+    ">>"
+  ] @operator)
+
+(comparison_operator
+  operator: [
+    "=="
+    "!="
+    "<"
+    "<="
+    ">"
+    ">="
+  ] @operator)
+
+(walrus_operator
+  operator: ":=" @operator)
+
+(augmented_assignment
+  operator: [
+    "+="
+    "-="
+    "*="
+    "/="
+    "//="
+    "%="
+    "**="
+    "@="
+    "&="
+    "|="
+    "^="
+    "<<="
+    ">>="
+  ] @operator)
+
+(dictionary_splat "**" @operator)
+(list_splat "*" @operator)
 
 ; ---------------------------------------------------------------------------- 
 ; Keywords
@@ -225,19 +262,6 @@
   (escape_sequence)
   (escape_interpolation)
 ] @string.escape
-
-; Reset highlighting in f-string interpolations
-(interpolation) @none @nospell
-
-(interpolation[
-  "{"
-  "}"
-] @punctuation.special)
-
-(format_expression[
-  "{"
-  "}"
-] @punctuation.special)
 
 ; ---------------------------------------------------------------------------- 
 ; Docstrings
