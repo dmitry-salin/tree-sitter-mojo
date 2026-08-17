@@ -10,8 +10,7 @@
         "mojo",
         "py"
       ],
-      "highlights": "queries/highlights.scm",
-      "tags": "queries/tags.scm",
+      "highlights": "nvim-queries/mojo/highlights.scm",
       "injection-regex": "mojo|py"
     }
   ],

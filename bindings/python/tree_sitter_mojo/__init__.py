@@ -16,7 +16,7 @@ def _get_query(name, file):
 
 def __getattr__(name):
     if name == "HIGHLIGHTS_QUERY":
-        return _get_query("HIGHLIGHTS_QUERY", "queries/highlights.scm")
+        return _get_query("HIGHLIGHTS_QUERY", "nvim-queries/mojo/highlights.scm")
     if name == "INJECTIONS_QUERY":
         return _get_query("INJECTIONS_QUERY", "queries/injections.scm")
     if name == "LOCALS_QUERY":

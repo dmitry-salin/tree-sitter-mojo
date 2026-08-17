@@ -38,7 +38,7 @@ fn main() {
     c_config.compile("tree-sitter-mojo");
 
     println!("cargo:rustc-check-cfg=cfg(with_highlights_query)");
-    if !"queries/highlights.scm".is_empty() && std::path::Path::new("queries/highlights.scm").exists() {
+    if !"nvim-queries/mojo/highlights.scm".is_empty() && std::path::Path::new("nvim-queries/mojo/highlights.scm").exists() {
         println!("cargo:rustc-cfg=with_highlights_query");
     }
     println!("cargo:rustc-check-cfg=cfg(with_injections_query)");

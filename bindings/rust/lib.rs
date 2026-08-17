@@ -34,7 +34,7 @@ pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 #[cfg(with_highlights_query)]
 /// The syntax highlighting query for this grammar.
-pub const HIGHLIGHTS_QUERY: &str = include_str!("../../queries/highlights.scm");
+pub const HIGHLIGHTS_QUERY: &str = include_str!("../../nvim-queries/mojo/highlights.scm");
 
 #[cfg(with_injections_query)]
 /// The language injection query for this grammar.

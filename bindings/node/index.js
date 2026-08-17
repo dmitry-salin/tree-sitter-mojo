@@ -14,7 +14,7 @@ try {
 } catch { }
 
 const queries = [
-  ["HIGHLIGHTS_QUERY", `${root}/queries/highlights.scm`],
+  ["HIGHLIGHTS_QUERY", `${root}/nvim-queries/mojo/highlights.scm`],
   ["INJECTIONS_QUERY", `${root}/queries/injections.scm`],
   ["LOCALS_QUERY", `${root}/queries/locals.scm`],
   ["TAGS_QUERY", `${root}/queries/tags.scm`],
