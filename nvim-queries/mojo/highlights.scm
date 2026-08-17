@@ -339,8 +339,6 @@
     ])
 ](#lua-match? @constructor "^_*[A-Z]"))
 
-; ---------------------------------------------------------------------------- 
-; Built-in functions
 (
   (call
     function: (identifier) @function.builtin)
