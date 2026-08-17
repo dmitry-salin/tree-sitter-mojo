@@ -3490,7 +3490,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "mlir_attr_special_character"
+          "name": "mlir_attr_punctuation"
         },
         {
           "type": "SYMBOL",
@@ -3639,7 +3639,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "mlir_type_special_character"
+          "name": "mlir_type_punctuation"
         },
         {
           "type": "SYMBOL",
@@ -8586,7 +8586,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "mlir_attr_special_character"
+      "name": "mlir_attr_punctuation"
     },
     {
       "type": "SYMBOL",
@@ -8598,7 +8598,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "mlir_type_special_character"
+      "name": "mlir_type_punctuation"
     },
     {
       "type": "SYMBOL",

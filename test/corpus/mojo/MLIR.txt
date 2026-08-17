@@ -137,11 +137,11 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (assignment
     left: (constrained_lhs
       (identifier)
@@ -151,18 +151,18 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_type_prefix)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character))))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))))
   (assignment
     left: (constrained_lhs
       (identifier)
@@ -173,23 +173,23 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
             (mlir_dotted_identifier
               (identifier)
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_type_prefix)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
-          (mlir_type_special_character)
-          (mlir_type_special_character)))))
+          (mlir_type_punctuation)
+          (mlir_type_punctuation)
+          (mlir_type_punctuation)))))
   (assignment
     left: (constrained_lhs
       (identifier)
@@ -200,8 +200,8 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
             (mlir_dotted_identifier
               (identifier)
               (identifier)))
-          (mlir_type_special_character)
-          (mlir_type_special_character))
+          (mlir_type_punctuation)
+          (mlir_type_punctuation))
         (mlir_type_parameter
           (call
             function: (identifier)
@@ -219,7 +219,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)))))
+          (mlir_type_punctuation)))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -260,20 +260,20 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_string)
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter
           (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -284,7 +284,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter_member
           value: (self)
@@ -293,13 +293,13 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
             function: (identifier)
             arguments: (arguments))))
       (mlir_type_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter_member
           value: (self)
           member: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier)
@@ -319,7 +319,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (member_access
@@ -349,7 +349,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -360,8 +360,8 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (call
           function: (identifier)
@@ -379,7 +379,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -390,13 +390,13 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (call
           function: (identifier)
@@ -412,9 +412,9 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           member: (identifier)
           member: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character)
-        (mlir_type_special_character)
-        (mlir_type_special_character))))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -425,16 +425,16 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter_member
           value: (self)
@@ -443,7 +443,7 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -455,32 +455,32 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
             (identifier)
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter_member
           value: (self)
           member: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))
-      (mlir_type_parameter
-        (parameter_member
-          value: (self)
-          member: (identifier)
-          member: (identifier)))
-      (mlir_type_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter_member
           value: (self)
           member: (identifier)
           member: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))
+      (mlir_type_parameter
+        (parameter_member
+          value: (self)
+          member: (identifier)
+          member: (identifier)))
+      (mlir_type_parameter
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier)
@@ -496,29 +496,29 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_string)
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_string)
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (member_access
             value: (self)
             member: (identifier))))
       (mlir_type_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier)
@@ -534,17 +534,17 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_string)
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_string)
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter_member
           value: (identifier)
@@ -555,19 +555,19 @@ def _to_nvvm_layout[s: StaticString]() -> __mlir_type.`!kgen.deferred`:
                 value: (self)
                 member: (identifier))))))
       (mlir_type_parameter
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_string)
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (parameter
           (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_type_parameter
         (unary_operator
           argument: (identifier)))
       (mlir_type_parameter
-        (mlir_type_special_character))))
+        (mlir_type_punctuation))))
   (struct_declaration
     (struct_header
       name: (identifier)
@@ -799,14 +799,14 @@ def _get_860m_target() -> _TargetType:
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)))))
+          (mlir_type_punctuation)))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -816,21 +816,21 @@ def _get_860m_target() -> _TargetType:
         (mlir_dotted_identifier
           (identifier)
           (identifier)))
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
       (mlir_parameter
         (integer))
-      (mlir_type_special_character)
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
+      (mlir_type_punctuation)
       (mlir_type_prefix)
       (mlir_parameter
         (mlir_dotted_identifier
           (identifier)
           (identifier)))
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
       (mlir_parameter
         (mlir_dotted_identifier
           (identifier)))
-      (mlir_type_special_character)))
+      (mlir_type_punctuation)))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -844,29 +844,29 @@ def _get_860m_target() -> _TargetType:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
-            (mlir_type_special_character))))
+            (mlir_type_punctuation))))
       arguments: (arguments)))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
     right: (mlir_attr
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
       (mlir_attr_prefix)
       (mlir_parameter
         (mlir_dotted_identifier
           (identifier)
           (identifier)))
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
       (mlir_parameter
         (mlir_dotted_identifier
           (identifier)))
       (mlir_operator)
       (mlir_string)
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
       (mlir_parameter
         (mlir_dotted_identifier
           (identifier)))
@@ -876,15 +876,15 @@ def _get_860m_target() -> _TargetType:
         (mlir_dotted_identifier
           (identifier)
           (identifier)))
-      (mlir_type_special_character)
+      (mlir_type_punctuation)
       (mlir_parameter
         (mlir_dotted_identifier
           (identifier)))
       (mlir_operator)
       (mlir_string)
-      (mlir_type_special_character)
-      (mlir_type_special_character)
-      (mlir_type_special_character)))
+      (mlir_type_punctuation)
+      (mlir_type_punctuation)
+      (mlir_type_punctuation)))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -908,36 +908,36 @@ def _get_860m_target() -> _TargetType:
             (identifier)
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_attr_prefix)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
         (mlir_type_prefix)
         (mlir_parameter
           (mlir_dotted_identifier
             (identifier)
             (identifier)))
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter
           (identifier)))
       (mlir_attr_parameter
-        (mlir_type_special_character)
-        (mlir_type_special_character)
-        (mlir_type_special_character))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter
           (identifier)))
       (mlir_attr_parameter
-        (mlir_type_special_character)
-        (mlir_type_special_character)
+        (mlir_type_punctuation)
+        (mlir_type_punctuation)
         (mlir_type_prefix)
         (mlir_parameter
           (mlir_dotted_identifier
@@ -967,20 +967,20 @@ def _get_860m_target() -> _TargetType:
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_string)
-              (mlir_type_special_character)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)
               (mlir_type_prefix)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)))
-              (mlir_type_special_character)))))))
+              (mlir_type_punctuation)))))))
   (comptime_statement
     left: (comptime_parameter
       name: (identifier))
@@ -994,17 +994,17 @@ def _get_860m_target() -> _TargetType:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
-            (mlir_attr_special_character)
+            (mlir_type_punctuation)
+            (mlir_attr_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
             (mlir_operator)
             (mlir_parameter
               (integer))
-            (mlir_attr_special_character)
-            (mlir_type_special_character)
-            (mlir_type_special_character))
+            (mlir_attr_punctuation)
+            (mlir_type_punctuation)
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (parameter
               (identifier)))))))
@@ -1026,20 +1026,20 @@ def _get_860m_target() -> _TargetType:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (parameter_member
               value: (self)
               member: (identifier)))
           (mlir_attr_parameter
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (parameter_member
               value: (identifier)
               member: (identifier)))
           (mlir_attr_parameter
-            (mlir_type_special_character)
-            (mlir_type_special_character))
+            (mlir_type_punctuation)
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (parameter
               (identifier)))))))
@@ -1059,8 +1059,8 @@ def _get_860m_target() -> _TargetType:
             (identifier)
             (identifier)
             (identifier)))
-        (mlir_type_special_character)
-        (mlir_type_special_character))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter_member
           value: (self)
@@ -1072,14 +1072,14 @@ def _get_860m_target() -> _TargetType:
             value: (self)
             member: (identifier))))
       (mlir_attr_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter_member
           value: (identifier)
           member: (identifier)))
       (mlir_attr_parameter
-        (mlir_type_special_character)
-        (mlir_type_special_character))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (unary_operator
           argument: (member_access
@@ -1102,7 +1102,7 @@ def _get_860m_target() -> _TargetType:
                     (identifier)
                     (identifier)
                     (identifier)))
-                (mlir_type_special_character))
+                (mlir_type_punctuation))
               (mlir_attr_parameter
                 (mlir_attr_prefix)
                 (mlir_parameter
@@ -1110,32 +1110,32 @@ def _get_860m_target() -> _TargetType:
                     (identifier)
                     (identifier)
                     (identifier)))
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
                 (mlir_type_prefix)
                 (mlir_parameter
                   (mlir_dotted_identifier
                     (identifier)
                     (identifier)))
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
                 (mlir_parameter
                   (mlir_dotted_identifier
                     (identifier)))
-                (mlir_type_special_character))
+                (mlir_type_punctuation))
               (mlir_attr_parameter
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
                 (mlir_string)
-                (mlir_type_special_character)
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
+                (mlir_type_punctuation)
                 (mlir_type_prefix)
                 (mlir_parameter
                   (mlir_dotted_identifier
                     (identifier)
                     (identifier)))
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
                 (mlir_parameter
                   (mlir_dotted_identifier
                     (identifier)))
-                (mlir_type_special_character))))))
+                (mlir_type_punctuation))))))
       arguments: (arguments)))
   (comptime_statement
     left: (comptime_parameter
@@ -1158,18 +1158,18 @@ def _get_860m_target() -> _TargetType:
             (identifier)
             (identifier)
             (identifier)))
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter
           (identifier)))
       (mlir_attr_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter_member
           value: (self)
           member: (identifier)))
       (mlir_attr_parameter
-        (mlir_type_special_character))
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (parameter_member
           value: (self)
@@ -1188,8 +1188,8 @@ def _get_860m_target() -> _TargetType:
                     (ellipsis))))
               (ellipsis)))))
       (mlir_attr_parameter
-        (mlir_type_special_character)
-        (mlir_type_special_character))
+        (mlir_type_punctuation)
+        (mlir_type_punctuation))
       (mlir_attr_parameter
         (unary_operator
           argument: (identifier)))))
@@ -1208,12 +1208,12 @@ def _get_860m_target() -> _TargetType:
               (identifier)
               (identifier)
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))))))
@@ -1249,7 +1249,7 @@ def _get_860m_target() -> _TargetType:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
@@ -1262,7 +1262,7 @@ def _get_860m_target() -> _TargetType:
                   function: (identifier)
                   arguments: (arguments)))))
           (mlir_attr_parameter
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
@@ -1275,7 +1275,7 @@ def _get_860m_target() -> _TargetType:
                   function: (identifier)
                   arguments: (arguments)))))
           (mlir_attr_parameter
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
@@ -1288,7 +1288,7 @@ def _get_860m_target() -> _TargetType:
                   function: (identifier)
                   arguments: (arguments)))))
           (mlir_attr_parameter
-            (mlir_type_special_character))))))
+            (mlir_type_punctuation))))))
   (function_declaration
     (function_signature
       name: (identifier)
@@ -1316,14 +1316,14 @@ def _get_860m_target() -> _TargetType:
                     (mlir_dotted_identifier
                       (identifier)
                       (identifier)))
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (parameter_member
                     value: (identifier)
                     member: (identifier)))
                 (mlir_attr_parameter
-                  (mlir_type_special_character)
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation)
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (parameter_member
                     value: (identifier)
@@ -1341,19 +1341,19 @@ def _get_860m_target() -> _TargetType:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (parameter_member
               value: (identifier)
               member: (identifier)))
           (mlir_attr_parameter
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (parameter_member
               value: (self)
               member: (identifier)))
           (mlir_attr_parameter
-            (mlir_type_special_character)))))
+            (mlir_type_punctuation)))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -1381,62 +1381,62 @@ def _get_860m_target() -> _TargetType:
                 (identifier)
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_attr_prefix)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (unary_operator
               argument: (identifier)))
           (mlir_attr_parameter
-            (mlir_type_special_character)
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
+            (mlir_type_punctuation)
             (mlir_type_prefix)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)
                 (identifier))))
           (mlir_attr_parameter
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_attr_prefix)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (unary_operator
               argument: (identifier)))
           (mlir_attr_parameter
-            (mlir_type_special_character)
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
+            (mlir_type_punctuation)
             (mlir_type_prefix)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)
                 (identifier))))
           (mlir_attr_parameter
-            (mlir_type_special_character)
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
+            (mlir_type_punctuation)
             (mlir_type_prefix)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
-            (mlir_type_special_character))))))
+            (mlir_type_punctuation))))))
   (function_declaration
     (function_signature
       name: (identifier)
@@ -1452,34 +1452,34 @@ def _get_860m_target() -> _TargetType:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
             (mlir_operator)
             (mlir_string)
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
             (mlir_operator)
             (mlir_string)
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
             (mlir_operator)
             (mlir_string)
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
             (mlir_operator)
             (mlir_string)
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_parameter
               (mlir_dotted_identifier
@@ -1487,7 +1487,7 @@ def _get_860m_target() -> _TargetType:
             (mlir_operator)
             (mlir_parameter
               (integer))
-            (mlir_type_special_character))
+            (mlir_type_punctuation))
           (mlir_attr_parameter
             (mlir_parameter
               (mlir_dotted_identifier
@@ -1496,8 +1496,8 @@ def _get_860m_target() -> _TargetType:
             (mlir_parameter
               (integer)))
           (mlir_attr_parameter
-            (mlir_type_special_character)
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
+            (mlir_type_punctuation)
             (mlir_type_prefix)
             (mlir_parameter
               (mlir_dotted_identifier
@@ -1681,7 +1681,7 @@ def _snprintf[
       (named_parameter
         name: (identifier)
         value: (mlir_attr
-          (mlir_attr_special_character)
+          (mlir_attr_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
@@ -1691,12 +1691,12 @@ def _snprintf[
             (mlir_dotted_identifier
               (identifier)
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
-          (mlir_attr_special_character))))
+          (mlir_type_punctuation)
+          (mlir_attr_punctuation))))
     arguments: (arguments
       (identifier)
       (identifier)))
@@ -1713,7 +1713,7 @@ def _snprintf[
       (named_parameter
         name: (identifier)
         value: (mlir_attr
-          (mlir_attr_special_character)
+          (mlir_attr_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
@@ -1721,30 +1721,30 @@ def _snprintf[
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
-          (mlir_attr_special_character)))
+          (mlir_type_punctuation)
+          (mlir_attr_punctuation)))
       (named_parameter
         name: (identifier)
         value: (none)))
@@ -1767,7 +1767,7 @@ def _snprintf[
       (named_parameter
         name: (identifier)
         value: (mlir_attr
-          (mlir_attr_special_character)
+          (mlir_attr_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
@@ -1775,30 +1775,30 @@ def _snprintf[
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (mlir_dotted_identifier
               (identifier)))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
+          (mlir_type_punctuation)
           (mlir_parameter
             (integer))
-          (mlir_type_special_character)
-          (mlir_attr_special_character))))
+          (mlir_type_punctuation)
+          (mlir_attr_punctuation))))
     arguments: (arguments
       (call
         function: (identifier)
@@ -1849,11 +1849,11 @@ def _snprintf[
                       (mlir_dotted_identifier
                         (identifier)
                         (identifier)))
-                    (mlir_type_special_character)
+                    (mlir_type_punctuation)
                     (mlir_parameter
                       (mlir_dotted_identifier
                         (identifier)))
-                    (mlir_type_special_character))))
+                    (mlir_type_punctuation))))
               arguments: (arguments
                 (member_access
                   value: (identifier)
@@ -1877,7 +1877,7 @@ def _snprintf[
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character))
+              (mlir_type_punctuation))
             (mlir_type_parameter
               (parameter_member
                 value: (self)
@@ -1886,13 +1886,13 @@ def _snprintf[
                   function: (identifier)
                   arguments: (arguments))))
             (mlir_type_parameter
-              (mlir_type_special_character))
+              (mlir_type_punctuation))
             (mlir_type_parameter
               (parameter_member
                 value: (self)
                 member: (identifier)))
             (mlir_type_parameter
-              (mlir_type_special_character)))))
+              (mlir_type_punctuation)))))
       arguments: (arguments
         (identifier))))
   (assignment
@@ -1912,8 +1912,8 @@ def _snprintf[
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
-              (mlir_type_special_character))
+              (mlir_type_punctuation)
+              (mlir_type_punctuation))
             (mlir_type_parameter
               (unary_operator
                 argument: (call
@@ -1931,8 +1931,8 @@ def _snprintf[
                         arguments: (arguments))))
                   arguments: (arguments))))
             (mlir_type_parameter
-              (mlir_type_special_character)
-              (mlir_type_special_character)))))
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)))))
       arguments: (arguments)))
   (assignment
     left: (pattern_list
@@ -2142,21 +2142,21 @@ def _snprintf[
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (integer))
-              (mlir_type_special_character)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)
               (mlir_type_prefix)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)))
-              (mlir_type_special_character)))))))
+              (mlir_type_punctuation)))))))
   (function_declaration
     (function_signature
       name: (identifier)
@@ -2265,7 +2265,7 @@ def _snprintf[
           (named_parameter
             name: (identifier)
             value: (mlir_attr
-              (mlir_attr_special_character)
+              (mlir_attr_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)))
@@ -2275,13 +2275,13 @@ def _snprintf[
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)))
@@ -2291,12 +2291,12 @@ def _snprintf[
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)))
-              (mlir_type_special_character)
-              (mlir_attr_special_character))))
+              (mlir_type_punctuation)
+              (mlir_attr_punctuation))))
         arguments: (arguments))))
   (function_declaration
     (function_signature
@@ -2324,7 +2324,7 @@ def _snprintf[
             value: (mlir_attr
               (mlir_attr_parameter
                 (mlir_string)
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
                 (mlir_type_prefix)
                 (mlir_parameter
                   (mlir_dotted_identifier
@@ -2336,30 +2336,30 @@ def _snprintf[
           (named_parameter
             name: (identifier)
             value: (mlir_attr
-              (mlir_type_special_character)
-              (mlir_attr_special_character)
+              (mlir_type_punctuation)
+              (mlir_attr_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier)
                   (identifier)))
-              (mlir_attr_special_character)
-              (mlir_type_special_character)))
+              (mlir_attr_punctuation)
+              (mlir_type_punctuation)))
           (named_parameter
             name: (identifier)
             value: (mlir_attr
-              (mlir_type_special_character)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)
               (mlir_string)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_string)
-              (mlir_type_special_character)
-              (mlir_type_special_character)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)
+              (mlir_type_punctuation)
               (mlir_string)
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_string)
-              (mlir_type_special_character)
-              (mlir_type_special_character))))
+              (mlir_type_punctuation)
+              (mlir_type_punctuation))))
         arguments: (arguments
           (identifier)))))
   (function_declaration
@@ -2412,20 +2412,20 @@ def _snprintf[
             (named_parameter
               name: (identifier)
               value: (mlir_attr
-                (mlir_type_special_character)
-                (mlir_attr_special_character)
+                (mlir_type_punctuation)
+                (mlir_attr_punctuation)
                 (mlir_parameter
                   (mlir_dotted_identifier
                     (identifier)
                     (identifier)))
-                (mlir_attr_special_character)
-                (mlir_type_special_character)))
+                (mlir_attr_punctuation)
+                (mlir_type_punctuation)))
             (named_parameter
               name: (identifier)
               value: (mlir_attr
-                (mlir_type_special_character)
+                (mlir_type_punctuation)
                 (mlir_string)
-                (mlir_type_special_character)))
+                (mlir_type_punctuation)))
             (named_parameter
               name: (identifier)
               value: (mlir_attr
@@ -2435,7 +2435,7 @@ def _snprintf[
                     (mlir_dotted_identifier
                       (identifier)
                       (identifier)))
-                  (mlir_type_special_character)
+                  (mlir_type_punctuation)
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
@@ -2443,7 +2443,7 @@ def _snprintf[
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (mlir_parameter
                     (mlir_dotted_identifier
@@ -2452,7 +2452,7 @@ def _snprintf[
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (mlir_parameter
                     (mlir_dotted_identifier
@@ -2461,7 +2461,7 @@ def _snprintf[
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (mlir_parameter
                     (mlir_dotted_identifier
@@ -2470,7 +2470,7 @@ def _snprintf[
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (mlir_parameter
                     (mlir_dotted_identifier
@@ -2479,7 +2479,7 @@ def _snprintf[
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
-                  (mlir_type_special_character))
+                  (mlir_type_punctuation))
                 (mlir_attr_parameter
                   (mlir_parameter
                     (mlir_dotted_identifier
@@ -2488,7 +2488,7 @@ def _snprintf[
                   (mlir_parameter
                     (mlir_dotted_identifier
                       (identifier)))
-                  (mlir_type_special_character))))
+                  (mlir_type_punctuation))))
             (named_parameter
               name: (identifier)
               value: (parameter
@@ -2559,65 +2559,65 @@ def _snprintf[
                   name: (identifier)
                   value: (mlir_attr
                     (mlir_attr_parameter
-                      (mlir_type_special_character))
+                      (mlir_type_punctuation))
                     (mlir_attr_parameter
                       (mlir_type_prefix)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)
                           (identifier)))
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)))
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)))
-                      (mlir_type_special_character)
-                      (mlir_type_special_character)
-                      (mlir_type_special_character))
+                      (mlir_type_punctuation)
+                      (mlir_type_punctuation)
+                      (mlir_type_punctuation))
                     (mlir_attr_parameter
                       (mlir_type_prefix)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)
                           (identifier)))
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)))
-                      (mlir_type_special_character)
-                      (mlir_type_special_character))
+                      (mlir_type_punctuation)
+                      (mlir_type_punctuation))
                     (mlir_attr_parameter
                       (mlir_type_prefix)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)
                           (identifier)))
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)))
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)))
-                      (mlir_type_special_character)
-                      (mlir_type_special_character))
+                      (mlir_type_punctuation)
+                      (mlir_type_punctuation))
                     (mlir_attr_parameter
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_operator)
                       (mlir_type_prefix)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)
                           (identifier)))
-                      (mlir_type_special_character)
+                      (mlir_type_punctuation)
                       (mlir_parameter
                         (mlir_dotted_identifier
                           (identifier)))
-                      (mlir_type_special_character))))
+                      (mlir_type_punctuation))))
                 (named_parameter
                   name: (identifier)
                   value: (parameter
@@ -2686,11 +2686,11 @@ def structured_for_loop() -> __mlir_type.index:
               (mlir_dotted_identifier
                 (identifier)
                 (identifier)))
-            (mlir_type_special_character)
+            (mlir_type_punctuation)
             (mlir_parameter
               (mlir_dotted_identifier
                 (identifier)))
-            (mlir_type_special_character)))))
+            (mlir_type_punctuation)))))
     body: (block
       (pass_statement)))
   (function_declaration
@@ -2789,7 +2789,7 @@ def structured_for_loop() -> __mlir_type.index:
             (mlir_attr
               (mlir_parameter
                 (integer))
-              (mlir_type_special_character)
+              (mlir_type_punctuation)
               (mlir_parameter
                 (mlir_dotted_identifier
                   (identifier))))))))))

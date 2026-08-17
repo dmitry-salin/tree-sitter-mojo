@@ -3890,7 +3890,7 @@
           "named": true
         },
         {
-          "type": "mlir_attr_special_character",
+          "type": "mlir_attr_punctuation",
           "named": true
         },
         {
@@ -3910,7 +3910,7 @@
           "named": true
         },
         {
-          "type": "mlir_type_special_character",
+          "type": "mlir_type_punctuation",
           "named": true
         }
       ]
@@ -3937,7 +3937,7 @@
           "named": true
         },
         {
-          "type": "mlir_attr_special_character",
+          "type": "mlir_attr_punctuation",
           "named": true
         },
         {
@@ -3957,7 +3957,7 @@
           "named": true
         },
         {
-          "type": "mlir_type_special_character",
+          "type": "mlir_type_punctuation",
           "named": true
         },
         {
@@ -4156,7 +4156,7 @@
           "named": true
         },
         {
-          "type": "mlir_type_special_character",
+          "type": "mlir_type_punctuation",
           "named": true
         }
       ]
@@ -4191,7 +4191,7 @@
           "named": true
         },
         {
-          "type": "mlir_type_special_character",
+          "type": "mlir_type_punctuation",
           "named": true
         },
         {
@@ -6148,7 +6148,7 @@
     "named": true
   },
   {
-    "type": "mlir_attr_special_character",
+    "type": "mlir_attr_punctuation",
     "named": true
   },
   {
@@ -6164,7 +6164,7 @@
     "named": true
   },
   {
-    "type": "mlir_type_special_character",
+    "type": "mlir_type_punctuation",
     "named": true
   },
   {

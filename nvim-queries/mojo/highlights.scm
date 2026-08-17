@@ -17,8 +17,8 @@
   (ellipsis)
   "`"
   (import_prefix)
-  (mlir_attr_special_character)
-  (mlir_type_special_character)
+  (mlir_attr_punctuation)
+  (mlir_type_punctuation)
 ] @punctuation.special
 
 [

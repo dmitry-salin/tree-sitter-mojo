@@ -72,10 +72,10 @@ export default grammar({
     $._indent,
     $._dedent,
     $.mlir_attr_prefix,
-    $.mlir_attr_special_character,
+    $.mlir_attr_punctuation,
     $.mlir_operator,
     $.mlir_type_prefix,
-    $.mlir_type_special_character,
+    $.mlir_type_punctuation,
     $.string_start,
     $._string_content,
     $.escape_interpolation,
@@ -732,7 +732,7 @@ export default grammar({
     _mlir_attr_escaped_part: $ =>
       choice(
         $.mlir_attr_prefix,
-        $.mlir_attr_special_character,
+        $.mlir_attr_punctuation,
         $.mlir_operator,
         $._mlir_type_escaped_part,
       ),
@@ -755,7 +755,7 @@ export default grammar({
     _mlir_type_escaped_part: $ =>
       choice(
         $.mlir_type_prefix,
-        $.mlir_type_special_character,
+        $.mlir_type_punctuation,
         $.mlir_parameter,
         $.mlir_string,
         $._mlir_whitespaces,
