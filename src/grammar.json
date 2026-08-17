@@ -367,10 +367,13 @@
       ]
     },
     "import_prefix": {
-      "type": "REPEAT1",
+      "type": "TOKEN",
       "content": {
-        "type": "STRING",
-        "value": "."
+        "type": "REPEAT1",
+        "content": {
+          "type": "STRING",
+          "value": "."
+        }
       }
     },
     "_import": {

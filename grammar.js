@@ -254,7 +254,7 @@ export default grammar({
     relative_import: $ => seq($.import_prefix, optional($._import)),
     _absolute_import: $ => choice($.import, $.aliased_import),
 
-    import_prefix: _ => repeat1('.'),
+    import_prefix: _ => token(repeat1('.')),
     _import: $ => field('name', $.dotted_escaped_identifier),
     _import_alias: $ => seq('as', field('alias', $.identifier)),
 

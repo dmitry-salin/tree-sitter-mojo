@@ -3140,11 +3140,6 @@
     }
   },
   {
-    "type": "import_prefix",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "infer_only_marker",
     "named": true,
     "fields": {}
@@ -6118,6 +6113,10 @@
   {
     "type": "import",
     "named": false
+  },
+  {
+    "type": "import_prefix",
+    "named": true
   },
   {
     "type": "in",
