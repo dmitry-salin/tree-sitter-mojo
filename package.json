@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-mojo",
-  "version": "0.1.0",
+  "version": "1.0.4",
   "description": "Mojo grammar for tree-sitter",
   "type": "module",
   "repository": "https://github.com/dmitry-salin/tree-sitter-mojo",

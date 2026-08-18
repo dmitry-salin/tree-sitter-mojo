@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-mojo
-        VERSION "0.1.0"
+        VERSION "1.0.4"
         DESCRIPTION "Mojo grammar for tree-sitter"
         HOMEPAGE_URL "https://github.com/dmitry-salin/tree-sitter-mojo"
         LANGUAGES C)
